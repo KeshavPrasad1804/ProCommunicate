@@ -1,5 +1,6 @@
 import AVFoundation
 import Observation
+import os
 
 /// English accent for the app's voice.
 enum SpeechVoice: String, CaseIterable, Identifiable, Sendable {
@@ -82,10 +83,33 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     }
 
     /// The highest-quality installed voice for the accent (enhanced/premium if downloaded).
-    static func bestVoice(for voice: SpeechVoice) -> AVSpeechSynthesisVoice? {
-        let candidates = AVSpeechSynthesisVoice.speechVoices().filter { $0.language == voice.rawValue }
-        return candidates.max { $0.quality.rawValue < $1.quality.rawValue }
-            ?? AVSpeechSynthesisVoice(language: voice.rawValue)
+    /// Listing the installed voices is slow (~0.2 s), so the choice is remembered per language; see `prewarmVoices()`.
+    nonisolated static func bestVoice(for voice: SpeechVoice) -> AVSpeechSynthesisVoice? {
+        bestVoice(language: voice.rawValue)
+    }
+
+    nonisolated static func bestVoice(language: String) -> AVSpeechSynthesisVoice? {
+        if let cached = voiceCache.withLock({ $0[language] }) {
+            return cached.flatMap(AVSpeechSynthesisVoice.init(identifier:)) ?? AVSpeechSynthesisVoice(language: language)
+        }
+        let all = AVSpeechSynthesisVoice.speechVoices()
+        var best: [String: String?] = [:]
+        for lang in Set(all.map(\.language)) {
+            best[lang] = all.filter { $0.language == lang }.max { $0.quality.rawValue < $1.quality.rawValue }?.identifier
+        }
+        if best[language] == nil { best[language] = .some(nil) }
+        let found = best[language] ?? nil
+        let computed = best
+        voiceCache.withLock { $0.merge(computed) { _, new in new } }
+        return found.flatMap(AVSpeechSynthesisVoice.init(identifier:)) ?? AVSpeechSynthesisVoice(language: language)
+    }
+
+    /// Language code → best voice identifier (nil = use the system default for that language).
+    private nonisolated static let voiceCache = OSAllocatedUnfairLock<[String: String?]>(initialState: [:])
+
+    /// Looks up the voices once in the background at launch, so the first spoken sentence doesn't stall the screen.
+    nonisolated static func prewarmVoices() {
+        _ = bestVoice(language: SpeechVoice.indian.rawValue)
     }
 
     private func finishedOne() {

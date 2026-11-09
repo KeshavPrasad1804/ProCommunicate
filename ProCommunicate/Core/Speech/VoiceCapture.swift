@@ -61,7 +61,20 @@ final class VoiceCapture: @unchecked Sendable {
         self.onEvent = onEvent
     }
 
-    func start() throws {
+    /// Audio session and engine setup talk to iOS's audio service and can take most of a second,
+    /// so they run on this queue, never on the main thread (a 1 s freeze when a call opened, 2026-11-09 hang report).
+    private static let audioQueue = DispatchQueue(label: "dev.procommunicate.audio", qos: .userInitiated)
+
+    /// Starts the microphone off the main thread.
+    func start() async throws {
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            Self.audioQueue.async {
+                continuation.resume(with: Result { try self.startOnQueue() })
+            }
+        }
+    }
+
+    private func startOnQueue() throws {
         let session = AVAudioSession.sharedInstance()
         try session.setCategory(.playAndRecord, mode: .voiceChat,
                                 options: [.defaultToSpeaker, .allowBluetoothHFP, .allowBluetoothA2DP])
@@ -79,10 +92,13 @@ final class VoiceCapture: @unchecked Sendable {
         try engine.start()
     }
 
+    /// Stops listening now; the audio engine is shut down on the audio queue (after any start still in progress).
     func stop() {
-        engine.inputNode.removeTap(onBus: 0)
-        engine.stop()
         state.withLock { $0 = DetectorState() }
+        Self.audioQueue.async {
+            self.engine.inputNode.removeTap(onBus: 0)
+            self.engine.stop()
+        }
     }
 
     /// Start or stop listening for a turn (e.g. paused while the AI is thinking).

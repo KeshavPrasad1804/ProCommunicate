@@ -250,13 +250,16 @@ final class LabRecorder {
                 self.samples = samples
             }
         }
-        do {
-            try capture.start()
-            capture.setListening(true)
-            self.capture = capture
-            isRecording = true
-        } catch {
-            isRecording = false
+        // Show "recording" right away; the microphone starts off the main thread.
+        capture.setListening(true)
+        self.capture = capture
+        isRecording = true
+        Task {
+            do {
+                try await capture.start()
+            } catch {
+                if self.capture === capture { self.capture = nil; isRecording = false }
+            }
         }
     }
 

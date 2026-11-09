@@ -166,13 +166,16 @@ final class SingleAnswerListener {
         let capture = VoiceCapture(detection: { var d = TurnDetection.current; d.endSilence = max(d.endSilence, 2.5); return d }()) { [weak self] event in
             Task { @MainActor in self?.handle(event) }
         }
-        do {
-            try capture.start()
-            capture.setListening(true)
-            self.capture = capture
-            isRecording = true
-        } catch {
-            isRecording = false
+        // Show "recording" right away; the microphone starts off the main thread.
+        capture.setListening(true)
+        self.capture = capture
+        isRecording = true
+        Task {
+            do {
+                try await capture.start()
+            } catch {
+                if self.capture === capture { self.capture = nil; isRecording = false }
+            }
         }
     }
 

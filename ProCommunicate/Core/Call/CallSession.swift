@@ -92,7 +92,7 @@ final class CallSession {
                 let capture = VoiceCapture { [weak self] event in
                     Task { @MainActor in self?.handle(event) }
                 }
-                try capture.start()
+                try await capture.start()
                 self.capture = capture
             } catch {
                 typingMode = true
@@ -359,7 +359,9 @@ final class CallSession {
             let capture = VoiceCapture { [weak self] event in
                 Task { @MainActor in self?.handle(event) }
             }
-            if (try? capture.start()) != nil { self.capture = capture } else { typingMode = true }
+            Task {
+                if (try? await capture.start()) != nil, !suspended { self.capture = capture } else if suspended { capture.stop() } else { typingMode = true }
+            }
         }
         replying = false
         // Pick up where we were: repeat the last thing the AI asked.

@@ -42,6 +42,7 @@ struct ProCommunicateApp: App {
             .task {
                 ReportProcessor.shared.configure(container: container)
                 SpeechReadiness.preloadInBackground()
+                Task.detached(priority: .utility) { Speaker.prewarmVoices() }
                 RecordingCleanup.run(in: container.mainContext)
             }
             .onChange(of: language) { _, _ in
