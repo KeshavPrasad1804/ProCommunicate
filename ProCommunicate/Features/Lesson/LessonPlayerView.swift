@@ -3,8 +3,8 @@ import SwiftUI
 /// Plays one lesson full screen: intro → steps (missed ones come back) → results.
 struct LessonPlayerView: View {
     let lesson: Lesson
-    /// Called once when the lesson is finished, with the first-try score (0…1).
-    var onFinish: (Double) -> Void = { _ in }
+    /// Called once when the lesson is finished, with the first-try score (0…1) and seconds spent.
+    var onFinish: (Double, TimeInterval) -> Void = { _, _ in }
 
     @Environment(\.dismiss) private var dismiss
     @State private var session: LessonSession
@@ -12,8 +12,9 @@ struct LessonPlayerView: View {
     @State private var answer: String?
     @State private var confirmExit = false
     @State private var reported = false
+    @State private var startedAt = Date()
 
-    init(lesson: Lesson, startAt: Int? = nil, onFinish: @escaping (Double) -> Void = { _ in }) {
+    init(lesson: Lesson, startAt: Int? = nil, onFinish: @escaping (Double, TimeInterval) -> Void = { _, _ in }) {
         self.lesson = lesson
         self.onFinish = onFinish
         _session = State(initialValue: LessonSession(lesson: lesson, startAt: startAt ?? 0))
@@ -46,7 +47,7 @@ struct LessonPlayerView: View {
         .onChange(of: session.isFinished) { _, finished in
             if finished && started && !reported {
                 reported = true
-                onFinish(session.score)
+                onFinish(session.score, Date().timeIntervalSince(startedAt))
             }
         }
         .onDisappear { Speaker.shared.stop() }
@@ -173,6 +174,7 @@ struct LessonPlayerView: View {
 
     private func primaryAction() {
         guard started else {
+            startedAt = .now
             withAnimation { started = true }
             return
         }

@@ -7,6 +7,10 @@ final class AppRouter {
     var showSettings = false
     /// The lesson being played full screen, if any.
     var activeLesson: Lesson?
+    /// Full-screen review session.
+    var showReviewSession = false
+    /// Full-screen stand-up drill.
+    var showStandUpDrill = false
     /// Debug only: start the lesson at this step (skips the intro), for screenshots.
     var debugLessonStartStep: Int?
 
@@ -18,6 +22,11 @@ final class AppRouter {
 enum SettingsKey {
     /// The AI tutor switch. Off until you turn it on and download the model.
     static let aiTutorEnabled = "aiTutorEnabled"
+    /// Daily practice goal in minutes (10, 20 or 30).
+    static let dailyGoalMinutes = "dailyGoalMinutes"
+    static let reminderEnabled = "reminderEnabled"
+    /// Minutes after midnight for the daily reminder.
+    static let reminderMinuteOfDay = "reminderMinuteOfDay"
 }
 
 /// Lets iOS wake the app to finish the model's background download.

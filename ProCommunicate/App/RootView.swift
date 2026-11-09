@@ -41,9 +41,17 @@ struct RootView: View {
             SettingsView()
         }
         .fullScreenCover(item: $router.activeLesson) { lesson in
-            LessonPlayerView(lesson: lesson, startAt: router.debugLessonStartStep) { score in
+            LessonPlayerView(lesson: lesson, startAt: router.debugLessonStartStep) { score, seconds in
                 ProgressStore.recordCompletion(of: lesson, score: score, in: modelContext)
+                LearningStore.addCards(from: lesson, in: modelContext)
+                LearningStore.log(.lesson, seconds: seconds, in: modelContext)
             }
+        }
+        .fullScreenCover(isPresented: $router.showReviewSession) {
+            ReviewSessionView()
+        }
+        .fullScreenCover(isPresented: $router.showStandUpDrill) {
+            StandUpDrillView()
         }
         #if DEBUG
         .task {
@@ -57,6 +65,9 @@ struct RootView: View {
                 if defaults.object(forKey: "lessonStep") != nil { router.debugLessonStartStep = defaults.integer(forKey: "lessonStep") }
                 router.open(lesson)
             }
+            if defaults.bool(forKey: "openStandUp") { router.showStandUpDrill = true }
+            if defaults.bool(forKey: "openReview") { router.showReviewSession = true }
+            if defaults.bool(forKey: "seedDemoData") { DemoData.seed(in: modelContext) }
         }
         #endif
     }
@@ -66,5 +77,5 @@ struct RootView: View {
     RootView(course: .preview)
         .environment(AppRouter())
         .environment(AIModelManager.shared)
-        .modelContainer(for: LessonProgressRecord.self, inMemory: true)
+        .modelContainer(for: AppSchema.models, inMemory: true)
 }

@@ -31,7 +31,7 @@ struct ProCommunicateApp: App {
             .environment(router)
             .environment(AIModelManager.shared)
         }
-        .modelContainer(for: LessonProgressRecord.self)
+        .modelContainer(for: AppSchema.models)
     }
 }
 

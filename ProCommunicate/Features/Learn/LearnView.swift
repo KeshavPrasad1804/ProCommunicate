@@ -108,5 +108,5 @@ struct UnitDetailView: View {
 #Preview {
     LearnView(course: .preview)
         .environment(AppRouter())
-        .modelContainer(for: LessonProgressRecord.self, inMemory: true)
+        .modelContainer(for: AppSchema.models, inMemory: true)
 }

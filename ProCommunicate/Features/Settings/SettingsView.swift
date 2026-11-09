@@ -5,8 +5,34 @@ struct SettingsView: View {
     @Environment(AIModelManager.self) private var aiModel
     @AppStorage(SettingsKey.aiTutorEnabled) private var aiTutorEnabled = false
     @AppStorage(SpeechVoice.settingsKey) private var speechVoice = SpeechVoice.indian.rawValue
+    @AppStorage(SettingsKey.dailyGoalMinutes) private var dailyGoal = 20
+    @AppStorage(SettingsKey.reminderEnabled) private var reminderEnabled = false
+    @AppStorage(SettingsKey.reminderMinuteOfDay) private var reminderMinute = 19 * 60
+    @State private var reminderDenied = false
 
     private let deviceSupported = DeviceCapability.supportsAITutor()
+
+    private var reminderTime: Binding<Date> {
+        Binding {
+            Calendar.current.date(bySettingHour: reminderMinute / 60, minute: reminderMinute % 60, second: 0, of: .now) ?? .now
+        } set: { date in
+            let parts = Calendar.current.dateComponents([.hour, .minute], from: date)
+            reminderMinute = (parts.hour ?? 19) * 60 + (parts.minute ?? 0)
+        }
+    }
+
+    private func updateReminder(on: Bool) {
+        guard on else {
+            ReminderScheduler.cancel()
+            reminderDenied = false
+            return
+        }
+        Task {
+            let allowed = await ReminderScheduler.requestPermission()
+            reminderDenied = !allowed
+            if allowed { ReminderScheduler.schedule(minuteOfDay: reminderMinute, goalMinutes: dailyGoal) }
+        }
+    }
 
     var body: some View {
         NavigationStack {
@@ -27,6 +53,32 @@ struct SettingsView: View {
                 if deviceSupported && (aiTutorEnabled || aiModel.state != .notDownloaded) {
                     AIModelSection(aiTutorEnabled: aiTutorEnabled)
                 }
+
+                Section {
+                    Picker(selection: $dailyGoal) {
+                        Text("10 minutes").tag(10)
+                        Text("20 minutes").tag(20)
+                        Text("30 minutes").tag(30)
+                    } label: {
+                        Label("Daily goal", systemImage: "target")
+                    }
+                    Toggle(isOn: $reminderEnabled) {
+                        Label("Daily reminder", systemImage: "bell.fill")
+                    }
+                    if reminderEnabled {
+                        DatePicker("Remind me at", selection: reminderTime, displayedComponents: .hourAndMinute)
+                    }
+                    if reminderDenied {
+                        Text("Notifications are off for ProCommunicate. Turn them on in iPhone Settings → Notifications.")
+                            .font(.footnote)
+                            .foregroundStyle(.orange)
+                    }
+                } header: {
+                    Text("Daily practice")
+                }
+                .onChange(of: reminderEnabled) { _, on in updateReminder(on: on) }
+                .onChange(of: reminderMinute) { _, _ in updateReminder(on: reminderEnabled) }
+                .onChange(of: dailyGoal) { _, _ in updateReminder(on: reminderEnabled) }
 
                 Section {
                     Picker(selection: $speechVoice) {

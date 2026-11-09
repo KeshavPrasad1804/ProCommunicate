@@ -346,10 +346,10 @@ ProCommunicate/
 |---|---|---|
 | 0. Setup ✅ (2026-11-09) | Xcode installed; SwiftUI app generated with XcodeGen, running on your iPhone 15 with tabs and navigation; unit tests running with `xcodebuild` | 1 day |
 | 1. Lesson engine ✅ (2026-11-09) | One sample unit ("Giving a status update on a client call") is playable end to end with 4 exercise types | 2–4 days |
-| 2. Progress + SRS | Review tab works; streak and XP | 2–3 days |
+| 2. Review + habit ✅ (2026-11-09) | Spaced-repetition review of phrases and mistakes (FSRS), streak, daily goal, reminders, stand-up drill with recording | 2–3 days |
 | 3a. On-device AI engine | llama.cpp running Gemma 4 E2B on the iPhone (Metal, mmap, lazy embeddings); measure speed, memory and heat; model download and manage screen | 3–4 days |
 | 3b. Voice and call mode | WhisperKit + voice activity detection + echo cancellation + text-to-speech + recording; run the 4 call-mode tests; then short call-mode role-plays with corrections | 4–6 days |
-| 4. Accounts + sync | Sign-in, cloud progress | 2–3 days |
+| 4. Full calls + reports | Client meeting simulation, mock interview, reports linked to recordings, fluency tracker, weekly report. (Accounts and cloud sync dropped 2026-11-09: the app stays offline and private; iCloud sync would need a paid developer account) | 4–6 days |
 | 5. Content + polish | All 3 tracks filled, placement test, animations, sounds; later more native languages → English | ongoing |
 
 ## 8. Open decisions (to settle before or during Phase 0)
