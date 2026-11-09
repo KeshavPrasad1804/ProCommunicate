@@ -97,6 +97,8 @@ final class MistakeRecord {
     /// Where you said it last (for playback), if recorded.
     var lastClipFile: String?
     var lastContext: String?
+    /// When you last practised the fix (said the right version out loud 3 times).
+    var lastPracticed: Date? = nil
 
     init(pattern: String, wrong: String, right: String, why: String, whyNative: String?, date: Date = .now) {
         self.key = Self.key(pattern: pattern, wrong: wrong)
@@ -116,6 +118,13 @@ final class MistakeRecord {
     }
 
     var title: String { MistakeRules.rule(pattern)?.title ?? wrong }
+
+    /// True if you've practised the fix since you last made the mistake.
+    var practisedSinceLastSeen: Bool { lastPracticed.map { $0 >= lastSeen } ?? false }
+
+    func practisedToday(now: Date = .now) -> Bool {
+        lastPracticed.map { Calendar.current.isDate($0, inSameDayAs: now) } ?? false
+    }
 
     /// The explanation in the learner's current language: the rule's note for pattern mistakes,
     /// otherwise the one saved with the mistake.

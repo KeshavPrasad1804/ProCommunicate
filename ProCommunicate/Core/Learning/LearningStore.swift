@@ -98,9 +98,27 @@ enum LearningStore {
         }
     }
 
+    // MARK: Today's fix
+
+    /// The fix to practise today: the one you already practised today (shown as done), otherwise your most
+    /// repeated mistake from the last two weeks that you haven't practised since you last made it.
+    static func todaysFix(from mistakes: [MistakeRecord], now: Date = .now) -> MistakeRecord? {
+        let recent = mistakes.filter { now.timeIntervalSince($0.lastSeen) < 14 * 86_400 }
+        if let doneToday = recent.filter({ $0.practisedToday(now: now) }).max(by: { ($0.lastPracticed ?? .distantPast) < ($1.lastPracticed ?? .distantPast) }) {
+            return doneToday
+        }
+        return recent.filter { !$0.practisedSinceLastSeen }.max { ($0.count, $0.lastSeen) < ($1.count, $1.lastSeen) }
+    }
+
+    /// Records that you said the fix out loud three times.
+    static func practised(_ mistake: MistakeRecord, now: Date = .now, in context: ModelContext) {
+        mistake.lastPracticed = now
+        log(.fix, seconds: 60, now: now, in: context)
+    }
+
     // MARK: Practice time and streak
 
-    enum Activity { case lesson, review, drill, call }
+    enum Activity { case lesson, review, drill, call, fix }
 
     static func log(_ activity: Activity, seconds: Double, now: Date = .now, in context: ModelContext) {
         let day = Calendar.current.startOfDay(for: now)
@@ -116,6 +134,7 @@ enum LearningStore {
         case .review: record.reviews += 1
         case .drill: record.drills += 1
         case .call: record.calls += 1
+        case .fix: break      // counts towards today's minutes; done-ness is on the mistake itself
         }
         try? context.save()
     }

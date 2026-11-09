@@ -61,6 +61,7 @@ private struct MistakeRow: View {
 
 struct MistakeDetailView: View {
     @Bindable var mistake: MistakeRecord
+    @Environment(\.modelContext) private var modelContext
     @State private var loading = false
     @State private var errorText: String?
     @State private var saidCount = 0
@@ -96,6 +97,7 @@ struct MistakeDetailView: View {
                 }
                 Button {
                     saidCount = min(3, saidCount + 1)
+                    if saidCount == 3 { LearningStore.practised(mistake, in: modelContext) }
                 } label: {
                     Label(saidCount >= 3 ? "Done: said it 3 times" : "I said it out loud (\(saidCount)/3)",
                           systemImage: saidCount >= 3 ? "checkmark.seal.fill" : "mouth")
@@ -114,6 +116,8 @@ struct MistakeDetailView: View {
         }
         .navigationTitle(mistake.title)
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear { if mistake.practisedSinceLastSeen { saidCount = 3 } }
+        .sensoryFeedback(.success, trigger: saidCount == 3)
     }
 
     /// For pattern rules the "right" text is a template ("I have …"); speak the explanation's example instead.

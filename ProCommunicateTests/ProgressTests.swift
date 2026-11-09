@@ -37,3 +37,37 @@ struct ProgressTests {
         #expect(records.first?.lastScore == 0.5)
     }
 }
+
+@Suite("Today's fix")
+@MainActor
+struct TodaysFixTests {
+    private func context() throws -> ModelContext {
+        ModelContext(try ModelContainer(for: Schema(AppSchema.models), configurations: ModelConfiguration(isStoredInMemoryOnly: true)))
+    }
+
+    @Test func practisingMarksItDoneAndMovesOnTomorrow() throws {
+        let ctx = try context()
+        let now = Date.now
+        let big = MistakeRecord(pattern: "revert-back", wrong: "revert back", right: "get back to you", why: "", whyNative: nil, date: now.addingTimeInterval(-3600))
+        big.count = 5
+        let small = MistakeRecord(pattern: "prepone", wrong: "prepone", right: "move earlier", why: "", whyNative: nil, date: now.addingTimeInterval(-7200))
+        small.count = 2
+        ctx.insert(big); ctx.insert(small)
+
+        #expect(LearningStore.todaysFix(from: [big, small], now: now) === big)
+        #expect(!big.practisedToday(now: now))
+
+        LearningStore.practised(big, now: now, in: ctx)
+        // Still today's fix, now done; and today's minutes count it.
+        #expect(LearningStore.todaysFix(from: [big, small], now: now) === big)
+        #expect(big.practisedToday(now: now))
+        let day = try ctx.fetch(FetchDescriptor<PracticeDay>()).first
+        #expect(day?.seconds == 60)
+
+        // Tomorrow: the practised one isn't picked again unless you make it again.
+        let tomorrow = now.addingTimeInterval(86_400)
+        #expect(LearningStore.todaysFix(from: [big, small], now: tomorrow) === small)
+        big.lastSeen = tomorrow.addingTimeInterval(-60)
+        #expect(LearningStore.todaysFix(from: [big, small], now: tomorrow) === big)
+    }
+}

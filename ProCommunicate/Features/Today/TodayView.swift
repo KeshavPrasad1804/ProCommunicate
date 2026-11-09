@@ -229,7 +229,7 @@ struct TodayView: View {
         }
         if let fix = todaysFix {
             steps.append(PlanStep(id: "fix", icon: "checkmark.seal.fill", tint: .orange, title: "Today's fix", minutes: 3,
-                                  detail: "\(fix.wrong) → \(fix.right)", done: false, enabled: true,
+                                  detail: "\(fix.wrong) → \(fix.right)", done: fix.practisedToday(), enabled: true,
                                   reason: fix.count > 1 ? "You've said this \(fix.count) times." : nil) { openFix = fix })
         }
         return steps
@@ -242,10 +242,8 @@ struct TodayView: View {
         return first.map { "\(part), \($0)" } ?? part
     }
 
-    /// Your most repeated mistake from the last two weeks.
-    private var todaysFix: MistakeRecord? {
-        mistakes.filter { Date().timeIntervalSince($0.lastSeen) < 14 * 86_400 }.max { ($0.count, $0.lastSeen) < ($1.count, $1.lastSeen) }
-    }
+    /// See LearningStore.todaysFix: done today, or your most repeated mistake not yet practised.
+    private var todaysFix: MistakeRecord? { LearningStore.todaysFix(from: mistakes) }
 
     static func loadLessons(for course: Course) -> [Lesson] {
         course.tracksByPriority.flatMap(\.units).compactMap { try? ContentLoader.loadLesson(unitId: $0.id) }
