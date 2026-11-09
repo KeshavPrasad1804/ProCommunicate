@@ -32,6 +32,10 @@ final class SpeechModelManager {
     }
 
     private(set) var state: State = .notDownloaded
+    /// True while speech recognition is being loaded. The first load after installing or updating
+    /// the app takes about 2–3 minutes (iOS prepares the model for this iPhone's Neural Engine);
+    /// after that it takes a few seconds.
+    var isWarmingUp = false
     /// Path of the model folder *relative to* `downloadBase`. (An absolute path breaks after app
     /// updates, because iOS can move the app's data folder; the files themselves are kept.)
     private static let relativeFolderKey = "speechModelRelativeFolder"
@@ -112,16 +116,35 @@ actor SpeechRecognizer {
 
     private var whisper: WhisperKit?
     private var loadedFolder: URL?
+    /// True while a load is running; others wait for it instead of loading a second copy.
+    private var isLoading = false
+    private var waiters: [CheckedContinuation<Void, Error>] = []
 
     func load(folder: URL) async throws {
         if loadedFolder == folder, whisper != nil { return }
-        let config = WhisperKitConfig(modelFolder: folder.path, verbose: false, logLevel: .error,
-                                      prewarm: true, load: true, download: false)
-        whisper = try await WhisperKit(config)
-        loadedFolder = folder
+        if isLoading {
+            try await withCheckedThrowingContinuation { waiters.append($0) }
+            return
+        }
+        isLoading = true
+        do {
+            let config = WhisperKitConfig(modelFolder: folder.path(percentEncoded: false), verbose: false, logLevel: .error,
+                                          prewarm: true, load: true, download: false)
+            whisper = try await WhisperKit(config)
+            loadedFolder = folder
+            isLoading = false
+            waiters.forEach { $0.resume() }
+            waiters = []
+        } catch {
+            isLoading = false
+            waiters.forEach { $0.resume(throwing: error) }
+            waiters = []
+            throw error
+        }
     }
 
     func unload() {
+        guard !isLoading else { return }   // don't drop a model that's still loading
         whisper = nil
         loadedFolder = nil
     }
@@ -154,5 +177,48 @@ actor SpeechRecognizer {
     static func clean(_ text: String) -> String {
         text.replacingOccurrences(of: #"\[[^\]]*\]|\([^)]*\)"#, with: "", options: .regularExpression)
             .split(whereSeparator: \.isWhitespace).joined(separator: " ")
+    }
+}
+
+/// Whether voice input can be used right now, and if not, why.
+enum SpeechReadiness: Equatable {
+    case preparing
+    case ready
+    case needsDownload
+    case micDenied
+    case failed(String)
+
+    /// Checks the model and microphone, and loads speech recognition (fast if it's already loaded).
+    @MainActor
+    static func prepare() async -> SpeechReadiness {
+        guard let folder = SpeechModelManager.shared.modelFolder else { return .needsDownload }
+        guard await AudioRecorder.requestPermission() else { return .micDenied }
+        do {
+            try await SpeechRecognizer.shared.load(folder: folder)
+            return .ready
+        } catch {
+            return .failed(error.localizedDescription)
+        }
+    }
+
+    /// Loads speech recognition quietly after launch, so voice screens are ready straight away.
+    @MainActor
+    static func preloadInBackground() {
+        guard let folder = SpeechModelManager.shared.modelFolder else { return }
+        Task(priority: .utility) {
+            try? await Task.sleep(for: .seconds(3))
+            SpeechModelManager.shared.isWarmingUp = true
+            defer { SpeechModelManager.shared.isWarmingUp = false }
+            let start = Date()
+            let status: String
+            do {
+                try await SpeechRecognizer.shared.load(folder: folder)
+                status = "ready in \(String(format: "%.1f", Date().timeIntervalSince(start))) s at \(Date())"
+            } catch {
+                status = "failed after \(String(format: "%.1f", Date().timeIntervalSince(start))) s: \(error)"
+            }
+            // A small diagnostics file (Library/Caches/speech-status.txt) to check loading on a device.
+            try? status.write(to: URL.cachesDirectory.appending(path: "speech-status.txt"), atomically: true, encoding: .utf8)
+        }
     }
 }

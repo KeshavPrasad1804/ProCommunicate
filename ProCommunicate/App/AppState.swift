@@ -47,6 +47,15 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
 
+    /// iOS is short of memory: release the AI models unless a call is using them.
+    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
+        guard !ReportProcessor.shared.callInProgress else { return }
+        Task {
+            await LlamaEngine.shared.unload()
+            await SpeechRecognizer.shared.unload()
+        }
+    }
+
     func application(_ application: UIApplication,
                      handleEventsForBackgroundURLSession identifier: String,
                      completionHandler: @escaping () -> Void) {

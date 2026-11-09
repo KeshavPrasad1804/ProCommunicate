@@ -84,7 +84,9 @@ final class CallSession {
 
         // Voice: needs the speech model and microphone permission; otherwise type.
         if let folder = SpeechModelManager.shared.modelFolder, await AudioRecorder.requestPermission() {
-            phase = .preparing("Loading speech recognition…")
+            phase = .preparing(SpeechModelManager.shared.isWarmingUp
+                               ? "Preparing speech recognition (one-time after an update, about 2 minutes)…"
+                               : "Loading speech recognition…")
             do {
                 try await SpeechRecognizer.shared.load(folder: folder)
                 let capture = VoiceCapture { [weak self] event in

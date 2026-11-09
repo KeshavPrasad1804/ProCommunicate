@@ -83,7 +83,6 @@ struct CallView: View {
         }
         if !pending {
             Task {
-                await SpeechRecognizer.shared.unload()
                 await LlamaEngine.shared.unload()   // free memory: the AI loads only while practising
             }
         }

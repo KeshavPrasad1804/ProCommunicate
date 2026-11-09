@@ -41,6 +41,8 @@ struct AnswerRetryView: View {
                         comparison(before: previous, now: attempt)
                     } else if listener.available {
                         recordControls
+                    } else if listener.readiness != .needsDownload {
+                        SpeechReadinessNote(readiness: listener.readiness) { Task { await listener.prepare() } }
                     } else {
                         TextField("Type your new answer", text: $typed, axis: .vertical).lineLimit(2...6)
                         Button("Check my answer") { Task { await evaluate(text: typed, clip: nil, seconds: Double(FluencyMetrics.wordCount(typed)) / 2.2, pauses: 0) } }
@@ -146,20 +148,15 @@ final class SingleAnswerListener {
         let longPauses: Int
     }
 
-    private(set) var available = false
+    private(set) var readiness: SpeechReadiness = .preparing
+    var available: Bool { readiness == .ready }
     private(set) var isRecording = false
     private(set) var level: Double = 0
     private(set) var result: Result?
     @ObservationIgnored private var capture: VoiceCapture?
 
     func prepare() async {
-        guard let folder = SpeechModelManager.shared.modelFolder, await AudioRecorder.requestPermission() else { return }
-        do {
-            try await SpeechRecognizer.shared.load(folder: folder)
-            available = true
-        } catch {
-            available = false
-        }
+        readiness = await SpeechReadiness.prepare()
     }
 
     func start() {

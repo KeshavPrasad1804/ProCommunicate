@@ -125,8 +125,7 @@ struct SpeakingCheckView: View {
             }
             Section {
                 if !listener.available {
-                    Text("Download the speech model in Settings → AI tutor to take the speaking check.")
-                        .foregroundStyle(.secondary)
+                    SpeechReadinessNote(readiness: listener.readiness) { Task { await listener.prepare() } }
                 } else {
                     LevelBars(level: listener.level, active: listener.isRecording).frame(height: 22)
                     Button {

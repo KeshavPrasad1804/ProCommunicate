@@ -34,6 +34,15 @@ struct AIStatusSection: View {
                     }
                 case .ready:
                     switch speech.state {
+                    case .ready where speech.isWarmingUp:
+                        HStack(alignment: .top, spacing: 12) {
+                            ProgressView()
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Preparing speech recognition…").font(.subheadline.weight(.semibold))
+                                Text("One-time after installing or updating: about 2–3 minutes. Keep the app open. Lessons work meanwhile.")
+                                    .font(.caption).foregroundStyle(.secondary)
+                            }
+                        }
                     case .ready:
                         Label("AI tutor and speech ready · works offline", systemImage: "checkmark.circle.fill")
                             .foregroundStyle(.green)

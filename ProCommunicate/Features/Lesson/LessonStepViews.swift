@@ -367,11 +367,14 @@ struct SpeakStepView: View {
 
             if listener.available {
                 recorder
-            } else {
+            } else if listener.readiness == .needsDownload {
                 Label("Say it out loud now. Download the speech model in Settings → AI tutor, and the app will listen and show you a fix.",
                       systemImage: "mic")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
+            } else {
+                SpeechReadinessNote(readiness: listener.readiness) { Task { await listener.prepare() } }
+                    .font(.footnote)
             }
 
             if checking {

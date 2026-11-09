@@ -72,8 +72,7 @@ final class ReportProcessor {
         }
         // Free the AI's memory unless a call needs it.
         if !callInProgress {
-            await LlamaEngine.shared.unload()
-            await SpeechRecognizer.shared.unload()
+            await LlamaEngine.shared.unload()   // speech recognition stays loaded (small, and slow to load)
         }
     }
 

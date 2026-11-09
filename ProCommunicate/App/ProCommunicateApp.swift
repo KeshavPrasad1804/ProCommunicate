@@ -38,7 +38,10 @@ struct ProCommunicateApp: App {
             }
             .environment(router)
             .environment(AIModelManager.shared)
-            .task { ReportProcessor.shared.configure(container: container) }
+            .task {
+                ReportProcessor.shared.configure(container: container)
+                SpeechReadiness.preloadInBackground()
+            }
         }
         .modelContainer(container)
     }
