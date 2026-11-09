@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 /// The five main areas of the app, matching FEATURES.md.
@@ -15,12 +16,13 @@ struct RootView: View {
     @State private var selection: AppTab = AppTab.launchTab
     @Environment(AppRouter.self) private var router
     @Environment(AIModelManager.self) private var aiModel
+    @Environment(\.modelContext) private var modelContext
 
     var body: some View {
         @Bindable var router = router
         TabView(selection: $selection) {
             Tab("Today", systemImage: "sun.max.fill", value: AppTab.today) {
-                TodayView()
+                TodayView(course: course)
             }
             Tab("Learn", systemImage: "book.fill", value: AppTab.learn) {
                 LearnView(course: course)
@@ -38,11 +40,23 @@ struct RootView: View {
         .sheet(isPresented: $router.showSettings) {
             SettingsView()
         }
+        .fullScreenCover(item: $router.activeLesson) { lesson in
+            LessonPlayerView(lesson: lesson, startAt: router.debugLessonStartStep) { score in
+                ProgressStore.recordCompletion(of: lesson, score: score, in: modelContext)
+            }
+        }
         #if DEBUG
         .task {
-            // Screenshot / testing hooks: -openSettings YES, -autoStartModelDownload YES
-            if UserDefaults.standard.bool(forKey: "openSettings") { router.showSettings = true }
-            if UserDefaults.standard.bool(forKey: "autoStartModelDownload") { aiModel.startDownload() }
+            // Screenshot / testing hooks: -openSettings YES, -autoStartModelDownload YES,
+            // -openLesson <unitId> [-lessonStep N]
+            let defaults = UserDefaults.standard
+            if defaults.bool(forKey: "openSettings") { router.showSettings = true }
+            if defaults.bool(forKey: "autoStartModelDownload") { aiModel.startDownload() }
+            if let unitId = defaults.string(forKey: "openLesson"),
+               let lesson = try? ContentLoader.loadLesson(unitId: unitId) {
+                if defaults.object(forKey: "lessonStep") != nil { router.debugLessonStartStep = defaults.integer(forKey: "lessonStep") }
+                router.open(lesson)
+            }
         }
         #endif
     }
@@ -52,4 +66,5 @@ struct RootView: View {
     RootView(course: .preview)
         .environment(AppRouter())
         .environment(AIModelManager.shared)
+        .modelContainer(for: LessonProgressRecord.self, inMemory: true)
 }

@@ -4,6 +4,7 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AIModelManager.self) private var aiModel
     @AppStorage(SettingsKey.aiTutorEnabled) private var aiTutorEnabled = false
+    @AppStorage(SpeechVoice.settingsKey) private var speechVoice = SpeechVoice.indian.rawValue
 
     private let deviceSupported = DeviceCapability.supportsAITutor()
 
@@ -25,6 +26,24 @@ struct SettingsView: View {
 
                 if deviceSupported && (aiTutorEnabled || aiModel.state != .notDownloaded) {
                     AIModelSection(aiTutorEnabled: aiTutorEnabled)
+                }
+
+                Section {
+                    Picker(selection: $speechVoice) {
+                        ForEach(SpeechVoice.allCases) { voice in
+                            Text(voice.title).tag(voice.rawValue)
+                        }
+                    } label: {
+                        Label("Voice", systemImage: "speaker.wave.2.fill")
+                    }
+                    Button("Play a sample", systemImage: "play.circle") {
+                        Speaker.shared.speak("We're on track to deliver by Friday.",
+                                             voice: SpeechVoice(rawValue: speechVoice) ?? .indian)
+                    }
+                } header: {
+                    Text("Speaking voice")
+                } footer: {
+                    Text("Used for phrases and listening practice. For a more natural voice, download an \"Enhanced\" English voice in iPhone Settings → Accessibility → Spoken Content → Voices.")
                 }
 
                 Section("About") {

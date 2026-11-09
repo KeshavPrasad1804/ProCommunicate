@@ -5,6 +5,14 @@ import UIKit
 @MainActor @Observable
 final class AppRouter {
     var showSettings = false
+    /// The lesson being played full screen, if any.
+    var activeLesson: Lesson?
+    /// Debug only: start the lesson at this step (skips the intro), for screenshots.
+    var debugLessonStartStep: Int?
+
+    func open(_ lesson: Lesson) {
+        activeLesson = lesson
+    }
 }
 
 enum SettingsKey {

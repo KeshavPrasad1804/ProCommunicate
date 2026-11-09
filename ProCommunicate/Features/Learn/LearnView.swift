@@ -1,30 +1,20 @@
+import SwiftData
 import SwiftUI
 
 /// Course map: tracks in priority order, each with its units.
 struct LearnView: View {
     let course: Course
+    @Query private var progress: [LessonProgressRecord]
 
     var body: some View {
+        let completedUnits = Set(progress.map(\.unitId))
         NavigationStack {
             List {
                 ForEach(course.tracksByPriority) { track in
                     Section {
                         ForEach(track.units) { unit in
                             NavigationLink(value: unit) {
-                                HStack(spacing: 12) {
-                                    Text("\(unit.number)")
-                                        .font(.subheadline.monospacedDigit().weight(.semibold))
-                                        .frame(width: 28, height: 28)
-                                        .background(.tint.opacity(0.12), in: Circle())
-                                        .foregroundStyle(.tint)
-                                    VStack(alignment: .leading, spacing: 2) {
-                                        Text(unit.title).font(.body)
-                                        Text(unit.goal)
-                                            .font(.caption)
-                                            .foregroundStyle(.secondary)
-                                            .lineLimit(2)
-                                    }
-                                }
+                                UnitRow(unit: unit, completed: completedUnits.contains(unit.id))
                             }
                         }
                     } header: {
@@ -42,10 +32,43 @@ struct LearnView: View {
     }
 }
 
-struct UnitDetailView: View {
+private struct UnitRow: View {
     let unit: CourseUnit
+    let completed: Bool
 
     var body: some View {
+        HStack(spacing: 12) {
+            ZStack {
+                Circle().fill(completed ? Color.green : Color.accentColor.opacity(0.12))
+                if completed {
+                    Image(systemName: "checkmark").font(.caption.weight(.bold)).foregroundStyle(.white)
+                } else {
+                    Text("\(unit.number)")
+                        .font(.subheadline.monospacedDigit().weight(.semibold))
+                        .foregroundStyle(.tint)
+                }
+            }
+            .frame(width: 28, height: 28)
+            .accessibilityLabel(completed ? "Completed" : "Unit \(unit.number)")
+            VStack(alignment: .leading, spacing: 2) {
+                Text(unit.title).font(.body)
+                Text(unit.goal)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
+            }
+        }
+    }
+}
+
+struct UnitDetailView: View {
+    let unit: CourseUnit
+    @Environment(AppRouter.self) private var router
+    @Query private var progress: [LessonProgressRecord]
+    @State private var lesson: Lesson?
+
+    var body: some View {
+        let record = progress.first { $0.unitId == unit.id }
         List {
             Section("You will be able to") {
                 Text(unit.goal)
@@ -56,15 +79,34 @@ struct UnitDetailView: View {
                 }
             }
             Section {
-                FeatureRow(systemImage: "play.circle.fill", title: "Start lesson",
-                           detail: "Listen, repeat, and use the phrases in your own sentences.", phase: "1")
+                if let lesson {
+                    Button {
+                        router.open(lesson)
+                    } label: {
+                        Label(record == nil ? "Start lesson" : "Practise again",
+                              systemImage: record == nil ? "play.circle.fill" : "arrow.counterclockwise.circle.fill")
+                            .font(.headline)
+                    }
+                    if let record {
+                        LabeledContent("Best score", value: record.bestScore.formatted(.percent.precision(.fractionLength(0))))
+                        LabeledContent("Completed", value: "\(record.timesCompleted)×")
+                    }
+                } else {
+                    FeatureRow(systemImage: "play.circle.fill", title: "Lesson",
+                               detail: "This unit's lesson is being written.", phase: "5")
+                }
                 FeatureRow(systemImage: "phone.fill", title: "Practise on a call",
                            detail: "A short voice role-play using this unit's phrases.", phase: "3")
             }
         }
         .navigationTitle(unit.title)
         .navigationBarTitleDisplayMode(.inline)
+        .task { lesson = try? ContentLoader.loadLesson(unitId: unit.id) }
     }
 }
 
-#Preview { LearnView(course: .preview) }
+#Preview {
+    LearnView(course: .preview)
+        .environment(AppRouter())
+        .modelContainer(for: LessonProgressRecord.self, inMemory: true)
+}
