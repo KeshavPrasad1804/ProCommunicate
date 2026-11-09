@@ -68,7 +68,9 @@ struct MyProgressView: View {
                                         .foregroundStyle(.tint).frame(width: 26)
                                     VStack(alignment: .leading, spacing: 2) {
                                         Text(call.title).font(.subheadline.weight(.medium))
-                                        Text("\(call.startedAt.formatted(date: .abbreviated, time: .shortened)) · \(Int(call.wordsPerMinute)) wpm · \(call.mistakeCount) fixes")
+                                        Text(call.reportPending
+                                             ? "\(call.startedAt.formatted(date: .abbreviated, time: .shortened)) · report being prepared…"
+                                             : "\(call.startedAt.formatted(date: .abbreviated, time: .shortened)) · \(Int(call.wordsPerMinute)) wpm · \(call.mistakeCount) fixes")
                                             .font(.caption).foregroundStyle(.secondary)
                                     }
                                     Spacer()

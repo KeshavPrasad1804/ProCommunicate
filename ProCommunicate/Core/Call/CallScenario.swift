@@ -36,6 +36,7 @@ struct CallScenario: Codable, Hashable, Sendable, Identifiable {
         YOU are \(aiName), \(aiRole). Stay in this role the whole time; never mention being an AI or a tutor, and never correct the learner's English.
         The learner is a Tamil speaker improving their professional English (about CEFR B1–B2). \(profile.summary)
         Speak naturally, as on a real call: one or two short sentences per turn (at most 40 words), then one question or a clear next step. No lists, no headings, no emojis, no stage directions.
+        If the learner asks to end or stop the call, close politely right away with a goodbye.
         """
         if let extraContext, !extraContext.isEmpty {
             prompt += "\nExtra context from the learner about this call: \(extraContext)"

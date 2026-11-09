@@ -17,7 +17,6 @@ final class CallSession {
         case listening
         case learnerSpeaking
         case thinking
-        case finishing(done: Int, total: Int)
         case ended
         case failed(String)
     }
@@ -57,7 +56,7 @@ final class CallSession {
 
     var isActive: Bool {
         switch phase {
-        case .ended, .failed, .finishing: false
+        case .ended, .failed: false
         default: true
         }
     }
@@ -154,7 +153,6 @@ final class CallSession {
         case .speechStarted:
             if phase == .aiSpeaking { interrupt() }
             if phase == .listening || phase == .aiSpeaking { phase = .learnerSpeaking }
-            pauseChecksForReply()
         case .turnEnded(let samples, let duration, let longPauses):
             guard isActive else { return }
             Task { await learnerSpoke(samples: samples, seconds: duration, longPauses: longPauses) }
@@ -172,7 +170,6 @@ final class CallSession {
     private func learnerSpoke(samples: [Float], seconds: Double, longPauses: Int) async {
         phase = .thinking
         capture?.setListening(false)
-        pauseChecksForReply()
         if aiAvailable {
             // A short acknowledgement while the transcript and reply are prepared.
             Speaker.shared.enqueue(["Mm-hmm.", "Okay.", "Right.", "I see."].randomElement()!, voice: scenario.speechVoice)
@@ -200,10 +197,16 @@ final class CallSession {
         trimHistoryIfNeeded()
 
         let learnerTurns = turns.filter { $0.speaker == .learner }.count
-        let wrapUp = learnerTurns >= scenario.maxTurns
-        if wrapUp {
+        let wantsToEnd = Self.wantsToEnd(text)
+        let wrapUp = learnerTurns >= scenario.maxTurns || wantsToEnd
+        if wantsToEnd {
+            messages.append(ChatMessage(role: .system, content: "The learner wants to end the call now. Reply with one short, polite closing sentence and say goodbye."))
+        } else if wrapUp {
             messages.append(ChatMessage(role: .system, content: "The call is at its time limit. Reply with a brief, polite closing and goodbye."))
         }
+        // The reply comes first: stop a running answer check (it is retried later).
+        replying = true
+        await stopCheckForReply()
         await generateReply(closing: wrapUp)
     }
 
@@ -257,6 +260,7 @@ final class CallSession {
         replying = false
         let text = GemmaPrompt.clean(reply)
         if failed || text.isEmpty {
+            if suspended { return }   // the app left the screen; we'll pick up when it comes back
             say(["Sorry, could you repeat that?"])
             return
         }
@@ -293,9 +297,17 @@ final class CallSession {
         }
     }
 
-    /// The reply comes first: stop a running check (it will be retried later).
-    private func pauseChecksForReply() {
-        if checkTask != nil { LlamaEngine.shared.cancelCurrent() }
+    /// The reply comes first: stop a running check and wait for it to let go of the engine.
+    private func stopCheckForReply() async {
+        guard let task = checkTask else { return }
+        LlamaEngine.shared.cancelCurrent()
+        await task.value
+    }
+
+    /// "Can we end this call?", "let's stop here", "bye" …
+    nonisolated static func wantsToEnd(_ text: String) -> Bool {
+        let pattern = #"\b(end|stop|finish|close|hang up|wrap up)\b[^.?!]{0,15}\b(call|interview|meeting|conversation|session)\b|\b(let'?s|can we|could we|shall we) (stop|end|finish)\b|^\s*(ok(ay)?,?\s*)?(thank you,?\s*)?(bye|goodbye)\b"#
+        return text.range(of: pattern, options: [.regularExpression, .caseInsensitive]) != nil
     }
 
     private func check(turnId: UUID, text: String) async {
@@ -320,49 +332,80 @@ final class CallSession {
         }
     }
 
+    // MARK: - Leaving the screen
+
+    /// iPhones don't allow GPU work (the AI) or the microphone for this app in the background,
+    /// so the call pauses when you leave the app and picks up when you come back.
+    private(set) var suspended = false
+    /// When the call ended (the timer stops here).
+    private(set) var endedAt: Date?
+
+    func appDidEnterBackground() {
+        guard !suspended, isActive else { return }
+        suspended = true
+        Speaker.shared.stop()
+        capture?.stop()
+        capture = nil
+        LlamaEngine.shared.cancelCurrent()
+    }
+
+    func appDidBecomeActive() {
+        guard suspended else { return }
+        suspended = false
+        guard isActive, !endAfterSpeaking else { return }
+        if !typingMode {
+            let capture = VoiceCapture { [weak self] event in
+                Task { @MainActor in self?.handle(event) }
+            }
+            if (try? capture.start()) != nil { self.capture = capture } else { typingMode = true }
+        }
+        replying = false
+        // Pick up where we were: repeat the last thing the AI asked.
+        let lastQuestion = turns.last?.speaker == .ai ? (lastAIText ?? "") : "Could you say that again?"
+        say(["Sorry, we got cut off for a moment.", lastQuestion].filter { !$0.isEmpty })
+    }
+
     // MARK: - End
 
+    /// Ends the call right away. Answers not yet checked are checked afterwards in the background
+    /// (ReportProcessor), and you get a notification when the report is ready.
     func end() async {
         guard isActive else { return }
+        endedAt = .now
         capture?.stop()
         capture = nil
         Speaker.shared.stop()
         Speaker.shared.onFinishedAll = nil
         replying = false
-        if checkTask != nil { LlamaEngine.shared.cancelCurrent(); await checkTask?.value }
-
-        // Finish the answer checks for the report.
-        if aiAvailable {
-            let unchecked = turns.filter { $0.speaker == .learner && $0.check == nil && !$0.checkFailed }
-            for (index, turn) in unchecked.enumerated() {
-                phase = .finishing(done: index, total: unchecked.count)
-                await check(turnId: turn.id, text: turn.text)
-            }
-        }
+        await stopCheckForReply()
         phase = .ended
     }
 
-    /// Saves the call, its mistakes (into My Mistakes and Review) and the practice time.
-    func save(in context: ModelContext) {
-        guard savedRecordId == nil, turns.contains(where: { $0.speaker == .learner }) else { return }
-        let seconds = Date().timeIntervalSince(startedAt)
+    /// Saves the call, its pattern mistakes (into My Mistakes and Review) and the practice time.
+    /// Returns true if answer checks are still to do in the background.
+    @discardableResult
+    func save(in context: ModelContext) -> Bool {
+        guard savedRecordId == nil, turns.contains(where: { $0.speaker == .learner }) else { return false }
+        let seconds = (endedAt ?? .now).timeIntervalSince(startedAt)
         let record = CallRecord(id: recordId, scenarioId: scenario.id, title: scenario.title, kind: scenario.kind.rawValue,
                                 startedAt: startedAt, seconds: seconds, turns: turns)
+        record.reportPending = aiAvailable && record.uncheckedCount > 0
         context.insert(record)
         MistakeBook.record(turns: turns, in: context)
         LearningStore.log(.call, seconds: seconds, in: context)
         try? context.save()
         savedRecordId = record.id
+        return record.reportPending
     }
 }
 
 /// Files mistakes from calls and drills into My Mistakes and Review.
 @MainActor
 enum MistakeBook {
-    static func record(turns: [CallTurn], in context: ModelContext, date: Date = .now) {
+    static func record(turns: [CallTurn], includeRules: Bool = true, in context: ModelContext, date: Date = .now) {
         for turn in turns where turn.speaker == .learner {
             var entries: [(pattern: String, wrong: String, right: String, why: String, whyTamil: String?)] = []
-            for hit in turn.ruleHits {
+            for hit in turn.ruleHits where includeRules {
                 guard let rule = MistakeRules.rule(hit.ruleId) else { continue }
                 entries.append((rule.id, hit.wrong, rule.right, rule.why, rule.whyTamil))
             }

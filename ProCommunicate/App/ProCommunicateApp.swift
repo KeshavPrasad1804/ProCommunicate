@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 @main
@@ -7,6 +8,13 @@ struct ProCommunicateApp: App {
     @State private var router = AppRouter()
     /// The animated intro plays once per launch, over the app (which loads underneath).
     @State private var showSplash = !UserDefaults.standard.bool(forKey: "skipSplash")
+    /// The on-phone database. If it ever can't be opened (for example a failed upgrade), the app still
+    /// starts with a temporary in-memory store instead of crashing.
+    private let container: ModelContainer = {
+        let schema = Schema(AppSchema.models)
+        if let container = try? ModelContainer(for: schema) { return container }
+        return try! ModelContainer(for: schema, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+    }()
 
     var body: some Scene {
         WindowGroup {
@@ -30,8 +38,9 @@ struct ProCommunicateApp: App {
             }
             .environment(router)
             .environment(AIModelManager.shared)
+            .task { ReportProcessor.shared.configure(container: container) }
         }
-        .modelContainer(for: AppSchema.models)
+        .modelContainer(container)
     }
 }
 

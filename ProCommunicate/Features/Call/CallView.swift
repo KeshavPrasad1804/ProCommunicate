@@ -7,11 +7,11 @@ struct CallView: View {
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) private var scenePhase
     @State private var session: CallSession
     @State private var captionsOn = true
     @State private var showKeyboard = false
     @State private var confirmEnd = false
-    @State private var showReport = false
 
     init(launch: CallLaunch) {
         self.launch = launch
@@ -38,38 +38,54 @@ struct CallView: View {
             .padding(.bottom, 12)
             .foregroundStyle(.white)
 
-            if case .finishing(let done, let total) = session.phase {
-                finishingOverlay(done: done, total: total)
-            }
         }
         .preferredColorScheme(.dark)
-        .task { await session.start() }
-        .onChange(of: session.phase) { _, phase in
-            if phase == .ended {
-                session.save(in: modelContext)
-                showReport = session.savedRecordId != nil
-                if session.savedRecordId == nil { dismiss() }
+        .task {
+            UIApplication.shared.isIdleTimerDisabled = true   // don't let the screen lock mid-call
+            ReportProcessor.shared.callInProgress = true       // background report checks wait for the call
+            LlamaEngine.shared.cancelCurrent()
+            await session.start()
+        }
+        .onChange(of: scenePhase) { _, phase in
+            switch phase {
+            case .background: session.appDidEnterBackground()
+            case .active: session.appDidBecomeActive()
+            default: break
             }
+        }
+        .onChange(of: session.phase) { _, phase in
+            if phase == .ended { finishAndClose() }
         }
         .confirmationDialog("End the call?", isPresented: $confirmEnd, titleVisibility: .visible) {
-            Button("End call and see my report", role: .destructive) { Task { await session.end() } }
+            Button("End call", role: .destructive) { Task { await session.end() } }
             Button("Keep talking", role: .cancel) {}
-        }
-        .fullScreenCover(isPresented: $showReport, onDismiss: { finishAndClose() }) {
-            if let id = session.savedRecordId {
-                CallReportContainer(recordId: id) { showReport = false }
-            }
+        } message: {
+            Text("Your report is prepared in the background. We'll notify you when it's ready.")
         }
         .onDisappear {
+            UIApplication.shared.isIdleTimerDisabled = false
+            ReportProcessor.shared.callInProgress = false
             if session.isActive { Task { await session.end() } }
         }
         .sensoryFeedback(.impact(weight: .light), trigger: session.phase == .listening)
     }
 
+    /// Saves the call and closes the screen right away; answer checks continue in the background.
     private func finishAndClose() {
-        Task {
-            await SpeechRecognizer.shared.unload()
-            await LlamaEngine.shared.unload()   // free memory: the AI loads only while practising
+        let pending = session.save(in: modelContext)
+        ReportProcessor.shared.callInProgress = false
+        if let id = session.savedRecordId {
+            if pending {
+                ReportProcessor.shared.enqueue(id)
+            } else {
+                ReportProcessor.shared.banner = .init(text: "Call saved. Your report is ready.", reportId: id)
+            }
+        }
+        if !pending {
+            Task {
+                await SpeechRecognizer.shared.unload()
+                await LlamaEngine.shared.unload()   // free memory: the AI loads only while practising
+            }
         }
         dismiss()
     }
@@ -81,7 +97,7 @@ struct CallView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(launch.scenario.title).font(.subheadline.weight(.semibold))
                 TimelineView(.periodic(from: .now, by: 1)) { context in
-                    Text(Duration.seconds(context.date.timeIntervalSince(session.startedAt))
+                    Text(Duration.seconds((session.endedAt ?? context.date).timeIntervalSince(session.startedAt))
                         .formatted(.time(pattern: .minuteSecond)))
                         .font(.caption.monospacedDigit())
                         .foregroundStyle(.white.opacity(0.7))
@@ -138,7 +154,7 @@ struct CallView: View {
             }
         case .thinking:
             Label("\(launch.scenario.aiName) is thinking…", systemImage: "ellipsis").font(.subheadline)
-        case .finishing, .ended:
+        case .ended:
             Label("Call ended", systemImage: "phone.down.fill").font(.subheadline)
         case .failed(let message):
             Label(message, systemImage: "exclamationmark.triangle.fill").font(.subheadline).foregroundStyle(.orange)
@@ -216,18 +232,6 @@ struct CallView: View {
             .accessibilityLabel(label)
             Text(label).font(.caption2).foregroundStyle(.white.opacity(0.8))
         }
-    }
-
-    private func finishingOverlay(done: Int, total: Int) -> some View {
-        VStack(spacing: 14) {
-            ProgressView(value: Double(done), total: Double(max(total, 1)))
-                .tint(.white)
-            Text("Preparing your report… checking answer \(min(done + 1, total)) of \(total)")
-                .font(.subheadline)
-        }
-        .padding(24)
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20))
-        .padding(32)
     }
 
     private func initials(_ name: String) -> String {

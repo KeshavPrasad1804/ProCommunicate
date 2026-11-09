@@ -24,6 +24,22 @@ struct CallReportView: View {
                     .padding(.vertical, 4)
                 }
 
+                if record.reportPending {
+                    Section {
+                        let progress = ReportProcessor.shared.progress[record.id]
+                        HStack(spacing: 12) {
+                            ProgressView()
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(progress.map { "Checking your answers… \($0.done) of \($0.total)" } ?? "Waiting to check your answers…")
+                                    .font(.subheadline.weight(.semibold))
+                                Text("The report fills in as each answer is checked. We'll notify you when it's done. Keep the app open: checks pause when it's in the background.")
+                                    .font(.caption).foregroundStyle(.secondary)
+                            }
+                        }
+                        .padding(.vertical, 4)
+                    }
+                }
+
                 Section {
                     MetricRow(title: "Speaking speed", value: record.learnerSeconds > 5 ? "\(Int(record.wordsPerMinute)) words/min" : "–",
                               note: speedNote(record.wordsPerMinute))
@@ -38,10 +54,15 @@ struct CallReportView: View {
 
                 Section {
                     if fixes.isEmpty {
-                        Label(turns.contains { $0.speaker == .learner && $0.check == nil }
-                              ? "Answer checks need the AI tutor. Pattern checks found nothing."
-                              : "No mistakes found. Well done!", systemImage: "checkmark.seal.fill")
-                            .foregroundStyle(.green)
+                        if record.reportPending {
+                            Label("Nothing from the quick pattern check. The AI is still checking your answers.", systemImage: "hourglass")
+                                .foregroundStyle(.secondary)
+                        } else {
+                            Label(turns.contains { $0.speaker == .learner && $0.check == nil }
+                                  ? "Answer checks need the AI tutor. Pattern checks found nothing."
+                                  : "No mistakes found. Well done!", systemImage: "checkmark.seal.fill")
+                                .foregroundStyle(.green)
+                        }
                     }
                     ForEach(fixes) { fix in
                         FixCard(fix: fix)

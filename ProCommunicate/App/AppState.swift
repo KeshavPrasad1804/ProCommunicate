@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import UserNotifications
 
 /// App-wide navigation state shared through the environment.
 @MainActor @Observable
@@ -39,6 +40,13 @@ enum SettingsKey {
 
 /// Lets iOS wake the app to finish the model's background download.
 final class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        // Shows "report ready" notifications inside the app too, and opens the report when tapped.
+        UNUserNotificationCenter.current().delegate = NotificationHandler.shared
+        return true
+    }
+
     func application(_ application: UIApplication,
                      handleEventsForBackgroundURLSession identifier: String,
                      completionHandler: @escaping () -> Void) {

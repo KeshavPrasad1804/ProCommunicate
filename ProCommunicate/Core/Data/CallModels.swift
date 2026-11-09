@@ -41,6 +41,8 @@ final class CallRecord {
     var fillers: Int
     var longPauses: Int
     var mistakeCount: Int
+    /// True while the AI is still checking answers in the background (the report fills in as it goes).
+    var reportPending: Bool = false
 
     init(id: UUID = UUID(), scenarioId: String, title: String, kind: String, startedAt: Date, seconds: Double, turns: [CallTurn]) {
         self.id = id
@@ -56,6 +58,15 @@ final class CallRecord {
         self.fillers = learner.reduce(0) { $0 + FluencyMetrics.fillerCount($1.text) }
         self.longPauses = learner.reduce(0) { $0 + $1.longPauses }
         self.mistakeCount = learner.reduce(0) { $0 + $1.ruleHits.count + ($1.check?.mistakes.count ?? 0) }
+    }
+
+    /// Learner answers the AI hasn't checked yet.
+    var uncheckedCount: Int { turns.filter { $0.speaker == .learner && $0.check == nil && !$0.checkFailed }.count }
+
+    /// Saves updated turns (after background checks) and recounts mistakes.
+    func update(turns newTurns: [CallTurn]) {
+        turns = newTurns
+        mistakeCount = newTurns.filter { $0.speaker == .learner }.reduce(0) { $0 + $1.ruleHits.count + ($1.check?.mistakes.count ?? 0) }
     }
 
     var turns: [CallTurn] {

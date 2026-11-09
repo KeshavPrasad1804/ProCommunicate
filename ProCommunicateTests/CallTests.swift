@@ -160,3 +160,40 @@ struct UnitRolePlayTests {
         #expect(ScenarioLoader.forUnit(unit).id == "quick-status")
     }
 }
+
+@Suite("Ending a call by asking")
+struct WantsToEndTests {
+    @Test(arguments: ["Can we end this call?", "Let's stop here.", "Could we finish the interview now?",
+                      "Okay, bye.", "Thank you, goodbye!", "I need to end the meeting, sorry."])
+    func recognisesRequestsToEnd(_ text: String) {
+        #expect(CallSession.wantsToEnd(text), "\(text)")
+    }
+
+    @Test(arguments: ["I'll finish the module by Friday.", "We stopped the deployment last night.",
+                      "The call with the vendor went well.", "I want to close the ticket today.", "Nobody said goodbye to him."])
+    func ignoresNormalSentences(_ text: String) {
+        #expect(!CallSession.wantsToEnd(text), "\(text)")
+    }
+}
+
+@Suite("Background report")
+struct BackgroundReportTests {
+    @Test func reportFillsInAsAnswersAreChecked() {
+        let turns = [
+            CallTurn(speaker: .ai, text: "Tell me about yourself."),
+            CallTurn(speaker: .learner, text: "Myself Priya.", seconds: 2),
+            CallTurn(speaker: .learner, text: "I am having three years experience.", seconds: 3),
+        ]
+        let record = CallRecord(scenarioId: "s", title: "t", kind: "interview", startedAt: .now, seconds: 60, turns: turns)
+        record.reportPending = true
+        #expect(record.uncheckedCount == 2)
+
+        var updated = record.turns
+        updated[1].check = AnswerCheck(better: "I'm Priya.", mistakes: [AnswerMistake(wrong: "Myself Priya", right: "I'm Priya", type: "grammar", why: "-")])
+        updated[2].checkFailed = true
+        record.update(turns: updated)
+        #expect(record.uncheckedCount == 0)
+        #expect(record.mistakeCount == 1)
+        #expect(record.turns[1].check?.better == "I'm Priya.")
+    }
+}
