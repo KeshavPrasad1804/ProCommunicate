@@ -1,0 +1,334 @@
+{
+ "model": "gemma4-e2b",
+ "run": 1,
+ "correction": [
+  {
+   "input": "Myself Rahul and I am having two years of experience in sales.",
+   "planted": [
+    "Myself Rahul -> I am Rahul",
+    "I am having -> I have"
+   ],
+   "text": "{\n    \"corrected\": \"Rahul and I have two years of experience in sales.\",\"mistakes\": [\n      {\n        \"wrong\": \"Myself Rahul and I\",\n        \"right\": \"Rahul and I\",\"type\": \"grammar\",\"explanation_hindi\": \"कर्ता के रूप में 'myself' का प्रयोग नहीं करना चाहिए।\"\n      },\n      {\n        \"wrong\": \"am having\",\n        \"right\": \"have\",\n        \"type\": \"style\",\"explanation_hindi\": \"अनुभव बताने के लिए 'have' का प्रयोग अधिक पेशेवर है।\"\n      }\n    ]\n  }",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"Myself Rahul and I am having two years of experience in sales.\"\n2.  **Identify Grammar Issues:**\n    *   \"Myself Rahul and I\" is incorrect subject pronoun usage. \"Myself\" is a reflexive/intensive pronoun and shouldn't be used as the subject.\n    *   \"am having\" is grammatically okay but sounds less professional than \"have\" when discussing experience.\n3.  **Identify Style Issues (Professionalism/Clarity):**\n    *   The sentence structure is informal. It needs to be more direct and professional for a business context.\n4.  **Formulate Corrections:**\n    *   Change \"Myself Rahul and I\" to \"Rahul and I\".\n    *   Change \"am having\" to \"have\".\n5.  **Construct the feedback:** Report the errors and provide the corrected version. (Self-correction: Ensure the explanation is in simple Hindi.)",
+   "tok_per_s": 63.6,
+   "prompt_tok_per_s": 524.8,
+   "tokens": 359,
+   "wall_s": 5.89,
+   "parsed": {
+    "corrected": "Rahul and I have two years of experience in sales.",
+    "mistakes": [
+     {
+      "wrong": "Myself Rahul and I",
+      "right": "Rahul and I",
+      "type": "grammar",
+      "explanation_hindi": "कर्ता के रूप में 'myself' का प्रयोग नहीं करना चाहिए।"
+     },
+     {
+      "wrong": "am having",
+      "right": "have",
+      "type": "style",
+      "explanation_hindi": "अनुभव बताने के लिए 'have' का प्रयोग अधिक पेशेवर है।"
+     }
+    ]
+   }
+  },
+  {
+   "input": "I am working in this company since 2019.",
+   "planted": [
+    "am working since -> have been working since"
+   ],
+   "text": "{\n    \"corrected\": \"I have been working at this company since 2019.\",\"mistakes\": [\n      {\n        \"wrong\": \"I am working\",\n        \"right\": \"I have been working\",\n        \"type\": \"grammar\",\"explanation_hindi\": \"समय अवधि बताने के लिए Present Perfect Continuous का उपयोग करें।\"\n      },\n      {\n        \"wrong\": \"in this company\",\n        \"right\": \"at this company\",\n        \"type\": \"style\",\"explanation_hindi\": \"कंपनी के संदर्भ में 'at' का उपयोग अधिक पेशेवर है।\"\n      }\n    ]\n  }",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"I am working in this company since 2019.\"\n2.  **Identify potential errors (grammar/style):**\n    *   \"I am working\" (Present Continuous) is grammatically correct, but for expressing duration up to the present, the Present Perfect Continuous or Present Perfect Simple is usually better in professional contexts.\n    *   The structure \"since [a point in time]\" is correct.\n3.  **Evaluate for professionalism/clarity (style):** The sentence is grammatically fine, but it can be phrased more professionally.\n4.  **Determine the best correction:** Using the Present Perfect Simple (\"I have been working\") emphasizes the continuous nature of the employment up to now, which is standard for professional experience.\n5.  **Formulate the feedback:** Report the issues and provide the correction.\n\n*Self-Correction/Refinement:* While \"I am working\" isn't strictly *wrong*, \"I have been working\" sounds much more professional when discussing tenure.\n\n6.  **Final Output Generation.** (Following the required format.)",
+   "tok_per_s": 66.0,
+   "prompt_tok_per_s": 201.5,
+   "tokens": 394,
+   "wall_s": 6.07,
+   "parsed": {
+    "corrected": "I have been working at this company since 2019.",
+    "mistakes": [
+     {
+      "wrong": "I am working",
+      "right": "I have been working",
+      "type": "grammar",
+      "explanation_hindi": "समय अवधि बताने के लिए Present Perfect Continuous का उपयोग करें।"
+     },
+     {
+      "wrong": "in this company",
+      "right": "at this company",
+      "type": "style",
+      "explanation_hindi": "कंपनी के संदर्भ में 'at' का उपयोग अधिक पेशेवर है।"
+     }
+    ]
+   }
+  },
+  {
+   "input": "Please revert back to me today itself.",
+   "planted": [
+    "revert back -> get back to",
+    "today itself -> today"
+   ],
+   "text": "{\n    \"corrected\": \"Please get back to me today.\",\n    \"mistakes\": [\n      {\n        \"wrong\": \"revert back\",\n        \"right\": \"get back to me\",\"type\": \"style\",\"explanation_hindi\": \"revert back दोहराव वाला शब्द है, इसलिए इसे हटा दें।\"\n      },\n      {\n        \"wrong\": \"today itself\",\n        \"right\": \"today\",\n        \"type\": \"style\",\"explanation_hindi\": \"itself का उपयोग यहाँ अनावश्यक है।\"\n      }\n    ]\n  }",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"Please revert back to me today itself.\"\n2.  **Identify the context:** The learner is aiming for professional and business English.\n3.  **Check for grammar mistakes:**\n    *   \"revert back\" is redundant. \"Revert\" already means to return or go back.\n    *   \"today itself\" is slightly informal/clunky in professional contexts.\n4.  **Check for style issues:**\n    *   \"revert back\" is informal.\n    *   \"today itself\" can be phrased more professionally.\n5.  **Determine the corrections:**\n    *   Replace \"revert back\" with a single, appropriate verb (e.g., reply, get back to me).\n    *   Improve the phrasing for urgency/deadline.\n6.  **Formulate the feedback:** Report the issues and provide the corrected version. (Self-correction: Ensure the explanation is in simple Hindi.)",
+   "tok_per_s": 65.5,
+   "prompt_tok_per_s": 211.3,
+   "tokens": 353,
+   "wall_s": 5.46,
+   "parsed": {
+    "corrected": "Please get back to me today.",
+    "mistakes": [
+     {
+      "wrong": "revert back",
+      "right": "get back to me",
+      "type": "style",
+      "explanation_hindi": "revert back दोहराव वाला शब्द है, इसलिए इसे हटा दें।"
+     },
+     {
+      "wrong": "today itself",
+      "right": "today",
+      "type": "style",
+      "explanation_hindi": "itself का उपयोग यहाँ अनावश्यक है।"
+     }
+    ]
+   }
+  },
+  {
+   "input": "We discussed about the budget and he told that it is fine.",
+   "planted": [
+    "discussed about",
+    "told that -> said"
+   ],
+   "text": "{\n  \"corrected\": \"We discussed the budget, and he confirmed that it is fine.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"discussed about\",\n      \"right\": \"discussed\",\n      \"type\": \"grammar\",\n      \"explanation_hindi\": \"discuss के साथ about का प्रयोग नहीं होता है।\"\n    },\n    {\n      \"wrong\": \"he told that it is fine\",\n      \"right\": \"he confirmed that it is fine\",\n      \"type\": \"style\",\n      \"explanation_hindi\": \"business English में 'told' की जगह 'confirmed' या 'agreed' का प्रयोग अधिक पेशेवर होता है।\"\n    }\n  ]\n}",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"We discussed about the budget and he told that it is fine.\"\n2.  **Identify Grammar Mistakes:**\n    *   \"discussed about\" is incorrect. The verb \"discuss\" does not take the preposition \"about.\" It should be \"discussed\" or \"talked about.\"\n    *   \"he told that\" is slightly awkward. It should be \"he said that\" or \"he told us that.\"\n3.  **Identify Style Issues (Unclear/Unprofessional in Business English):**\n    *   The sentence is too informal. In business communication, we aim for conciseness and stronger verbs.\n4.  **Formulate Corrections:**\n    *   Fix the preposition error.\n    *   Improve the phrasing for professionalism.\n5.  **Construct the output:** Apply the required format (grammar/style, corrected list with explanations).\n\n*Self-Correction/Refinement:* The goal is professional business English. The correction should reflect standard professional phrasing.\n\n*Initial thought for correction:* \"We discussed the budget, and he said it was fine.\"\n\n6.  **Final Review against constraints:** Only report real problems; if correct, return empty. (Problems found.) Report in Hindi. (Ready to generate output.)",
+   "tok_per_s": 66.8,
+   "prompt_tok_per_s": 201.4,
+   "tokens": 439,
+   "wall_s": 6.67,
+   "parsed": {
+    "corrected": "We discussed the budget, and he confirmed that it is fine.",
+    "mistakes": [
+     {
+      "wrong": "discussed about",
+      "right": "discussed",
+      "type": "grammar",
+      "explanation_hindi": "discuss के साथ about का प्रयोग नहीं होता है।"
+     },
+     {
+      "wrong": "he told that it is fine",
+      "right": "he confirmed that it is fine",
+      "type": "style",
+      "explanation_hindi": "business English में 'told' की जगह 'confirmed' या 'agreed' का प्रयोग अधिक पेशेवर होता है।"
+     }
+    ]
+   }
+  },
+  {
+   "input": "Kindly do the needful and send the files.",
+   "planted": [
+    "do the needful (style)"
+   ],
+   "text": "{\n  \"corrected\": \"Please take the necessary action and send the files.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"Kindly do the needful\",\n      \"right\": \"Please take the necessary action\",\"type\": \"style\",\"explanation_hindi\": \"यह वाक्यांश बहुत अस्पष्ट है और पेशेवर नहीं है।\"\n    }\n  ]\n}",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"Kindly do the needful and send the files.\"\n2.  **Identify the context:** The learner is aiming for professional and business English.\n3.  **Check for grammar mistakes:**\n    *   \"Kindly do the needful\" is grammatically awkward and overly formal/archaic in modern international business English. \"Do the needful\" is a common phrase in South Asian English but is not standard professional English.\n4.  **Check for style issues:**\n    *   \"Kindly do the needful\" is too vague and passive.\n    *   \"send the files\" is fine, but the overall tone needs improvement.\n5.  **Determine the correction strategy:** Replace the vague phrase with a clear, direct request.\n\n6.  **Formulate the feedback:**\n    *   Grammar: Identify the awkward phrasing.\n    *   Style: Point out the non-standard phrase.\n    *   Provide the corrected version.\n\n7.  **Draft the response (in Hindi/English format):** (Self-Correction: Ensure the explanation is short and in simple Hindi.)",
+   "tok_per_s": 65.3,
+   "prompt_tok_per_s": 222.1,
+   "tokens": 336,
+   "wall_s": 5.22,
+   "parsed": {
+    "corrected": "Please take the necessary action and send the files.",
+    "mistakes": [
+     {
+      "wrong": "Kindly do the needful",
+      "right": "Please take the necessary action",
+      "type": "style",
+      "explanation_hindi": "यह वाक्यांश बहुत अस्पष्ट है और पेशेवर नहीं है।"
+     }
+    ]
+   }
+  },
+  {
+   "input": "What is your good name?",
+   "planted": [
+    "good name (style)"
+   ],
+   "text": "{\n  \"corrected\": \"What is your name?\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"good name\",\n      \"right\": \"name\",\n      \"type\": \"style\",\n      \"explanation_hindi\": \"व्यावसायिक बातचीत में 'good name' का उपयोग नहीं किया जाता है।\"\n    }\n  ]\n}",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"What is your good name?\"\n2.  **Identify the context:** The learner is aiming for professional and business English.\n3.  **Check for grammar mistakes:**\n    *   \"What is your good name?\" is grammatically understandable but sounds unnatural and slightly awkward in a professional context.\n4.  **Check for style issues (unclear/unprofessional):**\n    *   \"good name\" is too informal and slightly awkward. In a business setting, you usually ask for a formal title or just the name.\n5.  **Determine the correction:** A more professional way to ask this is needed.\n6.  **Formulate the feedback:** Report the issues and provide the correction.\n\n*Self-Correction/Refinement:* While \"What is your name?\" is the simplest, the learner used \"good name.\" I need to address the awkwardness.\n\n7.  **Final Output Generation.** (Following the required format.)",
+   "tok_per_s": 67.5,
+   "prompt_tok_per_s": 167.6,
+   "tokens": 300,
+   "wall_s": 4.52,
+   "parsed": {
+    "corrected": "What is your name?",
+    "mistakes": [
+     {
+      "wrong": "good name",
+      "right": "name",
+      "type": "style",
+      "explanation_hindi": "व्यावसायिक बातचीत में 'good name' का उपयोग नहीं किया जाता है।"
+     }
+    ]
+   }
+  },
+  {
+   "input": "I have been working here for three years and I enjoy my role.",
+   "planted": [],
+   "text": "{\n  \"corrected\": \"\",\n  \"mistakes\": []\n}",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"I have been working here for three years and I enjoy my role.\"\n2.  **Identify the target audience/context:** Professional and business English for Hindi speakers.\n3.  **Check for grammar mistakes:**\n    *   \"I have been working here for three years\" - Correct (Present Perfect Continuous, appropriate for an ongoing action).\n    *   \"and I enjoy my role\" - Grammatically correct, but slightly informal for a professional context.\n4.  **Check for style issues (unclear/unprofessional in business English):**\n    *   The sentence is grammatically sound, but combining two simple statements with \"and\" can sometimes be strengthened in a professional setting.\n5.  **Determine the output format:** Report only real problems (grammar or style), list corrections, and provide a short explanation in Hindi.\n\n*Self-Correction/Refinement:* The sentence is perfectly fine for casual conversation, but for a professional context, we can make the phrasing more impactful. However, since the prompt asks only to report *real* problems, I should focus on what is strictly incorrect or highly unprofessional. In this case, there are no strict errors. I will suggest a stylistic improvement if necessary, but I must be careful not to over-correct.\n\n*Re-evaluation:* The sentence is fine. I will return an empty list.\n\n6.  **Final Output Generation.**",
+   "tok_per_s": 67.7,
+   "prompt_tok_per_s": 203.8,
+   "tokens": 329,
+   "wall_s": 4.96,
+   "parsed": {
+    "corrected": "",
+    "mistakes": []
+   }
+  },
+  {
+   "input": "Could you please send me the updated report by Friday?",
+   "planted": [],
+   "text": "{\n  \"corrected\": \"\",\n  \"mistakes\": []\n}",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the Request:** The user wants me to check the sentence: \"Could you please send me the updated report by Friday?\" for grammar mistakes and unprofessional/unclear style in a business context. The target audience is Hindi speakers learning professional/business English.\n\n2.  **Analyze the Sentence:** \"Could you please send me the updated report by Friday?\"\n\n    *   **Grammar Check:** The sentence structure (Modal verb 'Could', polite request, direct object, time constraint) is grammatically correct.\n    *   **Style Check (Business English):** The sentence is polite and clear. It is perfectly acceptable in most business settings. However, in high-level professional communication, sometimes slightly more direct or action-oriented phrasing is preferred, though this is a minor stylistic point, not an error.\n\n3.  **Determine the Output:** Since the sentence is grammatically sound and professionally appropriate, the list of mistakes should be empty.\n\n4.  **Final Review:**\n    *   Grammar: Correct.\n    *   Style: Professional.\n\n5.  **Construct the Response:** Return an empty list. (No corrections needed).",
+   "tok_per_s": 67.8,
+   "prompt_tok_per_s": 242.6,
+   "tokens": 271,
+   "wall_s": 4.07,
+   "parsed": {
+    "corrected": "",
+    "mistakes": []
+   }
+  }
+ ],
+ "explain": [
+  {
+   "input": "Wrong: \"I will revert back by EOD.\"\nRight: \"I'll get back to you by end of day.\"\nWhy: \"Revert back\" is Indian English; \"get back to you\" is natural.",
+   "text": "\"Revert back\" गलत है। \"Get back to you\" ज़्यादा natural है।",
+   "thinking": "",
+   "tok_per_s": 68.2,
+   "prompt_tok_per_s": 671.6,
+   "tokens": 19,
+   "wall_s": 0.42
+  },
+  {
+   "input": "Wrong: \"Can we prepone the call?\"\nRight: \"Can we move the call earlier?\"\nWhy: \"Prepone\" is not used outside India.",
+   "text": "\"Prepone\" एक आम शब्द नहीं है। आप \"move the call earlier\" का उपयोग कर सकते हैं।",
+   "thinking": "",
+   "tok_per_s": 68.6,
+   "prompt_tok_per_s": 436.5,
+   "tokens": 24,
+   "wall_s": 0.44
+  }
+ ],
+ "help": [
+  {
+   "id": "leave_devanagari",
+   "input": "मैनेजर से कल की छुट्टी माँगनी है। professional तरीके से कैसे बोलूँ?",
+   "meaning": "I need to ask my manager for leave tomorrow.",
+   "text": "Here are a couple of options:\n\n**English:** \"I would like to request a leave of absence for tomorrow.\" or \"Could I please request a day off tomorrow?\"\n\n**Hindi:** आप मैनेजर से विनम्रता से पूछ सकते हैं।\n\n*(Aap manager se vinamrata se pooch sakte hain.)*",
+   "thinking": "",
+   "tok_per_s": 63.0,
+   "prompt_tok_per_s": 760.9,
+   "tokens": 65,
+   "wall_s": 1.18
+  },
+  {
+   "id": "late_devanagari",
+   "input": "मीटिंग में 10 मिनट लेट हो गया। माफ़ी कैसे माँगूँ?",
+   "meaning": "Late 10 min; how to apologise?",
+   "text": "Here are a couple of options:\n\n**English:** \"I apologize for being ten minutes late to the meeting.\" or \"Please accept my apologies for my tardiness.\"\n\n**Hindi:** मीटिंग में देर होने के लिए माफ़ी माँगने के लिए आप यह इस्तेमाल कर सकते हैं।\n\n**Use this:** औपचारिक (Formal) स्थितियों में।",
+   "thinking": "",
+   "tok_per_s": 55.1,
+   "prompt_tok_per_s": 247.9,
+   "tokens": 70,
+   "wall_s": 1.36
+  },
+  {
+   "id": "interview_hinglish",
+   "input": "interview mein bahut nervous ho jata hoon, 'tell me about yourself' mein kya bolun?",
+   "meaning": "Nervous in interviews; what to say for tell me about yourself?",
+   "text": "Here are a couple of options:\n\n1. **\"I am a highly motivated and results-oriented professional with [X years] of experience in [Your Field]. I am particularly skilled in [Skill 1] and [Skill 2], and I am eager to bring my expertise to this role.\"**\n2. **\"I have a strong background in [Your Area], where I have successfully managed [mention a key achievement]. I am looking for an opportunity where I can utilize my skills to contribute to [Company Goal].\"**\n\n**हिंदी में:**\nआप अपने अनुभव और कौशल के बारे में बताएं।\n(Apne anubhav aur kaushal ke baare mein batayein.)",
+   "thinking": "",
+   "tok_per_s": 55.3,
+   "prompt_tok_per_s": 267.5,
+   "tokens": 143,
+   "wall_s": 2.68
+  },
+  {
+   "id": "deadline_hinglish",
+   "input": "client ko deadline extend karne ke liye ek chhota email likh do",
+   "meaning": "Short email asking the client to extend the deadline.",
+   "text": "Here are a couple of options for your email:\n\n**Option 1 (Formal):**\n\n> Dear [Client Name], I am writing to request a brief extension for the [Project Name] deadline. Could we please extend the deadline to [New Date]?\n\n**Option 2 (Slightly Softer):**\n\n> Hello [Client Name], I need to ask if it would be possible to extend the deadline for [Project Name]. I anticipate needing until [New Date] to ensure the quality is excellent.\n\n**हिंदी में उपयोग:**\n\nऔपचारिक ईमेल के लिए, आप इसे इस्तेमाल कर सकते हैं।\nअ Formal email ke liye, aap ise istemaal kar sakte hain.",
+   "thinking": "",
+   "tok_per_s": 56.5,
+   "prompt_tok_per_s": 215.4,
+   "tokens": 142,
+   "wall_s": 2.61
+  },
+  {
+   "id": "casual_hinglish",
+   "input": "isko professional bana do: 'hey send me that report asap, need it'",
+   "meaning": "Make this professional.",
+   "text": "Here are a couple of professional options:\n\n**Option 1 (Direct Request):**\n\"Could you please send me that report as soon as possible?\"\n\n**Option 2 (Slightly Softer):**\n\"I would appreciate it if you could send the report at your earliest convenience.\"\n\n**हिंदी में:**\nआप इन्हें तब इस्तेमाल कर सकते हैं जब आप किसी से जल्दी रिपोर्ट भेजने का अनुरोध कर रहे हों।",
+   "thinking": "",
+   "tok_per_s": 55.3,
+   "prompt_tok_per_s": 237.2,
+   "tokens": 89,
+   "wall_s": 1.7
+  }
+ ],
+ "phrase": [
+  {
+   "input": "About the learner: They work as a QA engineer at Wipro. Current project: a retail mobile app for a US client.\nSkill to practise: Giving a status update. Say what's done, what's next and any risk.\nWrite ONE new sentence (8 to 20 words) the learner could really say at work this week, about their own project.\n\"english\": the sentence. \"hindi\": its meaning in simple spoken Hindi, in Devanagari. \"when\": when to say it, in at most 12 simple English words.",
+   "text": "{\n  \"english\": \"This week, I completed testing on the payment module and will start integration testing on Monday.\",\n  \"hindi\": \"इस सप्ताह, मैंने भुगतान मॉड्यूल पर परीक्षण पूरा कर लिया है और सोमवार से एकीकरण परीक्षण शुरू करूँगा।\",\n  \"when\": \"During your weekly status meeting.\"\n}",
+   "thinking": "",
+   "tok_per_s": 55.9,
+   "prompt_tok_per_s": 1126.5,
+   "tokens": 74,
+   "wall_s": 1.5
+  },
+  {
+   "input": "About the learner: They work as a Java developer at TCS. They are preparing for: product company interviews.\nSkill to practise: Talking about yourself. Introduce your background clearly.\nWrite ONE new sentence (8 to 20 words) the learner could really say in an interview.\n\"english\": the sentence. \"hindi\": its meaning in simple spoken Hindi, in Devanagari. \"when\": when to say it, in at most 12 simple English words.",
+   "text": "{\n  \"english\": \"I have five years of experience developing robust Java applications for enterprise solutions.\",\n  \"hindi\": \"मेरे पास एंटरप्राइज सॉल्यूशंस के लिए मजबूत जावा एप्लिकेशन विकसित करने का पांच साल का अनुभव है।\",\n  \"when\": \"When asked about your professional background in an interview.\"\n}",
+   "thinking": "",
+   "tok_per_s": 54.9,
+   "prompt_tok_per_s": 886.0,
+   "tokens": 73,
+   "wall_s": 1.44
+  }
+ ],
+ "focus": [
+  {
+   "input": "kal client ke saath demo meeting hai",
+   "text": "{\n  \"focus\": \"meetings\",\n  \"event\": \"Client demo meeting\",\n  \"days\": -1\n}",
+   "thinking": "",
+   "tok_per_s": 55.6,
+   "prompt_tok_per_s": 747.1,
+   "tokens": 34,
+   "wall_s": 0.82
+  },
+  {
+   "input": "agle hafte Flipkart ka interview hai",
+   "text": "{\n  \"focus\": \"interviews\",\n  \"event\": \"Flipkart interview\",\n  \"days\": 6\n}",
+   "thinking": "",
+   "tok_per_s": 55.5,
+   "prompt_tok_per_s": 830.3,
+   "tokens": 35,
+   "wall_s": 0.79
+  },
+  {
+   "input": "roz US client ke calls mein bolne mein dikkat hoti hai",
+   "text": "{\n  \"focus\": \"meetings\",\n  \"event\": \"\",\n  \"days\": -1\n}",
+   "thinking": "",
+   "tok_per_s": 55.4,
+   "prompt_tok_per_s": 845.9,
+   "tokens": 30,
+   "wall_s": 0.7
+  },
+  {
+   "input": "job switch karna hai aur abhi client calls bhi hain",
+   "text": "{\n  \"focus\": \"interviews\",\n  \"event\": \"\",\n  \"days\": -1\n}",
+   "thinking": "",
+   "tok_per_s": 56.2,
+   "prompt_tok_per_s": 844.2,
+   "tokens": 31,
+   "wall_s": 0.71
+  }
+ ]
+}

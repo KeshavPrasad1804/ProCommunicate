@@ -92,6 +92,7 @@ struct RootView: View {
             if defaults.bool(forKey: "openStandUp") { router.showStandUpDrill = true }
             if defaults.bool(forKey: "openReview") { router.showReviewSession = true }
             if defaults.bool(forKey: "seedDemoData") { DemoData.seed(in: modelContext) }
+            if defaults.bool(forKey: "runListenTest") { await ListeningBenchmark.run() }
             if let id = defaults.string(forKey: "startCall"), let scenario = ScenarioLoader.loadAll().first(where: { $0.id == id }) {
                 router.startCall(scenario)
             }

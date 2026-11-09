@@ -1,0 +1,198 @@
+{
+  "id": "interviews-02-current-role-l1",
+  "unitId": "interviews-02-current-role",
+  "title": "Your current role",
+  "intro": "Describe your current role with clear verbs: what you own, who you work with, and what you deliver.",
+  "introNative": "अपने current role को साफ़ verbs के साथ बताइए: किस चीज़ की ज़िम्मेदारी आपकी है, आप किसके साथ काम करते हैं, और आप क्या deliver करते हैं।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "responsible-for",
+      "text": "In my current role, I'm responsible for the payments module of a banking app.",
+      "native": "अपने current role में, एक banking app के payments module की ज़िम्मेदारी मेरी है।",
+      "note": "\"Responsible for\" shows ownership; follow it with a noun."
+    },
+    {
+      "id": "working-since",
+      "text": "I've been working at TCS since June 2021.",
+      "native": "मैं June 2021 से TCS में काम कर रहा हूँ।",
+      "note": "Use \"I've been working… since\", not \"I am working… since\"."
+    },
+    {
+      "id": "team-of-eight",
+      "text": "I work in a team of six developers and two testers.",
+      "native": "मैं छह developers और दो testers की एक team में काम करता हूँ।",
+      "note": "Team size helps the interviewer picture your work."
+    },
+    {
+      "id": "work-with-client",
+      "text": "I work directly with the client's product owner in the US.",
+      "native": "मेरा काम सीधे US वाले client के product owner के साथ होता है।",
+      "note": "Client contact shows communication skills, so mention it."
+    },
+    {
+      "id": "code-reviews",
+      "text": "I also do code reviews and mentor two junior developers.",
+      "native": "मैं code reviews भी करता हूँ और दो junior developers को mentor करता हूँ।",
+      "note": "\"Mentor\" means guide and teach less experienced colleagues."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "responsible-for"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "working-since"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "team-of-eight"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "work-with-client"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "code-reviews"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The interviewer asks: \"What do you do in your current role?\" Which answer is best?",
+      "promptNative": "Interviewer पूछते हैं: \"आप अपने current role में क्या करते हैं?\" कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "I am doing coding, testing, everything.",
+        "In my current role, I'm responsible for the payments module of a banking app.",
+        "I am working in the project as per the requirement."
+      ],
+      "answer": "In my current role, I'm responsible for the payments module of a banking app.",
+      "explanation": "Name a specific area you own; \"everything\" and \"as per the requirement\" sound vague.",
+      "explanationNative": "जिस area की ज़िम्मेदारी आपकी है, उसका नाम साफ़ बताइए; \"everything\" और \"as per the requirement\" जैसे जवाब vague लगते हैं।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "मैं June 2021 से TCS में काम कर रहा हूँ।",
+      "tiles": [
+        "I've",
+        "been",
+        "working",
+        "at",
+        "TCS",
+        "since",
+        "June",
+        "2021",
+        "am",
+        "from"
+      ],
+      "answer": "I've been working at TCS since June 2021."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "I work in a team of six developers and two testers.",
+      "options": [
+        "I work in a team of six developers and two testers.",
+        "I work in a team of six developers and two leaders.",
+        "I worked in a team of sixteen developers and two testers."
+      ],
+      "answer": "I work in a team of six developers and two testers."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I am working here since 2021.",
+      "options": [
+        "I am working here since 2021.",
+        "I've been working here since 2021.",
+        "I am working here from 2021.",
+        "I was working here since 2021."
+      ],
+      "answer": "I've been working here since 2021.",
+      "explanation": "For something that started in the past and continues now, use \"I've been working… since\".",
+      "explanationNative": "जो काम past में शुरू हुआ और अब भी चल रहा है, उसके लिए \"I've been working… since\" use कीजिए।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "You want to show that you guide junior team members. Which answer is best?",
+      "promptNative": "आप दिखाना चाहते हैं कि आप junior team members को guide करते हैं। कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "I also do code reviews and mentor two junior developers.",
+        "I am teaching juniors also.",
+        "I am the senior, so juniors will come to me for all their doubts."
+      ],
+      "answer": "I also do code reviews and mentor two junior developers.",
+      "explanation": "\"Code reviews\" and \"mentor\" are clear, professional words for guiding others.",
+      "explanationNative": "दूसरों को guide करने के लिए \"code reviews\" और \"mentor\" साफ़ और professional शब्द हैं।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I am handling the client calls and all.",
+      "options": [
+        "I am handling the client calls and all.",
+        "I handle the client calls.",
+        "I am handling the client calls and all that.",
+        "I am handling with the client calls."
+      ],
+      "answer": "I handle the client calls.",
+      "explanation": "For regular duties, use the simple present (\"I handle\") and drop \"and all\".",
+      "explanationNative": "रोज़ के regular कामों के लिए simple present (\"I handle\") use कीजिए, और \"and all\" हटा दीजिए।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "मैं US वाले client के product owner के साथ सीधे काम करता हूँ।",
+      "tiles": [
+        "I",
+        "work",
+        "directly",
+        "with",
+        "the",
+        "client's",
+        "product",
+        "owner",
+        "in",
+        "the",
+        "US",
+        "am",
+        "itself"
+      ],
+      "answer": "I work directly with the client's product owner in the US."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "In my current role, I'm responsible for the payments module of a banking app.",
+      "options": [
+        "In my last role, I was responsible for the payments module of a banking app.",
+        "In my current role, I'm responsible for the payment model of a banking app.",
+        "In my current role, I'm responsible for the payments module of a banking app."
+      ],
+      "answer": "In my current role, I'm responsible for the payments module of a banking app."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Describe your real current role out loud in 3–4 sentences: since when, what you're responsible for, your team, and who you work with.",
+      "promptNative": "अपने असली current role के बारे में 3–4 sentences में बोलकर बताइए: कब से, आप किस चीज़ के लिए responsible हैं, आपकी team, और आप किसके साथ काम करते हैं।",
+      "suggestedPhraseIds": [
+        "responsible-for",
+        "working-since",
+        "team-of-eight",
+        "work-with-client"
+      ]
+    }
+  ]
+}

@@ -6,7 +6,7 @@ import Testing
 @MainActor
 @Suite("Lesson progress")
 struct ProgressTests {
-    let lesson = Lesson(id: "l1", unitId: "u1", title: "T", intro: "", introTamil: "", tamilReviewed: true,
+    let lesson = Lesson(id: "l1", unitId: "u1", title: "T", intro: "", introNative: "", nativeReviewed: true,
                         phrases: [], steps: [])
 
     private func makeContext() throws -> ModelContext {

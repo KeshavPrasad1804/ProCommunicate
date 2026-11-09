@@ -178,11 +178,11 @@ enum AdaptivePrompts {
 
     static func focusUser(target: String, now: Date = .now) -> String {
         """
-        The learner's goal (English, Tamil or Tanglish): "\(target)"
+        The learner's goal (English, \(NativeLanguage.current.name) or \(NativeLanguage.current.romanisedName)): "\(target)"
         Today is \(now.formatted(.dateTime.weekday(.wide).day().month(.wide).year())).
         "focus": "interviews" if it is only about job interviews or changing jobs, "meetings" if it is only about meetings, calls or work at their current job, "both" if it mentions both.
         "event": if the goal mentions ONE specific upcoming meeting, presentation or interview, a short title for it in English (at most 8 words), otherwise "".
-        "days": how many days from today until that event, or -1 if not known. Tamil time words: naalaikku or naalai = tomorrow (1), inniki or indru = today (0), naalanniki = day after tomorrow (2), adutha vaaram = next week (7).
+        "days": how many days from today until that event, or -1 if not known. \(EventDate.hint(for: NativeLanguage.current))
         """
     }
 
@@ -214,10 +214,10 @@ enum AdaptivePrompts {
 
     // Writing
 
-    static let writerSystem = """
-    You write English speaking practice for a Tamil-speaking IT professional (about CEFR B1–B2) who wants to sound natural and professional at work. \
+    static var writerSystem: String { """
+    You write English speaking practice for a \(NativeLanguage.current.name)-speaking IT professional (about CEFR B1–B2) who wants to sound natural and professional at work. \
     Use simple, natural, polite international business English. \(banned) Reply only with the JSON.
-    """
+    """ }
 
     static func phraseUser(profile: LearnerProfile, unit: AdaptiveJobInputs.UnitBrief, weakSpots: [String]) -> String {
         """
@@ -225,25 +225,26 @@ enum AdaptivePrompts {
         Skill to practise: \(unit.title). \(unit.goal)
         Example phrases for this skill: \(unit.examples.prefix(3).map { "\"\($0)\"" }.joined(separator: ", "))
         Write ONE new sentence (8 to 20 words) the learner could really say at work this week, about their own job or project if you know it, using this skill.
-        "english": the sentence. "tamil": its meaning in simple spoken Tamil, in Tamil script. "when": when to say it, in at most 12 simple English words.
+        "english": the sentence. "meaning": its meaning in \(NativeLanguage.current.name). \(NativeLanguage.current.styleNote) "when": when to say it, in at most 12 simple English words.
         """
     }
 
     static let phraseGrammar = #"""
-    root ::= "{" ws "\"english\":" ws string ws "," ws "\"tamil\":" ws string ws "," ws "\"when\":" ws string ws "}"
+    root ::= "{" ws "\"english\":" ws string ws "," ws "\"meaning\":" ws string ws "," ws "\"when\":" ws string ws "}"
     """# + "\n" + string
 
-    private struct PhraseOutput: Codable { let english: String; let tamil: String; let when: String }
+    private struct PhraseOutput: Codable { let english: String; let meaning: String; let when: String }
 
-    static func parsePhrase(_ raw: String, day: String, unitId: String) throws -> AdaptiveContent.DailyPhrase {
+    static func parsePhrase(_ raw: String, day: String, unitId: String,
+                            language: NativeLanguage = .current) throws -> AdaptiveContent.DailyPhrase {
         let out = try JSONDecoder().decode(PhraseOutput.self, from: Data(raw.utf8))
         let english = out.english.trimmingCharacters(in: .whitespacesAndNewlines)
         let words = FluencyMetrics.wordCount(english)
         // Reject sentences that are too short or long, or that contain a mistake we teach against.
         guard (5...30).contains(words), MistakeRules.check(english).isEmpty,
-              out.tamil.unicodeScalars.contains(where: { (0x0B80...0x0BFF).contains($0.value) }) else { throw AdaptivePromptError.badOutput }
+              language.containsScript(out.meaning) else { throw AdaptivePromptError.badOutput }
         return AdaptiveContent.DailyPhrase(day: day, unitId: unitId, english: english,
-                                           tamil: out.tamil.trimmingCharacters(in: .whitespacesAndNewlines),
+                                           native: out.meaning.trimmingCharacters(in: .whitespacesAndNewlines),
                                            when: out.when.trimmingCharacters(in: .whitespacesAndNewlines))
     }
 
@@ -280,14 +281,30 @@ enum AdaptivePrompts {
     }
 }
 
-/// Reads "tomorrow", "naalaikku", "next Friday", "in 3 days"… from a goal, in English or Tanglish.
+/// Reads "tomorrow", "naalaikku", "kal", "next Friday", "in 3 days"… from a goal, in English, Tanglish or Hinglish.
+/// Hindi "kal" means both yesterday and tomorrow; for an upcoming event it's read as tomorrow.
 enum EventDate {
+    /// Time words for the AI's instructions, in the learner's language.
+    static func hint(for language: NativeLanguage) -> String {
+        switch language {
+        case .tamil: "Tamil time words: naalaikku or naalai = tomorrow (1), inniki or indru = today (0), naalanniki = day after tomorrow (2), adutha vaaram = next week (7)."
+        case .hindi: "Hindi time words: kal = tomorrow (1) for a coming event, aaj = today (0), parson = day after tomorrow (2), agle hafte = next week (7)."
+        }
+    }
+
     static func days(in text: String, now: Date = .now) -> Int? {
+        // Devanagari words, matched as whole words ("कल" but not "निकल" or "आजकल").
+        let raw = text.lowercased()
+        let words = Set(raw.components(separatedBy: CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)))
+        if words.contains("परसों") { return 2 }
+        if words.contains("आज") { return 0 }
+        if words.contains("कल") { return 1 }
+        if ["अगले हफ्ते", "अगले हफ़्ते", "अगले सप्ताह"].contains(where: raw.contains) { return 7 }
         let t = " " + text.lowercased().replacingOccurrences(of: #"[^a-z0-9 ]"#, with: " ", options: .regularExpression) + " "
         func has(_ words: [String]) -> Bool { words.contains { t.contains(" \($0) ") } }
-        if has(["day after tomorrow", "naalanniki", "nalanniki", "naalanniku", "nalannaiku"]) { return 2 }
-        if has(["today", "tonight", "inniki", "innaiku", "indru", "inniku"]) { return 0 }
-        if has(["tomorrow", "tmrw", "naalaikku", "nalaikku", "naalai", "nalaiku", "naalaiku", "nalaiki"]) { return 1 }
+        if has(["day after tomorrow", "naalanniki", "nalanniki", "naalanniku", "nalannaiku", "parson", "parso", "parsoon"]) { return 2 }
+        if has(["today", "tonight", "inniki", "innaiku", "indru", "inniku", "aaj", "aj"]) { return 0 }
+        if has(["tomorrow", "tmrw", "naalaikku", "nalaikku", "naalai", "nalaiku", "naalaiku", "nalaiki", "kal", "kel"]) { return 1 }
         if let match = t.firstMatch(of: /in (\d{1,2}) days?/), let n = Int(match.1) { return n }
         let weekdays = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
         let short = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
@@ -296,7 +313,7 @@ enum EventDate {
             let ahead = (index - today + 7) % 7
             return ahead == 0 ? 7 : ahead
         }
-        if has(["next week", "adutha vaaram", "adutha varam", "next wk"]) { return 7 }
+        if has(["next week", "adutha vaaram", "adutha varam", "next wk", "agle hafte", "agle week", "agle hafta", "agle haftey"]) { return 7 }
         return nil
     }
 }

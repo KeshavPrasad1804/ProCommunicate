@@ -34,7 +34,7 @@ struct CallScenario: Codable, Hashable, Sendable, Identifiable {
         var prompt = """
         Role-play for English practice, as a realistic voice call. \(situation)
         YOU are \(aiName), \(aiRole). Stay in this role the whole time; never mention being an AI or a tutor, and never correct the learner's English.
-        The learner is a Tamil speaker improving their professional English (about CEFR B1–B2). \(profile.summary)
+        The learner is a \(NativeLanguage.current.name) speaker improving their professional English (about CEFR B1–B2). \(profile.summary)
         Speak naturally, as on a real call: one or two short sentences per turn (at most 40 words), then one question or a clear next step. No lists, no headings, no emojis, no stage directions.
         If the learner asks to end or stop the call, close politely right away with a goodbye.
         """
@@ -72,7 +72,7 @@ enum ScenarioLoader {
             return CallScenario(id: "unit-\(unit.id)", kind: .quick, unitId: unit.id, title: unit.title,
                                 subtitle: unit.goal, aiName: "Meena", aiRole: "HR interviewer", voice: "en-IN", maxTurns: 5,
                                 goals: [unit.goal] + unit.examplePhrases.prefix(2).map { "Use: \($0)" },
-                                situation: "You are Meena, an HR interviewer at a Chennai IT services company. Interview the learner on this topic: \(unit.title). Ask questions that give them the chance to \(unit.goal.lowercased()) Follow up once or twice on what they say. Useful phrases they are practising: \(phrases).",
+                                situation: "You are Meena, an HR interviewer at a \(NativeLanguage.current.officeCity) IT services company. Interview the learner on this topic: \(unit.title). Ask questions that give them the chance to \(unit.goal.lowercased()) Follow up once or twice on what they say. Useful phrases they are practising: \(phrases).",
                                 opening: "Hello {name}, thanks for coming in. Shall we begin?")
         }
         return CallScenario(id: "unit-\(unit.id)", kind: .quick, unitId: unit.id, title: unit.title,

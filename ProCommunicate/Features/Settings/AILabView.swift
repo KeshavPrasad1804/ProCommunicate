@@ -10,6 +10,15 @@ struct AILabView: View {
     @State private var lines: [String] = []
     @State private var liveText = ""
     @State private var customInput = "Good morning. Myself Priya, I am having three years experience in Java."
+    @State private var recorder = LabRecorder()
+
+    /// Test clips copied onto the phone (Files app or devicectl) into Documents/ListenTest.
+    private static var clipFolder: URL { URL.documentsDirectory.appending(path: "ListenTest", directoryHint: .isDirectory) }
+    private var clips: [URL] {
+        ((try? FileManager.default.contentsOfDirectory(at: Self.clipFolder, includingPropertiesForKeys: nil)) ?? [])
+            .filter { ["wav", "m4a"].contains($0.pathExtension.lowercased()) }
+            .sorted { $0.lastPathComponent < $1.lastPathComponent }
+    }
 
     var body: some View {
         List {
@@ -40,6 +49,35 @@ struct AILabView: View {
                 }
             } header: {
                 Text("Run the tests in order")
+            }
+            .disabled(busy || !LlamaEngine.isAvailable || !aiModel.isReady)
+
+            Section {
+                LabeledContent("Listening part", value: Listening.isInstalled
+                               ? RecordingCleanup.size(of: Listening.fileURL).formattedBytes : "Not on this iPhone")
+                Button("4. Load the listening part", systemImage: "ear") { Task { await loadListening() } }
+                    .disabled(!Listening.isInstalled)
+                Button("5. Listen to the test clips (\(clips.count))", systemImage: "waveform") { Task { await listenToClips() } }
+                    .disabled(!Listening.isInstalled || clips.isEmpty)
+                Button(recorder.isRecording ? "Stop and listen" : "Speak: Tamil, Hindi, a mix or English",
+                       systemImage: recorder.isRecording ? "stop.circle.fill" : "mic.circle.fill") {
+                    if recorder.isRecording { recorder.finish() } else { recorder.start() }
+                }
+                .disabled(!Listening.isInstalled)
+                .onChange(of: recorder.samples) { _, samples in
+                    guard let samples else { return }
+                    Task { await understand(samples, label: "You") }
+                }
+                Button("Unload the listening part", systemImage: "eject", role: .destructive) {
+                    Task {
+                        await LlamaEngine.shared.unloadAudio()
+                        log("Listening part unloaded. App memory: \(Int64(MemoryUsage.footprintBytes()).formattedBytes)")
+                    }
+                }
+            } header: {
+                Text("Listening (Gemma hears you)")
+            } footer: {
+                Text("Gemma writes down exactly what you said, then works out what you meant and the English to say. Test clips go in Files → On My iPhone → ProCommunicate → ListenTest.")
             }
             .disabled(busy || !LlamaEngine.isAvailable || !aiModel.isReady)
 
@@ -97,10 +135,54 @@ struct AILabView: View {
         }
     }
 
+    private func loadListening() async {
+        busy = true
+        defer { busy = false }
+        let before = MemoryUsage.footprintBytes()
+        do {
+            try await TutorService.ensureLoaded()
+            let mid = MemoryUsage.footprintBytes()
+            let seconds = try await LlamaEngine.shared.loadAudio(path: Listening.fileURL.path)
+            let after = MemoryUsage.footprintBytes()
+            status = "Loaded + listening"
+            log(String(format: "Listening part: %.1f s · app memory %@ → %@ (model) → %@ (with listening) · left %@", seconds,
+                       Int64(before).formattedBytes, Int64(mid).formattedBytes, Int64(after).formattedBytes,
+                       Int64(MemoryUsage.availableBytes()).formattedBytes))
+        } catch {
+            log("Listening part failed: \(error.localizedDescription)")
+        }
+    }
+
+    private func listenToClips() async {
+        busy = true
+        defer { busy = false }
+        for clip in clips {
+            guard let samples = try? AudioFileWriter.readSamples(from: clip), !samples.isEmpty else {
+                log("\(clip.lastPathComponent): couldn't read"); continue
+            }
+            await understand(samples, label: clip.deletingPathExtension().lastPathComponent)
+        }
+        log("Done. App memory \(Int64(MemoryUsage.footprintBytes()).formattedBytes) · left \(Int64(MemoryUsage.availableBytes()).formattedBytes)")
+    }
+
+    private func understand(_ samples: [Float], label: String) async {
+        let audioSeconds = Double(samples.count) / VoiceCapture.sampleRate
+        do {
+            let result = try await Listening.understand(samples)
+            log(String(format: "%@ (%.1f s audio): heard in %.1f s, understood in %.1f s · memory %@", label, audioSeconds,
+                       result.listenSeconds, result.thinkSeconds, Int64(MemoryUsage.footprintBytes()).formattedBytes))
+            log("  heard: \(result.transcript)")
+            log("  means: \(result.meaning)")
+            log("  say:   \(result.say)")
+        } catch {
+            log("\(label): \(error.localizedDescription)")
+        }
+    }
+
     private func rolePlayTest() async {
         busy = true
         defer { busy = false }
-        let system = "Role-play for English practice. YOU are an HR interviewer at an IT company in Chennai. The user is a Tamil speaker improving their English (B1 level), applying for a Java developer job. Stay in your role. Reply ONLY in clear, natural, professional English, in at most 2 short sentences. End with one question."
+        let system = "Role-play for English practice. YOU are an HR interviewer at an IT company in \(NativeLanguage.current.officeCity). The user is a \(NativeLanguage.current.name) speaker improving their English (B1 level), applying for a Java developer job. Stay in your role. Reply ONLY in clear, natural, professional English, in at most 2 short sentences. End with one question."
         var messages = [ChatMessage(role: .system, content: system)]
         for turn in ["Good morning sir. Myself Priya, I am having three years experience in Java.",
                      "I am working in Infosys since 2021. I handled one banking project."] {
@@ -150,4 +232,39 @@ struct AILabView: View {
 #Preview {
     NavigationStack { AILabView() }
         .environment(AIModelManager.shared)
+}
+
+/// Records one spoken turn for the listening test (ends after a pause, or when you tap Stop).
+@MainActor @Observable
+final class LabRecorder {
+    private(set) var isRecording = false
+    private(set) var samples: [Float]?
+    @ObservationIgnored private var capture: VoiceCapture?
+
+    func start() {
+        samples = nil
+        let capture = VoiceCapture(detection: { var d = TurnDetection.current; d.endSilence = max(d.endSilence, 2.5); return d }()) { [weak self] event in
+            Task { @MainActor in
+                guard let self, case .turnEnded(let samples, _, _) = event else { return }
+                self.stop()
+                self.samples = samples
+            }
+        }
+        do {
+            try capture.start()
+            capture.setListening(true)
+            self.capture = capture
+            isRecording = true
+        } catch {
+            isRecording = false
+        }
+    }
+
+    func finish() { capture?.finishTurnNow() }
+
+    func stop() {
+        capture?.stop()
+        capture = nil
+        isRecording = false
+    }
 }

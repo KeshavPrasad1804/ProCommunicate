@@ -52,7 +52,7 @@ struct MistakeRuleTests {
 
     @Test func everyRuleHasATamilExplanationAndValidPattern() throws {
         for rule in MistakeRules.all {
-            #expect(rule.whyTamil.unicodeScalars.contains { (0x0B80...0x0BFF).contains($0.value) }, "\(rule.id)")
+            #expect(rule.whyNative.unicodeScalars.contains { (0x0B80...0x0BFF).contains($0.value) }, "\(rule.id)")
             #expect(throws: Never.self) { try NSRegularExpression(pattern: rule.pattern, options: .caseInsensitive) }
         }
         #expect(Set(MistakeRules.all.map(\.id)).count == MistakeRules.all.count)

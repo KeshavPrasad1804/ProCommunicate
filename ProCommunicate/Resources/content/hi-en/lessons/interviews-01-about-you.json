@@ -1,0 +1,199 @@
+{
+  "id": "interviews-01-about-you-l1",
+  "unitId": "interviews-01-about-you",
+  "title": "Tell me about yourself",
+  "intro": "When they say \"Tell me about yourself\", tell a short story: your role, what you do now, and what you want next.",
+  "introNative": "जब interviewer कहें \"Tell me about yourself\", तो एक छोटी-सी कहानी बताइए: आपका role, अभी आप क्या करते हैं, और आगे आपका goal क्या है।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "java-dev",
+      "text": "I'm a Java developer with three years of experience in building backend services.",
+      "native": "मैं एक Java developer हूँ, और मेरे पास backend services बनाने का तीन साल का experience है।",
+      "note": "Start with your role and experience, not your name and native place."
+    },
+    {
+      "id": "currently-work",
+      "text": "Currently, I work at Infosys in Chennai on a banking project.",
+      "native": "फ़िलहाल मेरा काम चेन्नई में Infosys में, एक banking project पर है।",
+      "note": "Use the simple present \"I work\" for your current job."
+    },
+    {
+      "id": "spring-boot",
+      "text": "I mainly work with Spring Boot, microservices and AWS.",
+      "native": "मेरा काम ज़्यादातर Spring Boot, microservices और AWS पर होता है।",
+      "note": "Name two or three key skills that match the job description."
+    },
+    {
+      "id": "graduated",
+      "text": "I graduated in computer science from Anna University in 2021.",
+      "native": "मैंने 2021 में Anna University से computer science में graduation किया।",
+      "note": "Say \"graduated\", never \"passed out\", which means fainted."
+    },
+    {
+      "id": "next-step",
+      "text": "Now I'm looking to grow into a senior role with more design work.",
+      "native": "अब मेरा goal है एक ऐसे senior role में grow करना, जिसमें design का काम ज़्यादा हो।",
+      "note": "End with what you want next; it leads into \"Why this job?\""
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "java-dev"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "currently-work"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "spring-boot"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "graduated"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "next-step"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The interviewer says: \"Tell me about yourself.\" Which answer is best?",
+      "promptNative": "Interviewer कहते हैं: \"Tell me about yourself.\" कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "Myself Karthik, my native is Madurai, my father is a farmer.",
+        "I'm a Java developer with three years of experience in building backend services.",
+        "I am Karthik. I have done B.E. and I am a hard worker."
+      ],
+      "answer": "I'm a Java developer with three years of experience in building backend services.",
+      "explanation": "Start with your professional identity; family details and native place are not needed.",
+      "explanationNative": "अपनी professional पहचान से शुरू कीजिए; family की बातें और आप कहाँ के रहने वाले हैं, यह बताने की ज़रूरत नहीं है।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "फ़िलहाल मेरा काम चेन्नई में Infosys में, एक banking project पर है।",
+      "tiles": [
+        "Currently,",
+        "I",
+        "work",
+        "at",
+        "Infosys",
+        "in",
+        "Chennai",
+        "on",
+        "a",
+        "banking",
+        "project",
+        "myself",
+        "working"
+      ],
+      "answer": "Currently, I work at Infosys in Chennai on a banking project."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "I'm a Java developer with three years of experience in building backend services.",
+      "options": [
+        "I was a Java developer for three years, building backend services.",
+        "I'm a Java developer with three years of experience in building backend services.",
+        "I'm a Java developer with two years of experience in building backend services."
+      ],
+      "answer": "I'm a Java developer with three years of experience in building backend services."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Myself Priya, and I am having 3 years experience.",
+      "options": [
+        "Myself Priya, and I am having 3 years experience.",
+        "I'm Priya, and I have three years of experience.",
+        "Myself Priya, and I have 3 years experience.",
+        "I am Priya, and I am having three years of experience."
+      ],
+      "answer": "I'm Priya, and I have three years of experience.",
+      "explanation": "Say \"I'm Priya\", not \"Myself Priya\", and \"I have three years of experience\", not \"I am having\".",
+      "explanationNative": "\"Myself Priya\" नहीं, \"I'm Priya\" कहिए; और \"I am having\" नहीं, \"I have three years of experience\" कहिए।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "You've finished your introduction. How do you end it? Which answer is best?",
+      "promptNative": "आपने अपना introduction पूरा कर लिया है। अब इसे कैसे खत्म करेंगे? कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "That's all about me.",
+        "I am ready for any role, any company.",
+        "Now I'm looking to grow into a senior role with more design work."
+      ],
+      "answer": "Now I'm looking to grow into a senior role with more design work.",
+      "explanation": "End with your next goal, so the interviewer knows why you're here.",
+      "explanationNative": "अपने अगले goal के साथ खत्म कीजिए, ताकि interviewer को समझ आए कि आप यहाँ किसलिए हैं।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I passed out in 2021 from Anna University.",
+      "options": [
+        "I passed out in 2021 from Anna University.",
+        "I graduated from Anna University in 2021.",
+        "I passed out from Anna University in 2021 itself.",
+        "I was passed out from Anna University in 2021."
+      ],
+      "answer": "I graduated from Anna University in 2021.",
+      "explanation": "\"Passed out\" means fainted; to talk about finishing your degree, say \"I graduated\".",
+      "explanationNative": "\"Passed out\" का मतलब है बेहोश हो जाना; degree पूरी करने की बात के लिए \"I graduated\" कहिए।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "मेरा काम ज़्यादातर Spring Boot, microservices और AWS पर होता है।",
+      "tiles": [
+        "I",
+        "mainly",
+        "work",
+        "with",
+        "Spring",
+        "Boot,",
+        "microservices",
+        "and",
+        "AWS",
+        "only",
+        "having"
+      ],
+      "answer": "I mainly work with Spring Boot, microservices and AWS."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "I graduated in computer science from Anna University in 2021.",
+      "options": [
+        "I graduated in computer science from Anna University in 2020.",
+        "I studied computer science at Anna University until 2021.",
+        "I graduated in computer science from Anna University in 2021."
+      ],
+      "answer": "I graduated in computer science from Anna University in 2021."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Answer \"Tell me about yourself\" out loud about your real background in 4–5 sentences: your role and experience, your current company, key skills, and what you want next.",
+      "promptNative": "\"Tell me about yourself\" का जवाब अपने असली background के बारे में 4–5 sentences में बोलकर दीजिए: आपका role और experience, आपकी current company, मुख्य skills, और आगे आपका goal।",
+      "suggestedPhraseIds": [
+        "java-dev",
+        "currently-work",
+        "spring-boot",
+        "next-step"
+      ]
+    }
+  ]
+}

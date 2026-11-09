@@ -3,23 +3,23 @@
   "unitId": "interviews-06-strengths",
   "title": "Strengths and weaknesses",
   "intro": "Name one real strength with an example, and one weakness you're actively improving.",
-  "introTamil": "ஒரு உண்மையான strength-ஐ உதாரணத்துடன் சொல்லுங்கள்; நீங்கள் சரிசெய்துகொண்டிருக்கும் ஒரு weakness-ஐயும் சொல்லுங்கள்.",
-  "tamilReviewed": false,
+  "introNative": "ஒரு உண்மையான strength-ஐ உதாரணத்துடன் சொல்லுங்கள்; நீங்கள் சரிசெய்துகொண்டிருக்கும் ஒரு weakness-ஐயும் சொல்லுங்கள்.",
+  "nativeReviewed": false,
   "phrases": [
     { "id": "one-strength", "text": "One of my strengths is debugging production issues quickly.",
-      "tamil": "Production issues-ஐ வேகமாக debug செய்வது என் strengths-இல் ஒன்று.",
+      "native": "Production issues-ஐ வேகமாக debug செய்வது என் strengths-இல் ஒன்று.",
       "note": "Pick a specific strength, not \"hard worker\"." },
     { "id": "for-example", "text": "For example, last quarter I fixed a critical payment bug within two hours.",
-      "tamil": "உதாரணமாக, கடந்த quarter-இல் ஒரு critical payment bug-ஐ இரண்டு மணி நேரத்துக்குள் சரிசெய்தேன்.",
+      "native": "உதாரணமாக, கடந்த quarter-இல் ஒரு critical payment bug-ஐ இரண்டு மணி நேரத்துக்குள் சரிசெய்தேன்.",
       "note": "An example makes a strength believable." },
     { "id": "working-on", "text": "Something I'm working on is presenting to senior stakeholders.",
-      "tamil": "Senior stakeholders முன் present செய்வதை இப்போது மேம்படுத்திக்கொண்டிருக்கிறேன்.",
+      "native": "Senior stakeholders முன் present செய்வதை இப்போது மேம்படுத்திக்கொண்டிருக்கிறேன்.",
       "note": "Choose a real weakness that won't stop you doing the job." },
     { "id": "to-improve", "text": "To improve, I now volunteer to present our sprint demos.",
-      "tamil": "மேம்படுத்துவதற்காக, இப்போது sprint demos-ஐ நானே முன்வந்து present செய்கிறேன்.",
+      "native": "மேம்படுத்துவதற்காக, இப்போது sprint demos-ஐ நானே முன்வந்து present செய்கிறேன்.",
       "note": "Always show the action you're taking to improve." },
     { "id": "colleagues-come", "text": "My colleagues often come to me when they're stuck on a tricky bug.",
-      "tamil": "கடினமான bug-இல் மாட்டிக்கொள்ளும்போது என் colleagues அடிக்கடி என்னிடம் வருவார்கள்.",
+      "native": "கடினமான bug-இல் மாட்டிக்கொள்ளும்போது என் colleagues அடிக்கடி என்னிடம் வருவார்கள்.",
       "note": "What others rely on you for sounds more natural than self-praise." }
   ],
   "steps": [
@@ -31,14 +31,14 @@
 
     { "id": "choose-1", "type": "choice",
       "prompt": "The interviewer asks: \"What are your strengths?\" Which answer is best?",
-      "promptTamil": "Interviewer \"உங்கள் strengths என்ன?\" என்று கேட்கிறார். எந்த பதில் சிறந்தது?",
+      "promptNative": "Interviewer \"உங்கள் strengths என்ன?\" என்று கேட்கிறார். எந்த பதில் சிறந்தது?",
       "options": ["I am a hard worker and quick learner.", "One of my strengths is debugging production issues quickly.", "I am good in all the things, no weakness."],
       "answer": "One of my strengths is debugging production issues quickly.",
       "explanation": "A specific, job-related strength sounds genuine; general words sound memorised.",
-      "explanationTamil": "வேலை தொடர்பான குறிப்பிட்ட strength உண்மையாகத் தெரியும்; பொதுவான சொற்கள் மனப்பாடம் செய்தது போலத் தெரியும்." },
+      "explanationNative": "வேலை தொடர்பான குறிப்பிட்ட strength உண்மையாகத் தெரியும்; பொதுவான சொற்கள் மனப்பாடம் செய்தது போலத் தெரியும்." },
 
     { "id": "build-1", "type": "build",
-      "promptTamil": "Senior stakeholders முன் present செய்வதை இப்போது மேம்படுத்திக்கொண்டிருக்கிறேன்.",
+      "promptNative": "Senior stakeholders முன் present செய்வதை இப்போது மேம்படுத்திக்கொண்டிருக்கிறேன்.",
       "tiles": ["Something", "I'm", "working", "on", "is", "presenting", "to", "senior", "stakeholders", "my", "weakness"],
       "answer": "Something I'm working on is presenting to senior stakeholders." },
 
@@ -53,15 +53,15 @@
       "options": ["I am a hard worker and quick learner only.", "I'm a quick learner; I picked up Kubernetes in two weeks.", "I am hard worker and quick learner.", "I am a hard worker and quick learner, that's all."],
       "answer": "I'm a quick learner; I picked up Kubernetes in two weeks.",
       "explanation": "Drop the \"only\", and back up a strength with a real example instead of a list of adjectives.",
-      "explanationTamil": "கடைசியில் \"only\" வேண்டாம். Adjectives பட்டியலுக்குப் பதிலாக ஒரு உண்மையான உதாரணம் சொல்லுங்கள்." },
+      "explanationNative": "கடைசியில் \"only\" வேண்டாம். Adjectives பட்டியலுக்குப் பதிலாக ஒரு உண்மையான உதாரணம் சொல்லுங்கள்." },
 
     { "id": "choose-2", "type": "choice",
       "prompt": "The interviewer asks: \"What is your weakness?\" Which answer is best?",
-      "promptTamil": "Interviewer \"உங்கள் weakness என்ன?\" என்று கேட்கிறார். எந்த பதில் சிறந்தது?",
+      "promptNative": "Interviewer \"உங்கள் weakness என்ன?\" என்று கேட்கிறார். எந்த பதில் சிறந்தது?",
       "options": ["I don't have any weakness.", "Something I'm working on is presenting to senior stakeholders.", "My weakness is I work too hard."],
       "answer": "Something I'm working on is presenting to senior stakeholders.",
       "explanation": "Name a real, fixable weakness; \"no weakness\" or \"I work too hard\" sounds rehearsed.",
-      "explanationTamil": "சரிசெய்யக்கூடிய ஒரு உண்மையான weakness-ஐச் சொல்லுங்கள். \"No weakness\", \"I work too hard\" போன்றவை மனப்பாடம் செய்தது போலத் தெரியும்." },
+      "explanationNative": "சரிசெய்யக்கூடிய ஒரு உண்மையான weakness-ஐச் சொல்லுங்கள். \"No weakness\", \"I work too hard\" போன்றவை மனப்பாடம் செய்தது போலத் தெரியும்." },
 
     { "id": "fix-2", "type": "fix",
       "prompt": "Which is the correct way to say this?",
@@ -69,10 +69,10 @@
       "options": ["My weakness is I can't able to say no.", "My weakness is that I find it hard to say no.", "My weakness is I am not able to say no only.", "My weakness is I could not able to say no."],
       "answer": "My weakness is that I find it hard to say no.",
       "explanation": "Never say \"can't able to\"; use \"can't\", \"I'm not able to\", or more naturally \"I find it hard to\".",
-      "explanationTamil": "\"Can't able to\" தவறு. \"I can't\" அல்லது \"I find it hard to\" என்று சொல்லுங்கள்." },
+      "explanationNative": "\"Can't able to\" தவறு. \"I can't\" அல்லது \"I find it hard to\" என்று சொல்லுங்கள்." },
 
     { "id": "build-2", "type": "build",
-      "promptTamil": "மேம்படுத்துவதற்காக, இப்போது sprint demos-ஐ நானே முன்வந்து present செய்கிறேன்.",
+      "promptNative": "மேம்படுத்துவதற்காக, இப்போது sprint demos-ஐ நானே முன்வந்து present செய்கிறேன்.",
       "tiles": ["To", "improve,", "I", "now", "volunteer", "to", "present", "our", "sprint", "demos", "myself", "presenting"],
       "answer": "To improve, I now volunteer to present our sprint demos." },
 
@@ -83,7 +83,7 @@
 
     { "id": "speak-1", "type": "speak",
       "prompt": "Answer \"What are your strengths and weaknesses?\" out loud in 4 sentences about yourself: one real strength with an example, and one weakness with what you're doing to improve it.",
-      "promptTamil": "\"உங்கள் strengths, weaknesses என்ன?\" கேள்விக்கு உங்களைப் பற்றி 4 வாக்கியங்களில் சத்தமாகப் பதில் சொல்லுங்கள்: உதாரணத்துடன் ஒரு strength, மேம்படுத்த என்ன செய்கிறீர்கள் என்பதுடன் ஒரு weakness.",
+      "promptNative": "\"உங்கள் strengths, weaknesses என்ன?\" கேள்விக்கு உங்களைப் பற்றி 4 வாக்கியங்களில் சத்தமாகப் பதில் சொல்லுங்கள்: உதாரணத்துடன் ஒரு strength, மேம்படுத்த என்ன செய்கிறீர்கள் என்பதுடன் ஒரு weakness.",
       "suggestedPhraseIds": ["one-strength", "for-example", "working-on", "to-improve"] }
   ]
 }

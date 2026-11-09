@@ -48,7 +48,7 @@ struct LearnerModelTests {
                      CallTurn(speaker: .learner, text: "I will revert back by today itself.",
                               ruleHits: MistakeRules.check("I will revert back by today itself.").map { .init(ruleId: $0.ruleId, wrong: $0.wrong) })]
         let call = CallRecord(scenarioId: "unit-meetings-06-get-back", title: "Get back", kind: "quick", startedAt: .now, seconds: 60, turns: turns)
-        let mistake = MistakeRecord(pattern: "revert-back", wrong: "revert back", right: "get back to you", why: "", whyTamil: nil)
+        let mistake = MistakeRecord(pattern: "revert-back", wrong: "revert back", right: "get back to you", why: "", whyNative: nil)
         mistake.count = 3
         ctx.insert(call)
         ctx.insert(mistake)
@@ -241,15 +241,25 @@ struct AdaptiveContentTests {
         #expect(EventDate.days(in: "Interview today!", now: monday) == 0)
         #expect(EventDate.days(in: "Switching to a product company in 3 months", now: monday) == nil)
         #expect(EventDate.days(in: "Daily calls with my UK client", now: monday) == nil)
+        // Hinglish and Hindi.
+        #expect(EventDate.days(in: "kal client ke saath demo meeting hai", now: monday) == 1)
+        #expect(EventDate.days(in: "agle hafte Flipkart ka interview hai", now: monday) == 7)
+        #expect(EventDate.days(in: "parson HR round hai", now: monday) == 2)
+        #expect(EventDate.days(in: "कल client के साथ meeting है", now: monday) == 1)
+        #expect(EventDate.days(in: "आजकल calls में दिक्कत होती है", now: monday) == nil)
     }
 
     @Test func aPhraseWithATaughtMistakeIsRejected() {
-        let good = #"{"english": "I'll get back to you on the payment API by Friday.", "tamil": "வெள்ளிக்கிழமைக்குள் பதில் சொல்கிறேன்.", "when": "When the client asks for an update"}"#
-        let bad = #"{"english": "I will revert back to you on the payment API.", "tamil": "பதில் சொல்கிறேன்.", "when": "x"}"#
-        let noTamil = #"{"english": "I'll get back to you on the payment API by Friday.", "tamil": "I will reply", "when": "x"}"#
-        #expect((try? AdaptivePrompts.parsePhrase(good, day: "d", unitId: "u")) != nil)
-        #expect((try? AdaptivePrompts.parsePhrase(bad, day: "d", unitId: "u")) == nil)
-        #expect((try? AdaptivePrompts.parsePhrase(noTamil, day: "d", unitId: "u")) == nil)
+        let good = #"{"english": "I'll get back to you on the payment API by Friday.", "meaning": "வெள்ளிக்கிழமைக்குள் பதில் சொல்கிறேன்.", "when": "When the client asks for an update"}"#
+        let bad = #"{"english": "I will revert back to you on the payment API.", "meaning": "பதில் சொல்கிறேன்.", "when": "x"}"#
+        let noTamil = #"{"english": "I'll get back to you on the payment API by Friday.", "meaning": "I will reply", "when": "x"}"#
+        #expect((try? AdaptivePrompts.parsePhrase(good, day: "d", unitId: "u", language: .tamil)) != nil)
+        #expect((try? AdaptivePrompts.parsePhrase(bad, day: "d", unitId: "u", language: .tamil)) == nil)
+        #expect((try? AdaptivePrompts.parsePhrase(noTamil, day: "d", unitId: "u", language: .tamil)) == nil)
+        // A Tamil meaning is wrong for a Hindi learner, and vice versa.
+        #expect((try? AdaptivePrompts.parsePhrase(good, day: "d", unitId: "u", language: .hindi)) == nil)
+        let hindi = #"{"english": "I'll get back to you on the payment API by Friday.", "meaning": "मैं Friday तक payment API पर आपको जवाब दूँगा।", "when": "x"}"#
+        #expect((try? AdaptivePrompts.parsePhrase(hindi, day: "d", unitId: "u", language: .hindi)) != nil)
     }
 
     @Test func weeklyChallengeMustBeForTheRightPerson() throws {
@@ -273,7 +283,7 @@ struct AdaptiveContentTests {
         #expect(jobs.pendingJobs(inputs).count == 3)
         store.update {
             $0.aiFocus = .init(target: "Interviews", focus: .interviews)
-            $0.phrase = .init(day: "2026-11-09", unitId: "meetings-01-standup", english: "x", tamil: "x", when: "x")
+            $0.phrase = .init(day: "2026-11-09", unitId: "meetings-01-standup", english: "x", native: "x", when: "x")
             $0.weekly = .init(week: "2026-W46", baseScenarioId: base.id, title: "t", subtitle: "s", situation: "s", goals: [])
         }
         #expect(jobs.pendingJobs(inputs).isEmpty)
@@ -298,7 +308,7 @@ struct RecordingCleanupTests {
         ctx.insert(starred)
         let gone = Recording(kind: "drill", title: "Gone", fileName: "old.m4a", duration: 3)
         ctx.insert(gone)
-        let mistake = MistakeRecord(pattern: "grammar", wrong: "a", right: "b", why: "", whyTamil: nil)
+        let mistake = MistakeRecord(pattern: "grammar", wrong: "a", right: "b", why: "", whyNative: nil)
         mistake.lastClipFile = "mistake.m4a"
         ctx.insert(mistake)
 

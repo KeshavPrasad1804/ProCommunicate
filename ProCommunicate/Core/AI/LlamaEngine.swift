@@ -37,6 +37,7 @@ struct GenerationStats: Sendable, Equatable {
 
 enum LlamaError: LocalizedError {
     case unavailable, notLoaded, modelLoadFailed, contextFailed, tokenizeFailed, decodeFailed(Int32), grammarFailed, contextFull, cancelled
+    case audioNotLoaded, audioLoadFailed, audioFailed(Int32)
 
     var errorDescription: String? {
         switch self {
@@ -49,6 +50,9 @@ enum LlamaError: LocalizedError {
         case .grammarFailed: "The answer format couldn't be set up."
         case .contextFull: "The conversation is too long for the AI's memory."
         case .cancelled: "Stopped."
+        case .audioNotLoaded: "The AI's listening part isn't loaded."
+        case .audioLoadFailed: "The AI's listening part couldn't be loaded."
+        case .audioFailed(let code): "The AI couldn't listen to the recording (\(code))."
         }
     }
 }
@@ -75,6 +79,8 @@ final class LlamaEngine: @unchecked Sendable {
     private var model: OpaquePointer?
     private var context: OpaquePointer?
     private var cachedTokens: [Int32: [llama_token]] = [:]
+    /// Gemma's audio encoder (multimodal projector), when loaded: lets the model listen to speech directly.
+    private var audio: OpaquePointer?
     private static let backendInit: Void = { llama_backend_init() }()
     #endif
     private var loadedPath: String?
@@ -100,6 +106,33 @@ final class LlamaEngine: @unchecked Sendable {
         _ = try? await onQueue { self.unloadOnQueue() }
     }
 
+    /// Loads Gemma's audio encoder (an audio-only mmproj file) on top of the loaded model. Returns seconds taken.
+    @discardableResult
+    func loadAudio(path: String) async throws -> Double {
+        try await onQueue { try self.loadAudioOnQueue(path: path) }
+    }
+
+    func hasAudio() async -> Bool {
+        #if canImport(llama)
+        (try? await onQueue { self.audio != nil }) ?? false
+        #else
+        false
+        #endif
+    }
+
+    func unloadAudio() async {
+        _ = try? await onQueue { self.unloadAudioOnQueue() }
+    }
+
+    /// Lets Gemma listen to a 16 kHz mono clip and respond to `instruction` about it (for example, "transcribe this").
+    /// Uses the utility slot, which is cleared first.
+    func listen(samples: [Float], instruction: String, options: GenerationOptions = .init()) async throws -> (text: String, stats: GenerationStats) {
+        try await onQueue {
+            self.cancelRequested.withLock { $0 = false }
+            return try self.listenOnQueue(samples: samples, instruction: instruction, options: options)
+        }
+    }
+
     /// Stops the generation that is running now (it throws `LlamaError.cancelled`).
     func cancelCurrent() {
         cancelRequested.withLock { $0 = true }
@@ -123,6 +156,7 @@ final class LlamaEngine: @unchecked Sendable {
 
     private func unloadOnQueue() {
         #if canImport(llama)
+        unloadAudioOnQueue()
         if let context { llama_free(context) }
         if let model { llama_model_free(model) }
         context = nil
@@ -130,6 +164,77 @@ final class LlamaEngine: @unchecked Sendable {
         cachedTokens = [:]
         #endif
         loadedPath = nil
+    }
+
+    private func loadAudioOnQueue(path: String) throws -> Double {
+        #if canImport(llama)
+        guard let model else { throw LlamaError.notLoaded }
+        if audio != nil { return 0 }
+        let start = Date()
+        var params = mtmd_context_params_default()
+        params.use_gpu = true
+        params.n_threads = 4
+        params.print_timings = false
+        params.warmup = false
+        params.flash_attn_type = LLAMA_FLASH_ATTN_TYPE_ENABLED
+        guard let ctx = mtmd_init_from_file(path, model, params), mtmd_support_audio(ctx) else { throw LlamaError.audioLoadFailed }
+        audio = ctx
+        return Date().timeIntervalSince(start)
+        #else
+        throw LlamaError.unavailable
+        #endif
+    }
+
+    private func unloadAudioOnQueue() {
+        #if canImport(llama)
+        if let audio { mtmd_free(audio) }
+        audio = nil
+        #endif
+    }
+
+    private func listenOnQueue(samples: [Float], instruction: String, options: GenerationOptions) throws -> (text: String, stats: GenerationStats) {
+        #if canImport(llama)
+        guard let context else { throw LlamaError.notLoaded }
+        guard let audio else { throw LlamaError.audioNotLoaded }
+        let seq = LlamaSlot.utility.rawValue
+        _ = llama_memory_seq_rm(llama_get_memory(context), seq, 0, -1)
+        cachedTokens[seq] = []
+        var stats = GenerationStats()
+
+        // "<|turn>user\n<audio>instruction<turn|>\n<|turn>model\n": mtmd swaps the marker for the audio's tokens.
+        let marker = String(cString: mtmd_default_marker())
+        let prompt = "<|turn>user\n\(marker)\(instruction)<turn|>\n<|turn>model\n"
+        guard let bitmap = samples.withUnsafeBufferPointer({ mtmd_bitmap_init_from_audio($0.count, $0.baseAddress) }) else {
+            throw LlamaError.audioFailed(-1)
+        }
+        defer { mtmd_bitmap_free(bitmap) }
+        guard let chunks = mtmd_input_chunks_init() else { throw LlamaError.audioFailed(-2) }
+        defer { mtmd_input_chunks_free(chunks) }
+        let promptStart = Date()
+        let tokenized: Int32 = prompt.withCString { cText in
+            var text = mtmd_input_text(text: cText, text_len: strlen(cText), add_special: true, parse_special: true)
+            var bitmaps: [OpaquePointer?] = [bitmap]
+            return bitmaps.withUnsafeMutableBufferPointer { mtmd_tokenize(audio, chunks, &text, $0.baseAddress, 1) }
+        }
+        guard tokenized == 0 else { throw LlamaError.audioFailed(tokenized) }
+        var nPast: llama_pos = 0
+        let evaluated = mtmd_helper_eval_chunks(audio, context, chunks, 0, seq, 512, true, &nPast)
+        guard evaluated == 0 else {
+            _ = llama_memory_seq_rm(llama_get_memory(context), seq, 0, -1)
+            throw LlamaError.audioFailed(evaluated)
+        }
+        stats.promptTokens = Int(nPast)
+        stats.promptSeconds = Date().timeIntervalSince(promptStart)
+        // Placeholder ids keep positions right; they never match a real prompt, so this slot isn't reused by mistake.
+        cachedTokens[seq] = [llama_token](repeating: -1, count: Int(nPast))
+        if cancelRequested.withLock({ $0 }) { throw LlamaError.cancelled }
+
+        let otherSlotsUsed = cachedTokens.filter { $0.key != seq }.values.reduce(0) { $0 + $1.count }
+        let text = try sampleOnQueue(seq: seq, options: options, otherSlotsUsed: otherSlotsUsed, stats: &stats) { _ in }
+        return (text, stats)
+        #else
+        throw LlamaError.unavailable
+        #endif
     }
 
     private func resetOnQueue(_ slot: LlamaSlot) {
@@ -224,6 +329,20 @@ final class LlamaEngine: @unchecked Sendable {
         }
         stats.promptSeconds = Date().timeIntervalSince(promptStart)
 
+        let text = try sampleOnQueue(seq: seq, options: options, otherSlotsUsed: otherSlotsUsed, stats: &stats, onPiece: onPiece)
+        return (text, stats)
+        #else
+        throw LlamaError.unavailable
+        #endif
+    }
+
+    #if canImport(llama)
+    /// Samples the reply after a prompt has been read into slot `seq`.
+    private func sampleOnQueue(seq: Int32, options: GenerationOptions, otherSlotsUsed: Int, stats: inout GenerationStats,
+                               onPiece: @Sendable (String) -> Void) throws -> String {
+        guard let model, let context else { throw LlamaError.notLoaded }
+        let vocab = llama_model_get_vocab(model)
+        let contextSize = Int(llama_n_ctx(context))
         // Sampler chain: grammar (optional) → top-k → top-p → min-p → temperature → random pick.
         let chain = llama_sampler_chain_init(llama_sampler_chain_default_params())
         defer { llama_sampler_free(chain) }
@@ -262,13 +381,9 @@ final class LlamaEngine: @unchecked Sendable {
             if position + otherSlotsUsed >= contextSize - 2 { break }
         }
         stats.generationSeconds = Date().timeIntervalSince(generationStart)
-        return (GemmaPrompt.clean(String(decoding: output, as: UTF8.self)), stats)
-        #else
-        throw LlamaError.unavailable
-        #endif
+        return GemmaPrompt.clean(String(decoding: output, as: UTF8.self))
     }
 
-    #if canImport(llama)
     /// Decodes tokens into one slot at explicit positions.
     private func decode(_ tokens: [llama_token], startPos: Int, seq: Int32, logitsForLast: Bool) throws {
         guard let context else { throw LlamaError.notLoaded }

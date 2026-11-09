@@ -12,11 +12,11 @@ enum TutorService {
     }
 
     /// A short Tamil explanation of a correction.
-    static func explainInTamil(wrong: String, right: String, why: String) async throws -> String {
+    static func explainInNative(wrong: String, right: String, why: String) async throws -> String {
         try await ensureLoaded()
         let prompt = GemmaPrompt.format([
-            ChatMessage(role: .system, content: TutorPrompts.explainInTamilSystem()),
-            ChatMessage(role: .user, content: TutorPrompts.explainInTamilUser(AnswerMistake(wrong: wrong, right: right, type: "", why: why))),
+            ChatMessage(role: .system, content: TutorPrompts.explainInNativeSystem()),
+            ChatMessage(role: .user, content: TutorPrompts.explainInNativeUser(AnswerMistake(wrong: wrong, right: right, type: "", why: why))),
         ])
         let result = try await LlamaEngine.shared.generate(prompt: prompt, slot: .utility,
                                                           options: GenerationOptions(maxTokens: 160, temperature: 0.2))
@@ -64,7 +64,7 @@ struct ReportFix: Identifiable, Equatable {
     let wrong: String
     let right: String
     let why: String
-    let whyTamil: String?
+    let whyNative: String?
     let clipFile: String?
     let sentence: String
     var count: Int
@@ -77,7 +77,7 @@ struct ReportFix: Identifiable, Equatable {
                 guard let rule = MistakeRules.rule(hit.ruleId) else { continue }
                 if fixes[rule.id] != nil { fixes[rule.id]!.count += 1; continue }
                 fixes[rule.id] = ReportFix(id: rule.id, pattern: rule.id, title: rule.title, wrong: hit.wrong, right: rule.right,
-                                           why: rule.why, whyTamil: rule.whyTamil, clipFile: turn.clipFile, sentence: turn.text, count: 1)
+                                           why: rule.why, whyNative: rule.whyNative, clipFile: turn.clipFile, sentence: turn.text, count: 1)
             }
             for mistake in turn.check?.mistakes ?? [] {
                 let overlaps = turn.ruleHits.contains {
@@ -88,7 +88,7 @@ struct ReportFix: Identifiable, Equatable {
                 let key = mistake.type + ":" + AnswerChecker.normalize(mistake.wrong)
                 if fixes[key] != nil { fixes[key]!.count += 1; continue }
                 fixes[key] = ReportFix(id: key, pattern: mistake.type, title: mistake.wrong, wrong: mistake.wrong, right: mistake.right,
-                                       why: mistake.why, whyTamil: nil, clipFile: turn.clipFile, sentence: turn.text, count: 1)
+                                       why: mistake.why, whyNative: nil, clipFile: turn.clipFile, sentence: turn.text, count: 1)
             }
         }
         func rank(_ fix: ReportFix) -> Int {

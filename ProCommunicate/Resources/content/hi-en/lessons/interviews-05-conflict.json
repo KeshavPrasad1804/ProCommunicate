@@ -1,0 +1,203 @@
+{
+  "id": "interviews-05-conflict-l1",
+  "unitId": "interviews-05-conflict",
+  "title": "Teamwork and conflict",
+  "intro": "When asked about conflict, show that you disagreed respectfully, listened, and found a solution together.",
+  "introNative": "Conflict के बारे में पूछा जाए, तो दिखाइए कि आपने respect के साथ अपनी असहमति रखी, ध्यान से सुना, और मिलकर solution निकाला।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "disagreement-about",
+      "text": "We had a disagreement about whether to release before the testing was complete.",
+      "native": "हमारे बीच इस बात पर disagreement था कि testing पूरी होने से पहले release करें या नहीं।",
+      "note": "Describe the issue, not the person."
+    },
+    {
+      "id": "understood-view",
+      "text": "I listened to understand his point of view first.",
+      "native": "मैंने पहले उनका point of view समझने के लिए ध्यान से सुना।",
+      "note": "Interviewers want to see that you listen before you argue."
+    },
+    {
+      "id": "i-suggested",
+      "text": "I suggested we release the core features first and the rest a week later.",
+      "native": "मैंने suggest किया कि हम पहले core features release करें, और बाकी एक हफ़्ते बाद।",
+      "note": "After \"suggested\", use \"we\" + base verb: \"I suggested we release…\""
+    },
+    {
+      "id": "looked-at-data",
+      "text": "We looked at the defect data together instead of arguing.",
+      "native": "बहस करने के बजाय, हमने साथ मिलकर defect data देखा।",
+      "note": "Data turns a personal argument into a team decision."
+    },
+    {
+      "id": "agreed-on-plan",
+      "text": "In the end, we agreed on a plan, and we still work well together.",
+      "native": "आखिर में हम एक plan पर सहमत हो गए, और आज भी हम साथ में अच्छे से काम करते हैं।",
+      "note": "End on a positive note about the working relationship."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "disagreement-about"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "understood-view"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "i-suggested"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "looked-at-data"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "agreed-on-plan"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The interviewer asks: \"Tell me about a time you disagreed with a colleague.\" Which answer is best?",
+      "promptNative": "Interviewer पूछते हैं: \"कोई ऐसा समय बताइए जब आप किसी colleague से असहमत थे।\" कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "I never had any conflict with anyone.",
+        "We had a disagreement about whether to release before the testing was complete.",
+        "My team lead was wrong, so I escalated to the manager."
+      ],
+      "answer": "We had a disagreement about whether to release before the testing was complete.",
+      "explanation": "Give a real, work-related disagreement; \"never\" sounds unrealistic and blaming sounds negative.",
+      "explanationNative": "काम से जुड़ा कोई असली disagreement बताइए; \"never\" कहना unrealistic लगता है, और दूसरों को blame करना negative लगता है।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "बहस करने के बजाय, हमने साथ मिलकर defect data देखा।",
+      "tiles": [
+        "We",
+        "looked",
+        "at",
+        "the",
+        "defect",
+        "data",
+        "together",
+        "instead",
+        "of",
+        "arguing",
+        "fighting",
+        "itself"
+      ],
+      "answer": "We looked at the defect data together instead of arguing."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "I listened to understand his point of view first.",
+      "options": [
+        "I listened to understand his point of view later.",
+        "I wanted to understand this point of view first.",
+        "I listened to understand his point of view first."
+      ],
+      "answer": "I listened to understand his point of view first."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I suggested him to release the core features first.",
+      "options": [
+        "I suggested him to release the core features first.",
+        "I suggested that we release the core features first.",
+        "I suggested to him to release the core features first.",
+        "I suggested him that we release the core features first."
+      ],
+      "answer": "I suggested that we release the core features first.",
+      "explanation": "Don't say \"suggested him to\"; say \"I suggested that we…\" or \"I suggested releasing…\".",
+      "explanationNative": "\"Suggested him to\" मत कहिए; \"I suggested that we…\" या \"I suggested releasing…\" कहिए।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "How do you end your conflict story? Which answer is best?",
+      "promptNative": "अपनी conflict story को आप कैसे खत्म करेंगे? कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "Finally, he accepted that I was correct.",
+        "After that, I stopped talking to him about it.",
+        "In the end, we agreed on a plan, and we still work well together."
+      ],
+      "answer": "In the end, we agreed on a plan, and we still work well together.",
+      "explanation": "A good ending shows a shared decision and a healthy working relationship.",
+      "explanationNative": "अच्छी ending में मिलकर लिया गया फ़ैसला और एक healthy working relationship दिखता है।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "He was not agreeing for my idea.",
+      "options": [
+        "He was not agreeing for my idea.",
+        "He didn't agree with my idea.",
+        "He was not agreeing with my idea only.",
+        "He didn't agreed to my idea."
+      ],
+      "answer": "He didn't agree with my idea.",
+      "explanation": "Use the simple past \"didn't agree\", and say \"agree with\" an idea or a person.",
+      "explanationNative": "Simple past \"didn't agree\" use कीजिए, और किसी idea या इंसान के लिए \"agree with\" कहिए।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "मैंने suggest किया कि हम पहले core features release करें, और बाकी एक हफ़्ते बाद।",
+      "tiles": [
+        "I",
+        "suggested",
+        "we",
+        "release",
+        "the",
+        "core",
+        "features",
+        "first",
+        "and",
+        "the",
+        "rest",
+        "a",
+        "week",
+        "later",
+        "him",
+        "to"
+      ],
+      "answer": "I suggested we release the core features first and the rest a week later."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "We had a disagreement about whether to release before the testing was complete.",
+      "options": [
+        "We had a disagreement about whether to release before the testing was complete.",
+        "We had a disagreement about whether to release after the testing was complete.",
+        "We had an agreement about when to release before the testing was complete."
+      ],
+      "answer": "We had a disagreement about whether to release before the testing was complete."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Describe a real disagreement from your work out loud in 4–5 sentences: what it was about, how you listened, what you suggested, and how it ended.",
+      "promptNative": "अपने काम का कोई असली disagreement 4–5 sentences में बोलकर बताइए: वह किस बारे में था, आपने कैसे सुना, आपने क्या suggest किया, और बात कैसे खत्म हुई।",
+      "suggestedPhraseIds": [
+        "disagreement-about",
+        "understood-view",
+        "i-suggested",
+        "agreed-on-plan"
+      ]
+    }
+  ]
+}

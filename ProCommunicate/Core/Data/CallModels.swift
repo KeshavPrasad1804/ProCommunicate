@@ -88,6 +88,8 @@ final class MistakeRecord {
     var wrong: String
     var right: String
     var why: String
+    /// Explanation in the learner's language when it was saved. (Stored under its original name so
+    /// existing data keeps working.)
     var whyTamil: String?
     var count: Int
     var firstSeen: Date
@@ -96,13 +98,13 @@ final class MistakeRecord {
     var lastClipFile: String?
     var lastContext: String?
 
-    init(pattern: String, wrong: String, right: String, why: String, whyTamil: String?, date: Date = .now) {
+    init(pattern: String, wrong: String, right: String, why: String, whyNative: String?, date: Date = .now) {
         self.key = Self.key(pattern: pattern, wrong: wrong)
         self.pattern = pattern
         self.wrong = wrong
         self.right = right
         self.why = why
-        self.whyTamil = whyTamil
+        self.whyTamil = whyNative
         self.count = 1
         self.firstSeen = date
         self.lastSeen = date
@@ -114,4 +116,11 @@ final class MistakeRecord {
     }
 
     var title: String { MistakeRules.rule(pattern)?.title ?? wrong }
+
+    /// The explanation in the learner's current language: the rule's note for pattern mistakes,
+    /// otherwise the one saved with the mistake.
+    var whyNative: String? {
+        get { MistakeRules.rule(pattern).flatMap { RuleNotes.text(for: $0.id) } ?? whyTamil }
+        set { whyTamil = newValue }
+    }
 }

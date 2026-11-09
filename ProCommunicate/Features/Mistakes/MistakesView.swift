@@ -77,13 +77,13 @@ struct MistakeDetailView: View {
             Section("Say it this way") {
                 Label(mistake.right, systemImage: "checkmark.circle.fill").foregroundStyle(.green)
                 Text(mistake.why).font(.subheadline)
-                if let tamil = mistake.whyTamil {
+                if let tamil = mistake.whyNative {
                     Text(tamil).font(.subheadline)
                 } else {
                     Button {
                         Task { await explain() }
                     } label: {
-                        if loading { ProgressView() } else { Label("Explain in Tamil", systemImage: "character.bubble") }
+                        if loading { ProgressView() } else { Label("Explain in \(NativeLanguage.current.name)", systemImage: "character.bubble") }
                     }
                     .disabled(loading || !TutorService.isAvailable)
                     if let errorText { Text(errorText).font(.caption).foregroundStyle(.orange) }
@@ -128,7 +128,7 @@ struct MistakeDetailView: View {
         loading = true
         defer { loading = false }
         do {
-            mistake.whyTamil = try await TutorService.explainInTamil(wrong: mistake.wrong, right: mistake.right, why: mistake.why)
+            mistake.whyNative = try await TutorService.explainInNative(wrong: mistake.wrong, right: mistake.right, why: mistake.why)
         } catch {
             errorText = error.localizedDescription
         }

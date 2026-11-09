@@ -54,3 +54,9 @@ Free Apple ID: the install expires 7 days after the last install from Xcode. Plu
 - [ ] **Goal reading:** in About you, set "Preparing for" to something like "Zoho interview next Friday". Focus (Auto) should switch to job interviews, and a dated event should appear.
 - [ ] **Weekly level chip** (Gentle / Standard / Challenging) rises as your mistakes per answer fall.
 - [ ] **Settings → About → Storage:** shows sizes, and "Clean up now" works.
+
+## Hindi (new)
+- [ ] **Settings → Language → Hindi.** Lessons, Review cards, mistake notes, Ask in Hindi and the phrase of the day all switch to Hindi, and your progress stays.
+- [ ] **A Hindi call report:** tap "हिंदी में" on a fix. The AI's explanation should be in Devanagari, in everyday Hindi.
+- [ ] **Ask in Hindi with Hinglish**, e.g. "manager se kal ki chhutti maangni hai". The answer gives English sentences you can save.
+- [ ] **Switch back to Tamil.** Everything returns to Tamil.

@@ -117,12 +117,12 @@ struct MetricRow: View {
     }
 }
 
-/// One correction: what you said, the better way, why, in Tamil, and audio.
+/// One correction: what you said, the better way, why (in the learner's language), and audio.
 struct FixCard: View {
     let fix: ReportFix
-    @State private var tamil: String?
-    @State private var loadingTamil = false
-    @State private var tamilError: String?
+    @State private var native: String?
+    @State private var loadingNative = false
+    @State private var nativeError: String?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -139,24 +139,24 @@ struct FixCard: View {
                 Text(fix.right).fontWeight(.semibold)
             }
             Text(fix.why).font(.subheadline).foregroundStyle(.secondary)
-            if let text = tamil ?? fix.whyTamil {
+            if let text = native ?? fix.whyNative {
                 Text(text).font(.subheadline)
-            } else if let tamilError {
-                Text(tamilError).font(.caption).foregroundStyle(.orange)
+            } else if let nativeError {
+                Text(nativeError).font(.caption).foregroundStyle(.orange)
             }
             HStack(spacing: 10) {
                 if let clip = fix.clipFile {
                     ClipButton(fileName: clip, title: "What I said")
                 }
                 SpeakButton(text: fix.right.contains("…") ? fix.sentence : fix.right)
-                if tamil == nil && fix.whyTamil == nil {
+                if native == nil && fix.whyNative == nil {
                     Button {
                         Task { await explain() }
                     } label: {
-                        if loadingTamil { ProgressView() } else { Label("தமிழில்", systemImage: "character.bubble") }
+                        if loadingNative { ProgressView() } else { Label(NativeLanguage.current.text(.inMyLanguage), systemImage: "character.bubble") }
                     }
                     .buttonStyle(.bordered)
-                    .disabled(loadingTamil || !TutorService.isAvailable)
+                    .disabled(loadingNative || !TutorService.isAvailable)
                 }
             }
             .font(.subheadline)
@@ -165,12 +165,12 @@ struct FixCard: View {
     }
 
     private func explain() async {
-        loadingTamil = true
-        defer { loadingTamil = false }
+        loadingNative = true
+        defer { loadingNative = false }
         do {
-            tamil = try await TutorService.explainInTamil(wrong: fix.wrong, right: fix.right, why: fix.why)
+            native = try await TutorService.explainInNative(wrong: fix.wrong, right: fix.right, why: fix.why)
         } catch {
-            tamilError = error.localizedDescription
+            nativeError = error.localizedDescription
         }
     }
 }

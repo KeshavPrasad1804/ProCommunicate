@@ -1,0 +1,195 @@
+{
+  "id": "meetings-11-escalation-l1",
+  "unitId": "meetings-11-escalation",
+  "title": "Escalations and difficult clients",
+  "intro": "When a client is upset, stay calm: acknowledge the problem, take ownership, and explain exactly what you're doing about it.",
+  "introNative": "जब client नाराज़ हों, तो शांत रहिए: problem को acknowledge कीजिए, ownership लीजिए, और साफ़-साफ़ बताइए कि आप उसके लिए क्या कर रहे हैं।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "understand-concern",
+      "text": "I understand your concern, and I'm sorry this affected your users.",
+      "native": "मैं आपकी चिंता समझता हूँ, और मुझे अफ़सोस है कि इससे आपके users पर असर पड़ा।",
+      "note": "Acknowledge how they feel before explaining anything."
+    },
+    {
+      "id": "heres-what",
+      "text": "Here's what we're doing to fix it.",
+      "native": "इसे fix करने के लिए हम ये कर रहे हैं।",
+      "note": "Move quickly from apology to action."
+    },
+    {
+      "id": "hotfix",
+      "text": "We've deployed a hotfix, and the error rate is back to normal.",
+      "native": "हमने एक hotfix deploy कर दिया है, और error rate वापस normal हो गया है।",
+      "note": "Give facts and numbers, not just reassurance."
+    },
+    {
+      "id": "take-ownership",
+      "text": "This is on us, and we take full responsibility.",
+      "native": "यह हमारी गलती है, और हम इसकी पूरी ज़िम्मेदारी लेते हैं।",
+      "note": "Taking ownership calms people faster than excuses."
+    },
+    {
+      "id": "regular-updates",
+      "text": "I'll send you an update every two hours until it's resolved.",
+      "native": "जब तक यह resolve नहीं हो जाता, मैं आपको हर दो घंटे में update भेजूँगा।",
+      "note": "Regular updates show the client you're in control."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "understand-concern"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "heres-what"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "hotfix"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "take-ownership"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "regular-updates"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The client says angrily: \"Our users couldn't log in for three hours!\" What's your first response?",
+      "promptNative": "Client गुस्से में कहते हैं: \"हमारे users तीन घंटे तक login नहीं कर पाए!\" आपका पहला जवाब क्या होगा?",
+      "options": [
+        "It was not our mistake, the server team did it.",
+        "I understand your concern, and I'm sorry this affected your users.",
+        "Please calm down, we are looking into it."
+      ],
+      "answer": "I understand your concern, and I'm sorry this affected your users.",
+      "explanation": "Acknowledge the impact first; blaming others or saying \"calm down\" makes it worse.",
+      "explanationNative": "पहले impact को acknowledge कीजिए; दूसरों पर blame डालना या \"calm down\" कहना बात और बिगाड़ देता है।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "इसे fix करने के लिए हम ये कर रहे हैं।",
+      "tiles": [
+        "Here's",
+        "what",
+        "we're",
+        "doing",
+        "to",
+        "fix",
+        "it",
+        "the",
+        "same"
+      ],
+      "answer": "Here's what we're doing to fix it."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "We've deployed a hotfix, and the error rate is back to normal.",
+      "options": [
+        "We'll deploy a hotfix, and the error rate will be back to normal.",
+        "We've deployed a hotfix, and the error rate is back to normal.",
+        "We've deployed a hotfix, but the error rate isn't back to normal."
+      ],
+      "answer": "We've deployed a hotfix, and the error rate is back to normal."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "We will try our level best to fix the issue.",
+      "options": [
+        "We will try our level best to fix the issue.",
+        "We're doing everything we can to fix the issue.",
+        "We will try our level best for fixing the issue.",
+        "We are trying our best level to fix issue."
+      ],
+      "answer": "We're doing everything we can to fix the issue.",
+      "explanation": "\"Try our level best\" sounds unsure; say what you are actually doing.",
+      "explanationNative": "\"Try our level best\" unsure लगता है; बताइए कि आप असल में क्या कर रहे हैं।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "The client asks: \"How will I know what's happening?\" What do you say?",
+      "promptNative": "Client पूछते हैं: \"मुझे कैसे पता चलेगा कि क्या हो रहा है?\" आप क्या कहेंगे?",
+      "options": [
+        "We will inform you once it is done.",
+        "Don't worry, we are on it.",
+        "I'll send you an update every two hours until it's resolved."
+      ],
+      "answer": "I'll send you an update every two hours until it's resolved.",
+      "explanation": "A clear update schedule gives the client confidence.",
+      "explanationNative": "एक साफ़ update schedule से client को भरोसा मिलता है।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "The issue happened due to some technical glitches from our side only.",
+      "options": [
+        "The issue happened due to some technical glitches from our side only.",
+        "The issue was caused by a configuration error on our side.",
+        "The issue happened due to some technical glitches from our side.",
+        "The issue is happened because of configuration error from our side only."
+      ],
+      "answer": "The issue was caused by a configuration error on our side.",
+      "explanation": "Name the actual cause, and don't put \"only\" at the end for emphasis.",
+      "explanationNative": "असली cause बताइए, और ज़ोर देने के लिए sentence के आखिर में \"only\" मत लगाइए।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "यह हमारी गलती है, और हम इसकी पूरी ज़िम्मेदारी लेते हैं।",
+      "tiles": [
+        "This",
+        "is",
+        "on",
+        "us,",
+        "and",
+        "we",
+        "take",
+        "full",
+        "responsibility",
+        "mistake",
+        "only"
+      ],
+      "answer": "This is on us, and we take full responsibility."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "This is on us, and we take full responsibility.",
+      "options": [
+        "This isn't on us, but we take full responsibility.",
+        "This is on us, and we take full responsibility.",
+        "This is on hold, and we take full responsibility."
+      ],
+      "answer": "This is on us, and we take full responsibility."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Imagine a client is upset about a production bug in your project. Out loud, reply in 3–4 sentences: acknowledge the concern, take ownership, explain the fix, and promise regular updates.",
+      "promptNative": "मान लीजिए आपके project में एक production bug की वजह से client नाराज़ हैं। 3–4 sentences में बोलकर जवाब दीजिए: उनकी चिंता acknowledge करें, ownership लें, fix explain करें, और regular updates का वादा करें।",
+      "suggestedPhraseIds": [
+        "understand-concern",
+        "take-ownership",
+        "heres-what",
+        "regular-updates"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "id": "meetings-05-clarify-l1",
+  "unitId": "meetings-05-clarify",
+  "title": "Asking for clarification",
+  "intro": "Asking a clear question is professional, not a weakness, so check what the client means before you build it.",
+  "introNative": "साफ़ सवाल पूछना professional है, कमज़ोरी नहीं, इसलिए build करने से पहले check कर लें कि client का मतलब क्या है।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "clarify-mean",
+      "text": "Could you clarify what you mean by real-time reporting?",
+      "native": "क्या आप थोड़ा समझा सकते हैं कि real-time reporting से आपका मतलब क्या है?",
+      "note": "Use this when a word could mean different things."
+    },
+    {
+      "id": "just-confirm",
+      "text": "Just to confirm, you'd like the export in Excel, not PDF?",
+      "native": "बस पक्का करने के लिए: आपको export Excel में चाहिए, PDF में नहीं?",
+      "note": "Repeat back what you heard to avoid rework later."
+    },
+    {
+      "id": "repeat-that",
+      "text": "Sorry, could you repeat that? You broke up a little.",
+      "native": "माफ़ कीजिए, क्या आप वह दोबारा बोल सकते हैं? आपकी आवाज़ थोड़ी कट रही थी।",
+      "note": "\"You broke up\" means the audio cut out."
+    },
+    {
+      "id": "question-about",
+      "text": "I have a question about the approval workflow.",
+      "native": "Approval workflow के बारे में मेरा एक सवाल है।",
+      "note": "Say \"question\", not \"doubt\", when you want to ask something."
+    },
+    {
+      "id": "example",
+      "text": "Could you give me an example of how your team uses this today?",
+      "native": "क्या आप एक example दे सकते हैं कि आपकी team आज इसे कैसे use करती है?",
+      "note": "Examples turn vague requirements into clear ones."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "clarify-mean"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "just-confirm"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "repeat-that"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "question-about"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "example"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The client says they want \"real-time reporting\", but you're not sure what that means for them. What do you ask?",
+      "promptNative": "Client कहते हैं कि उन्हें \"real-time reporting\" चाहिए, पर आपको पक्का नहीं पता कि उनके लिए इसका मतलब क्या है। आप क्या पूछेंगे?",
+      "options": [
+        "What is real-time? I didn't understand.",
+        "Could you clarify what you mean by real-time reporting?",
+        "Real-time means what exactly, tell me."
+      ],
+      "answer": "Could you clarify what you mean by real-time reporting?",
+      "explanation": "\"Could you clarify…\" is polite and shows you're thinking carefully.",
+      "explanationNative": "\"Could you clarify…\" polite है और दिखाता है कि आप ध्यान से सोच रहे हैं।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "Approval workflow के बारे में मेरा एक सवाल है।",
+      "tiles": [
+        "I",
+        "have",
+        "a",
+        "question",
+        "about",
+        "the",
+        "approval",
+        "workflow",
+        "doubt",
+        "one"
+      ],
+      "answer": "I have a question about the approval workflow."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "Just to confirm, you'd like the export in Excel, not PDF?",
+      "options": [
+        "Just to confirm, you'd like the report in Excel, not PDF?",
+        "Just to confirm, you didn't like the export in Excel or PDF?",
+        "Just to confirm, you'd like the export in Excel, not PDF?"
+      ],
+      "answer": "Just to confirm, you'd like the export in Excel, not PDF?"
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I have one doubt regarding the login flow.",
+      "options": [
+        "I have one doubt regarding the login flow.",
+        "I have a question about the login flow.",
+        "I am having a doubt in the login flow.",
+        "I have one question regarding to the login flow."
+      ],
+      "answer": "I have a question about the login flow.",
+      "explanation": "To ask something, say \"I have a question\"; \"doubt\" means you think something may be wrong.",
+      "explanationNative": "कुछ पूछना हो तो \"I have a question\" कहें; \"doubt\" का मतलब है कि आपको लगता है कुछ गलत हो सकता है।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "The client's audio cut out in the middle of an important point. What do you say?",
+      "promptNative": "किसी ज़रूरी point के बीच में client का audio कट गया। आप क्या कहेंगे?",
+      "options": [
+        "Sorry, could you repeat that? You broke up a little.",
+        "What? Come again?",
+        "Your voice is not coming properly, tell again."
+      ],
+      "answer": "Sorry, could you repeat that? You broke up a little.",
+      "explanation": "Apologise briefly and give the reason, so the client doesn't feel blamed.",
+      "explanationNative": "थोड़े में sorry बोलिए और reason बताइए, ताकि client को न लगे कि गलती उनकी है।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Can you please explain me the requirement?",
+      "options": [
+        "Can you please explain me the requirement?",
+        "Could you please explain the requirement to me?",
+        "Can you please explain me about the requirement?",
+        "Could you explain to me the requirement once?"
+      ],
+      "answer": "Could you please explain the requirement to me?",
+      "explanation": "Say \"explain it to me\"; \"explain\" isn't followed directly by \"me\".",
+      "explanationNative": "\"Explain it to me\" कहें; \"explain\" के तुरंत बाद \"me\" नहीं आता।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "बस पक्का करने के लिए: आपको export Excel में चाहिए?",
+      "tiles": [
+        "Just",
+        "to",
+        "confirm,",
+        "you'd",
+        "like",
+        "the",
+        "export",
+        "in",
+        "Excel",
+        "only",
+        "itself"
+      ],
+      "answer": "Just to confirm, you'd like the export in Excel?"
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "Could you give me an example of how your team uses this today?",
+      "options": [
+        "Could you give me an example of how your team used this today?",
+        "Could you give me an example of how your team uses this today?",
+        "Could you give me a sample of how your team uses this tool?"
+      ],
+      "answer": "Could you give me an example of how your team uses this today?"
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Think of a requirement on your project that wasn't clear. Out loud, ask the client 2–3 clarifying questions about it.",
+      "promptNative": "अपने project की कोई ऐसी requirement सोचिए जो clear नहीं थी। बोलकर client से उसके बारे में 2–3 clarifying सवाल पूछिए।",
+      "suggestedPhraseIds": [
+        "clarify-mean",
+        "just-confirm",
+        "question-about",
+        "example"
+      ]
+    }
+  ]
+}

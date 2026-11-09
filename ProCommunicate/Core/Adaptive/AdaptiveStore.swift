@@ -15,7 +15,7 @@ struct AdaptiveContent: Codable, Equatable, Sendable {
         var day: String
         var unitId: String
         var english: String
-        var tamil: String
+        var native: String
         var when: String
     }
 

@@ -89,9 +89,10 @@ struct TodayView: View {
             .toolbar { SettingsToolbarButton() }
             .navigationDestination(item: $openFix) { MistakeDetailView(mistake: $0) }
             .navigationDestination(item: $openWeekly) { ScenarioStartView(scenario: $0) }
-            .task {
-                if lessons.isEmpty { lessons = Self.loadLessons(for: course) }
-                if scenarios.isEmpty { scenarios = ScenarioLoader.loadAll() }
+            .task(id: course.id) {
+                // Reloads when the learner switches language (a different course).
+                lessons = Self.loadLessons(for: course)
+                scenarios = ScenarioLoader.loadAll()
                 store.pruneEvents()
             }
             .task(id: day?.jobInputs) {
@@ -161,7 +162,7 @@ struct TodayView: View {
         let phraseUnitId = AdaptivePlanner.phraseUnit(snapshot: snapshot, order: order, lessonUnitId: lessonUnit?.id)
         var phrase: DayPlan.PhraseChoice?
         if let ai = content.phrase, ai.day == day {
-            phrase = .init(phrase: Phrase(id: "ai-\(day)", text: ai.english, tamil: ai.tamil, note: ai.when),
+            phrase = .init(phrase: Phrase(id: "ai-\(day)", text: ai.english, native: ai.native, note: ai.when),
                            unitTitle: units[ai.unitId]?.title ?? "", reason: ai.when, aiWritten: true)
         } else if let unitId = phraseUnitId, let unitLesson = lessonByUnit[unitId], !unitLesson.phrases.isEmpty {
             let ordinal = Calendar.current.ordinality(of: .day, in: .era, for: now) ?? 0
@@ -452,7 +453,7 @@ private struct PlanStepCard: View {
     }
 }
 
-/// A useful phrase each day, with its Tamil meaning and audio.
+/// A useful phrase each day, with its meaning in your language and audio.
 private struct PhraseOfTheDayCard: View {
     let phrase: Phrase
     let unitTitle: String
@@ -473,7 +474,7 @@ private struct PhraseOfTheDayCard: View {
             Text("“\(phrase.text)”")
                 .font(.title3.weight(.semibold))
                 .fixedSize(horizontal: false, vertical: true)
-            Text(phrase.tamil)
+            Text(phrase.native)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -486,7 +487,7 @@ private struct PhraseOfTheDayCard: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
             if aiWritten {
-                Text("Written by your on-device AI tutor. The Tamil may need a check.")
+                Text("Written by your on-device AI tutor. The \(NativeLanguage.current.name) may need a check.")
                     .font(.caption2)
                     .foregroundStyle(.tertiary)
             }

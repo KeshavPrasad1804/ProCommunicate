@@ -6,9 +6,9 @@ struct Lesson: Codable, Hashable, Sendable, Identifiable {
     let unitId: String
     let title: String
     let intro: String
-    let introTamil: String
+    let introNative: String
     /// False until a native Tamil speaker has checked the Tamil text.
-    let tamilReviewed: Bool
+    let nativeReviewed: Bool
     let phrases: [Phrase]
     let steps: [LessonStep]
 
@@ -24,7 +24,7 @@ struct Lesson: Codable, Hashable, Sendable, Identifiable {
 struct Phrase: Codable, Hashable, Sendable, Identifiable {
     let id: String
     let text: String
-    let tamil: String
+    let native: String
     let note: String?
 }
 
@@ -50,14 +50,14 @@ struct LessonStep: Codable, Hashable, Sendable, Identifiable {
     let type: Kind
     var phraseId: String? = nil
     var prompt: String? = nil
-    var promptTamil: String? = nil
+    var promptNative: String? = nil
     var audioText: String? = nil
     var wrong: String? = nil
     var options: [String]? = nil
     var tiles: [String]? = nil
     var answer: String? = nil
     var explanation: String? = nil
-    var explanationTamil: String? = nil
+    var explanationNative: String? = nil
     var suggestedPhraseIds: [String]? = nil
 
     /// Learn and speak steps aren't marked right or wrong.
@@ -117,8 +117,8 @@ extension Lesson {
                 if step.type == .fix && step.wrong == nil { problems.append("\(where_): fix needs the wrong sentence") }
                 if step.type == .choice && step.prompt == nil { problems.append("\(where_): choice needs a prompt") }
             case .build:
-                guard let answer = step.answer, let tiles = step.tiles, step.promptTamil != nil else {
-                    problems.append("\(where_): build needs answer, tiles and promptTamil"); continue
+                guard let answer = step.answer, let tiles = step.tiles, step.promptNative != nil else {
+                    problems.append("\(where_): build needs answer, tiles and promptNative"); continue
                 }
                 // Tiles carry no punctuation (it would give away the last word); compare normalised words.
                 var available = tiles.map(AnswerChecker.normalize)

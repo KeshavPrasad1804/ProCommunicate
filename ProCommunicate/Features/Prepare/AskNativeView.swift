@@ -1,8 +1,9 @@
 import SwiftData
 import SwiftUI
 
-/// Ask in Tamil or Tanglish; get professional English to use (tested on the Mac: bench/TAMIL_RESULTS.md).
-struct AskTamilView: View {
+/// Ask in your language (script or romanised, e.g. Tanglish / Hinglish); get professional English to use
+/// (tested on the Mac: bench/TAMIL_RESULTS.md, bench/HINDI_RESULTS.md).
+struct AskNativeView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var question = ""
     @State private var answer = ""
@@ -11,16 +12,21 @@ struct AskTamilView: View {
     @State private var errorText: String?
     @State private var savedSentences: Set<String> = []
 
-    static let system = """
-    You are a friendly English coach for Tamil speakers. The learner may write in Tamil script, in Tanglish (Tamil written in English letters), or in English. \
-    Give them 1-2 ready-to-use professional English sentences (or a short email if they ask for one), then one or two short lines in simple Tamil (Tamil script) explaining when to use it. \
-    Keep the whole answer short. Never use Indian-English phrases like revert back, do the needful, today itself or prepone.
-    """
+    static var system: String {
+        let l = NativeLanguage.current
+        return """
+        You are a friendly English coach for \(l.name) speakers. The learner may write in \(l.name) (\(l.scriptName)), in \(l.romanisedName) (\(l.name) written in English letters), or in English. \
+        Give them 1-2 ready-to-use professional English sentences (or a short email if they ask for one), then one or two short lines in simple \(l.name) (\(l.scriptName)) explaining when to use it. \(l.styleNote) \
+        Keep the whole answer short. Never use Indian-English phrases like revert back, do the needful, today itself or prepone.
+        """
+    }
+
+    private var language: NativeLanguage { NativeLanguage.current }
 
     var body: some View {
         List {
             Section {
-                TextField("எப்படி சொல்வது? / eppadi solradhu?", text: $question, axis: .vertical)
+                TextField(language.askPlaceholder, text: $question, axis: .vertical)
                     .lineLimit(2...6)
                 Button {
                     Task { await ask() }
@@ -29,10 +35,10 @@ struct AskTamilView: View {
                 }
                 .disabled(question.trimmingCharacters(in: .whitespaces).isEmpty || working || !TutorService.isAvailable)
             } header: {
-                Text("Ask in Tamil, Tanglish or English")
+                Text("Ask in \(language.name), \(language.romanisedName) or English")
             } footer: {
                 if TutorService.isAvailable {
-                    Text("For example: \"manager kitta naalaikku leave kekkanum, eppadi professional-a solradhu?\"")
+                    Text("For example: \"\(language.askExample)\"")
                 } else {
                     Text("Needs the AI tutor: Settings → AI tutor.")
                 }
@@ -68,7 +74,7 @@ struct AskTamilView: View {
                 }
             }
         }
-        .navigationTitle("Ask in Tamil")
+        .navigationTitle("Ask in \(language.name)")
         .navigationBarTitleDisplayMode(.inline)
     }
 
@@ -96,7 +102,7 @@ struct AskTamilView: View {
         savedSentences.insert(sentence)
     }
 
-    /// English sentences from the answer (lines without Tamil script), without markdown or quotes.
+    /// English sentences from the answer (no Indian-script lines, no bracketed transliterations), without markdown or quotes.
     nonisolated static func englishSentences(in text: String) -> [String] {
         text.components(separatedBy: .newlines)
             .map { line in
@@ -107,7 +113,8 @@ struct AskTamilView: View {
             }
             .filter { line in
                 line.count > 12
-                    && !line.unicodeScalars.contains { (0x0B80...0x0BFF).contains($0.value) }
+                    && !line.unicodeScalars.contains { (0x0900...0x0DFF).contains($0.value) }
+                    && !line.hasPrefix("(")
                     && line.contains(where: \.isLetter)
                     && !line.hasSuffix(":")
             }

@@ -406,10 +406,10 @@ final class CallSession {
 enum MistakeBook {
     static func record(turns: [CallTurn], includeRules: Bool = true, in context: ModelContext, date: Date = .now) {
         for turn in turns where turn.speaker == .learner {
-            var entries: [(pattern: String, wrong: String, right: String, why: String, whyTamil: String?)] = []
+            var entries: [(pattern: String, wrong: String, right: String, why: String, whyNative: String?)] = []
             for hit in turn.ruleHits where includeRules {
                 guard let rule = MistakeRules.rule(hit.ruleId) else { continue }
-                entries.append((rule.id, hit.wrong, rule.right, rule.why, rule.whyTamil))
+                entries.append((rule.id, hit.wrong, rule.right, rule.why, rule.whyNative))
             }
             for mistake in turn.check?.mistakes ?? [] {
                 // Skip AI finds that repeat a rule match.
@@ -421,13 +421,13 @@ enum MistakeBook {
             }
             for entry in entries {
                 upsert(pattern: entry.pattern, wrong: entry.wrong, right: entry.right, why: entry.why,
-                       whyTamil: entry.whyTamil, context: turn.text, clip: turn.clipFile, date: date, in: context)
+                       whyNative: entry.whyNative, context: turn.text, clip: turn.clipFile, date: date, in: context)
             }
         }
         try? context.save()
     }
 
-    static func upsert(pattern: String, wrong: String, right: String, why: String, whyTamil: String?,
+    static func upsert(pattern: String, wrong: String, right: String, why: String, whyNative: String?,
                        context sentence: String?, clip: String?, date: Date = .now, in context: ModelContext) {
         let key = MistakeRecord.key(pattern: pattern, wrong: wrong)
         let descriptor = FetchDescriptor<MistakeRecord>(predicate: #Predicate { $0.key == key })
@@ -438,7 +438,7 @@ enum MistakeBook {
             existing.wrong = wrong
             record = existing
         } else {
-            record = MistakeRecord(pattern: pattern, wrong: wrong, right: right, why: why, whyTamil: whyTamil, date: date)
+            record = MistakeRecord(pattern: pattern, wrong: wrong, right: right, why: why, whyNative: whyNative, date: date)
             context.insert(record)
         }
         if let clip { record.lastClipFile = clip }
@@ -450,7 +450,7 @@ enum MistakeBook {
         if (try? context.fetch(cardDescriptor).first) == nil {
             let due = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: date)) ?? date
             context.insert(ReviewCard(id: cardId, kind: .mistake, front: wrong, back: right,
-                                      hint: whyTamil ?? why, lessonId: nil, due: due, createdAt: date))
+                                      hint: whyNative ?? why, lessonId: nil, due: due, createdAt: date))
         }
     }
 }

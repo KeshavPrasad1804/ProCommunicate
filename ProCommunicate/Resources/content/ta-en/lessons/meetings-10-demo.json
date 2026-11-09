@@ -3,37 +3,37 @@
   "unitId": "meetings-10-demo",
   "title": "Demos and presenting your work",
   "intro": "In a demo, guide the client step by step: share your screen, say what they're looking at, and pause for questions.",
-  "introTamil": "Demo-வில் client-ஐப் படிப்படியாக வழிநடத்துங்கள்: screen share செய்து, அவர்கள் பார்ப்பதை விளக்கி, இடையிடையே கேள்விகளுக்கு நிறுத்துங்கள்.",
-  "tamilReviewed": false,
+  "introNative": "Demo-வில் client-ஐப் படிப்படியாக வழிநடத்துங்கள்: screen share செய்து, அவர்கள் பார்ப்பதை விளக்கி, இடையிடையே கேள்விகளுக்கு நிறுத்துங்கள்.",
+  "nativeReviewed": false,
   "phrases": [
     {
       "id": "share-screen",
       "text": "Let me share my screen. Can you see it now?",
-      "tamil": "என் screen-ஐ share செய்கிறேன். இப்போது தெரிகிறதா?",
+      "native": "என் screen-ஐ share செய்கிறேன். இப்போது தெரிகிறதா?",
       "note": "Always check that the client can see your screen."
     },
     {
       "id": "as-you-see",
       "text": "As you can see here, the order status updates automatically.",
-      "tamil": "இங்கே பார்க்கிறபடி, order status தானாகவே update ஆகிறது.",
+      "native": "இங்கே பார்க்கிறபடி, order status தானாகவே update ஆகிறது.",
       "note": "Point to what matters on the screen."
     },
     {
       "id": "walk-through",
       "text": "I'll walk you through the new approval flow.",
-      "tamil": "புதிய approval flow-ஐப் படிப்படியாகக் காட்டுகிறேன்.",
+      "native": "புதிய approval flow-ஐப் படிப்படியாகக் காட்டுகிறேன்.",
       "note": "\"Walk you through\" means explain step by step."
     },
     {
       "id": "questions-so-far",
       "text": "Any questions so far?",
-      "tamil": "இதுவரை ஏதாவது கேள்விகள் உண்டா?",
+      "native": "இதுவரை ஏதாவது கேள்விகள் உண்டா?",
       "note": "Pause after each main part to check understanding."
     },
     {
       "id": "test-data",
       "text": "This is test data, so the numbers aren't real.",
-      "tamil": "இது test data, அதனால் இந்த எண்கள் உண்மையானவை அல்ல.",
+      "native": "இது test data, அதனால் இந்த எண்கள் உண்மையானவை அல்ல.",
       "note": "Say this early so the client doesn't worry about strange values."
     }
   ],
@@ -67,7 +67,7 @@
       "id": "choose-1",
       "type": "choice",
       "prompt": "You're about to start a demo on a Teams call. What do you say first?",
-      "promptTamil": "Teams call-இல் demo தொடங்கப் போகிறீர்கள். முதலில் என்ன சொல்வீர்கள்?",
+      "promptNative": "Teams call-இல் demo தொடங்கப் போகிறீர்கள். முதலில் என்ன சொல்வீர்கள்?",
       "options": [
         "Screen is coming? Visible or not?",
         "Let me share my screen. Can you see it now?",
@@ -75,12 +75,12 @@
       ],
       "answer": "Let me share my screen. Can you see it now?",
       "explanation": "Say what you're doing, then check that it worked.",
-      "explanationTamil": "நீங்கள் என்ன செய்கிறீர்கள் என்று சொல்லி, அது சரியாக வேலை செய்கிறதா என்று சரிபாருங்கள்."
+      "explanationNative": "நீங்கள் என்ன செய்கிறீர்கள் என்று சொல்லி, அது சரியாக வேலை செய்கிறதா என்று சரிபாருங்கள்."
     },
     {
       "id": "build-1",
       "type": "build",
-      "promptTamil": "புதிய approval flow-ஐப் படிப்படியாகக் காட்டுகிறேன்.",
+      "promptNative": "புதிய approval flow-ஐப் படிப்படியாகக் காட்டுகிறேன்.",
       "tiles": [
         "I'll",
         "walk",
@@ -119,13 +119,13 @@
       ],
       "answer": "Now I'll show you the update to the dashboard.",
       "explanation": "\"Updation\" isn't a standard English word; say \"update\".",
-      "explanationTamil": "\"Updation\" என்ற சொல் ஆங்கிலத்தில் இல்லை. \"Update\" என்று சொல்லுங்கள்."
+      "explanationNative": "\"Updation\" என்ற சொல் ஆங்கிலத்தில் இல்லை. \"Update\" என்று சொல்லுங்கள்."
     },
     {
       "id": "choose-2",
       "type": "choice",
       "prompt": "You've finished showing the first screen. How do you check in with the client?",
-      "promptTamil": "முதல் screen-ஐக் காட்டி முடித்துவிட்டீர்கள். Client-இடம் எப்படிக் கேட்பீர்கள்?",
+      "promptNative": "முதல் screen-ஐக் காட்டி முடித்துவிட்டீர்கள். Client-இடம் எப்படிக் கேட்பீர்கள்?",
       "options": [
         "Understood or not?",
         "Any questions so far?",
@@ -133,7 +133,7 @@
       ],
       "answer": "Any questions so far?",
       "explanation": "A short, open question invites feedback without sounding like a test.",
-      "explanationTamil": "சுருக்கமான ஒரு கேள்வி, client-ஐச் சோதிப்பது போல் இல்லாமல் அவர் கருத்தைக் கேட்கும்."
+      "explanationNative": "சுருக்கமான ஒரு கேள்வி, client-ஐச் சோதிப்பது போல் இல்லாமல் அவர் கருத்தைக் கேட்கும்."
     },
     {
       "id": "fix-2",
@@ -148,12 +148,12 @@
       ],
       "answer": "Please ignore the values; this is test data.",
       "explanation": "\"Data\" is uncountable, so say \"this is test data\", not \"a test data\".",
-      "explanationTamil": "\"Data\"-வை எண்ணிச் சொல்வதில்லை. \"A test data\" இல்லை; \"this is test data\" என்று சொல்லுங்கள்."
+      "explanationNative": "\"Data\"-வை எண்ணிச் சொல்வதில்லை. \"A test data\" இல்லை; \"this is test data\" என்று சொல்லுங்கள்."
     },
     {
       "id": "build-2",
       "type": "build",
-      "promptTamil": "இது test data, அதனால் இந்த எண்கள் உண்மையானவை அல்ல.",
+      "promptNative": "இது test data, அதனால் இந்த எண்கள் உண்மையானவை அல்ல.",
       "tiles": [
         "This",
         "is",
@@ -184,7 +184,7 @@
       "id": "speak-1",
       "type": "speak",
       "prompt": "Think of a feature you built recently. Out loud, start a short demo in 3–4 sentences: share your screen, walk the client through one screen, and check for questions.",
-      "promptTamil": "நீங்கள் சமீபத்தில் build செய்த ஒரு feature-ஐ நினைத்துக்கொள்ளுங்கள். 3–4 வாக்கியங்களில் ஒரு சிறிய demo தொடங்குங்கள்: screen share செய்து, ஒரு screen-ஐ விளக்கி, கேள்விகள் உண்டா என்று கேளுங்கள்.",
+      "promptNative": "நீங்கள் சமீபத்தில் build செய்த ஒரு feature-ஐ நினைத்துக்கொள்ளுங்கள். 3–4 வாக்கியங்களில் ஒரு சிறிய demo தொடங்குங்கள்: screen share செய்து, ஒரு screen-ஐ விளக்கி, கேள்விகள் உண்டா என்று கேளுங்கள்.",
       "suggestedPhraseIds": [
         "share-screen",
         "walk-through",

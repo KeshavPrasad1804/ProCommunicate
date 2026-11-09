@@ -81,7 +81,7 @@ struct ReportFixTests {
         let fixes = ReportFix.top(from: [CallTurn(speaker: .ai, text: "Hi"), t1, t2])
         #expect(fixes.map(\.id) == ["am-having", "grammar:years experience"])
         #expect(fixes.first?.count == 2)
-        #expect(fixes.first?.whyTamil != nil)
+        #expect(fixes.first?.whyNative != nil)
     }
 }
 
@@ -133,7 +133,7 @@ struct AskTamilParsingTests {
         **தமிழ் விளக்கம்:**
         இந்த வாக்கியங்களை நீங்கள் மேனேஜருடன் பேசும்போது பயன்படுத்தலாம்.
         """
-        let sentences = AskTamilView.englishSentences(in: answer)
+        let sentences = AskNativeView.englishSentences(in: answer)
         #expect(sentences.contains("I would like to request leave for tomorrow."))
         #expect(sentences.contains("Could I please take tomorrow off?"))
         #expect(!sentences.contains { $0.unicodeScalars.contains { (0x0B80...0x0BFF).contains($0.value) } })

@@ -1,0 +1,255 @@
+{
+  "id": "hi-en-work",
+  "sourceLang": "hi",
+  "targetLang": "en",
+  "title": "Business English for Hindi speakers",
+  "tracks": [
+    {
+      "id": "meetings",
+      "priority": 1,
+      "title": "Meetings and client calls",
+      "subtitle": "Speak clearly and confidently in stand-ups, client calls and meetings.",
+      "systemImage": "person.3.fill",
+      "units": [
+        {
+          "id": "meetings-01-standup",
+          "number": 1,
+          "title": "Daily stand-up",
+          "goal": "Give a clear yesterday / today / blockers update.",
+          "examplePhrases": [
+            "Yesterday I completed…",
+            "Today I'll be working on…",
+            "I'm blocked on… and need help from…"
+          ]
+        },
+        {
+          "id": "meetings-02-opening",
+          "number": 2,
+          "title": "Opening a call and small talk",
+          "goal": "Start a call smoothly and make light conversation.",
+          "examplePhrases": [
+            "Can everyone hear me?",
+            "How was your weekend?",
+            "Shall we get started?"
+          ]
+        },
+        {
+          "id": "meetings-03-status",
+          "number": 3,
+          "title": "Giving a status update",
+          "goal": "Report progress clearly on a client call.",
+          "examplePhrases": [
+            "We're on track for…",
+            "We've completed about 80% of…",
+            "The next milestone is…"
+          ]
+        },
+        {
+          "id": "meetings-04-delay",
+          "number": 4,
+          "title": "Explaining a delay or a problem",
+          "goal": "Explain a delay honestly and give a new plan.",
+          "examplePhrases": [
+            "Unfortunately, we've run into an issue with…",
+            "The new timeline is…",
+            "To avoid this, we'll…"
+          ]
+        },
+        {
+          "id": "meetings-05-clarify",
+          "number": 5,
+          "title": "Asking for clarification",
+          "goal": "Check what someone means without sounding unsure.",
+          "examplePhrases": [
+            "Could you clarify what you mean by…?",
+            "Just to confirm, you'd like…?",
+            "Sorry, could you repeat that?"
+          ]
+        },
+        {
+          "id": "meetings-06-get-back",
+          "number": 6,
+          "title": "When you don't have the answer",
+          "goal": "Promise a follow-up professionally instead of guessing.",
+          "examplePhrases": [
+            "Let me check and get back to you by…",
+            "That's a good question. I'll confirm with the team."
+          ]
+        },
+        {
+          "id": "meetings-07-disagree",
+          "number": 7,
+          "title": "Agreeing, disagreeing and pushing back",
+          "goal": "Disagree politely and suggest alternatives.",
+          "examplePhrases": [
+            "I see your point, but…",
+            "I'd suggest a different approach…",
+            "That may be difficult because…"
+          ]
+        },
+        {
+          "id": "meetings-08-interrupt",
+          "number": 8,
+          "title": "Interrupting and joining in",
+          "goal": "Get your point into a busy conversation.",
+          "examplePhrases": [
+            "Sorry to interrupt, but…",
+            "If I could add something…"
+          ]
+        },
+        {
+          "id": "meetings-09-negotiate",
+          "number": 9,
+          "title": "Negotiating scope and deadlines",
+          "goal": "Trade scope against time without saying a flat no.",
+          "examplePhrases": [
+            "If we move the deadline to…, we can include…",
+            "Could we prioritise…?"
+          ]
+        },
+        {
+          "id": "meetings-10-demo",
+          "number": 10,
+          "title": "Demos and presenting your work",
+          "goal": "Walk a client through your work on a shared screen.",
+          "examplePhrases": [
+            "Let me share my screen.",
+            "As you can see here…",
+            "Any questions so far?"
+          ]
+        },
+        {
+          "id": "meetings-11-escalation",
+          "number": 11,
+          "title": "Escalations and difficult clients",
+          "goal": "Stay calm and constructive when a client is unhappy.",
+          "examplePhrases": [
+            "I understand your concern.",
+            "Here's what we're doing to fix it."
+          ]
+        },
+        {
+          "id": "meetings-12-closing",
+          "number": 12,
+          "title": "Summarising and closing",
+          "goal": "End a call with clear action items.",
+          "examplePhrases": [
+            "To summarise…",
+            "The action items are…",
+            "I'll send the minutes after the call."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interviews",
+      "priority": 2,
+      "title": "Job interviews",
+      "subtitle": "Answer confidently in HR, technical and managerial rounds.",
+      "systemImage": "briefcase.fill",
+      "units": [
+        {
+          "id": "interviews-01-about-you",
+          "number": 1,
+          "title": "Tell me about yourself",
+          "goal": "Give a 60–90 second introduction built from your real background.",
+          "examplePhrases": [
+            "I'm a Java developer with three years of experience in…",
+            "Currently, I work at…"
+          ]
+        },
+        {
+          "id": "interviews-02-current-role",
+          "number": 2,
+          "title": "Your current role",
+          "goal": "Describe your responsibilities clearly.",
+          "examplePhrases": [
+            "In my current role, I'm responsible for…",
+            "I've been working at … since…"
+          ]
+        },
+        {
+          "id": "interviews-03-star",
+          "number": 3,
+          "title": "Projects with STAR",
+          "goal": "Tell a project story: situation, task, action, result.",
+          "examplePhrases": [
+            "The challenge was…",
+            "I led…",
+            "As a result, response time dropped by…"
+          ]
+        },
+        {
+          "id": "interviews-04-technical",
+          "number": 4,
+          "title": "Technical explanations in simple English",
+          "goal": "Explain your stack and design choices clearly.",
+          "examplePhrases": [
+            "We chose … because…",
+            "In simple terms, this service…"
+          ]
+        },
+        {
+          "id": "interviews-05-conflict",
+          "number": 5,
+          "title": "Teamwork and conflict",
+          "goal": "Describe a disagreement and how you resolved it.",
+          "examplePhrases": [
+            "We had a disagreement about…",
+            "I suggested we…"
+          ]
+        },
+        {
+          "id": "interviews-06-strengths",
+          "number": 6,
+          "title": "Strengths and weaknesses",
+          "goal": "Answer honestly without sounding memorised.",
+          "examplePhrases": [
+            "One of my strengths is…",
+            "Something I'm working on is…"
+          ]
+        },
+        {
+          "id": "interviews-07-why",
+          "number": 7,
+          "title": "Why are you leaving? Why us?",
+          "goal": "Frame your move positively.",
+          "examplePhrases": [
+            "I'm looking for a role where I can…",
+            "What attracts me to your company is…"
+          ]
+        },
+        {
+          "id": "interviews-08-salary",
+          "number": 8,
+          "title": "Salary, notice period and joining date",
+          "goal": "Discuss terms clearly and professionally.",
+          "examplePhrases": [
+            "My expected CTC is…",
+            "My notice period is 60 days, and it's negotiable."
+          ]
+        },
+        {
+          "id": "interviews-09-your-questions",
+          "number": 9,
+          "title": "Questions to ask the interviewer",
+          "goal": "End the interview with thoughtful questions.",
+          "examplePhrases": [
+            "What does success look like in this role?",
+            "How is the team structured?"
+          ]
+        },
+        {
+          "id": "interviews-10-hr-round",
+          "number": 10,
+          "title": "HR and managerial rounds",
+          "goal": "Handle situational questions and say \"I don't know\" gracefully.",
+          "examplePhrases": [
+            "In that situation, I would…",
+            "I haven't worked with that yet, but I'd approach it by…"
+          ]
+        }
+      ]
+    }
+  ]
+}

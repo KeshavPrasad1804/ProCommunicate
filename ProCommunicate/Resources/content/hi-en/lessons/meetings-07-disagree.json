@@ -1,0 +1,199 @@
+{
+  "id": "meetings-07-disagree-l1",
+  "unitId": "meetings-07-disagree",
+  "title": "Agreeing, disagreeing and pushing back",
+  "intro": "You can disagree with a client and still sound respectful: acknowledge their view, give your reason, and offer an option.",
+  "introNative": "आप client से असहमत होकर भी respectful लग सकते हैं: उनकी बात acknowledge करें, अपना reason दें, और एक option suggest करें।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "see-point",
+      "text": "I see your point, but adding this now could affect the release date.",
+      "native": "मैं आपकी बात समझता हूँ, लेकिन इसे अभी add करने से release date पर असर पड़ सकता है।",
+      "note": "Acknowledge first, then add \"but\" and your reason."
+    },
+    {
+      "id": "different-approach",
+      "text": "I'd suggest a different approach: we could cache the results instead.",
+      "native": "मैं एक अलग approach suggest करूँगा: इसकी जगह हम results को cache कर सकते हैं।",
+      "note": "\"I'd suggest\" is softer than \"You should\"."
+    },
+    {
+      "id": "difficult-because",
+      "text": "That may be difficult because the legacy system doesn't support it.",
+      "native": "यह मुश्किल हो सकता है, क्योंकि legacy system इसे support नहीं करता।",
+      "note": "\"That may be difficult\" is a polite no, with a reason."
+    },
+    {
+      "id": "completely-agree",
+      "text": "I completely agree with you on the security requirements.",
+      "native": "Security requirements पर मैं आपसे पूरी तरह सहमत हूँ।",
+      "note": "Agreeing clearly when you do agree makes your pushback more credible."
+    },
+    {
+      "id": "not-sure-agree",
+      "text": "I'm not sure I agree. Could we look at the data first?",
+      "native": "मुझे यकीन नहीं कि मैं इससे सहमत हूँ। क्या हम पहले data देख सकते हैं?",
+      "note": "A soft way to disagree that invites discussion."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "see-point"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "different-approach"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "difficult-because"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "completely-agree"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "not-sure-agree"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The client wants to add a new feature two days before release. What's the best response?",
+      "promptNative": "Client release से दो दिन पहले एक नया feature add करवाना चाहते हैं। सबसे अच्छा जवाब क्या है?",
+      "options": [
+        "No, that is not possible at all.",
+        "I see your point, but adding this now could affect the release date.",
+        "Okay, we will try and manage somehow."
+      ],
+      "answer": "I see your point, but adding this now could affect the release date.",
+      "explanation": "Show you heard them, then explain the impact, instead of a flat no or a risky yes.",
+      "explanationNative": "सीधा \"no\" या risky \"yes\" कहने की बजाय, पहले दिखाइए कि आपने उनकी बात सुनी, फिर impact explain कीजिए।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "यह मुश्किल हो सकता है, क्योंकि legacy system इसे support नहीं करता।",
+      "tiles": [
+        "That",
+        "may",
+        "be",
+        "difficult",
+        "because",
+        "the",
+        "legacy",
+        "system",
+        "doesn't",
+        "support",
+        "it",
+        "not",
+        "possible"
+      ],
+      "answer": "That may be difficult because the legacy system doesn't support it."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "I'd suggest a different approach: we could cache the results instead.",
+      "options": [
+        "I'd suggest a different approach: we could check the results instead.",
+        "I'd suggest a different approach: we could cache the results instead.",
+        "I suggested a different approach: we could cache the results later."
+      ],
+      "answer": "I'd suggest a different approach: we could cache the results instead."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I am not agreeing with this approach.",
+      "options": [
+        "I am not agreeing with this approach.",
+        "I don't agree with this approach.",
+        "I am not agree with this approach.",
+        "I am disagreeing to this approach."
+      ],
+      "answer": "I don't agree with this approach.",
+      "explanation": "\"Agree\" isn't normally used in the -ing form; say \"I don't agree\".",
+      "explanationNative": "\"Agree\" आम तौर पर -ing form में इस्तेमाल नहीं होता; \"I don't agree\" कहें।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "The client suggests a design that you think will be too slow. How do you propose another option?",
+      "promptNative": "Client एक ऐसा design suggest करते हैं जो आपको लगता है बहुत slow होगा। आप दूसरा option कैसे propose करेंगे?",
+      "options": [
+        "Your idea is wrong, we should cache it.",
+        "Please do one thing, use cache.",
+        "I'd suggest a different approach: we could cache the results instead."
+      ],
+      "answer": "I'd suggest a different approach: we could cache the results instead.",
+      "explanation": "\"I'd suggest\" offers your idea without telling the client they're wrong.",
+      "explanationNative": "\"I'd suggest\" से आप client को गलत बताए बिना अपना idea रख सकते हैं।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Please do one thing, check with your security team.",
+      "options": [
+        "Please do one thing, check with your security team.",
+        "Could you check with your security team?",
+        "Please do one thing and check with your security team.",
+        "Do one thing, kindly check with security team."
+      ],
+      "answer": "Could you check with your security team?",
+      "explanation": "\"Do one thing\" sounds like an order; a simple polite question works better.",
+      "explanationNative": "\"Do one thing\" order जैसा लगता है; एक simple, polite सवाल बेहतर रहता है।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "Security requirements पर मैं आपसे पूरी तरह सहमत हूँ।",
+      "tiles": [
+        "I",
+        "completely",
+        "agree",
+        "with",
+        "you",
+        "on",
+        "the",
+        "security",
+        "requirements",
+        "am",
+        "agreeing"
+      ],
+      "answer": "I completely agree with you on the security requirements."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "I'm not sure I agree. Could we look at the data first?",
+      "options": [
+        "I'm not sure I agree. Could we look at the data first?",
+        "I'm not sure I agree. Could we look at the date first?",
+        "I'm sure I agree. Could we look at the data later?"
+      ],
+      "answer": "I'm not sure I agree. Could we look at the data first?"
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Think of a client request you didn't fully agree with. Out loud, push back politely in 3 sentences: acknowledge their view, give your reason, and suggest an alternative.",
+      "promptNative": "किसी ऐसी client request के बारे में सोचिए जिससे आप पूरी तरह सहमत नहीं थे। 3 sentences में बोलकर politely push back कीजिए: उनकी बात acknowledge करें, अपना reason दें, और एक alternative suggest करें।",
+      "suggestedPhraseIds": [
+        "see-point",
+        "difficult-because",
+        "different-approach",
+        "not-sure-agree"
+      ]
+    }
+  ]
+}

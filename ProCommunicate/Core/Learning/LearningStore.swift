@@ -12,18 +12,37 @@ enum LearningStore {
     static func addCards(from lesson: Lesson, now: Date = .now, in context: ModelContext) {
         let due = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: now)) ?? now
         var cards: [ReviewCard] = lesson.phrases.map {
-            ReviewCard(id: "\(lesson.id).\($0.id)", kind: .phrase, front: $0.tamil, back: $0.text,
+            ReviewCard(id: "\(lesson.id).\($0.id)", kind: .phrase, front: $0.native, back: $0.text,
                        hint: $0.note, lessonId: lesson.id, due: due, createdAt: now)
         }
         for step in lesson.steps where step.type == .fix {
             guard let wrong = step.wrong, let answer = step.answer else { continue }
             cards.append(ReviewCard(id: "\(lesson.id).\(step.id)", kind: .mistake, front: wrong, back: answer,
-                                    hint: step.explanationTamil ?? step.explanation, lessonId: lesson.id,
+                                    hint: step.explanationNative ?? step.explanation, lessonId: lesson.id,
                                     due: due, createdAt: now))
         }
         let existing = Set(((try? context.fetch(FetchDescriptor<ReviewCard>())) ?? []).map(\.id))
         for card in cards where !existing.contains(card.id) {
             context.insert(card)
+        }
+        try? context.save()
+    }
+
+    /// After the learner changes their language: rewrites lesson cards' meanings and hints in the new
+    /// language (progress and schedules are kept).
+    static func relocalizeCards(lessons: [Lesson], in context: ModelContext) {
+        var phrases: [String: Phrase] = [:]
+        var steps: [String: LessonStep] = [:]
+        for lesson in lessons {
+            for phrase in lesson.phrases { phrases["\(lesson.id).\(phrase.id)"] = phrase }
+            for step in lesson.steps where step.type == .fix { steps["\(lesson.id).\(step.id)"] = step }
+        }
+        for card in (try? context.fetch(FetchDescriptor<ReviewCard>())) ?? [] {
+            if card.kind == .phrase, let phrase = phrases[card.id] {
+                card.front = phrase.native
+            } else if card.kind == .mistake, let step = steps[card.id] {
+                card.hint = step.explanationNative ?? step.explanation
+            }
         }
         try? context.save()
     }

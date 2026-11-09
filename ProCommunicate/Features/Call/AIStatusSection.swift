@@ -16,7 +16,7 @@ struct AIStatusSection: View {
                     detail: "This iPhone doesn't have enough memory for the AI tutor. Lessons, review and drills still work.")
             } else if !aiTutorEnabled {
                 row(icon: "sparkles", tint: .accentColor, title: "AI tutor is off",
-                    detail: "Turn it on to have real conversations, get corrections and use Ask in Tamil.",
+                    detail: "Turn it on to have real conversations, get corrections and use Ask in \(NativeLanguage.current.name).",
                     action: "Set up")
             } else {
                 switch aiModel.state {

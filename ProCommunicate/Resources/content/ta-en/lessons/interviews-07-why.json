@@ -3,23 +3,23 @@
   "unitId": "interviews-07-why",
   "title": "Why are you leaving? Why us?",
   "intro": "Talk about changing jobs in a positive way: focus on what you want next, not what you dislike now.",
-  "introTamil": "வேலை மாறுவதைப் பற்றி positive-ஆகப் பேசுங்கள்: இப்போது பிடிக்காததை அல்ல, அடுத்து என்ன வேண்டும் என்பதைச் சொல்லுங்கள்.",
-  "tamilReviewed": false,
+  "introNative": "வேலை மாறுவதைப் பற்றி positive-ஆகப் பேசுங்கள்: இப்போது பிடிக்காததை அல்ல, அடுத்து என்ன வேண்டும் என்பதைச் சொல்லுங்கள்.",
+  "nativeReviewed": false,
   "phrases": [
     { "id": "looking-for-role", "text": "I'm looking for a role where I can work on cloud-native products.",
-      "tamil": "Cloud-native products-இல் வேலை செய்யக்கூடிய ஒரு role-ஐத் தேடுகிறேன்.",
+      "native": "Cloud-native products-இல் வேலை செய்யக்கூடிய ஒரு role-ஐத் தேடுகிறேன்.",
       "note": "Talk about what you're moving towards." },
     { "id": "learned-a-lot", "text": "I've learned a lot at my current company over the last four years.",
-      "tamil": "கடந்த நான்கு வருடங்களில் இப்போதைய company-இல் நிறைய கற்றுக்கொண்டேன்.",
+      "native": "கடந்த நான்கு வருடங்களில் இப்போதைய company-இல் நிறைய கற்றுக்கொண்டேன்.",
       "note": "Say something good about your current employer first." },
     { "id": "ready-for-more", "text": "I feel ready for bigger challenges than my current project offers.",
-      "tamil": "இப்போதைய project தருவதைவிடப் பெரிய சவால்களுக்கு நான் தயாராக இருப்பதாக உணர்கிறேன்.",
+      "native": "இப்போதைய project தருவதைவிடப் பெரிய சவால்களுக்கு நான் தயாராக இருப்பதாக உணர்கிறேன்.",
       "note": "Frame leaving as growth, not escape." },
     { "id": "what-attracts", "text": "What attracts me to your company is your focus on digital banking products.",
-      "tamil": "Digital banking products-இல் நீங்கள் காட்டும் கவனம்தான் உங்கள் company-இடம் என்னை ஈர்க்கிறது.",
+      "native": "Digital banking products-இல் நீங்கள் காட்டும் கவனம்தான் உங்கள் company-இடம் என்னை ஈர்க்கிறது.",
       "note": "Research the company and mention one specific thing." },
     { "id": "skills-match", "text": "My experience with Spring Boot and payments matches this role well.",
-      "tamil": "Spring Boot, payments-இல் உள்ள என் experience இந்த role-க்கு நன்றாகப் பொருந்துகிறது.",
+      "native": "Spring Boot, payments-இல் உள்ள என் experience இந்த role-க்கு நன்றாகப் பொருந்துகிறது.",
       "note": "Connect your skills to the job description." }
   ],
   "steps": [
@@ -31,14 +31,14 @@
 
     { "id": "choose-1", "type": "choice",
       "prompt": "The interviewer asks: \"Why are you leaving your current job?\" Which answer is best?",
-      "promptTamil": "Interviewer \"இப்போதைய வேலையை ஏன் விடுகிறீர்கள்?\" என்று கேட்கிறார். எந்த பதில் சிறந்தது?",
+      "promptNative": "Interviewer \"இப்போதைய வேலையை ஏன் விடுகிறீர்கள்?\" என்று கேட்கிறார். எந்த பதில் சிறந்தது?",
       "options": ["My manager is not good and salary is very less.", "I'm looking for a role where I can work on cloud-native products.", "There is no growth, the company is very bad."],
       "answer": "I'm looking for a role where I can work on cloud-native products.",
       "explanation": "Focus on what you want next; complaining about your employer sounds negative.",
-      "explanationTamil": "அடுத்து என்ன வேண்டும் என்பதில் கவனம் செலுத்துங்கள். இப்போதைய company-ஐக் குறை சொல்வது negative-ஆகத் தெரியும்." },
+      "explanationNative": "அடுத்து என்ன வேண்டும் என்பதில் கவனம் செலுத்துங்கள். இப்போதைய company-ஐக் குறை சொல்வது negative-ஆகத் தெரியும்." },
 
     { "id": "build-1", "type": "build",
-      "promptTamil": "Digital banking products-இல் நீங்கள் காட்டும் கவனம்தான் உங்கள் company-இடம் என்னை ஈர்க்கிறது.",
+      "promptNative": "Digital banking products-இல் நீங்கள் காட்டும் கவனம்தான் உங்கள் company-இடம் என்னை ஈர்க்கிறது.",
       "tiles": ["What", "attracts", "me", "to", "your", "company", "is", "your", "focus", "on", "digital", "banking", "products", "towards", "only"],
       "answer": "What attracts me to your company is your focus on digital banking products." },
 
@@ -53,15 +53,15 @@
       "options": ["I am looking for a change for growth purpose.", "I'm looking for a change to grow my career.", "I am looking for change for the growth purpose.", "I am looking for a change for growing purpose only."],
       "answer": "I'm looking for a change to grow my career.",
       "explanation": "\"For growth purpose\" is not natural English; say \"to grow my career\" or \"for career growth\".",
-      "explanationTamil": "\"For growth purpose\" இயல்பான ஆங்கிலம் இல்லை. \"To grow my career\" என்று சொல்லுங்கள்." },
+      "explanationNative": "\"For growth purpose\" இயல்பான ஆங்கிலம் இல்லை. \"To grow my career\" என்று சொல்லுங்கள்." },
 
     { "id": "choose-2", "type": "choice",
       "prompt": "The interviewer asks: \"Why should we hire you?\" Which answer is best?",
-      "promptTamil": "Interviewer \"நாங்கள் ஏன் உங்களைத் தேர்ந்தெடுக்க வேண்டும்?\" என்று கேட்கிறார். எந்த பதில் சிறந்தது?",
+      "promptNative": "Interviewer \"நாங்கள் ஏன் உங்களைத் தேர்ந்தெடுக்க வேண்டும்?\" என்று கேட்கிறார். எந்த பதில் சிறந்தது?",
       "options": ["Because I need this job very badly.", "I am ready to do any work you give.", "My experience with Spring Boot and payments matches this role well."],
       "answer": "My experience with Spring Boot and payments matches this role well.",
       "explanation": "Link your real skills to the role; that's exactly what the interviewer is checking.",
-      "explanationTamil": "உங்கள் உண்மையான skills-ஐ இந்த role-உடன் இணைத்துச் சொல்லுங்கள். Interviewer பார்ப்பது அதைத்தான்." },
+      "explanationNative": "உங்கள் உண்மையான skills-ஐ இந்த role-உடன் இணைத்துச் சொல்லுங்கள். Interviewer பார்ப்பது அதைத்தான்." },
 
     { "id": "fix-2", "type": "fix",
       "prompt": "Which is the correct way to say this?",
@@ -69,10 +69,10 @@
       "options": ["I have good knowledge on Spring Boot.", "I have good knowledge of Spring Boot.", "I am having good knowledge on Spring Boot.", "I have a good knowledges in Spring Boot."],
       "answer": "I have good knowledge of Spring Boot.",
       "explanation": "You have knowledge \"of\" a subject, not \"on\" it.",
-      "explanationTamil": "ஒரு subject பற்றிய அறிவைச் சொல்ல \"knowledge on\" அல்ல, \"knowledge of\" என்று சொல்லுங்கள்." },
+      "explanationNative": "ஒரு subject பற்றிய அறிவைச் சொல்ல \"knowledge on\" அல்ல, \"knowledge of\" என்று சொல்லுங்கள்." },
 
     { "id": "build-2", "type": "build",
-      "promptTamil": "Cloud-native products-இல் வேலை செய்யக்கூடிய ஒரு role-ஐத் தேடுகிறேன்.",
+      "promptNative": "Cloud-native products-இல் வேலை செய்யக்கூடிய ஒரு role-ஐத் தேடுகிறேன்.",
       "tiles": ["I'm", "looking", "for", "a", "role", "where", "I", "can", "work", "on", "cloud-native", "products", "searching", "itself"],
       "answer": "I'm looking for a role where I can work on cloud-native products." },
 
@@ -83,7 +83,7 @@
 
     { "id": "speak-1", "type": "speak",
       "prompt": "Answer \"Why are you leaving, and why us?\" out loud about your real situation in 4 sentences: something good about your current job, what you're looking for, and what attracts you to the new company.",
-      "promptTamil": "\"ஏன் வேலை மாறுகிறீர்கள், ஏன் எங்கள் company?\" கேள்விக்கு உங்கள் உண்மையான நிலையை வைத்து 4 வாக்கியங்களில் சத்தமாகப் பதில் சொல்லுங்கள்: இப்போதைய வேலையில் ஒரு நல்ல விஷயம், நீங்கள் தேடுவது, புதிய company-இல் உங்களை ஈர்ப்பது.",
+      "promptNative": "\"ஏன் வேலை மாறுகிறீர்கள், ஏன் எங்கள் company?\" கேள்விக்கு உங்கள் உண்மையான நிலையை வைத்து 4 வாக்கியங்களில் சத்தமாகப் பதில் சொல்லுங்கள்: இப்போதைய வேலையில் ஒரு நல்ல விஷயம், நீங்கள் தேடுவது, புதிய company-இல் உங்களை ஈர்ப்பது.",
       "suggestedPhraseIds": ["learned-a-lot", "looking-for-role", "what-attracts", "skills-match"] }
   ]
 }

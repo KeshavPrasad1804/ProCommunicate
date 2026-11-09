@@ -1,0 +1,196 @@
+{
+  "id": "meetings-01-standup-l1",
+  "unitId": "meetings-01-standup",
+  "title": "Daily stand-up",
+  "intro": "In a stand-up, keep it short: what you did yesterday, what you'll do today, and anything blocking you.",
+  "introNative": "Stand-up में बात short रखें: कल आपने क्या किया, आज क्या करेंगे, और कोई blocker है तो वह।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "yesterday-completed",
+      "text": "Yesterday I completed the login API and raised a PR for review.",
+      "native": "कल मैंने login API complete किया और review के लिए PR raise किया।",
+      "note": "Use the simple past for yesterday: \"completed\", \"raised\"."
+    },
+    {
+      "id": "today-working",
+      "text": "Today I'll be working on the unit tests for the payment service.",
+      "native": "आज मैं payment service के unit tests पर काम करूँगा।",
+      "note": "\"I'll be working on\" sounds natural for your plan for the day."
+    },
+    {
+      "id": "blocked-on",
+      "text": "I'm blocked on the API keys and need help from the DevOps team.",
+      "native": "API keys की वजह से मेरा काम रुका हुआ है और मुझे DevOps team की help चाहिए।",
+      "note": "Say what is blocking you and who can unblock it."
+    },
+    {
+      "id": "no-blockers",
+      "text": "No blockers from my side.",
+      "native": "मेरी तरफ़ से कोई blocker नहीं है।",
+      "note": "A short, common way to end your update."
+    },
+    {
+      "id": "take-offline",
+      "text": "Let's take this offline after the stand-up.",
+      "native": "इस पर stand-up के बाद अलग से बात करते हैं।",
+      "note": "\"Take it offline\" means discuss it separately, not in the group call."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "yesterday-completed"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "today-working"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "blocked-on"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "no-blockers"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "take-offline"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "Your Scrum Master asks for your update. Which opening sounds most natural?",
+      "promptNative": "Scrum Master आपका update पूछते हैं। कौन-सी शुरुआत सबसे natural लगती है?",
+      "options": [
+        "Yesterday I completed the login API and raised a PR for review.",
+        "Yesterday itself I finished login API work only.",
+        "Yesterday I was doing the login API and all."
+      ],
+      "answer": "Yesterday I completed the login API and raised a PR for review.",
+      "explanation": "Say clearly what you finished, using the simple past.",
+      "explanationNative": "आपने क्या पूरा किया, वह simple past में साफ़-साफ़ बताइए।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "आज मैं payment service के unit tests पर काम करूँगा।",
+      "tiles": [
+        "Today",
+        "I'll",
+        "be",
+        "working",
+        "on",
+        "the",
+        "unit",
+        "tests",
+        "for",
+        "the",
+        "payment",
+        "service",
+        "doing",
+        "itself"
+      ],
+      "answer": "Today I'll be working on the unit tests for the payment service."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "I'm blocked on the API keys and need help from the DevOps team.",
+      "options": [
+        "I'm blocked on the API keys and need help from the testing team.",
+        "I'm blocked on the API keys and need help from the DevOps team.",
+        "I've unblocked the API keys with help from the DevOps team."
+      ],
+      "answer": "I'm blocked on the API keys and need help from the DevOps team."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I am having one blocker in the payment module.",
+      "options": [
+        "I am having one blocker in the payment module.",
+        "I have a blocker in the payment module.",
+        "I am having a blocker in payment module.",
+        "I have one blocker on payment module itself."
+      ],
+      "answer": "I have a blocker in the payment module.",
+      "explanation": "When \"have\" means possess, don't use the -ing form: say \"I have\", not \"I am having\".",
+      "explanationNative": "जब \"have\" का मतलब 'पास होना' हो, तो -ing form इस्तेमाल न करें: \"I have\" कहें, \"I am having\" नहीं।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "A teammate starts a long technical debate during the stand-up. What do you say?",
+      "promptNative": "Stand-up के बीच में एक teammate लंबी technical बहस शुरू कर देता है। आप क्या कहेंगे?",
+      "options": [
+        "This is not the place, stop it.",
+        "Let's take this offline after the stand-up.",
+        "We will discuss about this later."
+      ],
+      "answer": "Let's take this offline after the stand-up.",
+      "explanation": "\"Take this offline\" keeps the stand-up short without sounding rude.",
+      "explanationNative": "\"Take this offline\" कहने से stand-up short रहता है और rude भी नहीं लगता।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Since two days I am working on this bug.",
+      "options": [
+        "Since two days I am working on this bug.",
+        "I've been working on this bug for two days.",
+        "I am working on this bug since two days.",
+        "I have been working on this bug since two days."
+      ],
+      "answer": "I've been working on this bug for two days.",
+      "explanation": "For something still going on, use \"I've been working\" with \"for\" and a length of time.",
+      "explanationNative": "जो काम अभी भी चल रहा है, उसके लिए \"I've been working\" के साथ \"for\" और समय की अवधि इस्तेमाल करें।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "मेरी तरफ़ से कोई blocker नहीं है।",
+      "tiles": [
+        "No",
+        "blockers",
+        "from",
+        "my",
+        "side",
+        "only",
+        "itself"
+      ],
+      "answer": "No blockers from my side."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "Let's take this offline after the stand-up.",
+      "options": [
+        "Let's take this off the list after the stand-up.",
+        "Let's talk about this after the stand-up.",
+        "Let's take this offline after the stand-up."
+      ],
+      "answer": "Let's take this offline after the stand-up."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Give your real stand-up update out loud in 3 sentences: what you completed yesterday, what you'll work on today, and any blockers.",
+      "promptNative": "अपना असली stand-up update 3 sentences में बोलकर दीजिए: कल क्या complete किया, आज किस पर काम करेंगे, और कोई blocker।",
+      "suggestedPhraseIds": [
+        "yesterday-completed",
+        "today-working",
+        "blocked-on",
+        "no-blockers"
+      ]
+    }
+  ]
+}

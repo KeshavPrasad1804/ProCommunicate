@@ -10,7 +10,10 @@ struct OnboardingView: View {
     @AppStorage(LearnerProfile.Key.target) private var target = ""
     @AppStorage(SettingsKey.dailyGoalMinutes) private var dailyGoal = 20
     @AppStorage(SettingsKey.aiTutorEnabled) private var aiTutorEnabled = false
+    @AppStorage(NativeLanguage.settingsKey) private var languageCode = NativeLanguage.tamil.rawValue
     @State private var page = 0
+
+    private var language: NativeLanguage { NativeLanguage(rawValue: languageCode) ?? .tamil }
 
     var body: some View {
         NavigationStack {
@@ -50,14 +53,21 @@ struct OnboardingView: View {
             VStack(alignment: .leading, spacing: 18) {
                 LogoMark(barLevels: LogoMark.speakingLevels).frame(width: 84, height: 84)
                 Text("Speak with confidence at work").font(.largeTitle.bold())
-                Text("ProCommunicate helps Tamil speakers speak clear, professional English in client meetings and job interviews.")
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Your language").font(.subheadline.weight(.semibold)).foregroundStyle(.secondary)
+                    Picker("Your language", selection: $languageCode) {
+                        ForEach(NativeLanguage.allCases) { Text($0.nativeName).tag($0.rawValue) }
+                    }
+                    .pickerStyle(.segmented)
+                }
+                Text("ProCommunicate helps \(language.name) speakers speak clear, professional English in client meetings and job interviews.")
                     .font(.title3)
-                Text("Client meetings மற்றும் job interviews-இல் தெளிவான, professional ஆங்கிலம் பேச உதவும் app.")
+                Text(language.text(.tagline))
                     .foregroundStyle(.secondary)
                 VStack(alignment: .leading, spacing: 12) {
                     Label("20 minutes a day: stand-up drill, review, a lesson and a call", systemImage: "sun.max.fill")
                     Label("Practice calls that feel like real phone or Teams calls", systemImage: "phone.fill")
-                    Label("Your top fixes after every call, explained in Tamil", systemImage: "checkmark.seal.fill")
+                    Label("Your top fixes after every call, explained in \(language.name)", systemImage: "checkmark.seal.fill")
                     Label("Everything stays on your iPhone, even the AI", systemImage: "lock.shield.fill")
                 }
                 .font(.subheadline)

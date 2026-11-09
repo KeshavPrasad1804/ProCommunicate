@@ -1,0 +1,200 @@
+{
+  "id": "interviews-10-hr-round-l1",
+  "unitId": "interviews-10-hr-round",
+  "title": "HR and managerial rounds",
+  "intro": "In HR and managerial rounds, answer situational questions calmly, and when you don't know something, say so and show how you'd approach it.",
+  "introNative": "HR और managerial rounds में situational सवालों का जवाब शांति से दीजिए; और जब कोई बात पता न हो, तो साफ़ बता दीजिए और दिखाइए कि आप उसे कैसे approach करेंगे।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "in-that-situation",
+      "text": "In that situation, I would first inform my manager and the client.",
+      "native": "उस situation में, मैं सबसे पहले अपने manager और client को inform करूँगा।",
+      "note": "Use \"I would\" for imagined situations."
+    },
+    {
+      "id": "havent-worked",
+      "text": "I haven't worked with Kubernetes yet, but I'd approach it by starting with the official docs.",
+      "native": "मैंने अभी तक Kubernetes पर काम नहीं किया है, लेकिन मेरा approach होगा official docs से शुरुआत करना।",
+      "note": "Be honest, then show how you would learn."
+    },
+    {
+      "id": "moment-to-think",
+      "text": "That's a good question. Let me take a moment to think.",
+      "native": "अच्छा सवाल है। मुझे एक पल सोचने दीजिए।",
+      "note": "A short pause is better than a guess."
+    },
+    {
+      "id": "prioritise",
+      "text": "I would prioritise the production issue and update the team on the other task.",
+      "native": "मैं production issue को priority दूँगा और दूसरे task के बारे में team को update करूँगा।",
+      "note": "Show how you decide what comes first."
+    },
+    {
+      "id": "relocating",
+      "text": "Yes, I'm comfortable relocating to Bengaluru for this role.",
+      "native": "हाँ, इस role के लिए Bengaluru relocate करने में मैं comfortable हूँ।",
+      "note": "Answer clearly; add conditions only if they're real."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "in-that-situation"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "havent-worked"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "moment-to-think"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "prioritise"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "relocating"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The manager asks about Kubernetes, which you've never used. Which answer is best?",
+      "promptNative": "Manager Kubernetes के बारे में पूछते हैं, जिसे आपने कभी use नहीं किया। कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "I don't know that.",
+        "Yes, I know it very well.",
+        "I haven't worked with Kubernetes yet, but I'd approach it by starting with the official docs."
+      ],
+      "answer": "I haven't worked with Kubernetes yet, but I'd approach it by starting with the official docs.",
+      "explanation": "Be honest and show how you'd learn; never claim skills you don't have.",
+      "explanationNative": "ईमानदारी से बताइए और दिखाइए कि आप कैसे सीखेंगे; जो skills आपके पास नहीं हैं, उनका दावा कभी मत कीजिए।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "उस situation में, मैं सबसे पहले अपने manager और client को inform करूँगा।",
+      "tiles": [
+        "In",
+        "that",
+        "situation,",
+        "I",
+        "would",
+        "first",
+        "inform",
+        "my",
+        "manager",
+        "and",
+        "the",
+        "client",
+        "will",
+        "intimate"
+      ],
+      "answer": "In that situation, I would first inform my manager and the client."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "That's a good question. Let me take a moment to think.",
+      "options": [
+        "That's a good question. Let me take a moment to think.",
+        "That's a good question. Let me make a note of it.",
+        "That was a good question. Let me think about it later."
+      ],
+      "answer": "That's a good question. Let me take a moment to think."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "My native is Madurai, so I will not relocate.",
+      "options": [
+        "My native is Madurai, so I will not relocate.",
+        "I'm from Madurai, so I'd prefer a role in Chennai.",
+        "My native place is Madurai, so I will not relocate.",
+        "My native is Madurai, so relocation is not possible for me only."
+      ],
+      "answer": "I'm from Madurai, so I'd prefer a role in Chennai.",
+      "explanation": "Say \"I'm from Madurai\", not \"my native is\", and state your preference politely.",
+      "explanationNative": "\"My native is\" नहीं, \"I'm from Madurai\" कहिए, और अपनी preference politely बताइए।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "The manager asks: \"You have a production issue and a sprint deadline on the same day. What would you do?\" Which answer is best?",
+      "promptNative": "Manager पूछते हैं: \"एक ही दिन आपके सामने production issue भी है और sprint deadline भी। आप क्या करेंगे?\" कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "I will do both, I will sit late night.",
+        "I would prioritise the production issue and update the team on the other task.",
+        "I will ask my manager to do the needful."
+      ],
+      "answer": "I would prioritise the production issue and update the team on the other task.",
+      "explanation": "Show clear priorities and communication, not just extra hours.",
+      "explanationNative": "साफ़ priorities और communication दिखाइए, सिर्फ़ extra hours नहीं।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I am not getting your question.",
+      "options": [
+        "I am not getting your question.",
+        "Sorry, could you rephrase the question?",
+        "I am not getting your question, sir.",
+        "I didn't got your question."
+      ],
+      "answer": "Sorry, could you rephrase the question?",
+      "explanation": "\"I am not getting your question\" sounds abrupt; politely ask the interviewer to rephrase it.",
+      "explanationNative": "\"I am not getting your question\" रूखा लगता है; interviewer से politely कहिए कि वे सवाल दूसरे तरीके से पूछें।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "हाँ, इस role के लिए Bengaluru relocate करने में मैं comfortable हूँ।",
+      "tiles": [
+        "Yes,",
+        "I'm",
+        "comfortable",
+        "relocating",
+        "to",
+        "Bengaluru",
+        "for",
+        "this",
+        "role",
+        "ok",
+        "shifting"
+      ],
+      "answer": "Yes, I'm comfortable relocating to Bengaluru for this role."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "I would prioritise the production issue and update the team on the other task.",
+      "options": [
+        "I would prioritise the production issue and update the client on the other task.",
+        "I would postpone the production issue and update the team on the other task.",
+        "I would prioritise the production issue and update the team on the other task."
+      ],
+      "answer": "I would prioritise the production issue and update the team on the other task."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Answer this managerial question out loud in 3–5 sentences, using your real experience: \"A client reports a critical bug an hour before your release. What would you do?\" If any part is new to you, say so and explain how you'd approach it.",
+      "promptNative": "इस managerial सवाल का जवाब अपने असली experience के आधार पर 3–5 sentences में बोलकर दीजिए: \"आपके release से एक घंटा पहले client एक critical bug report करता है। आप क्या करेंगे?\" अगर कोई हिस्सा आपके लिए नया है, तो साफ़ बताइए और समझाइए कि आप उसे कैसे approach करेंगे।",
+      "suggestedPhraseIds": [
+        "moment-to-think",
+        "in-that-situation",
+        "prioritise",
+        "havent-worked"
+      ]
+    }
+  ]
+}

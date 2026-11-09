@@ -1,0 +1,12 @@
+[
+ {"id": "ta1-script", "voice": "Vani", "lang": "ta", "text": "இதை English-ல எப்படி சொல்றது? project ஒரு வாரம் delay ஆகும்.", "meaning": "How do I say this in English? The project will be delayed by a week."},
+ {"id": "ta2-script", "voice": "Vani", "lang": "ta", "text": "client கிட்ட deadline extend பண்ணணும்னு எப்படி கேக்குறது?", "meaning": "How do I ask the client to extend the deadline?"},
+ {"id": "ta3-tanglish", "voice": "Rishi", "lang": "ta", "text": "naan solla vandhadhu, testing innum mudiyala, naalaikku mudichiduvom", "meaning": "What I wanted to say: testing isn't finished yet; we'll finish it tomorrow."},
+ {"id": "ta4-tanglish", "voice": "Rishi", "lang": "ta", "text": "sorry, enakku andha question puriyala, konjam explain pannunga", "meaning": "Sorry, I didn't understand that question; please explain a little."},
+ {"id": "hi1-script", "voice": "Lekha", "lang": "hi", "text": "इसे English में कैसे बोलूँ? project एक हफ्ते late होगा।", "meaning": "How do I say this in English? The project will be a week late."},
+ {"id": "hi2-script", "voice": "Lekha", "lang": "hi", "text": "client से deadline बढ़ाने के लिए कैसे पूछूँ?", "meaning": "How do I ask the client to extend the deadline?"},
+ {"id": "hi3-hinglish", "voice": "Lekha", "lang": "hi", "text": "main yeh kehna chahta tha ki testing abhi complete nahi hui, kal tak ho jayegi", "meaning": "I wanted to say testing isn't complete yet; it'll be done by tomorrow."},
+ {"id": "hi4-hinglish", "voice": "Lekha", "lang": "hi", "text": "sorry, mujhe question samajh nahi aaya, thoda explain kijiye", "meaning": "Sorry, I didn't understand the question; please explain a little."},
+ {"id": "en1-indian", "voice": "Rishi", "lang": "en", "text": "Yesterday I completed the login API and I will revert back by today itself.", "meaning": "(English: must keep 'revert back' and 'today itself' verbatim)"},
+ {"id": "en2-indian", "voice": "Aman", "lang": "en", "text": "Myself Karthik and I am having three years of experience in Java.", "meaning": "(English: must keep 'Myself' and 'I am having' verbatim)"}
+]

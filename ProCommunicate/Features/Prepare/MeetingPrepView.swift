@@ -28,11 +28,11 @@ struct MeetingPrepView: View {
     ws ::= [ \t\n]{0,10}
     """#
 
-    static let system = """
-    You are an English coach for Tamil-speaking IT professionals. The learner describes a real meeting or call they will have soon, in English, Tamil or Tanglish. \
+    static var system: String { """
+    You are an English coach for \(NativeLanguage.current.name)-speaking IT professionals. The learner describes a real meeting or call they will have soon, in English, \(NativeLanguage.current.name) or \(NativeLanguage.current.romanisedName). \
     Give 4 to 6 ready-to-say, natural, polite professional English phrases for THAT exact situation, each with a short note (in simple English) on when to use it, \
     and up to 3 short tips. Never use Indian-English phrases like revert back, do the needful, today itself, prepone or "I have one doubt".
-    """
+    """ }
 
     var body: some View {
         List {
@@ -47,7 +47,7 @@ struct MeetingPrepView: View {
             } header: {
                 Text("Your meeting")
             } footer: {
-                Text("Write in English, Tamil or Tanglish, e.g. \"naalaikku client call la delay pathi sollanum\". With a date, the day before and on the day your plan's call becomes a rehearsal of this meeting.")
+                Text("Write in English, \(NativeLanguage.current.name) or \(NativeLanguage.current.romanisedName), e.g. \"\(NativeLanguage.current.romanisedExample)\". With a date, the day before and on the day your plan's call becomes a rehearsal of this meeting.")
             }
             Section {
                 Button {

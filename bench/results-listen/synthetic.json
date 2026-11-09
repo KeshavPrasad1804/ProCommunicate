@@ -1,0 +1,254 @@
+[
+ {
+  "clip": "ta1-script",
+  "lang": "ta",
+  "said": "இதை English-ல எப்படி சொல்றது? project ஒரு வாரம் delay ஆகும்.",
+  "meaning": "How do I say this in English? The project will be delayed by a week.",
+  "whisper_auto": {
+   "text": "இதை இங்கிலிஷயில் எப்படி சொல்வது பிராய்க்கூர வாரம் திலே ஆகும்.",
+   "seconds": 6.06
+  },
+  "whisper_forced": {
+   "text": "இதை இங்கிலிஷயில் எப்படி சொல்வது பிராய்க்கூர வாரம் திலே ஆகும்.",
+   "seconds": 0.66
+  },
+  "gemma_transcribe": {
+   "text": "இதை இங்கிலீஷ் எப்படி சொல்றது ப்ரோ ஏட் ஒரு வாரம் delay ஆகுது",
+   "seconds": 0.56
+  },
+  "gemma_tutor": {
+   "text": "MEANING: You are asking how to say \"I will study English every day\" in English.\nSAY: I will study English every day.",
+   "seconds": 0.7
+  },
+  "whisper_translate": {
+   "text": "This will be delayed next week.",
+   "seconds": 0.46
+  }
+ },
+ {
+  "clip": "ta2-script",
+  "lang": "ta",
+  "said": "client கிட்ட deadline extend பண்ணணும்னு எப்படி கேக்குறது?",
+  "meaning": "How do I ask the client to extend the deadline?",
+  "whisper_auto": {
+   "text": "'க்லாயன் கிட்ட தைத்லாய்ன் ஏக்ஸ்டேன்ட் பண்ணனும்' என்று எப்படிக் கேட்குவது?",
+   "seconds": 0.83
+  },
+  "whisper_forced": {
+   "text": "'க்லாயன் கிட்ட தைத்லாய்ன் ஏக்ஸ்டேன்ட் பண்ணனும்' என்று எப்படிக் கேட்குவது?",
+   "seconds": 0.74
+  },
+  "gemma_transcribe": {
+   "text": "கிளient கிட்ட டெ்டலைன் எக்ஸ்டெண்ட் பண்ணணும்னு எப்படி கேக்குறது",
+   "seconds": 0.58
+  },
+  "gemma_tutor": {
+   "text": "MEANING: The client has extended the deadline.\nSAY: The client has extended the deadline.",
+   "seconds": 0.55
+  },
+  "whisper_translate": {
+   "text": "How to extend the deadline to the client?",
+   "seconds": 0.39
+  }
+ },
+ {
+  "clip": "ta3-tanglish",
+  "lang": "ta",
+  "said": "naan solla vandhadhu, testing innum mudiyala, naalaikku mudichiduvom",
+  "meaning": "What I wanted to say: testing isn't finished yet; we'll finish it tomorrow.",
+  "whisper_auto": {
+   "text": "Nansala Vandhadhu, testing in a MuDiala, Naleku MuDichiduvam.",
+   "seconds": 0.61
+  },
+  "whisper_forced": {
+   "text": "நான் சோல வந்தாட்டு, தேச்ட்டின் இன்னம் முடியாயல் நலைக்கும் முடிச்சிடுவம்",
+   "seconds": 0.73
+  },
+  "gemma_transcribe": {
+   "text": "நான் சலவன் வந்தத हूं टेस्टिंग इन अ মুডি ஐல",
+   "seconds": 0.48
+  },
+  "gemma_tutor": {
+   "text": "MEANING: You are asking what the phrase \"non-solar van had who testing in a moody area\" means.\nSAY: Could you please clarify what you mean by that sentence?",
+   "seconds": 0.86
+  },
+  "whisper_translate": {
+   "text": "Nansala Vandhadhu, testing in a Mu Diya La, Naleku Mu Dichiduvam.",
+   "seconds": 0.53
+  }
+ },
+ {
+  "clip": "ta4-tanglish",
+  "lang": "ta",
+  "said": "sorry, enakku andha question puriyala, konjam explain pannunga",
+  "meaning": "Sorry, I didn't understand that question; please explain a little.",
+  "whisper_auto": {
+   "text": "Sorry, Inaku and her question Puriya La, Konjum explain Panang.",
+   "seconds": 0.56
+  },
+  "whisper_forced": {
+   "text": "மன்னித்துக்கொள்ளுங்கள். அந்தப் பிரியாலா, கொஞ்சம் பெண்ணம் கொஞ்சம் செய்துவிட்டேன்.",
+   "seconds": 1.51
+  },
+  "gemma_transcribe": {
+   "text": "Sorry, enakku andha question puriyala. Konjam explain pannunga.",
+   "seconds": 0.51
+  },
+  "gemma_tutor": {
+   "text": "MEANING: You are asking for an explanation of the Tamil phrase \"konjam explain pannunga.\"\nSAY: Could you please explain that to me?",
+   "seconds": 0.75
+  },
+  "whisper_translate": {
+   "text": "Sorry, Inaku and her question Puriya La, Konjum explain Panang.",
+   "seconds": 0.45
+  }
+ },
+ {
+  "clip": "hi1-script",
+  "lang": "hi",
+  "said": "इसे English में कैसे बोलूँ? project एक हफ्ते late होगा।",
+  "meaning": "How do I say this in English? The project will be a week late.",
+  "whisper_auto": {
+   "text": "इसी इंगलिश में कैसी बोलु प्रज्यक एक हवते लेठ होगा.",
+   "seconds": 0.77
+  },
+  "whisper_forced": {
+   "text": "इसी इंगलिश में कैसी बोलु प्रज्यक एक हवते लेठ होगा.",
+   "seconds": 0.66
+  },
+  "gemma_transcribe": {
+   "text": "इस प्रोजेक्ट एक हफ्ते लेट होगा",
+   "seconds": 0.34
+  },
+  "gemma_tutor": {
+   "text": "MEANING: You are asking how to say \"project एक हफ्ते लेट हो गया\" in English.\nSAY: The project is a week late.",
+   "seconds": 0.72
+  },
+  "whisper_translate": {
+   "text": "How to say project in English will take a week.",
+   "seconds": 0.4
+  }
+ },
+ {
+  "clip": "hi2-script",
+  "lang": "hi",
+  "said": "client से deadline बढ़ाने के लिए कैसे पूछूँ?",
+  "meaning": "How do I ask the client to extend the deadline?",
+  "whisper_auto": {
+   "text": "अग़्ाँ अग़्ाँ अग़्ाँ से देडलाईं बड़ाने के लिए कैसे पुचु?",
+   "seconds": 0.88
+  },
+  "whisper_forced": {
+   "text": "अग़्ाँ अग़्ाँ अग़्ाँ से देडलाईं बड़ाने के लिए कैसे पुचु?",
+   "seconds": 0.78
+  },
+  "gemma_transcribe": {
+   "text": "client se deadline badhane ke liye kaise poochu",
+   "seconds": 0.4
+  },
+  "gemma_tutor": {
+   "text": "MEANING: You are asking how to ask a client to extend a deadline.\nSAY: \"Could we please discuss extending the deadline for this project?\"",
+   "seconds": 0.77
+  },
+  "whisper_translate": {
+   "text": "How to increase the client's deadline?",
+   "seconds": 0.42
+  }
+ },
+ {
+  "clip": "hi3-hinglish",
+  "lang": "hi",
+  "said": "main yeh kehna chahta tha ki testing abhi complete nahi hui, kal tak ho jayegi",
+  "meaning": "I wanted to say testing isn't complete yet; it'll be done by tomorrow.",
+  "whisper_auto": {
+   "text": "में यें कीनक्चाटटब तहाए की टेस्टिंग अभी खमप्लीत नहीं एच यो आई, कल तक होजे आजी.",
+   "seconds": 1.04
+  },
+  "whisper_forced": {
+   "text": "में यें कीनक्चाटटब तहाए की टेस्टिंग अभी खमप्लीत नहीं एच यो आई, कल तक होजे आजी.",
+   "seconds": 0.89
+  },
+  "gemma_transcribe": {
+   "text": "main ye kinachatata ki testing abhi complete nahi hai hu kal tak ho jayegi",
+   "seconds": 0.63
+  },
+  "gemma_tutor": {
+   "text": "MEANING: You are asking if the testing for the main year chat is complete yet.\nSAY: Has the testing for the main year chat been completed yet?",
+   "seconds": 0.85
+  },
+  "whisper_translate": {
+   "text": "The testing of the main Yale Kinokchata is not complete yet. Please come by tomorrow.",
+   "seconds": 0.44
+  }
+ },
+ {
+  "clip": "hi4-hinglish",
+  "lang": "hi",
+  "said": "sorry, mujhe question samajh nahi aaya, thoda explain kijiye",
+  "meaning": "Sorry, I didn't understand the question; please explain a little.",
+  "whisper_auto": {
+   "text": "Sorry, much question Samyaj nahi aayay.",
+   "seconds": 0.58
+  },
+  "whisper_forced": {
+   "text": "अग, मुझ क्वेस्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च्च",
+   "seconds": 10.48
+  },
+  "gemma_transcribe": {
+   "text": "Sorry much question samajh nahi e-e vai thod explain kiji",
+   "seconds": 0.5
+  },
+  "gemma_tutor": {
+   "text": "MEANING: You are asking for an explanation of the acronym \"NAAY.\"\nSAY: Could you please explain what the acronym NAAY stands for?",
+   "seconds": 0.76
+  },
+  "whisper_translate": {
+   "text": "Sorry, much question Samyaj nahi aayay. Food explain kiji ayay.",
+   "seconds": 0.5
+  }
+ },
+ {
+  "clip": "en1-indian",
+  "lang": "en",
+  "said": "Yesterday I completed the login API and I will revert back by today itself.",
+  "meaning": "(English: must keep 'revert back' and 'today itself' verbatim)",
+  "whisper_auto": {
+   "text": "Yesterday I completed the login API and I will revert back by today itself.",
+   "seconds": 0.54
+  },
+  "whisper_forced": {
+   "text": "Yesterday I completed the login API and I will revert back by today itself.",
+   "seconds": 0.43
+  },
+  "gemma_transcribe": {
+   "text": "yesterday i completed the login api and i will revert back by today itself",
+   "seconds": 0.46
+  },
+  "gemma_tutor": {
+   "text": "MEANING: You completed the login API yesterday and will revert back by today.\nSAY: I completed the login API yesterday and will revert back by today.",
+   "seconds": 0.72
+  }
+ },
+ {
+  "clip": "en2-indian",
+  "lang": "en",
+  "said": "Myself Karthik and I am having three years of experience in Java.",
+  "meaning": "(English: must keep 'Myself' and 'I am having' verbatim)",
+  "whisper_auto": {
+   "text": "Myself Kartik and I am having 3 years of experience in Java.",
+   "seconds": 0.54
+  },
+  "whisper_forced": {
+   "text": "Myself Kartik and I am having 3 years of experience in Java.",
+   "seconds": 0.45
+  },
+  "gemma_transcribe": {
+   "text": "my self karthik and i am having three years of experience in java",
+   "seconds": 0.43
+  },
+  "gemma_tutor": {
+   "text": "MEANING: You are asking about the meaning of the phrase \"my self\".\nSAY: You can simply say \"I\" or \"myself\" depending on the context.",
+   "seconds": 0.74
+  }
+ }
+]

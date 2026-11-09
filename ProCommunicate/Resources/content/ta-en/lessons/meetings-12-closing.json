@@ -3,37 +3,37 @@
   "unitId": "meetings-12-closing",
   "title": "Summarising and closing",
   "intro": "End every call with a quick summary, clear action items with owners, and a polite goodbye.",
-  "introTamil": "ஒவ்வொரு call-ஐயும் ஒரு சிறு summary, யார் என்ன செய்வார்கள் என்ற action items, மரியாதையான விடைபெறுதலுடன் முடியுங்கள்.",
-  "tamilReviewed": false,
+  "introNative": "ஒவ்வொரு call-ஐயும் ஒரு சிறு summary, யார் என்ன செய்வார்கள் என்ற action items, மரியாதையான விடைபெறுதலுடன் முடியுங்கள்.",
+  "nativeReviewed": false,
   "phrases": [
     {
       "id": "to-summarise",
       "text": "To summarise, we've agreed to go live on the 5th.",
-      "tamil": "சுருக்கமாகச் சொன்னால், 5-ஆம் தேதி go-live செய்ய ஒப்புக்கொண்டிருக்கிறோம்.",
+      "native": "சுருக்கமாகச் சொன்னால், 5-ஆம் தேதி go-live செய்ய ஒப்புக்கொண்டிருக்கிறோம்.",
       "note": "Signal the end of the call with a one-line summary."
     },
     {
       "id": "action-items",
       "text": "The action items are: we'll fix the export bug, and you'll share the test accounts.",
-      "tamil": "Action items: நாங்கள் export bug-ஐச் சரிசெய்வோம், நீங்கள் test accounts-ஐ அனுப்புவீர்கள்.",
+      "native": "Action items: நாங்கள் export bug-ஐச் சரிசெய்வோம், நீங்கள் test accounts-ஐ அனுப்புவீர்கள்.",
       "note": "Every action item needs an owner."
     },
     {
       "id": "send-minutes",
       "text": "I'll send the minutes after the call.",
-      "tamil": "Call முடிந்ததும் meeting minutes அனுப்புகிறேன்.",
+      "native": "Call முடிந்ததும் meeting minutes அனுப்புகிறேன்.",
       "note": "\"Minutes\" are the written notes of a meeting."
     },
     {
       "id": "anything-else",
       "text": "Is there anything else we need to cover today?",
-      "tamil": "இன்று பேச வேண்டியது வேறு ஏதாவது இருக்கிறதா?",
+      "native": "இன்று பேச வேண்டியது வேறு ஏதாவது இருக்கிறதா?",
       "note": "Give everyone a last chance to speak."
     },
     {
       "id": "thanks-time",
       "text": "Thanks for your time, everyone. Speak to you on Thursday.",
-      "tamil": "நேரம் ஒதுக்கியதற்கு எல்லோருக்கும் நன்றி. வியாழக்கிழமை பேசலாம்.",
+      "native": "நேரம் ஒதுக்கியதற்கு எல்லோருக்கும் நன்றி. வியாழக்கிழமை பேசலாம்.",
       "note": "Mention the next meeting so everyone knows what comes next."
     }
   ],
@@ -67,7 +67,7 @@
       "id": "choose-1",
       "type": "choice",
       "prompt": "The call is almost over. How do you start wrapping up?",
-      "promptTamil": "Call கிட்டத்தட்ட முடிந்துவிட்டது. எப்படி முடிக்கத் தொடங்குவீர்கள்?",
+      "promptNative": "Call கிட்டத்தட்ட முடிந்துவிட்டது. எப்படி முடிக்கத் தொடங்குவீர்கள்?",
       "options": [
         "Okay, that's all, bye.",
         "To summarise, we've agreed to go live on the 5th.",
@@ -75,12 +75,12 @@
       ],
       "answer": "To summarise, we've agreed to go live on the 5th.",
       "explanation": "A short summary makes sure everyone leaves with the same understanding.",
-      "explanationTamil": "ஒரு சிறு summary சொன்னால், எல்லோரும் ஒரே புரிதலுடன் call-ஐ விட்டுச் செல்வார்கள்."
+      "explanationNative": "ஒரு சிறு summary சொன்னால், எல்லோரும் ஒரே புரிதலுடன் call-ஐ விட்டுச் செல்வார்கள்."
     },
     {
       "id": "build-1",
       "type": "build",
-      "promptTamil": "Call முடிந்ததும் meeting minutes அனுப்புகிறேன்.",
+      "promptNative": "Call முடிந்ததும் meeting minutes அனுப்புகிறேன்.",
       "tiles": [
         "I'll",
         "send",
@@ -118,13 +118,13 @@
       ],
       "answer": "Please share your feedback on the minutes.",
       "explanation": "\"Feedback\" is uncountable, so it never takes a plural \"s\".",
-      "explanationTamil": "\"Feedback\"-க்குப் பன்மை (s) கிடையாது. \"Your feedback\" என்று சொல்லுங்கள்."
+      "explanationNative": "\"Feedback\"-க்குப் பன்மை (s) கிடையாது. \"Your feedback\" என்று சொல்லுங்கள்."
     },
     {
       "id": "choose-2",
       "type": "choice",
       "prompt": "You want to make sure the client knows who is doing what after the call. What do you say?",
-      "promptTamil": "Call-க்குப் பிறகு யார் என்ன செய்ய வேண்டும் என்று client-க்குத் தெளிவாகத் தெரிய வேண்டும். என்ன சொல்வீர்கள்?",
+      "promptNative": "Call-க்குப் பிறகு யார் என்ன செய்ய வேண்டும் என்று client-க்குத் தெளிவாகத் தெரிய வேண்டும். என்ன சொல்வீர்கள்?",
       "options": [
         "Both sides will do the needful.",
         "The action items are: we'll fix the export bug, and you'll share the test accounts.",
@@ -132,7 +132,7 @@
       ],
       "answer": "The action items are: we'll fix the export bug, and you'll share the test accounts.",
       "explanation": "Name each task and who owns it.",
-      "explanationTamil": "ஒவ்வொரு வேலையையும், அதை யார் செய்வார்கள் என்பதையும் தெளிவாகச் சொல்லுங்கள்."
+      "explanationNative": "ஒவ்வொரு வேலையையும், அதை யார் செய்வார்கள் என்பதையும் தெளிவாகச் சொல்லுங்கள்."
     },
     {
       "id": "fix-2",
@@ -147,12 +147,12 @@
       ],
       "answer": "Please send us your comments by Friday.",
       "explanation": "\"Revert\" doesn't mean \"reply\" in international English; simply ask them to send their comments.",
-      "explanationTamil": "சர்வதேச ஆங்கிலத்தில் \"revert\" என்றால் \"பதில் அனுப்பு\" இல்லை. \"Send us your comments\" என்று சொல்லுங்கள்."
+      "explanationNative": "சர்வதேச ஆங்கிலத்தில் \"revert\" என்றால் \"பதில் அனுப்பு\" இல்லை. \"Send us your comments\" என்று சொல்லுங்கள்."
     },
     {
       "id": "build-2",
       "type": "build",
-      "promptTamil": "நேரம் ஒதுக்கியதற்கு எல்லோருக்கும் நன்றி.",
+      "promptNative": "நேரம் ஒதுக்கியதற்கு எல்லோருக்கும் நன்றி.",
       "tiles": [
         "Thanks",
         "for",
@@ -179,7 +179,7 @@
       "id": "speak-1",
       "type": "speak",
       "prompt": "Think of your last client call. Out loud, close it in 3–4 sentences: summarise the decision, list the action items with owners, and say what happens next.",
-      "promptTamil": "உங்கள் கடைசி client call-ஐ நினைத்துக்கொள்ளுங்கள். 3–4 வாக்கியங்களில் அதை முடியுங்கள்: முடிவைச் சுருக்கமாகச் சொல்லி, action items-ஐயும் யார் செய்வார்கள் என்பதையும் சொல்லி, அடுத்து என்ன என்று சொல்லுங்கள்.",
+      "promptNative": "உங்கள் கடைசி client call-ஐ நினைத்துக்கொள்ளுங்கள். 3–4 வாக்கியங்களில் அதை முடியுங்கள்: முடிவைச் சுருக்கமாகச் சொல்லி, action items-ஐயும் யார் செய்வார்கள் என்பதையும் சொல்லி, அடுத்து என்ன என்று சொல்லுங்கள்.",
       "suggestedPhraseIds": [
         "to-summarise",
         "action-items",

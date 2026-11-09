@@ -8,6 +8,7 @@ struct ProCommunicateApp: App {
     @State private var router = AppRouter()
     /// The animated intro plays once per launch, over the app (which loads underneath).
     @State private var showSplash = !UserDefaults.standard.bool(forKey: "skipSplash")
+    @AppStorage(NativeLanguage.settingsKey) private var language = NativeLanguage.tamil.rawValue
     /// The on-phone database. If it ever can't be opened (for example a failed upgrade), the app still
     /// starts with a temporary in-memory store instead of crashing.
     private let container: ModelContainer = {
@@ -42,6 +43,14 @@ struct ProCommunicateApp: App {
                 ReportProcessor.shared.configure(container: container)
                 SpeechReadiness.preloadInBackground()
                 RecordingCleanup.run(in: container.mainContext)
+            }
+            .onChange(of: language) { _, _ in
+                // Load the new language's course; cards and AI-written content follow it.
+                courseState = CourseLoadState.load()
+                if case .loaded(let course) = courseState {
+                    LearningStore.relocalizeCards(lessons: TodayView.loadLessons(for: course), in: container.mainContext)
+                }
+                AdaptiveStore.shared.update { $0.phrase = nil }
             }
         }
         .modelContainer(container)

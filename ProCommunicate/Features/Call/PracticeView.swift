@@ -34,13 +34,13 @@ struct PracticeView: View {
                         MeetingPrepView()
                     } label: {
                         FeatureRow(systemImage: "calendar.badge.clock", title: "I have a meeting tomorrow",
-                                   detail: "Describe it in English, Tamil or Tanglish. Get a cheat sheet and a rehearsal call.")
+                                   detail: "Describe it in English, \(NativeLanguage.current.name) or \(NativeLanguage.current.romanisedName). Get a cheat sheet and a rehearsal call.")
                     }
                     NavigationLink {
-                        AskTamilView()
+                        AskNativeView()
                     } label: {
-                        FeatureRow(systemImage: "character.bubble.fill", title: "Ask in Tamil",
-                                   detail: "Type in Tamil or Tanglish, get professional English to use.")
+                        FeatureRow(systemImage: "character.bubble.fill", title: "Ask in \(NativeLanguage.current.name)",
+                                   detail: "Type in \(NativeLanguage.current.name) or \(NativeLanguage.current.romanisedName), get professional English to use.")
                     }
                 }
                 Section {

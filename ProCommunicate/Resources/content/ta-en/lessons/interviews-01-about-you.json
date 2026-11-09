@@ -3,23 +3,23 @@
   "unitId": "interviews-01-about-you",
   "title": "Tell me about yourself",
   "intro": "When they say \"Tell me about yourself\", tell a short story: your role, what you do now, and what you want next.",
-  "introTamil": "\"Tell me about yourself\" என்று கேட்டால், சுருக்கமாகச் சொல்லுங்கள்: உங்கள் role, இப்போது என்ன செய்கிறீர்கள், அடுத்து என்ன விரும்புகிறீர்கள்.",
-  "tamilReviewed": false,
+  "introNative": "\"Tell me about yourself\" என்று கேட்டால், சுருக்கமாகச் சொல்லுங்கள்: உங்கள் role, இப்போது என்ன செய்கிறீர்கள், அடுத்து என்ன விரும்புகிறீர்கள்.",
+  "nativeReviewed": false,
   "phrases": [
     { "id": "java-dev", "text": "I'm a Java developer with three years of experience in building backend services.",
-      "tamil": "Backend services உருவாக்குவதில் மூன்று வருட experience உள்ள Java developer நான்.",
+      "native": "Backend services உருவாக்குவதில் மூன்று வருட experience உள்ள Java developer நான்.",
       "note": "Start with your role and experience, not your name and native place." },
     { "id": "currently-work", "text": "Currently, I work at Infosys in Chennai on a banking project.",
-      "tamil": "இப்போது சென்னையில் உள்ள Infosys-இல் ஒரு banking project-இல் வேலை செய்கிறேன்.",
+      "native": "இப்போது சென்னையில் உள்ள Infosys-இல் ஒரு banking project-இல் வேலை செய்கிறேன்.",
       "note": "Use the simple present \"I work\" for your current job." },
     { "id": "spring-boot", "text": "I mainly work with Spring Boot, microservices and AWS.",
-      "tamil": "நான் பெரும்பாலும் Spring Boot, microservices, AWS-இல் வேலை செய்கிறேன்.",
+      "native": "நான் பெரும்பாலும் Spring Boot, microservices, AWS-இல் வேலை செய்கிறேன்.",
       "note": "Name two or three key skills that match the job description." },
     { "id": "graduated", "text": "I graduated in computer science from Anna University in 2021.",
-      "tamil": "2021-இல் Anna University-இல் computer science-இல் பட்டம் பெற்றேன்.",
+      "native": "2021-இல் Anna University-இல் computer science-இல் பட்டம் பெற்றேன்.",
       "note": "Say \"graduated\", never \"passed out\", which means fainted." },
     { "id": "next-step", "text": "Now I'm looking to grow into a senior role with more design work.",
-      "tamil": "இப்போது அதிக design வேலை உள்ள ஒரு senior role-க்கு வளர விரும்புகிறேன்.",
+      "native": "இப்போது அதிக design வேலை உள்ள ஒரு senior role-க்கு வளர விரும்புகிறேன்.",
       "note": "End with what you want next; it leads into \"Why this job?\"" }
   ],
   "steps": [
@@ -31,14 +31,14 @@
 
     { "id": "choose-1", "type": "choice",
       "prompt": "The interviewer says: \"Tell me about yourself.\" Which answer is best?",
-      "promptTamil": "Interviewer \"Tell me about yourself\" என்கிறார். எந்த பதில் சிறந்தது?",
+      "promptNative": "Interviewer \"Tell me about yourself\" என்கிறார். எந்த பதில் சிறந்தது?",
       "options": ["Myself Karthik, my native is Madurai, my father is a farmer.", "I'm a Java developer with three years of experience in building backend services.", "I am Karthik. I have done B.E. and I am a hard worker."],
       "answer": "I'm a Java developer with three years of experience in building backend services.",
       "explanation": "Start with your professional identity; family details and native place are not needed.",
-      "explanationTamil": "உங்கள் வேலை, experience-இல் இருந்து தொடங்குங்கள். குடும்பம், சொந்த ஊர் விவரங்கள் தேவையில்லை." },
+      "explanationNative": "உங்கள் வேலை, experience-இல் இருந்து தொடங்குங்கள். குடும்பம், சொந்த ஊர் விவரங்கள் தேவையில்லை." },
 
     { "id": "build-1", "type": "build",
-      "promptTamil": "இப்போது சென்னையில் உள்ள Infosys-இல் ஒரு banking project-இல் வேலை செய்கிறேன்.",
+      "promptNative": "இப்போது சென்னையில் உள்ள Infosys-இல் ஒரு banking project-இல் வேலை செய்கிறேன்.",
       "tiles": ["Currently,", "I", "work", "at", "Infosys", "in", "Chennai", "on", "a", "banking", "project", "myself", "working"],
       "answer": "Currently, I work at Infosys in Chennai on a banking project." },
 
@@ -53,15 +53,15 @@
       "options": ["Myself Priya, and I am having 3 years experience.", "I'm Priya, and I have three years of experience.", "Myself Priya, and I have 3 years experience.", "I am Priya, and I am having three years of experience."],
       "answer": "I'm Priya, and I have three years of experience.",
       "explanation": "Say \"I'm Priya\", not \"Myself Priya\", and \"I have three years of experience\", not \"I am having\".",
-      "explanationTamil": "\"Myself Priya\" தவறு; \"I'm Priya\" என்று சொல்லுங்கள். Experience-க்கு \"I am having\" அல்ல, \"I have … of experience\" என்று சொல்லுங்கள்." },
+      "explanationNative": "\"Myself Priya\" தவறு; \"I'm Priya\" என்று சொல்லுங்கள். Experience-க்கு \"I am having\" அல்ல, \"I have … of experience\" என்று சொல்லுங்கள்." },
 
     { "id": "choose-2", "type": "choice",
       "prompt": "You've finished your introduction. How do you end it? Which answer is best?",
-      "promptTamil": "உங்கள் அறிமுகத்தைச் சொல்லி முடித்துவிட்டீர்கள். எப்படி முடிப்பீர்கள்? எந்த பதில் சிறந்தது?",
+      "promptNative": "உங்கள் அறிமுகத்தைச் சொல்லி முடித்துவிட்டீர்கள். எப்படி முடிப்பீர்கள்? எந்த பதில் சிறந்தது?",
       "options": ["That's all about me.", "I am ready for any role, any company.", "Now I'm looking to grow into a senior role with more design work."],
       "answer": "Now I'm looking to grow into a senior role with more design work.",
       "explanation": "End with your next goal, so the interviewer knows why you're here.",
-      "explanationTamil": "அடுத்த goal-ஐச் சொல்லி முடியுங்கள். நீங்கள் ஏன் இந்த interview-க்கு வந்தீர்கள் என்று interviewer-க்குப் புரியும்." },
+      "explanationNative": "அடுத்த goal-ஐச் சொல்லி முடியுங்கள். நீங்கள் ஏன் இந்த interview-க்கு வந்தீர்கள் என்று interviewer-க்குப் புரியும்." },
 
     { "id": "fix-2", "type": "fix",
       "prompt": "Which is the correct way to say this?",
@@ -69,10 +69,10 @@
       "options": ["I passed out in 2021 from Anna University.", "I graduated from Anna University in 2021.", "I passed out from Anna University in 2021 itself.", "I was passed out from Anna University in 2021."],
       "answer": "I graduated from Anna University in 2021.",
       "explanation": "\"Passed out\" means fainted; to talk about finishing your degree, say \"I graduated\".",
-      "explanationTamil": "\"Passed out\" என்றால் மயங்கி விழுவது. படிப்பை முடித்ததைச் சொல்ல \"I graduated\" என்று சொல்லுங்கள்." },
+      "explanationNative": "\"Passed out\" என்றால் மயங்கி விழுவது. படிப்பை முடித்ததைச் சொல்ல \"I graduated\" என்று சொல்லுங்கள்." },
 
     { "id": "build-2", "type": "build",
-      "promptTamil": "நான் பெரும்பாலும் Spring Boot, microservices, AWS-இல் வேலை செய்கிறேன்.",
+      "promptNative": "நான் பெரும்பாலும் Spring Boot, microservices, AWS-இல் வேலை செய்கிறேன்.",
       "tiles": ["I", "mainly", "work", "with", "Spring", "Boot,", "microservices", "and", "AWS", "only", "having"],
       "answer": "I mainly work with Spring Boot, microservices and AWS." },
 
@@ -83,7 +83,7 @@
 
     { "id": "speak-1", "type": "speak",
       "prompt": "Answer \"Tell me about yourself\" out loud about your real background in 4–5 sentences: your role and experience, your current company, key skills, and what you want next.",
-      "promptTamil": "\"Tell me about yourself\" கேள்விக்கு உங்கள் உண்மையான background பற்றி 4–5 வாக்கியங்களில் சத்தமாகப் பதில் சொல்லுங்கள்: role, experience, இப்போதைய company, முக்கிய skills, அடுத்த goal.",
+      "promptNative": "\"Tell me about yourself\" கேள்விக்கு உங்கள் உண்மையான background பற்றி 4–5 வாக்கியங்களில் சத்தமாகப் பதில் சொல்லுங்கள்: role, experience, இப்போதைய company, முக்கிய skills, அடுத்த goal.",
       "suggestedPhraseIds": ["java-dev", "currently-work", "spring-boot", "next-step"] }
   ]
 }

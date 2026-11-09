@@ -107,7 +107,7 @@ struct LessonPlayerView: View {
             }
         case .choice:
             VStack(alignment: .leading, spacing: 20) {
-                StepTitle(kicker: "Choose the best reply", text: step.prompt ?? "", tamil: step.promptTamil)
+                StepTitle(kicker: "Choose the best reply", text: step.prompt ?? "", native: step.promptNative)
                 OptionsList(options: step.options ?? [], selection: $answer, result: session.lastResult, locked: locked)
             }
         case .listen:

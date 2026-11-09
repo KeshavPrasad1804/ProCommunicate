@@ -367,6 +367,11 @@ Tuning after the iPhone tests: reply time, turn-end silence, memory with Whisper
   - When: foreground only, after 4 s idle, never during a call or a report check, with a 90 s limit, and it unloads afterwards.
   - Where: the results are cached in `Application Support/Adaptive/content.json`.
   - Checked: verified on the iPhone 15. On the Mac each job takes 0.5–2.5 s.
+- **Languages (built 2026-11-09): Tamil and Hindi.** `NativeLanguage` (Settings → Language, or onboarding) picks the content folder `content/<code>-en/`, which holds the course, lessons, scenarios and `rules.json` (the mistake notes).
+  - **Shared:** the English side is the same for every language. `tools/build_language_pack.py` builds a pack from the Tamil pack's English plus `tools/translations/<code>/`.
+  - **Language-aware:** prompts, Ask in <language>, the date words and the script checks.
+  - **Switching:** review cards are rewritten in the new language; progress is kept.
+  - **Hindi checked on Gemma:** see `bench/HINDI_RESULTS.md`. The content still needs a native review (`HINDI_REVIEW.md`).
 - **Storage:** call audio older than 60 days (configurable) is deleted at launch; starred recordings and mistake clips are kept.
 
 ## 8. Open decisions (to settle before or during Phase 0)

@@ -3,23 +3,23 @@
   "unitId": "interviews-05-conflict",
   "title": "Teamwork and conflict",
   "intro": "When asked about conflict, show that you disagreed respectfully, listened, and found a solution together.",
-  "introTamil": "Conflict பற்றிக் கேட்டால், மரியாதையுடன் கருத்து வேறுபட்டீர்கள், கவனமாகக் கேட்டீர்கள், சேர்ந்து தீர்வு கண்டீர்கள் என்று காட்டுங்கள்.",
-  "tamilReviewed": false,
+  "introNative": "Conflict பற்றிக் கேட்டால், மரியாதையுடன் கருத்து வேறுபட்டீர்கள், கவனமாகக் கேட்டீர்கள், சேர்ந்து தீர்வு கண்டீர்கள் என்று காட்டுங்கள்.",
+  "nativeReviewed": false,
   "phrases": [
     { "id": "disagreement-about", "text": "We had a disagreement about whether to release before the testing was complete.",
-      "tamil": "Testing முடிவதற்கு முன் release செய்யலாமா என்பதில் எங்களுக்குள் கருத்து வேறுபாடு இருந்தது.",
+      "native": "Testing முடிவதற்கு முன் release செய்யலாமா என்பதில் எங்களுக்குள் கருத்து வேறுபாடு இருந்தது.",
       "note": "Describe the issue, not the person." },
     { "id": "understood-view", "text": "I listened to understand his point of view first.",
-      "tamil": "முதலில் அவருடைய கருத்தைப் புரிந்துகொள்ள கவனமாகக் கேட்டேன்.",
+      "native": "முதலில் அவருடைய கருத்தைப் புரிந்துகொள்ள கவனமாகக் கேட்டேன்.",
       "note": "Interviewers want to see that you listen before you argue." },
     { "id": "i-suggested", "text": "I suggested we release the core features first and the rest a week later.",
-      "tamil": "முக்கிய features-ஐ முதலில் release செய்து, மீதியை ஒரு வாரம் கழித்து release செய்யலாம் என்று பரிந்துரைத்தேன்.",
+      "native": "முக்கிய features-ஐ முதலில் release செய்து, மீதியை ஒரு வாரம் கழித்து release செய்யலாம் என்று பரிந்துரைத்தேன்.",
       "note": "After \"suggested\", use \"we\" + base verb: \"I suggested we release…\"" },
     { "id": "looked-at-data", "text": "We looked at the defect data together instead of arguing.",
-      "tamil": "வாதம் செய்வதற்குப் பதிலாக, defect data-வை சேர்ந்து பார்த்தோம்.",
+      "native": "வாதம் செய்வதற்குப் பதிலாக, defect data-வை சேர்ந்து பார்த்தோம்.",
       "note": "Data turns a personal argument into a team decision." },
     { "id": "agreed-on-plan", "text": "In the end, we agreed on a plan, and we still work well together.",
-      "tamil": "கடைசியில் ஒரு plan-க்கு ஒப்புக்கொண்டோம்; இப்போதும் நாங்கள் நன்றாகச் சேர்ந்து வேலை செய்கிறோம்.",
+      "native": "கடைசியில் ஒரு plan-க்கு ஒப்புக்கொண்டோம்; இப்போதும் நாங்கள் நன்றாகச் சேர்ந்து வேலை செய்கிறோம்.",
       "note": "End on a positive note about the working relationship." }
   ],
   "steps": [
@@ -31,14 +31,14 @@
 
     { "id": "choose-1", "type": "choice",
       "prompt": "The interviewer asks: \"Tell me about a time you disagreed with a colleague.\" Which answer is best?",
-      "promptTamil": "Interviewer \"ஒரு colleague-உடன் கருத்து வேறுபட்ட ஒரு சந்தர்ப்பத்தைச் சொல்லுங்கள்\" என்கிறார். எந்த பதில் சிறந்தது?",
+      "promptNative": "Interviewer \"ஒரு colleague-உடன் கருத்து வேறுபட்ட ஒரு சந்தர்ப்பத்தைச் சொல்லுங்கள்\" என்கிறார். எந்த பதில் சிறந்தது?",
       "options": ["I never had any conflict with anyone.", "We had a disagreement about whether to release before the testing was complete.", "My team lead was wrong, so I escalated to the manager."],
       "answer": "We had a disagreement about whether to release before the testing was complete.",
       "explanation": "Give a real, work-related disagreement; \"never\" sounds unrealistic and blaming sounds negative.",
-      "explanationTamil": "வேலை தொடர்பான உண்மையான கருத்து வேறுபாட்டைச் சொல்லுங்கள். \"Never\" நம்பும்படி இல்லை; பிறரைக் குறை சொல்வது negative-ஆகத் தெரியும்." },
+      "explanationNative": "வேலை தொடர்பான உண்மையான கருத்து வேறுபாட்டைச் சொல்லுங்கள். \"Never\" நம்பும்படி இல்லை; பிறரைக் குறை சொல்வது negative-ஆகத் தெரியும்." },
 
     { "id": "build-1", "type": "build",
-      "promptTamil": "வாதம் செய்வதற்குப் பதிலாக, defect data-வை சேர்ந்து பார்த்தோம்.",
+      "promptNative": "வாதம் செய்வதற்குப் பதிலாக, defect data-வை சேர்ந்து பார்த்தோம்.",
       "tiles": ["We", "looked", "at", "the", "defect", "data", "together", "instead", "of", "arguing", "fighting", "itself"],
       "answer": "We looked at the defect data together instead of arguing." },
 
@@ -53,15 +53,15 @@
       "options": ["I suggested him to release the core features first.", "I suggested that we release the core features first.", "I suggested to him to release the core features first.", "I suggested him that we release the core features first."],
       "answer": "I suggested that we release the core features first.",
       "explanation": "Don't say \"suggested him to\"; say \"I suggested that we…\" or \"I suggested releasing…\".",
-      "explanationTamil": "\"Suggested him to\" தவறு. \"I suggested that we…\" என்று சொல்லுங்கள்." },
+      "explanationNative": "\"Suggested him to\" தவறு. \"I suggested that we…\" என்று சொல்லுங்கள்." },
 
     { "id": "choose-2", "type": "choice",
       "prompt": "How do you end your conflict story? Which answer is best?",
-      "promptTamil": "உங்கள் conflict கதையை எப்படி முடிப்பீர்கள்? எந்த பதில் சிறந்தது?",
+      "promptNative": "உங்கள் conflict கதையை எப்படி முடிப்பீர்கள்? எந்த பதில் சிறந்தது?",
       "options": ["Finally, he accepted that I was correct.", "After that, I stopped talking to him about it.", "In the end, we agreed on a plan, and we still work well together."],
       "answer": "In the end, we agreed on a plan, and we still work well together.",
       "explanation": "A good ending shows a shared decision and a healthy working relationship.",
-      "explanationTamil": "சேர்ந்து எடுத்த முடிவும் நல்ல வேலை உறவும் தெரியும்படி முடிப்பது சிறந்தது." },
+      "explanationNative": "சேர்ந்து எடுத்த முடிவும் நல்ல வேலை உறவும் தெரியும்படி முடிப்பது சிறந்தது." },
 
     { "id": "fix-2", "type": "fix",
       "prompt": "Which is the correct way to say this?",
@@ -69,10 +69,10 @@
       "options": ["He was not agreeing for my idea.", "He didn't agree with my idea.", "He was not agreeing with my idea only.", "He didn't agreed to my idea."],
       "answer": "He didn't agree with my idea.",
       "explanation": "Use the simple past \"didn't agree\", and say \"agree with\" an idea or a person.",
-      "explanationTamil": "Simple past-இல் \"didn't agree\" என்று சொல்லுங்கள். ஒரு கருத்துக்கு \"agree for\" அல்ல, \"agree with\" வரும்." },
+      "explanationNative": "Simple past-இல் \"didn't agree\" என்று சொல்லுங்கள். ஒரு கருத்துக்கு \"agree for\" அல்ல, \"agree with\" வரும்." },
 
     { "id": "build-2", "type": "build",
-      "promptTamil": "முக்கிய features-ஐ முதலில் release செய்து, மீதியை ஒரு வாரம் கழித்து release செய்யலாம் என்று பரிந்துரைத்தேன்.",
+      "promptNative": "முக்கிய features-ஐ முதலில் release செய்து, மீதியை ஒரு வாரம் கழித்து release செய்யலாம் என்று பரிந்துரைத்தேன்.",
       "tiles": ["I", "suggested", "we", "release", "the", "core", "features", "first", "and", "the", "rest", "a", "week", "later", "him", "to"],
       "answer": "I suggested we release the core features first and the rest a week later." },
 
@@ -83,7 +83,7 @@
 
     { "id": "speak-1", "type": "speak",
       "prompt": "Describe a real disagreement from your work out loud in 4–5 sentences: what it was about, how you listened, what you suggested, and how it ended.",
-      "promptTamil": "உங்கள் வேலையில் நடந்த ஒரு உண்மையான கருத்து வேறுபாட்டை 4–5 வாக்கியங்களில் சத்தமாகச் சொல்லுங்கள்: எதைப் பற்றி, எப்படிக் கேட்டீர்கள், என்ன பரிந்துரைத்தீர்கள், எப்படி முடிந்தது.",
+      "promptNative": "உங்கள் வேலையில் நடந்த ஒரு உண்மையான கருத்து வேறுபாட்டை 4–5 வாக்கியங்களில் சத்தமாகச் சொல்லுங்கள்: எதைப் பற்றி, எப்படிக் கேட்டீர்கள், என்ன பரிந்துரைத்தீர்கள், எப்படி முடிந்தது.",
       "suggestedPhraseIds": ["disagreement-about", "understood-view", "i-suggested", "agreed-on-plan"] }
   ]
 }

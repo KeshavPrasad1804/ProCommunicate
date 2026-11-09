@@ -3,37 +3,37 @@
   "unitId": "meetings-07-disagree",
   "title": "Agreeing, disagreeing and pushing back",
   "intro": "You can disagree with a client and still sound respectful: acknowledge their view, give your reason, and offer an option.",
-  "introTamil": "Client-உடன் மரியாதையாகவே கருத்து வேறுபடலாம்: அவர் கருத்தை ஏற்று, உங்கள் காரணத்தைச் சொல்லி, ஒரு மாற்று வழியைச் சொல்லுங்கள்.",
-  "tamilReviewed": false,
+  "introNative": "Client-உடன் மரியாதையாகவே கருத்து வேறுபடலாம்: அவர் கருத்தை ஏற்று, உங்கள் காரணத்தைச் சொல்லி, ஒரு மாற்று வழியைச் சொல்லுங்கள்.",
+  "nativeReviewed": false,
   "phrases": [
     {
       "id": "see-point",
       "text": "I see your point, but adding this now could affect the release date.",
-      "tamil": "நீங்கள் சொல்வது புரிகிறது, ஆனால் இதை இப்போது சேர்த்தால் release தேதி பாதிக்கப்படலாம்.",
+      "native": "நீங்கள் சொல்வது புரிகிறது, ஆனால் இதை இப்போது சேர்த்தால் release தேதி பாதிக்கப்படலாம்.",
       "note": "Acknowledge first, then add \"but\" and your reason."
     },
     {
       "id": "different-approach",
       "text": "I'd suggest a different approach: we could cache the results instead.",
-      "tamil": "நான் வேறு ஒரு வழியைப் பரிந்துரைக்கிறேன்: அதற்குப் பதிலாக results-ஐ cache செய்யலாம்.",
+      "native": "நான் வேறு ஒரு வழியைப் பரிந்துரைக்கிறேன்: அதற்குப் பதிலாக results-ஐ cache செய்யலாம்.",
       "note": "\"I'd suggest\" is softer than \"You should\"."
     },
     {
       "id": "difficult-because",
       "text": "That may be difficult because the legacy system doesn't support it.",
-      "tamil": "அது கடினமாக இருக்கலாம், ஏனெனில் legacy system அதை support செய்யாது.",
+      "native": "அது கடினமாக இருக்கலாம், ஏனெனில் legacy system அதை support செய்யாது.",
       "note": "\"That may be difficult\" is a polite no, with a reason."
     },
     {
       "id": "completely-agree",
       "text": "I completely agree with you on the security requirements.",
-      "tamil": "Security requirements விஷயத்தில் உங்களுடன் முழுமையாக ஒத்துப்போகிறேன்.",
+      "native": "Security requirements விஷயத்தில் உங்களுடன் முழுமையாக ஒத்துப்போகிறேன்.",
       "note": "Agreeing clearly when you do agree makes your pushback more credible."
     },
     {
       "id": "not-sure-agree",
       "text": "I'm not sure I agree. Could we look at the data first?",
-      "tamil": "இதில் எனக்கு முழு உடன்பாடு இல்லை. முதலில் data-வைப் பார்க்கலாமா?",
+      "native": "இதில் எனக்கு முழு உடன்பாடு இல்லை. முதலில் data-வைப் பார்க்கலாமா?",
       "note": "A soft way to disagree that invites discussion."
     }
   ],
@@ -67,7 +67,7 @@
       "id": "choose-1",
       "type": "choice",
       "prompt": "The client wants to add a new feature two days before release. What's the best response?",
-      "promptTamil": "Release-க்கு இரண்டு நாள் முன்பு client ஒரு புதிய feature சேர்க்கச் சொல்கிறார். சிறந்த பதில் எது?",
+      "promptNative": "Release-க்கு இரண்டு நாள் முன்பு client ஒரு புதிய feature சேர்க்கச் சொல்கிறார். சிறந்த பதில் எது?",
       "options": [
         "No, that is not possible at all.",
         "I see your point, but adding this now could affect the release date.",
@@ -75,12 +75,12 @@
       ],
       "answer": "I see your point, but adding this now could affect the release date.",
       "explanation": "Show you heard them, then explain the impact, instead of a flat no or a risky yes.",
-      "explanationTamil": "அவர் சொல்வதைக் கேட்டீர்கள் என்று காட்டி, பிறகு அதன் பாதிப்பை விளக்குங்கள். நேரடியான \"no\" அல்லது ஆபத்தான \"yes\" வேண்டாம்."
+      "explanationNative": "அவர் சொல்வதைக் கேட்டீர்கள் என்று காட்டி, பிறகு அதன் பாதிப்பை விளக்குங்கள். நேரடியான \"no\" அல்லது ஆபத்தான \"yes\" வேண்டாம்."
     },
     {
       "id": "build-1",
       "type": "build",
-      "promptTamil": "அது கடினமாக இருக்கலாம், ஏனெனில் legacy system அதை support செய்யாது.",
+      "promptNative": "அது கடினமாக இருக்கலாம், ஏனெனில் legacy system அதை support செய்யாது.",
       "tiles": [
         "That",
         "may",
@@ -122,13 +122,13 @@
       ],
       "answer": "I don't agree with this approach.",
       "explanation": "\"Agree\" isn't normally used in the -ing form; say \"I don't agree\".",
-      "explanationTamil": "\"Agree\" பொதுவாக -ing வடிவில் வராது. \"I don't agree\" என்று சொல்லுங்கள்."
+      "explanationNative": "\"Agree\" பொதுவாக -ing வடிவில் வராது. \"I don't agree\" என்று சொல்லுங்கள்."
     },
     {
       "id": "choose-2",
       "type": "choice",
       "prompt": "The client suggests a design that you think will be too slow. How do you propose another option?",
-      "promptTamil": "Client சொல்லும் design மிக மெதுவாக இருக்கும் என்று நினைக்கிறீர்கள். வேறு வழியை எப்படிப் பரிந்துரைப்பீர்கள்?",
+      "promptNative": "Client சொல்லும் design மிக மெதுவாக இருக்கும் என்று நினைக்கிறீர்கள். வேறு வழியை எப்படிப் பரிந்துரைப்பீர்கள்?",
       "options": [
         "Your idea is wrong, we should cache it.",
         "Please do one thing, use cache.",
@@ -136,7 +136,7 @@
       ],
       "answer": "I'd suggest a different approach: we could cache the results instead.",
       "explanation": "\"I'd suggest\" offers your idea without telling the client they're wrong.",
-      "explanationTamil": "\"I'd suggest\" என்று சொன்னால், client தவறு என்று சொல்லாமலேயே உங்கள் யோசனையைத் தர முடியும்."
+      "explanationNative": "\"I'd suggest\" என்று சொன்னால், client தவறு என்று சொல்லாமலேயே உங்கள் யோசனையைத் தர முடியும்."
     },
     {
       "id": "fix-2",
@@ -151,12 +151,12 @@
       ],
       "answer": "Could you check with your security team?",
       "explanation": "\"Do one thing\" sounds like an order; a simple polite question works better.",
-      "explanationTamil": "\"Do one thing\" கட்டளை போல் ஒலிக்கும். மரியாதையான ஒரு கேள்வியாகக் கேளுங்கள்."
+      "explanationNative": "\"Do one thing\" கட்டளை போல் ஒலிக்கும். மரியாதையான ஒரு கேள்வியாகக் கேளுங்கள்."
     },
     {
       "id": "build-2",
       "type": "build",
-      "promptTamil": "Security requirements விஷயத்தில் உங்களுடன் முழுமையாக ஒத்துப்போகிறேன்.",
+      "promptNative": "Security requirements விஷயத்தில் உங்களுடன் முழுமையாக ஒத்துப்போகிறேன்.",
       "tiles": [
         "I",
         "completely",
@@ -187,7 +187,7 @@
       "id": "speak-1",
       "type": "speak",
       "prompt": "Think of a client request you didn't fully agree with. Out loud, push back politely in 3 sentences: acknowledge their view, give your reason, and suggest an alternative.",
-      "promptTamil": "நீங்கள் முழுமையாக ஒத்துப்போகாத ஒரு client request-ஐ நினைத்துக்கொள்ளுங்கள். 3 வாக்கியங்களில் மரியாதையாக மறுப்புச் சொல்லுங்கள்: அவர் கருத்தை ஏற்று, உங்கள் காரணத்தைச் சொல்லி, ஒரு மாற்று வழியைச் சொல்லுங்கள்.",
+      "promptNative": "நீங்கள் முழுமையாக ஒத்துப்போகாத ஒரு client request-ஐ நினைத்துக்கொள்ளுங்கள். 3 வாக்கியங்களில் மரியாதையாக மறுப்புச் சொல்லுங்கள்: அவர் கருத்தை ஏற்று, உங்கள் காரணத்தைச் சொல்லி, ஒரு மாற்று வழியைச் சொல்லுங்கள்.",
       "suggestedPhraseIds": [
         "see-point",
         "difficult-because",

@@ -41,6 +41,9 @@ targets:
     info:
       path: ProCommunicate/Info.plist
       properties:
+        # Lets you add listening-test clips in Files → On My iPhone → ProCommunicate.
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
         # Static launch screen = the first frame of the animated intro (SplashView).
         UILaunchScreen:
           UIColorName: LaunchBackground

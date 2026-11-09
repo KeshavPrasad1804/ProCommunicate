@@ -52,13 +52,13 @@ struct AnswerCheck: Equatable, Sendable, Codable {
 enum TutorPrompts {
     /// Tested on the Mac (bench/): no invented mistakes on correct sentences, catches the common
     /// Indian-English patterns, and "better" fixes what it lists.
-    static let answerCheckSystem = """
-    You are a careful English coach for Tamil speakers practising professional English. Check the learner's spoken answer. \
+    static var answerCheckSystem: String { """
+    You are a careful English coach for \(NativeLanguage.current.name) speakers practising professional English. Check the learner's spoken answer. \
     Report a problem only if a native speaker would clearly say it differently; many answers are already correct, and then the mistakes list must be empty. \
     Report at most the 3 most important problems, grammar mistakes and common Indian-English phrases first (for example: myself, I am having, revert back, today itself, discuss about, do the needful, since with present continuous). \
     'wrong' quotes the learner's exact words; 'right' is the corrected words; 'why' is one short sentence in simple English. \
     'better' is the whole answer rewritten naturally and professionally, and it must fix every mistake you list.
-    """
+    """ }
 
     /// GBNF grammar forcing the answer-check JSON: {"better": "...", "mistakes": [≤3 × {wrong, right, type, why}]}.
     static let answerCheckGrammar = #"""
@@ -71,11 +71,12 @@ enum TutorPrompts {
     ws ::= [ \t\n]{0,10}
     """#
 
-    static func explainInTamilSystem() -> String {
-        "You are an English coach for Tamil speakers. Explain the correction in ONE or TWO short sentences of simple Tamil (Tamil script). English words may stay in English. No greeting, no extra text."
+    static func explainInNativeSystem() -> String {
+        let language = NativeLanguage.current
+        return "You are an English coach for \(language.name) speakers. Explain the correction in ONE or TWO short sentences of simple \(language.name) (\(language.scriptName)). \(language.styleNote) No greeting, no extra text."
     }
 
-    static func explainInTamilUser(_ mistake: AnswerMistake) -> String {
+    static func explainInNativeUser(_ mistake: AnswerMistake) -> String {
         "Learner said: \"\(mistake.wrong)\". Better: \"\(mistake.right)\". Reason: \(mistake.why)"
     }
 

@@ -1,0 +1,196 @@
+{
+  "id": "interviews-08-salary-l1",
+  "unitId": "interviews-08-salary",
+  "title": "Salary, notice period and joining date",
+  "intro": "State your numbers clearly and calmly: current CTC, expected CTC, notice period and joining date.",
+  "introNative": "अपने numbers साफ़ और शांति से बताइए: current CTC, expected CTC, notice period और joining date।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "current-ctc",
+      "text": "My current CTC is 9 lakhs per annum.",
+      "native": "मेरा current CTC 9 लाख सालाना है।",
+      "note": "\"Per annum\" means per year; you can also say \"a year\"."
+    },
+    {
+      "id": "expected-ctc",
+      "text": "My expected CTC is 13 lakhs, but I'm open to discussion.",
+      "native": "मेरा expected CTC 13 लाख है, लेकिन मैं इस पर बात करने के लिए open हूँ।",
+      "note": "Give a clear number, then show some flexibility."
+    },
+    {
+      "id": "notice-period",
+      "text": "My notice period is 60 days, and it's negotiable.",
+      "native": "मेरा notice period 60 दिन का है, और यह negotiable है।",
+      "note": "\"Negotiable\" means it can be reduced through discussion."
+    },
+    {
+      "id": "join-by",
+      "text": "I can join by the 1st of March.",
+      "native": "मेरी joining 1 मार्च तक हो सकती है।",
+      "note": "\"By\" a date means on or before that date."
+    },
+    {
+      "id": "right-fit",
+      "text": "I'm flexible on the number if the role is the right fit.",
+      "native": "अगर role सही fit है, तो number पर मैं flexible हूँ।",
+      "note": "Show that the role matters to you, not only the money."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "current-ctc"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "expected-ctc"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "notice-period"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "join-by"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "right-fit"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "HR asks: \"What is your expected CTC?\" Which answer is best?",
+      "promptNative": "HR पूछते हैं: \"आपका expected CTC क्या है?\" कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "Whatever you feel is fine.",
+        "My expected CTC is 13 lakhs, but I'm open to discussion.",
+        "I want minimum 50% hike, otherwise no."
+      ],
+      "answer": "My expected CTC is 13 lakhs, but I'm open to discussion.",
+      "explanation": "Give a clear number with some flexibility; don't leave it all to HR or sound rigid.",
+      "explanationNative": "थोड़ी flexibility के साथ एक साफ़ number बताइए; सब कुछ HR पर मत छोड़िए, और ज़िद्दी भी मत लगिए।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "मेरा notice period 60 दिन का है, और यह negotiable है।",
+      "tiles": [
+        "My",
+        "notice",
+        "period",
+        "is",
+        "60",
+        "days,",
+        "and",
+        "it's",
+        "negotiable",
+        "only",
+        "having"
+      ],
+      "answer": "My notice period is 60 days, and it's negotiable."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "I can join by the 1st of March.",
+      "options": [
+        "I can join by the 1st of May.",
+        "I can't join before the 1st of March.",
+        "I can join by the 1st of March."
+      ],
+      "answer": "I can join by the 1st of March."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "What is the CTC you are offering for me?",
+      "options": [
+        "What is the CTC you are offering for me?",
+        "Could you share the salary range for this role?",
+        "What is the CTC you are offering to me only?",
+        "How much CTC you will give for me?"
+      ],
+      "answer": "Could you share the salary range for this role?",
+      "explanation": "Ask politely about the range for the role, and don't use \"for me\" after \"offering\".",
+      "explanationNative": "इस role की range के बारे में politely पूछिए, और \"offering\" के बाद \"for me\" मत लगाइए।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "HR asks: \"When can you join?\" Which answer is best?",
+      "promptNative": "HR पूछते हैं: \"आप कब join कर सकते हैं?\" कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "I can join by the 1st of March.",
+        "I will join immediately itself.",
+        "Once I get the offer, I will see."
+      ],
+      "answer": "I can join by the 1st of March.",
+      "explanation": "Give a specific date that fits your notice period.",
+      "explanationNative": "एक specific date बताइए जो आपके notice period के हिसाब से ठीक बैठे।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I will join immediately itself.",
+      "options": [
+        "I will join immediately itself.",
+        "I can join immediately.",
+        "I will join immediately only.",
+        "I can able to join immediately."
+      ],
+      "answer": "I can join immediately.",
+      "explanation": "Drop \"itself\"; \"immediately\" is already strong enough.",
+      "explanationNative": "\"Itself\" हटा दीजिए; \"immediately\" अपने आप में काफ़ी strong है।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "मेरा current CTC 9 लाख सालाना है।",
+      "tiles": [
+        "My",
+        "current",
+        "CTC",
+        "is",
+        "9",
+        "lakhs",
+        "per",
+        "annum",
+        "salary",
+        "for"
+      ],
+      "answer": "My current CTC is 9 lakhs per annum."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "My expected CTC is 13 lakhs, but I'm open to discussion.",
+      "options": [
+        "My expected CTC is 13 lakhs, but I'm open to discussion.",
+        "My expected CTC is 30 lakhs, but I'm open to discussion.",
+        "My expected CTC is 13 lakhs, and it's not open for discussion."
+      ],
+      "answer": "My expected CTC is 13 lakhs, but I'm open to discussion."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Answer HR's questions out loud with your real numbers, in 3–4 sentences: your current CTC, expected CTC, notice period and joining date.",
+      "promptNative": "HR के सवालों का जवाब अपने असली numbers के साथ 3–4 sentences में बोलकर दीजिए: आपका current CTC, expected CTC, notice period और joining date।",
+      "suggestedPhraseIds": [
+        "current-ctc",
+        "expected-ctc",
+        "notice-period",
+        "join-by"
+      ]
+    }
+  ]
+}

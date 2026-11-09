@@ -1,0 +1,201 @@
+{
+  "id": "interviews-03-star-l1",
+  "unitId": "interviews-03-star",
+  "title": "Projects with STAR",
+  "intro": "Tell project stories with STAR: the Situation, your Task, the Action you took, and the Result with a number.",
+  "introNative": "Project की कहानियाँ STAR तरीके से बताइए: Situation, आपका Task, आपने जो Action लिया, और number के साथ Result।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "challenge-was",
+      "text": "The challenge was that our loan approval API was taking eight seconds to respond.",
+      "native": "Challenge यह था कि हमारी loan approval API को response देने में आठ seconds लग रहे थे।",
+      "note": "Start with the problem so the story has a clear reason."
+    },
+    {
+      "id": "my-task",
+      "text": "My task was to bring the response time under two seconds.",
+      "native": "मेरा task था response time को दो seconds से नीचे लाना।",
+      "note": "Make your own task clear, separate from the team's goal."
+    },
+    {
+      "id": "i-led",
+      "text": "I led the investigation and found three slow database queries.",
+      "native": "मैंने investigation को lead किया और तीन slow database queries ढूँढ निकालीं।",
+      "note": "Use \"I\" for your own actions; \"we\" can hide your contribution."
+    },
+    {
+      "id": "added-caching",
+      "text": "We added Redis caching and rewrote the queries with proper indexes.",
+      "native": "हमने Redis caching जोड़ी और सही indexes के साथ queries को दोबारा लिखा।",
+      "note": "Use the simple past for actions in a finished story."
+    },
+    {
+      "id": "as-a-result",
+      "text": "As a result, response time dropped by 75%, to under two seconds.",
+      "native": "नतीजा यह हुआ कि response time 75% कम होकर दो seconds से नीचे आ गया।",
+      "note": "Always end with a result, ideally with a number."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "challenge-was"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "my-task"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "i-led"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "added-caching"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "as-a-result"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The interviewer asks: \"Tell me about a challenging project.\" How do you start? Which answer is best?",
+      "promptNative": "Interviewer पूछते हैं: \"किसी challenging project के बारे में बताइए।\" आप कैसे शुरू करेंगे? कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "It was a very challenging project, we all worked very hard.",
+        "Actually, so many challenges were there in that project.",
+        "The challenge was that our loan approval API was taking eight seconds to respond."
+      ],
+      "answer": "The challenge was that our loan approval API was taking eight seconds to respond.",
+      "explanation": "Name one specific problem with a detail; general words like \"very challenging\" say nothing.",
+      "explanationNative": "एक specific problem को detail के साथ बताइए; \"very challenging\" जैसे general शब्दों से कुछ पता नहीं चलता।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "मेरा task था response time को दो seconds से नीचे लाना।",
+      "tiles": [
+        "My",
+        "task",
+        "was",
+        "to",
+        "bring",
+        "the",
+        "response",
+        "time",
+        "under",
+        "two",
+        "seconds",
+        "is",
+        "only"
+      ],
+      "answer": "My task was to bring the response time under two seconds."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "I led the investigation and found three slow database queries.",
+      "options": [
+        "I led the integration and found three slow database queries.",
+        "I led the investigation and found three slow database queries.",
+        "I let the investigation run and found two slow database queries."
+      ],
+      "answer": "I led the investigation and found three slow database queries."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Me and my team reduced the response time by 75 percentage.",
+      "options": [
+        "Me and my team reduced the response time by 75 percentage.",
+        "My team and I reduced the response time by 75 percent.",
+        "Me and my team reduced the response time by 75 percent.",
+        "My team and me reduced the response time by 75 percentage."
+      ],
+      "answer": "My team and I reduced the response time by 75 percent.",
+      "explanation": "As the subject, say \"my team and I\"; and say \"75 percent\", not \"75 percentage\".",
+      "explanationNative": "Subject के तौर पर \"my team and I\" कहिए; और \"75 percentage\" नहीं, \"75 percent\" कहिए।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "You've explained what you did. The interviewer is waiting for the ending. Which answer is best?",
+      "promptNative": "आपने बता दिया कि आपने क्या किया। Interviewer अब ending का इंतज़ार कर रहे हैं। कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "After that, the client was happy only.",
+        "As a result, response time dropped by 75%, to under two seconds.",
+        "So like that we completed the project."
+      ],
+      "answer": "As a result, response time dropped by 75%, to under two seconds.",
+      "explanation": "End with a measurable result; it proves your action worked.",
+      "explanationNative": "एक measurable result के साथ खत्म कीजिए; इससे साबित होता है कि आपका action काम आया।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I did the full development of that module only.",
+      "options": [
+        "I did the full development of that module only.",
+        "I developed that whole module on my own.",
+        "I only did the full development of that module only.",
+        "Only I did the full development of that module."
+      ],
+      "answer": "I developed that whole module on my own.",
+      "explanation": "Don't add \"only\" at the end for emphasis; say \"on my own\" to show you did it alone.",
+      "explanationNative": "ज़ोर देने के लिए आखिर में \"only\" मत जोड़िए; यह बताने के लिए कि आपने अकेले किया, \"on my own\" कहिए।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "हमने Redis caching जोड़ी और सही indexes के साथ queries को दोबारा लिखा।",
+      "tiles": [
+        "We",
+        "added",
+        "Redis",
+        "caching",
+        "and",
+        "rewrote",
+        "the",
+        "queries",
+        "with",
+        "proper",
+        "indexes",
+        "adding",
+        "itself"
+      ],
+      "answer": "We added Redis caching and rewrote the queries with proper indexes."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "As a result, response time dropped by 75%, to under two seconds.",
+      "options": [
+        "As a result, response time dropped by 75%, to under two seconds.",
+        "As a result, response time dropped by 25%, to under two seconds.",
+        "As a result, response time went up by 75%, to over two seconds."
+      ],
+      "answer": "As a result, response time dropped by 75%, to under two seconds."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Tell a real project story from your work out loud using STAR, in 4–5 sentences: the challenge, your task, what you did, and the result with a number.",
+      "promptNative": "अपने काम की एक असली project story STAR तरीके से 4–5 sentences में बोलकर बताइए: challenge, आपका task, आपने क्या किया, और number के साथ result।",
+      "suggestedPhraseIds": [
+        "challenge-was",
+        "my-task",
+        "i-led",
+        "as-a-result"
+      ]
+    }
+  ]
+}

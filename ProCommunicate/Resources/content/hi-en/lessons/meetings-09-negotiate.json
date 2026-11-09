@@ -1,0 +1,197 @@
+{
+  "id": "meetings-09-negotiate-l1",
+  "unitId": "meetings-09-negotiate",
+  "title": "Negotiating scope and deadlines",
+  "intro": "Instead of a flat no, offer a trade: more time for more scope, or less scope to keep the date.",
+  "introNative": "सीधा \"no\" कहने की बजाय एक trade offer करें: ज़्यादा scope के लिए ज़्यादा time, या date बनाए रखने के लिए कम scope।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "move-deadline",
+      "text": "If we move the deadline to the 30th, we can include the reporting module.",
+      "native": "अगर हम deadline को 30 तारीख तक shift कर दें, तो हम reporting module भी include कर सकते हैं।",
+      "note": "\"If…, we can…\" offers a trade instead of a refusal."
+    },
+    {
+      "id": "prioritise",
+      "text": "Could we prioritise the checkout flow for this sprint?",
+      "native": "क्या हम इस sprint के लिए checkout flow को priority दे सकते हैं?",
+      "note": "UK spelling is \"prioritise\"; US spelling is \"prioritize\"."
+    },
+    {
+      "id": "phase-two",
+      "text": "We could move the dashboard to phase two.",
+      "native": "हम dashboard को phase two में ले जा सकते हैं।",
+      "note": "Moving work to a later phase keeps the current date safe."
+    },
+    {
+      "id": "realistic",
+      "text": "To be realistic, we can't deliver all ten stories by Friday.",
+      "native": "Realistic होकर कहूँ तो, हम शुक्रवार तक सभी दस stories deliver नहीं कर सकते।",
+      "note": "Being honest early prevents bigger problems later."
+    },
+    {
+      "id": "matters-most",
+      "text": "Which of these features matters most to your users?",
+      "native": "इनमें से कौन-सा feature आपके users के लिए सबसे ज़्यादा मायने रखता है?",
+      "note": "Ask the client to choose, so the priorities are clear."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "move-deadline"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "prioritise"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "phase-two"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "realistic"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "matters-most"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The client wants the reporting module in this release, but there isn't enough time. What do you say?",
+      "promptNative": "Client को इस release में reporting module चाहिए, पर इतना time नहीं है। आप क्या कहेंगे?",
+      "options": [
+        "Not possible, the deadline is too close.",
+        "If we move the deadline to the 30th, we can include the reporting module.",
+        "We will try to adjust and do it somehow."
+      ],
+      "answer": "If we move the deadline to the 30th, we can include the reporting module.",
+      "explanation": "Offer a trade, so the client can make the decision.",
+      "explanationNative": "एक trade offer कीजिए, ताकि decision client खुद ले सकें।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "क्या हम इस sprint के लिए checkout flow को priority दे सकते हैं?",
+      "tiles": [
+        "Could",
+        "we",
+        "prioritise",
+        "the",
+        "checkout",
+        "flow",
+        "for",
+        "this",
+        "sprint",
+        "kindly",
+        "first"
+      ],
+      "answer": "Could we prioritise the checkout flow for this sprint?"
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "We could move the dashboard to phase two.",
+      "options": [
+        "We could move the dashboard to page two.",
+        "We could move the dashboard to phase two.",
+        "We couldn't move the dashboard to phase two."
+      ],
+      "answer": "We could move the dashboard to phase two."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Can we prepone the release to Monday?",
+      "options": [
+        "Can we prepone the release to Monday?",
+        "Can we bring the release forward to Monday?",
+        "Can we pre-pone the release to Monday?",
+        "Can we advance the release before to Monday?"
+      ],
+      "answer": "Can we bring the release forward to Monday?",
+      "explanation": "\"Prepone\" is only used in India; say \"bring forward\" or \"move it earlier\".",
+      "explanationNative": "\"Prepone\" सिर्फ़ India में इस्तेमाल होता है; \"bring forward\" या \"move it earlier\" कहें।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "The client sends ten new user stories and wants them all by Friday. How do you start?",
+      "promptNative": "Client दस नई user stories भेजते हैं और सब शुक्रवार तक चाहते हैं। आप बात कैसे शुरू करेंगे?",
+      "options": [
+        "Ten stories? Impossible, no way.",
+        "Yes, we will do the needful.",
+        "To be realistic, we can't deliver all ten stories by Friday."
+      ],
+      "answer": "To be realistic, we can't deliver all ten stories by Friday.",
+      "explanation": "Be honest and specific early, then discuss the options.",
+      "explanationNative": "शुरू में ही honest और specific रहिए, फिर options पर बात कीजिए।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Please do the needful and extend the deadline.",
+      "options": [
+        "Please do the needful and extend the deadline.",
+        "Could you extend the deadline by one week?",
+        "Please do needful and extend deadline.",
+        "Kindly do the needful for extending the deadline."
+      ],
+      "answer": "Could you extend the deadline by one week?",
+      "explanation": "\"Do the needful\" is vague and old-fashioned; ask clearly for what you need.",
+      "explanationNative": "\"Do the needful\" vague और पुराने ज़माने का लगता है; आपको जो चाहिए वह साफ़-साफ़ माँगिए।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "इनमें से कौन-सा feature आपके users के लिए सबसे ज़्यादा मायने रखता है?",
+      "tiles": [
+        "Which",
+        "of",
+        "these",
+        "features",
+        "matters",
+        "most",
+        "to",
+        "your",
+        "users",
+        "important",
+        "more"
+      ],
+      "answer": "Which of these features matters most to your users?"
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "If we move the deadline to the 30th, we can include the reporting module.",
+      "options": [
+        "If we move the deadline to the 13th, we can include the reporting module.",
+        "If we move the deadline to the 30th, we can't include the reporting module.",
+        "If we move the deadline to the 30th, we can include the reporting module."
+      ],
+      "answer": "If we move the deadline to the 30th, we can include the reporting module."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Think of a deadline on your project that is too tight. Out loud, negotiate in 3 sentences: be realistic, offer a trade, and ask the client what matters most.",
+      "promptNative": "अपने project की किसी बहुत tight deadline के बारे में सोचिए। 3 sentences में बोलकर negotiate कीजिए: realistic रहिए, एक trade offer कीजिए, और client से पूछिए कि उनके लिए सबसे ज़रूरी क्या है।",
+      "suggestedPhraseIds": [
+        "realistic",
+        "move-deadline",
+        "phase-two",
+        "matters-most"
+      ]
+    }
+  ]
+}

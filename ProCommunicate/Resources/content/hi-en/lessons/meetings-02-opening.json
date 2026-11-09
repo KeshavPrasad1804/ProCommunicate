@@ -1,0 +1,201 @@
+{
+  "id": "meetings-02-opening-l1",
+  "unitId": "meetings-02-opening",
+  "title": "Opening a call and small talk",
+  "intro": "The first two minutes set the tone, so check the audio, make a little small talk, and then start.",
+  "introNative": "पहले दो मिनट पूरी call का माहौल तय करते हैं, इसलिए audio check करें, थोड़ी small talk करें, और फिर शुरू करें।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "hear-me",
+      "text": "Can everyone hear me okay?",
+      "native": "क्या सबको मेरी आवाज़ ठीक से आ रही है?",
+      "note": "Ask this first so nobody misses the start."
+    },
+    {
+      "id": "weekend",
+      "text": "How was your weekend? Did you do anything nice?",
+      "native": "आपका weekend कैसा रहा? कुछ अच्छा किया?",
+      "note": "Small talk is short and friendly; one or two questions is enough."
+    },
+    {
+      "id": "wait-minute",
+      "text": "Let's give it a minute for the others to join.",
+      "native": "बाकी लोगों के join करने के लिए एक मिनट रुकते हैं।",
+      "note": "A polite way to wait before starting."
+    },
+    {
+      "id": "get-started",
+      "text": "Shall we get started?",
+      "native": "शुरू करें?",
+      "note": "A friendly signal that small talk is over."
+    },
+    {
+      "id": "agenda",
+      "text": "Today I'd like to cover three things: the sprint demo, the UAT plan and open questions.",
+      "native": "आज मैं तीन चीज़ें cover करना चाहूँगा: sprint demo, UAT plan और open questions।",
+      "note": "Sharing the agenda at the start makes the call feel organised."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "hear-me"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "weekend"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "wait-minute"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "get-started"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "agenda"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "You've just joined a client call and you're not sure your mic is working. What do you say?",
+      "promptNative": "आपने अभी-अभी client call join की है और पक्का नहीं है कि आपका mic काम कर रहा है। आप क्या कहेंगे?",
+      "options": [
+        "Hello, hello, is my voice coming?",
+        "Can everyone hear me okay?",
+        "Am I audible or not?"
+      ],
+      "answer": "Can everyone hear me okay?",
+      "explanation": "\"Can everyone hear me?\" is the natural, international way to check your audio.",
+      "explanationNative": "Audio check करने का natural और international तरीका है \"Can everyone hear me?\"।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "बाकी लोगों के join करने के लिए एक मिनट रुकते हैं।",
+      "tiles": [
+        "Let's",
+        "give",
+        "it",
+        "a",
+        "minute",
+        "for",
+        "the",
+        "others",
+        "to",
+        "join",
+        "wait",
+        "itself"
+      ],
+      "answer": "Let's give it a minute for the others to join."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "Shall we get started?",
+      "options": [
+        "Shall we get it started?",
+        "Shall we get started?",
+        "Should we have started?"
+      ],
+      "answer": "Shall we get started?"
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Myself Karthik, I am from the Chennai team.",
+      "options": [
+        "Myself Karthik, I am from the Chennai team.",
+        "Hi, I'm Karthik from the Chennai team.",
+        "Myself is Karthik from Chennai team.",
+        "I am Karthik only, from the Chennai team."
+      ],
+      "answer": "Hi, I'm Karthik from the Chennai team.",
+      "explanation": "Introduce yourself with \"I'm\" and your name; \"myself\" isn't used this way.",
+      "explanationNative": "अपना introduction \"I'm\" और अपने नाम से दें; \"myself\" इस तरह इस्तेमाल नहीं होता।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "It's Monday and the client joins the call a minute early. How do you start some small talk?",
+      "promptNative": "सोमवार है और client एक मिनट पहले ही call join कर लेते हैं। आप small talk कैसे शुरू करेंगे?",
+      "options": [
+        "How was your weekend? Did you do anything nice?",
+        "What did you do Saturday, Sunday?",
+        "Weekend is over, shall we start the work?"
+      ],
+      "answer": "How was your weekend? Did you do anything nice?",
+      "explanation": "A friendly, open question gives the client an easy way to chat.",
+      "explanationNative": "एक friendly, open सवाल से client के लिए बात शुरू करना आसान हो जाता है।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Today we will discuss about the UAT plan.",
+      "options": [
+        "Today we will discuss about the UAT plan.",
+        "Today we'll discuss the UAT plan.",
+        "Today we will discuss on the UAT plan.",
+        "Today we will be discussing about UAT plan."
+      ],
+      "answer": "Today we'll discuss the UAT plan.",
+      "explanation": "\"Discuss\" takes no preposition: you discuss the plan, not discuss about it.",
+      "explanationNative": "\"Discuss\" के साथ कोई preposition नहीं लगता: \"discuss the plan\" कहें, \"discuss about it\" नहीं।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "आज मैं sprint demo और UAT plan cover करना चाहूँगा।",
+      "tiles": [
+        "Today",
+        "I'd",
+        "like",
+        "to",
+        "cover",
+        "the",
+        "sprint",
+        "demo",
+        "and",
+        "the",
+        "UAT",
+        "plan",
+        "discuss",
+        "about"
+      ],
+      "answer": "Today I'd like to cover the sprint demo and the UAT plan."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "Let's give it a minute for the others to join.",
+      "options": [
+        "Let's give them a minute to join the others.",
+        "Let's give it a minute before the others join.",
+        "Let's give it a minute for the others to join."
+      ],
+      "answer": "Let's give it a minute for the others to join."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Imagine your next client call. Out loud, in 3–4 sentences: check the audio, ask one small-talk question, and introduce today's agenda.",
+      "promptNative": "अपनी अगली client call की कल्पना कीजिए। 3–4 sentences में बोलकर: audio check करें, एक small-talk सवाल पूछें, और आज का agenda बताएँ।",
+      "suggestedPhraseIds": [
+        "hear-me",
+        "weekend",
+        "get-started",
+        "agenda"
+      ]
+    }
+  ]
+}

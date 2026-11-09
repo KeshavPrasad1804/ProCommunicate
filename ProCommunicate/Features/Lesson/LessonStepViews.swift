@@ -27,11 +27,11 @@ struct SpeakButton: View {
     }
 }
 
-/// A small heading over a question, with an optional Tamil line.
+/// A small heading over a question, with an optional line in the learner's language.
 struct StepTitle: View {
     let kicker: String
     let text: String
-    var tamil: String?
+    var native: String?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -41,8 +41,8 @@ struct StepTitle: View {
             Text(text)
                 .font(.title3.weight(.semibold))
                 .fixedSize(horizontal: false, vertical: true)
-            if let tamil {
-                Text(tamil)
+            if let native {
+                Text(native)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -134,8 +134,8 @@ struct FeedbackPanel: View {
             if let explanation = step.explanation {
                 Text(explanation).font(.subheadline)
             }
-            if let tamil = step.explanationTamil {
-                Text(tamil).font(.subheadline).foregroundStyle(.secondary)
+            if let native = step.explanationNative {
+                Text(native).font(.subheadline).foregroundStyle(.secondary)
             }
             if !result.correct {
                 Text("You'll see this one again at the end.")
@@ -163,7 +163,7 @@ struct LessonIntroView: View {
                 Text(lesson.title).font(.largeTitle.bold())
             }
             Text(lesson.intro).font(.title3)
-            Text(lesson.introTamil).font(.body).foregroundStyle(.secondary)
+            Text(lesson.introNative).font(.body).foregroundStyle(.secondary)
             HStack(spacing: 16) {
                 Label("\(lesson.phrases.count) phrases", systemImage: "text.quote")
                 Label("about 6 min", systemImage: "clock")
@@ -198,7 +198,7 @@ struct LearnStepView: View {
                     SpeakButton(text: phrase.text, slow: true, prominent: true)
                 }
                 Divider()
-                Text(phrase.tamil)
+                Text(phrase.native)
                     .font(.title3)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -227,7 +227,7 @@ struct ListenHeader: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            StepTitle(kicker: "Listen", text: "What did you hear?", tamil: "நீங்கள் கேட்டது எது?")
+            StepTitle(kicker: "Listen", text: "What did you hear?", native: NativeLanguage.current.text(.whatDidYouHear))
             HStack(spacing: 12) {
                 SpeakButton(text: text, prominent: true)
                 SpeakButton(text: text, slow: true, prominent: true)
@@ -246,7 +246,7 @@ struct FixHeader: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            StepTitle(kicker: "Fix the mistake", text: prompt, tamil: "சரியான வாக்கியத்தைத் தேர்ந்தெடுங்கள்.")
+            StepTitle(kicker: "Fix the mistake", text: prompt, native: NativeLanguage.current.text(.chooseCorrect))
             Label {
                 Text(wrong).font(.body.italic())
             } icon: {
@@ -274,8 +274,8 @@ struct BuildStepView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            StepTitle(kicker: "Build the sentence", text: "Say this in English:", tamil: nil)
-            Text(step.promptTamil ?? "")
+            StepTitle(kicker: "Build the sentence", text: "Say this in English:", native: nil)
+            Text(step.promptNative ?? "")
                 .font(.title3.weight(.medium))
                 .padding(14)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -351,7 +351,7 @@ struct SpeakStepView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            StepTitle(kicker: "Your turn", text: step.prompt ?? "", tamil: step.promptTamil)
+            StepTitle(kicker: "Your turn", text: step.prompt ?? "", native: step.promptNative)
             VStack(alignment: .leading, spacing: 12) {
                 Text("Phrases to use").font(.subheadline.weight(.semibold))
                 ForEach((step.suggestedPhraseIds ?? []).compactMap { lesson.phrase($0) }) { phrase in

@@ -1,0 +1,198 @@
+{
+  "id": "interviews-06-strengths-l1",
+  "unitId": "interviews-06-strengths",
+  "title": "Strengths and weaknesses",
+  "intro": "Name one real strength with an example, and one weakness you're actively improving.",
+  "introNative": "एक असली strength example के साथ बताइए, और एक weakness भी, जिसे आप अभी सुधार रहे हैं।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "one-strength",
+      "text": "One of my strengths is debugging production issues quickly.",
+      "native": "Production issues को जल्दी debug करना मेरी strengths में से एक है।",
+      "note": "Pick a specific strength, not \"hard worker\"."
+    },
+    {
+      "id": "for-example",
+      "text": "For example, last quarter I fixed a critical payment bug within two hours.",
+      "native": "जैसे, पिछले quarter में मैंने एक critical payment bug दो घंटे के अंदर fix किया।",
+      "note": "An example makes a strength believable."
+    },
+    {
+      "id": "working-on",
+      "text": "Something I'm working on is presenting to senior stakeholders.",
+      "native": "एक चीज़ जिस पर मैं अभी काम कर रहा हूँ, वह है senior stakeholders के सामने present करना।",
+      "note": "Choose a real weakness that won't stop you doing the job."
+    },
+    {
+      "id": "to-improve",
+      "text": "To improve, I now volunteer to present our sprint demos.",
+      "native": "इसे सुधारने के लिए, अब मैं खुद आगे बढ़कर हमारे sprint demos present करता हूँ।",
+      "note": "Always show the action you're taking to improve."
+    },
+    {
+      "id": "colleagues-come",
+      "text": "My colleagues often come to me when they're stuck on a tricky bug.",
+      "native": "जब मेरे colleagues किसी tricky bug में अटक जाते हैं, तो वे अक्सर मेरे पास आते हैं।",
+      "note": "What others rely on you for sounds more natural than self-praise."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "one-strength"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "for-example"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "working-on"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "to-improve"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "colleagues-come"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The interviewer asks: \"What are your strengths?\" Which answer is best?",
+      "promptNative": "Interviewer पूछते हैं: \"आपकी strengths क्या हैं?\" कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "I am a hard worker and quick learner.",
+        "One of my strengths is debugging production issues quickly.",
+        "I am good in all the things, no weakness."
+      ],
+      "answer": "One of my strengths is debugging production issues quickly.",
+      "explanation": "A specific, job-related strength sounds genuine; general words sound memorised.",
+      "explanationNative": "काम से जुड़ी एक specific strength genuine लगती है; general शब्द रटे हुए लगते हैं।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "एक चीज़ जिस पर मैं अभी काम कर रहा हूँ, वह है senior stakeholders के सामने present करना।",
+      "tiles": [
+        "Something",
+        "I'm",
+        "working",
+        "on",
+        "is",
+        "presenting",
+        "to",
+        "senior",
+        "stakeholders",
+        "my",
+        "weakness"
+      ],
+      "answer": "Something I'm working on is presenting to senior stakeholders."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "For example, last quarter I fixed a critical payment bug within two hours.",
+      "options": [
+        "For example, last quarter I fixed a critical payment bug within two days.",
+        "For example, last quarter I found a critical payment bug within two hours.",
+        "For example, last quarter I fixed a critical payment bug within two hours."
+      ],
+      "answer": "For example, last quarter I fixed a critical payment bug within two hours."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I am a hard worker and quick learner only.",
+      "options": [
+        "I am a hard worker and quick learner only.",
+        "I'm a quick learner; I picked up Kubernetes in two weeks.",
+        "I am hard worker and quick learner.",
+        "I am a hard worker and quick learner, that's all."
+      ],
+      "answer": "I'm a quick learner; I picked up Kubernetes in two weeks.",
+      "explanation": "Drop the \"only\", and back up a strength with a real example instead of a list of adjectives.",
+      "explanationNative": "\"Only\" हटा दीजिए, और adjectives की list के बजाय एक असली example से अपनी strength साबित कीजिए।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "The interviewer asks: \"What is your weakness?\" Which answer is best?",
+      "promptNative": "Interviewer पूछते हैं: \"आपकी weakness क्या है?\" कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "I don't have any weakness.",
+        "Something I'm working on is presenting to senior stakeholders.",
+        "My weakness is I work too hard."
+      ],
+      "answer": "Something I'm working on is presenting to senior stakeholders.",
+      "explanation": "Name a real, fixable weakness; \"no weakness\" or \"I work too hard\" sounds rehearsed.",
+      "explanationNative": "एक असली weakness बताइए जिसे सुधारा जा सके; \"no weakness\" या \"I work too hard\" रटा हुआ लगता है।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "My weakness is I can't able to say no.",
+      "options": [
+        "My weakness is I can't able to say no.",
+        "My weakness is that I find it hard to say no.",
+        "My weakness is I am not able to say no only.",
+        "My weakness is I could not able to say no."
+      ],
+      "answer": "My weakness is that I find it hard to say no.",
+      "explanation": "Never say \"can't able to\"; use \"can't\", \"I'm not able to\", or more naturally \"I find it hard to\".",
+      "explanationNative": "\"Can't able to\" कभी मत कहिए; \"can't\", \"I'm not able to\", या ज़्यादा natural तरीके से \"I find it hard to\" कहिए।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "इसे सुधारने के लिए, अब मैं खुद आगे बढ़कर हमारे sprint demos present करता हूँ।",
+      "tiles": [
+        "To",
+        "improve,",
+        "I",
+        "now",
+        "volunteer",
+        "to",
+        "present",
+        "our",
+        "sprint",
+        "demos",
+        "myself",
+        "presenting"
+      ],
+      "answer": "To improve, I now volunteer to present our sprint demos."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "One of my strengths is debugging production issues quickly.",
+      "options": [
+        "One of my strengths is debugging production issues quickly.",
+        "One of my strengths is fixing production issues quickly.",
+        "One of my strengths is debugging product issues carefully."
+      ],
+      "answer": "One of my strengths is debugging production issues quickly."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Answer \"What are your strengths and weaknesses?\" out loud in 4 sentences about yourself: one real strength with an example, and one weakness with what you're doing to improve it.",
+      "promptNative": "\"आपकी strengths और weaknesses क्या हैं?\" का जवाब अपने बारे में 4 sentences में बोलकर दीजिए: example के साथ एक असली strength, और एक weakness, साथ में यह कि उसे सुधारने के लिए आप क्या कर रहे हैं।",
+      "suggestedPhraseIds": [
+        "one-strength",
+        "for-example",
+        "working-on",
+        "to-improve"
+      ]
+    }
+  ]
+}

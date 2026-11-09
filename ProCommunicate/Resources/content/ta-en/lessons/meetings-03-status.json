@@ -3,23 +3,23 @@
   "unitId": "meetings-03-status",
   "title": "Giving a status update",
   "intro": "On a client call, a good status update is short: where you are, what's next, and any risks.",
-  "introTamil": "Client call-இல் நல்ல status update சுருக்கமாக இருக்கும்: இப்போது எங்கே இருக்கிறோம், அடுத்து என்ன, ஏதேனும் risk உண்டா.",
-  "tamilReviewed": false,
+  "introNative": "Client call-இல் நல்ல status update சுருக்கமாக இருக்கும்: இப்போது எங்கே இருக்கிறோம், அடுத்து என்ன, ஏதேனும் risk உண்டா.",
+  "nativeReviewed": false,
   "phrases": [
     { "id": "on-track", "text": "We're on track to deliver by Friday.",
-      "tamil": "வெள்ளிக்கிழமைக்குள் டெலிவர் செய்யும் வகையில் வேலை திட்டப்படி நடக்கிறது.",
+      "native": "வெள்ளிக்கிழமைக்குள் டெலிவர் செய்யும் வகையில் வேலை திட்டப்படி நடக்கிறது.",
       "note": "\"On track\" means everything is going to plan." },
     { "id": "completed-80", "text": "We've completed about 80% of the testing.",
-      "tamil": "டெஸ்டிங்கில் சுமார் 80% முடித்துவிட்டோம்.",
+      "native": "டெஸ்டிங்கில் சுமார் 80% முடித்துவிட்டோம்.",
       "note": "Use \"we've completed\" for progress up to now." },
     { "id": "next-milestone", "text": "The next milestone is the UAT release on the 15th.",
-      "tamil": "அடுத்த முக்கியக் கட்டம் (milestone) 15-ஆம் தேதி UAT release.",
+      "native": "அடுத்த முக்கியக் கட்டம் (milestone) 15-ஆம் தேதி UAT release.",
       "note": "A milestone is an important checkpoint in the plan." },
     { "id": "flag-risk", "text": "There's one risk I'd like to flag.",
-      "tamil": "நான் முன்கூட்டியே சொல்ல விரும்பும் ஒரு risk இருக்கிறது.",
+      "native": "நான் முன்கூட்டியே சொல்ல விரும்பும் ஒரு risk இருக்கிறது.",
       "note": "\"Flag\" means point out early, so nobody is surprised later." },
     { "id": "written-update", "text": "I'll share a written update after the call.",
-      "tamil": "கால் முடிந்ததும் எழுத்து மூலம் ஒரு update அனுப்புகிறேன்.",
+      "native": "கால் முடிந்ததும் எழுத்து மூலம் ஒரு update அனுப்புகிறேன்.",
       "note": "Clients like a short written summary after a call." }
   ],
   "steps": [
@@ -31,14 +31,14 @@
 
     { "id": "choose-1", "type": "choice",
       "prompt": "The client asks: \"How's the project going?\" Which reply sounds most professional?",
-      "promptTamil": "Client \"Project எப்படி போகிறது?\" என்று கேட்கிறார். எந்த பதில் மிகவும் professional?",
+      "promptNative": "Client \"Project எப்படி போகிறது?\" என்று கேட்கிறார். எந்த பதில் மிகவும் professional?",
       "options": ["Project is fine only.", "We're on track to deliver by Friday.", "Everything is going on, no problem."],
       "answer": "We're on track to deliver by Friday.",
       "explanation": "Give a clear status and a date, not just \"fine\".",
-      "explanationTamil": "\"Fine only\" போன்றவை தெளிவாக இல்லை. நிலையையும் தேதியையும் சேர்த்துச் சொல்லுங்கள்." },
+      "explanationNative": "\"Fine only\" போன்றவை தெளிவாக இல்லை. நிலையையும் தேதியையும் சேர்த்துச் சொல்லுங்கள்." },
 
     { "id": "build-1", "type": "build",
-      "promptTamil": "டெஸ்டிங்கில் சுமார் 80% முடித்துவிட்டோம்.",
+      "promptNative": "டெஸ்டிங்கில் சுமார் 80% முடித்துவிட்டோம்.",
       "tiles": ["We've", "completed", "about", "80%", "of", "the", "testing", "doing", "only"],
       "answer": "We've completed about 80% of the testing." },
 
@@ -53,15 +53,15 @@
       "options": ["We have completed the testing yesterday.", "We completed the testing yesterday.", "We are completing the testing yesterday.", "We had completed the testing yesterday only."],
       "answer": "We completed the testing yesterday.",
       "explanation": "With a finished time like \"yesterday\", use the simple past: \"completed\", not \"have completed\".",
-      "explanationTamil": "\"Yesterday\" போன்ற முடிந்த நேரத்தைச் சொல்லும்போது \"have completed\" வராது. \"Completed\" என்று சொல்லுங்கள்." },
+      "explanationNative": "\"Yesterday\" போன்ற முடிந்த நேரத்தைச் சொல்லும்போது \"have completed\" வராது. \"Completed\" என்று சொல்லுங்கள்." },
 
     { "id": "choose-2", "type": "choice",
       "prompt": "You want to warn the client early about a possible delay. What do you say?",
-      "promptTamil": "தாமதம் வரலாம் என்று client-இடம் முன்கூட்டியே சொல்ல வேண்டும். என்ன சொல்வீர்கள்?",
+      "promptNative": "தாமதம் வரலாம் என்று client-இடம் முன்கூட்டியே சொல்ல வேண்டும். என்ன சொல்வீர்கள்?",
       "options": ["There is one big problem coming.", "There's one risk I'd like to flag.", "I have one doubt about delay."],
       "answer": "There's one risk I'd like to flag.",
       "explanation": "\"Flag a risk\" sounds calm and in control.",
-      "explanationTamil": "\"Risk-ஐ flag செய்கிறேன்\" என்பது அமைதியாகவும் கட்டுப்பாட்டுடனும் ஒலிக்கும்." },
+      "explanationNative": "\"Risk-ஐ flag செய்கிறேன்\" என்பது அமைதியாகவும் கட்டுப்பாட்டுடனும் ஒலிக்கும்." },
 
     { "id": "fix-2", "type": "fix",
       "prompt": "Which is the correct way to say this?",
@@ -69,10 +69,10 @@
       "options": ["I have one doubt about the timeline.", "I have a question about the timeline.", "I am having one doubt about the timeline.", "I have a doubt regarding the timeline."],
       "answer": "I have a question about the timeline.",
       "explanation": "In international English, \"doubt\" means you think something may not be true. To ask something, say \"I have a question\".",
-      "explanationTamil": "சர்வதேச ஆங்கிலத்தில் \"doubt\" என்றால் நம்பிக்கையின்மை. கேள்வி கேட்க \"I have a question\" என்று சொல்லுங்கள்." },
+      "explanationNative": "சர்வதேச ஆங்கிலத்தில் \"doubt\" என்றால் நம்பிக்கையின்மை. கேள்வி கேட்க \"I have a question\" என்று சொல்லுங்கள்." },
 
     { "id": "build-2", "type": "build",
-      "promptTamil": "கால் முடிந்ததும் எழுத்து மூலம் ஒரு update அனுப்புகிறேன்.",
+      "promptNative": "கால் முடிந்ததும் எழுத்து மூலம் ஒரு update அனுப்புகிறேன்.",
       "tiles": ["I'll", "share", "a", "written", "update", "after", "the", "call", "revert", "back"],
       "answer": "I'll share a written update after the call." },
 
@@ -83,7 +83,7 @@
 
     { "id": "speak-1", "type": "speak",
       "prompt": "Give a 3-sentence status update on your real project, out loud: where you are, what's next, and one risk.",
-      "promptTamil": "உங்கள் உண்மையான project பற்றி 3 வாக்கியங்களில் status update சொல்லுங்கள் — இப்போதைய நிலை, அடுத்தது, ஒரு risk.",
+      "promptNative": "உங்கள் உண்மையான project பற்றி 3 வாக்கியங்களில் status update சொல்லுங்கள் — இப்போதைய நிலை, அடுத்தது, ஒரு risk.",
       "suggestedPhraseIds": ["on-track", "completed-80", "next-milestone", "flag-risk"] }
   ]
 }

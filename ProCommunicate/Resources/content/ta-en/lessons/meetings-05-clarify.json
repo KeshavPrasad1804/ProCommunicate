@@ -3,37 +3,37 @@
   "unitId": "meetings-05-clarify",
   "title": "Asking for clarification",
   "intro": "Asking a clear question is professional, not a weakness, so check what the client means before you build it.",
-  "introTamil": "தெளிவுக்காகக் கேள்வி கேட்பது பலவீனம் இல்லை; build செய்வதற்கு முன் client என்ன சொல்கிறார் என்பதை உறுதிசெய்யுங்கள்.",
-  "tamilReviewed": false,
+  "introNative": "தெளிவுக்காகக் கேள்வி கேட்பது பலவீனம் இல்லை; build செய்வதற்கு முன் client என்ன சொல்கிறார் என்பதை உறுதிசெய்யுங்கள்.",
+  "nativeReviewed": false,
   "phrases": [
     {
       "id": "clarify-mean",
       "text": "Could you clarify what you mean by real-time reporting?",
-      "tamil": "Real-time reporting என்று நீங்கள் எதைச் சொல்கிறீர்கள் என்று கொஞ்சம் விளக்க முடியுமா?",
+      "native": "Real-time reporting என்று நீங்கள் எதைச் சொல்கிறீர்கள் என்று கொஞ்சம் விளக்க முடியுமா?",
       "note": "Use this when a word could mean different things."
     },
     {
       "id": "just-confirm",
       "text": "Just to confirm, you'd like the export in Excel, not PDF?",
-      "tamil": "உறுதிப்படுத்திக்கொள்ள: export Excel-இல் வேண்டும், PDF-இல் இல்லை, சரியா?",
+      "native": "உறுதிப்படுத்திக்கொள்ள: export Excel-இல் வேண்டும், PDF-இல் இல்லை, சரியா?",
       "note": "Repeat back what you heard to avoid rework later."
     },
     {
       "id": "repeat-that",
       "text": "Sorry, could you repeat that? You broke up a little.",
-      "tamil": "மன்னிக்கவும், மீண்டும் சொல்ல முடியுமா? உங்கள் குரல் கொஞ்சம் கட் ஆனது.",
+      "native": "மன்னிக்கவும், மீண்டும் சொல்ல முடியுமா? உங்கள் குரல் கொஞ்சம் கட் ஆனது.",
       "note": "\"You broke up\" means the audio cut out."
     },
     {
       "id": "question-about",
       "text": "I have a question about the approval workflow.",
-      "tamil": "Approval workflow பற்றி எனக்கு ஒரு கேள்வி இருக்கிறது.",
+      "native": "Approval workflow பற்றி எனக்கு ஒரு கேள்வி இருக்கிறது.",
       "note": "Say \"question\", not \"doubt\", when you want to ask something."
     },
     {
       "id": "example",
       "text": "Could you give me an example of how your team uses this today?",
-      "tamil": "உங்கள் team இதை இப்போது எப்படிப் பயன்படுத்துகிறது என்று ஒரு உதாரணம் சொல்ல முடியுமா?",
+      "native": "உங்கள் team இதை இப்போது எப்படிப் பயன்படுத்துகிறது என்று ஒரு உதாரணம் சொல்ல முடியுமா?",
       "note": "Examples turn vague requirements into clear ones."
     }
   ],
@@ -67,7 +67,7 @@
       "id": "choose-1",
       "type": "choice",
       "prompt": "The client says they want \"real-time reporting\", but you're not sure what that means for them. What do you ask?",
-      "promptTamil": "Client \"real-time reporting\" வேண்டும் என்கிறார்; அவருக்கு அது என்ன என்று உங்களுக்குத் தெளிவில்லை. என்ன கேட்பீர்கள்?",
+      "promptNative": "Client \"real-time reporting\" வேண்டும் என்கிறார்; அவருக்கு அது என்ன என்று உங்களுக்குத் தெளிவில்லை. என்ன கேட்பீர்கள்?",
       "options": [
         "What is real-time? I didn't understand.",
         "Could you clarify what you mean by real-time reporting?",
@@ -75,12 +75,12 @@
       ],
       "answer": "Could you clarify what you mean by real-time reporting?",
       "explanation": "\"Could you clarify…\" is polite and shows you're thinking carefully.",
-      "explanationTamil": "\"Could you clarify…\" மரியாதையாக இருக்கும்; நீங்கள் கவனமாக யோசிக்கிறீர்கள் என்றும் காட்டும்."
+      "explanationNative": "\"Could you clarify…\" மரியாதையாக இருக்கும்; நீங்கள் கவனமாக யோசிக்கிறீர்கள் என்றும் காட்டும்."
     },
     {
       "id": "build-1",
       "type": "build",
-      "promptTamil": "Approval workflow பற்றி எனக்கு ஒரு கேள்வி இருக்கிறது.",
+      "promptNative": "Approval workflow பற்றி எனக்கு ஒரு கேள்வி இருக்கிறது.",
       "tiles": [
         "I",
         "have",
@@ -119,13 +119,13 @@
       ],
       "answer": "I have a question about the login flow.",
       "explanation": "To ask something, say \"I have a question\"; \"doubt\" means you think something may be wrong.",
-      "explanationTamil": "கேள்வி கேட்க \"I have a question\" என்று சொல்லுங்கள். \"Doubt\" என்றால் சந்தேகம் அல்லது நம்பிக்கையின்மை."
+      "explanationNative": "கேள்வி கேட்க \"I have a question\" என்று சொல்லுங்கள். \"Doubt\" என்றால் சந்தேகம் அல்லது நம்பிக்கையின்மை."
     },
     {
       "id": "choose-2",
       "type": "choice",
       "prompt": "The client's audio cut out in the middle of an important point. What do you say?",
-      "promptTamil": "முக்கியமான விஷயம் சொல்லும்போது client-இன் audio கட் ஆனது. என்ன சொல்வீர்கள்?",
+      "promptNative": "முக்கியமான விஷயம் சொல்லும்போது client-இன் audio கட் ஆனது. என்ன சொல்வீர்கள்?",
       "options": [
         "Sorry, could you repeat that? You broke up a little.",
         "What? Come again?",
@@ -133,7 +133,7 @@
       ],
       "answer": "Sorry, could you repeat that? You broke up a little.",
       "explanation": "Apologise briefly and give the reason, so the client doesn't feel blamed.",
-      "explanationTamil": "சுருக்கமாக மன்னிப்புக் கேட்டு, காரணத்தைச் சொல்லுங்கள்; client-ஐக் குறை சொல்வது போல் இருக்காது."
+      "explanationNative": "சுருக்கமாக மன்னிப்புக் கேட்டு, காரணத்தைச் சொல்லுங்கள்; client-ஐக் குறை சொல்வது போல் இருக்காது."
     },
     {
       "id": "fix-2",
@@ -148,12 +148,12 @@
       ],
       "answer": "Could you please explain the requirement to me?",
       "explanation": "Say \"explain it to me\"; \"explain\" isn't followed directly by \"me\".",
-      "explanationTamil": "\"Explain me\" தவறு. \"Explain the requirement to me\" என்று சொல்லுங்கள்."
+      "explanationNative": "\"Explain me\" தவறு. \"Explain the requirement to me\" என்று சொல்லுங்கள்."
     },
     {
       "id": "build-2",
       "type": "build",
-      "promptTamil": "உறுதிப்படுத்திக்கொள்ள: export Excel-இல் வேண்டும், சரியா?",
+      "promptNative": "உறுதிப்படுத்திக்கொள்ள: export Excel-இல் வேண்டும், சரியா?",
       "tiles": [
         "Just",
         "to",
@@ -184,7 +184,7 @@
       "id": "speak-1",
       "type": "speak",
       "prompt": "Think of a requirement on your project that wasn't clear. Out loud, ask the client 2–3 clarifying questions about it.",
-      "promptTamil": "உங்கள் project-இல் தெளிவில்லாத ஒரு requirement-ஐ நினைத்துக்கொள்ளுங்கள். அதைப் பற்றி client-இடம் 2–3 கேள்விகளை உரக்கக் கேளுங்கள்.",
+      "promptNative": "உங்கள் project-இல் தெளிவில்லாத ஒரு requirement-ஐ நினைத்துக்கொள்ளுங்கள். அதைப் பற்றி client-இடம் 2–3 கேள்விகளை உரக்கக் கேளுங்கள்.",
       "suggestedPhraseIds": [
         "clarify-mean",
         "just-confirm",

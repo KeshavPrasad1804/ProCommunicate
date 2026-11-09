@@ -11,6 +11,7 @@ struct SettingsView: View {
     @State private var reminderDenied = false
     @AppStorage("turnEndSilence") private var turnEndSilence = 1.6
     @AppStorage(AdaptiveStore.focusKey) private var focusChoice = "auto"
+    @AppStorage(NativeLanguage.settingsKey) private var languageCode = NativeLanguage.tamil.rawValue
     @AppStorage(LearnerProfile.Key.target) private var target = ""
 
     private var autoFocus: LearningFocus { AdaptiveStore.shared.focus(target: target, choice: "auto") }
@@ -49,7 +50,7 @@ struct SettingsView: View {
                     .disabled(!deviceSupported)
                 } footer: {
                     if deviceSupported {
-                        Text("Powers call practice, the mock interview and meeting simulation, corrections, and Ask in Tamil. Runs entirely on your iPhone: nothing you say is sent anywhere. Lessons and review work without it.")
+                        Text("Powers call practice, the mock interview and meeting simulation, corrections, and Ask in \(NativeLanguage.current.name). Runs entirely on your iPhone: nothing you say is sent anywhere. Lessons and review work without it.")
                     } else {
                         Text("This iPhone doesn't have enough memory for the AI tutor (it needs 6 GB). Lessons and review still work.")
                     }
@@ -79,6 +80,20 @@ struct SettingsView: View {
                     Text("Calls")
                 } footer: {
                     Text("About you makes calls fit your real job. Wait longer if the AI replies before you've finished your thought; you can always tap I'm done.")
+                }
+
+                Section {
+                    Picker(selection: $languageCode) {
+                        ForEach(NativeLanguage.allCases) { language in
+                            Text("\(language.name) · \(language.nativeName)").tag(language.rawValue)
+                        }
+                    } label: {
+                        Label("Your language", systemImage: "character.bubble")
+                    }
+                } header: {
+                    Text("Language")
+                } footer: {
+                    Text("Meanings, explanations and Ask in \(NativeLanguage(rawValue: languageCode)?.name ?? "Tamil") use this language. Your progress, review schedule and mistakes are kept when you switch.")
                 }
 
                 Section {

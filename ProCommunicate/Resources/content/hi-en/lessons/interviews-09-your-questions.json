@@ -1,0 +1,200 @@
+{
+  "id": "interviews-09-your-questions-l1",
+  "unitId": "interviews-09-your-questions",
+  "title": "Questions to ask the interviewer",
+  "intro": "When they ask \"Do you have any questions?\", always ask one or two thoughtful questions about the role and the team.",
+  "introNative": "जब वे पूछें \"Do you have any questions?\", तो role और team के बारे में हमेशा एक-दो सोचे-समझे सवाल पूछिए।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "success-look",
+      "text": "What does success look like in this role in the first six months?",
+      "native": "इस role में पहले छह महीनों में success का मतलब क्या होगा?",
+      "note": "Shows you're already thinking about doing well."
+    },
+    {
+      "id": "team-structured",
+      "text": "How is the team structured, and who would I report to?",
+      "native": "Team का structure कैसा है, और मेरी reporting किसको होगी?",
+      "note": "\"Report to\" means who your manager would be."
+    },
+    {
+      "id": "tech-stack",
+      "text": "Which tech stack is the team using for new projects?",
+      "native": "नए projects के लिए team कौन सा tech stack use कर रही है?",
+      "note": "A technical question shows real interest in the work."
+    },
+    {
+      "id": "biggest-challenge",
+      "text": "What's the biggest challenge the team is facing right now?",
+      "native": "इस वक्त team के सामने सबसे बड़ा challenge क्या है?",
+      "note": "The answer helps you show how you could help."
+    },
+    {
+      "id": "next-steps",
+      "text": "What are the next steps in the interview process?",
+      "native": "Interview process में आगे के steps क्या हैं?",
+      "note": "A polite way to ask when you'll hear back."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "success-look"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "team-structured"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "tech-stack"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "biggest-challenge"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "next-steps"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "At the end, the interviewer asks: \"Do you have any questions for us?\" Which answer is best?",
+      "promptNative": "आखिर में interviewer पूछते हैं: \"क्या आपके पास हमारे लिए कोई सवाल है?\" कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "No, nothing. You explained everything.",
+        "What does success look like in this role in the first six months?",
+        "How many leaves will I get?"
+      ],
+      "answer": "What does success look like in this role in the first six months?",
+      "explanation": "Ask about the role; \"no questions\" or asking only about leave can suggest low interest.",
+      "explanationNative": "Role के बारे में पूछिए; \"no questions\" कहना या सिर्फ़ leave के बारे में पूछना कम interest दिखा सकता है।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "Team का structure कैसा है, और मेरी reporting किसको होगी?",
+      "tiles": [
+        "How",
+        "is",
+        "the",
+        "team",
+        "structured,",
+        "and",
+        "who",
+        "would",
+        "I",
+        "report",
+        "to",
+        "whom",
+        "will"
+      ],
+      "answer": "How is the team structured, and who would I report to?"
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "Which tech stack is the team using for new projects?",
+      "options": [
+        "Which tech stack was the team using for old projects?",
+        "Which tech stack is the team using for new projects?",
+        "Which test stack is the team using for new projects?"
+      ],
+      "answer": "Which tech stack is the team using for new projects?"
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I have one doubt regarding the role.",
+      "options": [
+        "I have one doubt regarding the role.",
+        "I have a question about the role.",
+        "I have a doubt regarding the role.",
+        "I am having one doubt about the role."
+      ],
+      "answer": "I have a question about the role.",
+      "explanation": "To ask something, say \"question\"; in international English, \"doubt\" means you don't believe something.",
+      "explanationNative": "कुछ पूछना हो तो \"question\" कहिए; international English में \"doubt\" का मतलब होता है कि आपको किसी बात पर यकीन नहीं है।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "You want to know when you'll hear back. Which question is best?",
+      "promptNative": "आप जानना चाहते हैं कि आपको जवाब कब तक मिलेगा। कौन सा सवाल सबसे अच्छा है?",
+      "options": [
+        "When will you tell the result?",
+        "I am selected or not?",
+        "What are the next steps in the interview process?"
+      ],
+      "answer": "What are the next steps in the interview process?",
+      "explanation": "Ask about the process politely; don't push for an instant result.",
+      "explanationNative": "Process के बारे में politely पूछिए; तुरंत result के लिए ज़ोर मत डालिए।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "What all technologies you are using in this project?",
+      "options": [
+        "What all technologies you are using in this project?",
+        "Which technologies are you using on this project?",
+        "What all technologies are you using in this project?",
+        "Which all technologies you are using in this project?"
+      ],
+      "answer": "Which technologies are you using on this project?",
+      "explanation": "In a question, put the verb before the subject (\"are you using\"), and drop \"all\" after \"what\".",
+      "explanationNative": "सवाल में verb को subject से पहले रखिए (\"are you using\"), और \"what\" के बाद \"all\" हटा दीजिए।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "इस वक्त team के सामने सबसे बड़ा challenge क्या है?",
+      "tiles": [
+        "What's",
+        "the",
+        "biggest",
+        "challenge",
+        "the",
+        "team",
+        "is",
+        "facing",
+        "right",
+        "now",
+        "all",
+        "currently"
+      ],
+      "answer": "What's the biggest challenge the team is facing right now?"
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "What are the next steps in the interview process?",
+      "options": [
+        "What were the last steps in the interview process?",
+        "What are the next steps in the induction process?",
+        "What are the next steps in the interview process?"
+      ],
+      "answer": "What are the next steps in the interview process?"
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Imagine your next real interview is ending. Out loud, ask the interviewer 3–4 questions that matter to you: about the role, the team, and the next steps.",
+      "promptNative": "सोचिए कि आपका अगला असली interview खत्म होने वाला है। Interviewer से बोलकर 3–4 ऐसे सवाल पूछिए जो आपके लिए मायने रखते हैं: role, team और next steps के बारे में।",
+      "suggestedPhraseIds": [
+        "success-look",
+        "team-structured",
+        "biggest-challenge",
+        "next-steps"
+      ]
+    }
+  ]
+}

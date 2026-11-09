@@ -1,0 +1,194 @@
+{
+  "id": "meetings-03-status-l1",
+  "unitId": "meetings-03-status",
+  "title": "Giving a status update",
+  "intro": "On a client call, a good status update is short: where you are, what's next, and any risks.",
+  "introNative": "Client call पर अच्छा status update short होता है: अभी आप कहाँ हैं, आगे क्या है, और कोई risk।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "on-track",
+      "text": "We're on track to deliver by Friday.",
+      "native": "हम शुक्रवार तक deliver करने के लिए on track हैं।",
+      "note": "\"On track\" means everything is going to plan."
+    },
+    {
+      "id": "completed-80",
+      "text": "We've completed about 80% of the testing.",
+      "native": "हमने लगभग 80% testing complete कर ली है।",
+      "note": "Use \"we've completed\" for progress up to now."
+    },
+    {
+      "id": "next-milestone",
+      "text": "The next milestone is the UAT release on the 15th.",
+      "native": "अगला milestone 15 तारीख को UAT release है।",
+      "note": "A milestone is an important checkpoint in the plan."
+    },
+    {
+      "id": "flag-risk",
+      "text": "There's one risk I'd like to flag.",
+      "native": "एक risk है जिसे मैं flag करना चाहूँगा।",
+      "note": "\"Flag\" means point out early, so nobody is surprised later."
+    },
+    {
+      "id": "written-update",
+      "text": "I'll share a written update after the call.",
+      "native": "Call के बाद मैं एक written update share करूँगा।",
+      "note": "Clients like a short written summary after a call."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "on-track"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "completed-80"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "next-milestone"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "flag-risk"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "written-update"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The client asks: \"How's the project going?\" Which reply sounds most professional?",
+      "promptNative": "Client पूछते हैं: \"Project कैसा चल रहा है?\" कौन-सा जवाब सबसे professional लगता है?",
+      "options": [
+        "Project is fine only.",
+        "We're on track to deliver by Friday.",
+        "Everything is going on, no problem."
+      ],
+      "answer": "We're on track to deliver by Friday.",
+      "explanation": "Give a clear status and a date, not just \"fine\".",
+      "explanationNative": "सिर्फ़ \"fine\" नहीं, साफ़ status और एक date बताइए।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "हमने लगभग 80% testing complete कर ली है।",
+      "tiles": [
+        "We've",
+        "completed",
+        "about",
+        "80%",
+        "of",
+        "the",
+        "testing",
+        "doing",
+        "only"
+      ],
+      "answer": "We've completed about 80% of the testing."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "The next milestone is the UAT release on the 15th.",
+      "options": [
+        "The next milestone is the UAT release on the 15th.",
+        "The next meeting is about the UAT release on the 15th.",
+        "The last milestone was the UAT release on the 5th."
+      ],
+      "answer": "The next milestone is the UAT release on the 15th."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "We have completed the testing yesterday.",
+      "options": [
+        "We have completed the testing yesterday.",
+        "We completed the testing yesterday.",
+        "We are completing the testing yesterday.",
+        "We had completed the testing yesterday only."
+      ],
+      "answer": "We completed the testing yesterday.",
+      "explanation": "With a finished time like \"yesterday\", use the simple past: \"completed\", not \"have completed\".",
+      "explanationNative": "\"Yesterday\" जैसे बीत चुके समय के साथ simple past इस्तेमाल करें: \"completed\" कहें, \"have completed\" नहीं।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "You want to warn the client early about a possible delay. What do you say?",
+      "promptNative": "आप client को संभावित delay के बारे में पहले से warn करना चाहते हैं। आप क्या कहेंगे?",
+      "options": [
+        "There is one big problem coming.",
+        "There's one risk I'd like to flag.",
+        "I have one doubt about delay."
+      ],
+      "answer": "There's one risk I'd like to flag.",
+      "explanation": "\"Flag a risk\" sounds calm and in control.",
+      "explanationNative": "\"Flag a risk\" शांत लगता है और दिखाता है कि situation आपके control में है।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I have one doubt about the timeline.",
+      "options": [
+        "I have one doubt about the timeline.",
+        "I have a question about the timeline.",
+        "I am having one doubt about the timeline.",
+        "I have a doubt regarding the timeline."
+      ],
+      "answer": "I have a question about the timeline.",
+      "explanation": "In international English, \"doubt\" means you think something may not be true. To ask something, say \"I have a question\".",
+      "explanationNative": "International English में \"doubt\" का मतलब है कि आपको लगता है कोई बात शायद सच नहीं है। कुछ पूछना हो तो \"I have a question\" कहें।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "Call के बाद मैं एक written update share करूँगा।",
+      "tiles": [
+        "I'll",
+        "share",
+        "a",
+        "written",
+        "update",
+        "after",
+        "the",
+        "call",
+        "revert",
+        "back"
+      ],
+      "answer": "I'll share a written update after the call."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "There's one risk I'd like to flag.",
+      "options": [
+        "There's one risk I'd like to flag.",
+        "There's one task I'd like to add.",
+        "There was one risk I didn't flag."
+      ],
+      "answer": "There's one risk I'd like to flag."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Give a 3-sentence status update on your real project, out loud: where you are, what's next, and one risk.",
+      "promptNative": "अपने असली project पर 3 sentences का status update बोलकर दीजिए: अभी आप कहाँ हैं, आगे क्या है, और एक risk।",
+      "suggestedPhraseIds": [
+        "on-track",
+        "completed-80",
+        "next-milestone",
+        "flag-risk"
+      ]
+    }
+  ]
+}

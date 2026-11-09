@@ -9,7 +9,10 @@ import json
 import re
 import sys
 
-ROOT = "ProCommunicate/Resources/content/ta-en"
+CONTENT = "ProCommunicate/Resources/content"
+# Script of each language pack's native text.
+SCRIPTS = {"ta-en": r"[\u0B80-\u0BFF]", "hi-en": r"[\u0900-\u097F]"}
+SCRIPT = SCRIPTS["ta-en"]
 BANNED = ["revert back", "do the needful", "today itself", "discuss about", "myself ", "i am having",
           "one doubt", "fine only", "prepone", "cousin brother", "good name", "kindly do"]
 
@@ -26,7 +29,7 @@ def validate(path, unit_ids):
         lesson = json.load(open(path, encoding="utf-8"))
     except Exception as e:
         return [f"invalid JSON: {e}"]
-    for key in ["id", "unitId", "title", "intro", "introTamil", "tamilReviewed", "phrases", "steps"]:
+    for key in ["id", "unitId", "title", "intro", "introNative", "nativeReviewed", "phrases", "steps"]:
         if key not in lesson:
             problems.append(f"missing {key}")
     if problems:
@@ -40,11 +43,11 @@ def validate(path, unit_ids):
     if len(phrase_ids) != len(lesson["phrases"]):
         problems.append("duplicate phrase ids")
     for p in lesson["phrases"]:
-        for k in ["id", "text", "tamil"]:
+        for k in ["id", "text", "native"]:
             if not p.get(k):
                 problems.append(f"phrase {p.get('id')}: missing {k}")
-        if not re.search(r"[஀-௿]", p.get("tamil", "")):
-            problems.append(f"phrase {p.get('id')}: tamil has no Tamil script")
+        if not re.search(SCRIPT, p.get("native", "")):
+            problems.append(f"phrase {p.get('id')}: native meaning is not in the language's script")
         for bad in BANNED:
             if bad in p.get("text", "").lower():
                 problems.append(f"phrase {p['id']}: contains banned '{bad}'")
@@ -72,14 +75,14 @@ def validate(path, unit_ids):
                     problems.append(f"{where}: fix options must include the wrong sentence")
                 if len([o for o in options if o != s.get("wrong")]) < 3:
                     problems.append(f"{where}: fix needs 3 options besides the wrong sentence")
-                if not s.get("explanationTamil"):
-                    problems.append(f"{where}: fix needs explanationTamil")
+                if not s.get("explanationNative"):
+                    problems.append(f"{where}: fix needs explanationNative")
             if t == "choice" and not s.get("prompt"):
                 problems.append(f"{where}: choice needs prompt")
         elif t == "build":
             answer, tiles = s.get("answer"), s.get("tiles") or []
-            if not answer or not tiles or not s.get("promptTamil"):
-                problems.append(f"{where}: build needs answer, tiles, promptTamil"); continue
+            if not answer or not tiles or not s.get("promptNative"):
+                problems.append(f"{where}: build needs answer, tiles, promptNative"); continue
             available = [normalize(x) for x in tiles]
             for word in answer.split(" "):
                 w = normalize(word)
@@ -108,19 +111,25 @@ def validate(path, unit_ids):
 
 
 def main():
-    course = json.load(open(f"{ROOT}/course.json", encoding="utf-8"))
-    unit_ids = {u["id"] for t in course["tracks"] for u in t["units"]}
-    files = sys.argv[1:] or sorted(glob.glob(f"{ROOT}/lessons/*.json"))
-    failed = 0
-    for path in files:
-        problems = validate(path, unit_ids)
-        if problems:
-            failed += 1
-            print(f"✘ {path}")
-            for p in problems:
-                print(f"    - {p}")
-        else:
-            print(f"✔ {path}")
+    global SCRIPT
+    packs = sys.argv[1:] or sorted(SCRIPTS)
+    failed = total = 0
+    for pack in packs:
+        SCRIPT = SCRIPTS[pack]
+        course = json.load(open(f"{CONTENT}/{pack}/course.json", encoding="utf-8"))
+        unit_ids = {u["id"] for t in course["tracks"] for u in t["units"]}
+        files = sorted(glob.glob(f"{CONTENT}/{pack}/lessons/*.json"))
+        total += len(files)
+        for path in files:
+            problems = validate(path, unit_ids)
+            if problems:
+                failed += 1
+                print(f"✘ {path}")
+                for p in problems:
+                    print(f"    - {p}")
+            else:
+                print(f"✔ {path}")
+    files = range(total)
     print(f"\n{len(files) - failed}/{len(files)} valid")
     sys.exit(1 if failed else 0)
 

@@ -42,7 +42,7 @@ struct LearnView: View {
                 }
             }
             .navigationTitle("Learn")
-            .task { if lessons.isEmpty { lessons = TodayView.loadLessons(for: course) } }
+            .task(id: course.id) { lessons = TodayView.loadLessons(for: course) }
             .navigationDestination(for: CourseUnit.self) { unit in
                 UnitDetailView(unit: unit)
             }

@@ -1,0 +1,191 @@
+{
+  "id": "meetings-12-closing-l1",
+  "unitId": "meetings-12-closing",
+  "title": "Summarising and closing",
+  "intro": "End every call with a quick summary, clear action items with owners, and a polite goodbye.",
+  "introNative": "हर call को एक quick summary, owners के साथ साफ़ action items, और एक polite goodbye के साथ खत्म करें।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "to-summarise",
+      "text": "To summarise, we've agreed to go live on the 5th.",
+      "native": "संक्षेप में, हम 5 तारीख को go live करने पर सहमत हुए हैं।",
+      "note": "Signal the end of the call with a one-line summary."
+    },
+    {
+      "id": "action-items",
+      "text": "The action items are: we'll fix the export bug, and you'll share the test accounts.",
+      "native": "Action items ये हैं: हम export bug fix करेंगे, और आप test accounts share करेंगे।",
+      "note": "Every action item needs an owner."
+    },
+    {
+      "id": "send-minutes",
+      "text": "I'll send the minutes after the call.",
+      "native": "Call के बाद मैं minutes भेज दूँगा।",
+      "note": "\"Minutes\" are the written notes of a meeting."
+    },
+    {
+      "id": "anything-else",
+      "text": "Is there anything else we need to cover today?",
+      "native": "क्या आज हमें कुछ और cover करना है?",
+      "note": "Give everyone a last chance to speak."
+    },
+    {
+      "id": "thanks-time",
+      "text": "Thanks for your time, everyone. Speak to you on Thursday.",
+      "native": "आप सबका समय देने के लिए धन्यवाद। गुरुवार को बात करते हैं।",
+      "note": "Mention the next meeting so everyone knows what comes next."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "to-summarise"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "action-items"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "send-minutes"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "anything-else"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "thanks-time"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The call is almost over. How do you start wrapping up?",
+      "promptNative": "Call लगभग खत्म होने वाली है। आप wrap up कैसे शुरू करेंगे?",
+      "options": [
+        "Okay, that's all, bye.",
+        "To summarise, we've agreed to go live on the 5th.",
+        "So finally the conclusion is go-live is on 5th only."
+      ],
+      "answer": "To summarise, we've agreed to go live on the 5th.",
+      "explanation": "A short summary makes sure everyone leaves with the same understanding.",
+      "explanationNative": "एक short summary से यह पक्का होता है कि सब एक ही समझ के साथ call से जाएँ।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "Call के बाद मैं minutes भेज दूँगा।",
+      "tiles": [
+        "I'll",
+        "send",
+        "the",
+        "minutes",
+        "after",
+        "the",
+        "call",
+        "revert",
+        "itself"
+      ],
+      "answer": "I'll send the minutes after the call."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "Is there anything else we need to cover today?",
+      "options": [
+        "Is there anything else we need to discover today?",
+        "Is there anyone else we need to call today?",
+        "Is there anything else we need to cover today?"
+      ],
+      "answer": "Is there anything else we need to cover today?"
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Please share your feedbacks on the minutes.",
+      "options": [
+        "Please share your feedbacks on the minutes.",
+        "Please share your feedback on the minutes.",
+        "Please share your feedbacks about the minutes.",
+        "Kindly share the feedbacks for the minutes."
+      ],
+      "answer": "Please share your feedback on the minutes.",
+      "explanation": "\"Feedback\" is uncountable, so it never takes a plural \"s\".",
+      "explanationNative": "\"Feedback\" uncountable है, इसलिए इसमें कभी plural \"s\" नहीं लगता।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "You want to make sure the client knows who is doing what after the call. What do you say?",
+      "promptNative": "आप पक्का करना चाहते हैं कि client को पता हो कि call के बाद कौन क्या करेगा। आप क्या कहेंगे?",
+      "options": [
+        "Both sides will do the needful.",
+        "The action items are: we'll fix the export bug, and you'll share the test accounts.",
+        "We will do our part, you do your part."
+      ],
+      "answer": "The action items are: we'll fix the export bug, and you'll share the test accounts.",
+      "explanation": "Name each task and who owns it.",
+      "explanationNative": "हर task बताइए और यह भी कि उसका owner कौन है।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Please revert back with your comments by Friday.",
+      "options": [
+        "Please revert back with your comments by Friday.",
+        "Please send us your comments by Friday.",
+        "Please revert with your comments by Friday itself.",
+        "Kindly revert back your comments by Friday."
+      ],
+      "answer": "Please send us your comments by Friday.",
+      "explanation": "\"Revert\" doesn't mean \"reply\" in international English; simply ask them to send their comments.",
+      "explanationNative": "International English में \"revert\" का मतलब \"reply\" नहीं होता; बस उनसे अपने comments भेजने को कहिए।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "आप सबका समय देने के लिए धन्यवाद।",
+      "tiles": [
+        "Thanks",
+        "for",
+        "your",
+        "time,",
+        "everyone",
+        "all",
+        "giving"
+      ],
+      "answer": "Thanks for your time, everyone."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "To summarise, we've agreed to go live on the 5th.",
+      "options": [
+        "To summarise, we've agreed to go live on the 15th.",
+        "To summarise, we've agreed to go live on the 5th.",
+        "To summarise, we haven't agreed on the go-live date."
+      ],
+      "answer": "To summarise, we've agreed to go live on the 5th."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Think of your last client call. Out loud, close it in 3–4 sentences: summarise the decision, list the action items with owners, and say what happens next.",
+      "promptNative": "अपनी पिछली client call के बारे में सोचिए। 3–4 sentences में बोलकर उसे close कीजिए: decision summarise करें, owners के साथ action items बताएँ, और कहें कि आगे क्या होगा।",
+      "suggestedPhraseIds": [
+        "to-summarise",
+        "action-items",
+        "send-minutes",
+        "thanks-time"
+      ]
+    }
+  ]
+}

@@ -25,7 +25,7 @@ struct ReviewView: View {
                                     .font(.title2.bold())
                                 Text(due.isEmpty
                                      ? nextText(cards.first?.due)
-                                     : "See the Tamil meaning, say the English out loud, then check.")
+                                     : "See the \(NativeLanguage.current.name) meaning, say the English out loud, then check.")
                                     .foregroundStyle(.secondary)
                                 if !due.isEmpty {
                                     Button {

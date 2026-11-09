@@ -64,8 +64,8 @@ struct AnswerCheckerTests {
 @Suite("Lesson session")
 struct LessonSessionTests {
     static let lesson = Lesson(
-        id: "test", unitId: "u", title: "Test", intro: "", introTamil: "", tamilReviewed: true,
-        phrases: [Phrase(id: "p", text: "Hello.", tamil: "வணக்கம்.", note: nil)],
+        id: "test", unitId: "u", title: "Test", intro: "", introNative: "", nativeReviewed: true,
+        phrases: [Phrase(id: "p", text: "Hello.", native: "வணக்கம்.", note: nil)],
         steps: [
             LessonStep(id: "learn", type: .learn, phraseId: "p"),
             LessonStep(id: "q1", type: .choice, prompt: "?", options: ["A.", "B."], answer: "A."),

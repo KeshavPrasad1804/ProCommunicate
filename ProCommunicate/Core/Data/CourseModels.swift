@@ -46,7 +46,8 @@ enum ContentLoaderError: Error, CustomStringConvertible {
 }
 
 enum ContentLoader {
-    static let defaultCourseFolder = "ta-en"
+    /// The content folder for the learner's language.
+    static var defaultCourseFolder: String { NativeLanguage.current.contentFolder }
 
     static func loadCourse(folder: String = defaultCourseFolder,
                            bundle: Bundle = Bundle(for: ContentBundleToken.self)) throws -> Course {

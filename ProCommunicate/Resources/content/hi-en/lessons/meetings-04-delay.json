@@ -1,0 +1,198 @@
+{
+  "id": "meetings-04-delay-l1",
+  "unitId": "meetings-04-delay",
+  "title": "Explaining a delay or a problem",
+  "intro": "When something slips, say it early and honestly, explain the cause briefly, and give the new plan.",
+  "introNative": "जब कोई काम delay हो जाए, तो जल्दी और ईमानदारी से बताइए, cause short में explain कीजिए, और नया plan दीजिए।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "run-into-issue",
+      "text": "Unfortunately, we've run into an issue with the payment gateway integration.",
+      "native": "अफ़सोस की बात है कि payment gateway integration में हमें एक issue आ गया है।",
+      "note": "\"Unfortunately\" softens bad news; \"run into\" means you met it unexpectedly."
+    },
+    {
+      "id": "root-cause",
+      "text": "The root cause is a change in the third-party API that we weren't told about.",
+      "native": "Root cause third-party API में हुआ एक change है, जिसके बारे में हमें बताया नहीं गया था।",
+      "note": "Explain the cause in one sentence, without blaming a person."
+    },
+    {
+      "id": "new-timeline",
+      "text": "The new timeline for the release is Wednesday the 20th.",
+      "native": "Release की नई timeline बुधवार, 20 तारीख है।",
+      "note": "Always give a specific new date, not \"soon\"."
+    },
+    {
+      "id": "avoid-this",
+      "text": "To avoid this in future, we'll add contract tests for every external API.",
+      "native": "आगे ऐसा न हो, इसके लिए हम हर external API के लिए contract tests add करेंगे।",
+      "note": "Clients want to know how you'll prevent it next time."
+    },
+    {
+      "id": "apologise",
+      "text": "I'm sorry for the inconvenience this causes your team.",
+      "native": "इससे आपकी team को जो परेशानी हो रही है, उसके लिए मैं माफ़ी चाहता हूँ।",
+      "note": "One short, sincere apology is enough; don't over-apologise."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "run-into-issue"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "root-cause"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "new-timeline"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "avoid-this"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "apologise"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The release will be two days late. How do you raise it with the client?",
+      "promptNative": "Release दो दिन late होगा। आप client के सामने यह बात कैसे उठाएँगे?",
+      "options": [
+        "Sorry sorry, there is a small delay, please adjust.",
+        "Release will not happen, some issue is there.",
+        "Unfortunately, we've run into an issue with the payment gateway integration."
+      ],
+      "answer": "Unfortunately, we've run into an issue with the payment gateway integration.",
+      "explanation": "Name the problem calmly and specifically, then move to the plan.",
+      "explanationNative": "Problem को शांति से और specific तरीके से बताइए, फिर plan पर आइए।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "Release की नई timeline बुधवार, 20 तारीख है।",
+      "tiles": [
+        "The",
+        "new",
+        "timeline",
+        "for",
+        "the",
+        "release",
+        "is",
+        "Wednesday",
+        "the",
+        "20th",
+        "prepone",
+        "only"
+      ],
+      "answer": "The new timeline for the release is Wednesday the 20th."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "The root cause is a change in the third-party API that we weren't told about.",
+      "options": [
+        "The root cause is a change in the third-party API that we weren't told about.",
+        "The root cause is a change in the third-party API that we weren't sure about.",
+        "The real cause was a change in the API that we told you about."
+      ],
+      "answer": "The root cause is a change in the third-party API that we weren't told about."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "We will deliver the fix by today itself.",
+      "options": [
+        "We will deliver the fix by today itself.",
+        "We'll deliver the fix by the end of today.",
+        "We will deliver the fix today only itself.",
+        "We will be delivering fix by today evening itself."
+      ],
+      "answer": "We'll deliver the fix by the end of today.",
+      "explanation": "\"Itself\" isn't used to stress a time; say \"by the end of today\" or \"later today\".",
+      "explanationNative": "Time पर ज़ोर देने के लिए \"itself\" इस्तेमाल नहीं होता; \"by the end of today\" या \"later today\" कहें।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "The client asks: \"How will you stop this happening again?\" What's the best answer?",
+      "promptNative": "Client पूछते हैं: \"आप इसे दोबारा होने से कैसे रोकेंगे?\" सबसे अच्छा जवाब कौन-सा है?",
+      "options": [
+        "We'll try our level best next time.",
+        "To avoid this in future, we'll add contract tests for every external API.",
+        "This will not happen again, I promise."
+      ],
+      "answer": "To avoid this in future, we'll add contract tests for every external API.",
+      "explanation": "A concrete action builds more trust than a promise.",
+      "explanationNative": "सिर्फ़ promise करने से ज़्यादा भरोसा एक concrete action बताने से बनता है।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "We are facing some issues, so kindly adjust with the delay.",
+      "options": [
+        "We are facing some issues, so kindly adjust with the delay.",
+        "We've hit an issue, so we need to move the date by two days.",
+        "We are facing some issues, so please adjust the delay.",
+        "We are facing issues, kindly adjust for the delay."
+      ],
+      "answer": "We've hit an issue, so we need to move the date by two days.",
+      "explanation": "\"Kindly adjust\" asks the client to accept the problem; state the impact and the new date instead.",
+      "explanationNative": "\"Kindly adjust\" का मतलब है client से problem को accept करने के लिए कहना; इसकी जगह impact और नई date बताइए।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "इससे आपकी team को जो परेशानी हो रही है, उसके लिए मैं माफ़ी चाहता हूँ।",
+      "tiles": [
+        "I'm",
+        "sorry",
+        "for",
+        "the",
+        "inconvenience",
+        "this",
+        "causes",
+        "your",
+        "team",
+        "kindly",
+        "adjust"
+      ],
+      "answer": "I'm sorry for the inconvenience this causes your team."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "Unfortunately, we've run into an issue with the payment gateway integration.",
+      "options": [
+        "Unfortunately, we've run into an issue with the payment gateway configuration.",
+        "Unfortunately, we've run into an issue with the payment gateway integration.",
+        "Fortunately, we've run the payment gateway integration."
+      ],
+      "answer": "Unfortunately, we've run into an issue with the payment gateway integration."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Think of a real delay on your project. Out loud, explain it in 3–4 sentences: the issue, the cause, the new date, and how you'll avoid it next time.",
+      "promptNative": "अपने project के किसी असली delay के बारे में सोचिए। 3–4 sentences में बोलकर explain कीजिए: issue, cause, नई date, और अगली बार इससे कैसे बचेंगे।",
+      "suggestedPhraseIds": [
+        "run-into-issue",
+        "root-cause",
+        "new-timeline",
+        "avoid-this"
+      ]
+    }
+  ]
+}

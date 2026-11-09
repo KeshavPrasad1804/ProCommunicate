@@ -25,7 +25,7 @@ enum LearningFocus: String, Codable, CaseIterable, Sendable, Identifiable {
     /// Quick guess from the "preparing for" text when the AI hasn't classified it yet.
     static func guess(from target: String) -> LearningFocus {
         let text = target.lowercased()
-        let interview = ["interview", "job", "switch", "hr round", "offer", "hike", "new role", "placement"].contains { text.contains($0) }
+        let interview = ["interview", "job", "switch", "hr round", "offer", "hike", "new role", "placement", "naukri"].contains { text.contains($0) }
         let meeting = ["client", "meeting", "call", "stand-up", "standup", "stakeholder", "onsite", "present", "demo", "scrum"].contains { text.contains($0) }
         switch (interview, meeting) {
         case (true, false): return .interviews

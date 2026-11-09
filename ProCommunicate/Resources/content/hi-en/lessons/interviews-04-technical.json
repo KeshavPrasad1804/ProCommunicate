@@ -1,0 +1,201 @@
+{
+  "id": "interviews-04-technical-l1",
+  "unitId": "interviews-04-technical",
+  "title": "Technical explanations in simple English",
+  "intro": "In technical rounds, explain what you built and why: simple words first, then the details.",
+  "introNative": "Technical rounds में बताइए कि आपने क्या बनाया और क्यों: पहले आसान शब्दों में, फिर details में।",
+  "nativeReviewed": false,
+  "phrases": [
+    {
+      "id": "in-simple-terms",
+      "text": "In simple terms, this service checks every payment for fraud before it's approved.",
+      "native": "आसान शब्दों में कहूँ तो, यह service हर payment को approve होने से पहले fraud के लिए check करती है।",
+      "note": "Give the one-line purpose first, then the details."
+    },
+    {
+      "id": "we-chose",
+      "text": "We chose Kafka because we needed to process about a million events a day.",
+      "native": "हमने Kafka इसलिए चुना क्योंकि हमें रोज़ लगभग दस लाख events process करने थे।",
+      "note": "Always pair a choice with a reason: \"We chose X because…\""
+    },
+    {
+      "id": "trade-off",
+      "text": "The trade-off was more complexity, but we got much better scalability.",
+      "native": "Trade-off यह था कि complexity बढ़ गई, लेकिन scalability काफ़ी बेहतर मिली।",
+      "note": "Mentioning trade-offs shows senior-level thinking."
+    },
+    {
+      "id": "walk-through",
+      "text": "Let me walk you through the architecture step by step.",
+      "native": "मुझे आपको architecture step by step समझाने दीजिए।",
+      "note": "\"Walk you through\" means explain something in order."
+    },
+    {
+      "id": "split-into",
+      "text": "We split the monolith into five Spring Boot microservices.",
+      "native": "हमने monolith को पाँच Spring Boot microservices में बाँट दिया।",
+      "note": "Concrete numbers and names make you sound confident."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "in-simple-terms"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "we-chose"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "trade-off"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "walk-through"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "split-into"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The interviewer asks: \"Why did you use Kafka?\" Which answer is best?",
+      "promptNative": "Interviewer पूछते हैं: \"आपने Kafka क्यों use किया?\" कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "Kafka is the best, everybody is using it.",
+        "Our architect told us to use Kafka.",
+        "We chose Kafka because we needed to process about a million events a day."
+      ],
+      "answer": "We chose Kafka because we needed to process about a million events a day.",
+      "explanation": "Give a technical reason linked to your project's needs.",
+      "explanationNative": "ऐसी technical वजह बताइए जो आपके project की ज़रूरत से जुड़ी हो।"
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptNative": "हमने monolith को पाँच Spring Boot microservices में बाँट दिया।",
+      "tiles": [
+        "We",
+        "split",
+        "the",
+        "monolith",
+        "into",
+        "five",
+        "Spring",
+        "Boot",
+        "microservices",
+        "splitted",
+        "as"
+      ],
+      "answer": "We split the monolith into five Spring Boot microservices."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "The trade-off was more complexity, but we got much better scalability.",
+      "options": [
+        "The trade-off was more complexity, but we got much better stability.",
+        "The trade-off was more complexity, but we got much better scalability.",
+        "The trade-off was less complexity, but we lost some scalability."
+      ],
+      "answer": "The trade-off was more complexity, but we got much better scalability."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "We splitted the application into microservices.",
+      "options": [
+        "We splitted the application into microservices.",
+        "We split the application into microservices.",
+        "We have splitted the application into microservices.",
+        "We were splitting the application to microservices."
+      ],
+      "answer": "We split the application into microservices.",
+      "explanation": "\"Split\" is irregular: its past tense is also \"split\", never \"splitted\".",
+      "explanationNative": "\"Split\" irregular verb है: इसका past tense भी \"split\" ही है, \"splitted\" कभी नहीं।"
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "The interviewer asks you to explain your system's design. How do you begin? Which answer is best?",
+      "promptNative": "Interviewer आपसे आपके system का design समझाने को कहते हैं। आप कैसे शुरू करेंगे? कौन सा जवाब सबसे अच्छा है?",
+      "options": [
+        "It is very complex, difficult to explain.",
+        "Let me walk you through the architecture step by step.",
+        "Architecture is there, microservices are there, database is there."
+      ],
+      "answer": "Let me walk you through the architecture step by step.",
+      "explanation": "Offer a clear, ordered explanation; it shows you understand the system.",
+      "explanationNative": "साफ़ और step-by-step समझाने की पेशकश कीजिए; इससे पता चलता है कि system आपको अच्छी तरह समझ आता है।"
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I am not aware about this tool.",
+      "options": [
+        "I am not aware about this tool.",
+        "I'm not familiar with this tool.",
+        "I am not aware of about this tool.",
+        "I am not knowing about this tool."
+      ],
+      "answer": "I'm not familiar with this tool.",
+      "explanation": "\"Aware about\" is incorrect; \"I'm not familiar with\" is the natural way to say it.",
+      "explanationNative": "\"Aware about\" गलत है; \"I'm not familiar with\" कहना natural है।"
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptNative": "आसान शब्दों में कहूँ तो, यह service हर payment को approve होने से पहले fraud के लिए check करती है।",
+      "tiles": [
+        "In",
+        "simple",
+        "terms,",
+        "this",
+        "service",
+        "checks",
+        "every",
+        "payment",
+        "for",
+        "fraud",
+        "before",
+        "it's",
+        "approved",
+        "basically",
+        "doing"
+      ],
+      "answer": "In simple terms, this service checks every payment for fraud before it's approved."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "We chose Kafka because we needed to process about a million events a day.",
+      "options": [
+        "We chose Kafka because we needed to process about a billion events a day.",
+        "We used Kafka because we wanted to process about a million events a week.",
+        "We chose Kafka because we needed to process about a million events a day."
+      ],
+      "answer": "We chose Kafka because we needed to process about a million events a day."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Explain one real system you've worked on, out loud, in 3–4 sentences: what it does in simple terms, one technology choice and why, and the trade-off.",
+      "promptNative": "जिस असली system पर आपने काम किया है, उसे 3–4 sentences में बोलकर समझाइए: आसान शब्दों में वह क्या करता है, एक technology choice और उसकी वजह, और trade-off।",
+      "suggestedPhraseIds": [
+        "in-simple-terms",
+        "we-chose",
+        "trade-off",
+        "split-into"
+      ]
+    }
+  ]
+}

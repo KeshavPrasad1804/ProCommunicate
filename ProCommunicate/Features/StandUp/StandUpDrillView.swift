@@ -18,10 +18,10 @@ struct StandUpDrillView: View {
     @State private var analysis: CallTurn?
     @State private var analyzing = false
 
-    private let prompts: [(title: String, starter: String, tamil: String)] = [
-        ("Yesterday", "Yesterday I completed… / I worked on…", "நேற்று என்ன செய்தீர்கள்"),
-        ("Today", "Today I'll be working on…", "இன்று என்ன செய்யப் போகிறீர்கள்"),
-        ("Blockers", "I'm blocked on… and need help from… / No blockers.", "ஏதேனும் தடை இருக்கிறதா"),
+    private let prompts: [(title: String, starter: String, native: String)] = [
+        ("Yesterday", "Yesterday I completed… / I worked on…", NativeLanguage.current.text(.standUpYesterday)),
+        ("Today", "Today I'll be working on…", NativeLanguage.current.text(.standUpToday)),
+        ("Blockers", "I'm blocked on… and need help from… / No blockers.", NativeLanguage.current.text(.standUpBlockers)),
     ]
 
     var body: some View {
@@ -41,7 +41,7 @@ struct StandUpDrillView: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(prompt.title).font(.headline)
                             Text(prompt.starter).font(.subheadline)
-                            Text(prompt.tamil).font(.caption).foregroundStyle(.secondary)
+                            Text(prompt.native).font(.caption).foregroundStyle(.secondary)
                         }
                         .padding(.vertical, 2)
                     }
