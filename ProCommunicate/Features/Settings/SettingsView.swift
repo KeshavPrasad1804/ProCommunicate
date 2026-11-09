@@ -98,6 +98,18 @@ struct SettingsView: View {
                     Text("Used for phrases and listening practice. For a more natural voice, download an \"Enhanced\" English voice in iPhone Settings → Accessibility → Spoken Content → Voices.")
                 }
 
+                if aiModel.isReady {
+                    Section {
+                        NavigationLink {
+                            AILabView()
+                        } label: {
+                            Label("AI test lab", systemImage: "flask")
+                        }
+                    } footer: {
+                        Text("Measure the AI's speed and memory on this iPhone, and try role-play and answer checks.")
+                    }
+                }
+
                 Section("About") {
                     LabeledContent("Version", value: Bundle.main.appVersion)
                 }

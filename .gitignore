@@ -19,3 +19,6 @@ __pycache__/
 
 # macOS
 .DS_Store
+
+# Prebuilt binaries fetched by tools/fetch-llama.sh
+Vendor/

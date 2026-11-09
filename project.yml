@@ -48,6 +48,26 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         ENABLE_PREVIEWS: YES
+        # llama.cpp ships for real iPhones only (no Simulator slice), so it is linked for device builds
+        # only and the Swift code uses `#if canImport(llama)`. Fetch it with: sh tools/fetch-llama.sh
+        "FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]": "$(inherited) $(PROJECT_DIR)/Vendor/llama.xcframework/ios-arm64"
+        "OTHER_LDFLAGS[sdk=iphoneos*]": "$(inherited) -framework llama"
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+    postBuildScripts:
+      - name: Embed llama.framework (device builds)
+        basedOnDependencyAnalysis: false
+        script: |
+          if [ "$PLATFORM_NAME" = "iphoneos" ]; then
+            SRC="$PROJECT_DIR/Vendor/llama.xcframework/ios-arm64/llama.framework"
+            DEST="$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"
+            mkdir -p "$DEST"
+            rm -rf "$DEST/llama.framework"
+            cp -R "$SRC" "$DEST/"
+            if [ -n "${EXPANDED_CODE_SIGN_IDENTITY:-}" ]; then
+              codesign --force --sign "$EXPANDED_CODE_SIGN_IDENTITY" --preserve-metadata=identifier,entitlements "$DEST/llama.framework"
+            fi
+          fi
 
   ProCommunicateTests:
     type: bundle.unit-test
