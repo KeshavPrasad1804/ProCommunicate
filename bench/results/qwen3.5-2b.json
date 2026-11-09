@@ -1,0 +1,283 @@
+{
+ "model": "qwen3.5-2b",
+ "file": "models/Qwen3.5-2B-Q4_K_M.gguf",
+ "load_s": 1.0,
+ "file_gb": 1.28,
+ "langs": {
+  "Spanish": {
+   "roleplay": [
+    {
+     "learner": "Hola, quiero un café con leche, por favor.",
+     "text": "Hola, ¿tienes un número de mesa por favor? Aquí tienes un café con leche. ¿Cuánto cuesta?",
+     "thinking": "",
+     "tok_per_s": 59.8,
+     "prompt_tok_per_s": 861.5,
+     "tokens": 26,
+     "wall_s": 0.57
+    },
+    {
+     "learner": "Sí, y también agua. ¿Cuánto cuesta?",
+     "text": "¡Excelente! Aquí tienes un café con leche y un vaso de agua. El café con leche cuesta 4 euros, y el agua cuesta 1 euro. ¿Puedes pagar por favor?",
+     "thinking": "",
+     "tok_per_s": 59.2,
+     "prompt_tok_per_s": 407.1,
+     "tokens": 42,
+     "wall_s": 0.82
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "Ayer yo voy al mercado y compré dos manzana. La agua está fría.",
+     "text": "{\n    \"corrected\": \"Ayer yo voy al mercado y compré dos manzanas. La agua está fría.\",\n    \"mistakes\": [\n        {\n            \"wrong\": \"dos manzana\",\n            \"right\": \"dos manzanas\",\n            \"explanation\": \"You must use the plural form 'manzanas' because 'dos' (two) requires a plural noun.\"\n        },\n        {\n            \"wrong\": \"La agua\",\n            \"right\": \"La agua\",\n            \"explanation\": \"This sentence is grammatically correct as written; 'agua' is an uncountable noun and does not take an 's'.\"\n        }\n    ]\n}",
+     "thinking": "",
+     "tok_per_s": 70.1,
+     "prompt_tok_per_s": 667.9,
+     "tokens": 155,
+     "wall_s": 2.39,
+     "parsed": {
+      "corrected": "Ayer yo voy al mercado y compré dos manzanas. La agua está fría.",
+      "mistakes": [
+       {
+        "wrong": "dos manzana",
+        "right": "dos manzanas",
+        "explanation": "You must use the plural form 'manzanas' because 'dos' (two) requires a plural noun."
+       },
+       {
+        "wrong": "La agua",
+        "right": "La agua",
+        "explanation": "This sentence is grammatically correct as written; 'agua' is an uncountable noun and does not take an 's'."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "Me gustaría un té verde y un vaso de agua, por favor.",
+     "text": "{\n  \"corrected\": \"Me gustaría un té verde y un vaso de agua, por favor.\",\n  \"mistakes\": []\n}",
+     "thinking": "",
+     "tok_per_s": 70.0,
+     "prompt_tok_per_s": 330.4,
+     "tokens": 32,
+     "wall_s": 0.53,
+     "parsed": {
+      "corrected": "Me gustaría un té verde y un vaso de agua, por favor.",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "voy -> fui (past tense)",
+    "dos manzana -> dos manzanas (plural)",
+    "La agua -> El agua (article)"
+   ]
+  },
+  "French": {
+   "roleplay": [
+    {
+     "learner": "Bonjour, je voudrais un café, s'il vous plaît.",
+     "text": "Bien sûr, je vous servirai un café, s'il vous plaît. Il coûte 2 euros. J'attends votre commande.",
+     "thinking": "",
+     "tok_per_s": 73.7,
+     "prompt_tok_per_s": 1077.7,
+     "tokens": 29,
+     "wall_s": 0.51
+    },
+    {
+     "learner": "Oui, et un croissant. C'est combien ?",
+     "text": "Le croissant coûte 2 euros aussi. L'addition sera donc 4 euros au total. Je vous attends.",
+     "thinking": "",
+     "tok_per_s": 73.6,
+     "prompt_tok_per_s": 462.8,
+     "tokens": 26,
+     "wall_s": 0.46
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "Hier je suis allé au marché et j'ai acheté deux pomme. Je suis 25 ans et le maison est grand.",
+     "text": "{\n  \"corrected\": \"Hier je suis allé au marché et j'ai acheté deux pommes. Je suis 25 ans et le maison est grand.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"pomme\",\n      \"right\": \"pommes\",\n      \"explanation\": \"You must use the plural form 'pommes' because you are talking about two apples.\"\n    },\n    {\n      \"wrong\": \"le maison\",\n      \"right\": \"la maison\",\n      \"explanation\": \"When referring to a house, you must use the feminine article 'la' instead of the masculine 'le'.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 72.4,
+     "prompt_tok_per_s": 886.6,
+     "tokens": 150,
+     "wall_s": 2.2,
+     "parsed": {
+      "corrected": "Hier je suis allé au marché et j'ai acheté deux pommes. Je suis 25 ans et le maison est grand.",
+      "mistakes": [
+       {
+        "wrong": "pomme",
+        "right": "pommes",
+        "explanation": "You must use the plural form 'pommes' because you are talking about two apples."
+       },
+       {
+        "wrong": "le maison",
+        "right": "la maison",
+        "explanation": "When referring to a house, you must use the feminine article 'la' instead of the masculine 'le'."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "Je voudrais un thé et un verre d'eau, s'il vous plaît.",
+     "text": "{\n  \"corrected\": \"Je voudrais un thé et un verre d'eau, s'il vous plaît.\",\n  \"mistakes\": []\n}",
+     "thinking": "",
+     "tok_per_s": 70.0,
+     "prompt_tok_per_s": 352.3,
+     "tokens": 34,
+     "wall_s": 0.56,
+     "parsed": {
+      "corrected": "Je voudrais un thé et un verre d'eau, s'il vous plaît.",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "deux pomme -> deux pommes",
+    "Je suis 25 ans -> J'ai 25 ans",
+    "le maison est grand -> la maison est grande"
+   ]
+  },
+  "Hindi": {
+   "roleplay": [
+    {
+     "learner": "नमस्ते, मुझे एक चाय चाहिए।",
+     "text": "नमस्ते, हाँ, आप चाय का कितना प्यासा? कृपया, मैं आपके लिए एक चाय की तरफ जाता हूँ। आपकी कृपया।",
+     "thinking": "",
+     "tok_per_s": 73.6,
+     "prompt_tok_per_s": 1088.0,
+     "tokens": 46,
+     "wall_s": 0.74
+    },
+    {
+     "learner": "हाँ, और पानी भी। यह कितने का है?",
+     "text": "हमारे पास एक बड़ा प्यासा है। आपकी कृपया, क्या आप इसे पिएंगे?",
+     "thinking": "",
+     "tok_per_s": 73.3,
+     "prompt_tok_per_s": 632.1,
+     "tokens": 28,
+     "wall_s": 0.49
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "कल मैं बाज़ार जाता हूँ और दो सेब खरीदा। मेरी भाई डॉक्टर है।",
+     "text": "{\n  \"corrected\": \"कल मैं बाज़ार जाऊँगा और दो सेब खरीदूँगा। मेरी भाई डॉक्टर है।\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"जाता हूँ\",\n      \"right\": \"जाऊँगा\",\n      \"explanation\": \"The verb 'जाता हूँ' is present tense, but the sentence uses future tense 'जाऊँगा'.\"\n    },\n    {\n      \"wrong\": \"खरीदा\",\n      \"right\": \"खरीदूँगा\",\n      \"explanation\": \"The verb 'खरीदा' is past tense, but the sentence uses future tense 'खरीदूँगा'.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 72.6,
+     "prompt_tok_per_s": 891.7,
+     "tokens": 175,
+     "wall_s": 2.54,
+     "parsed": {
+      "corrected": "कल मैं बाज़ार जाऊँगा और दो सेब खरीदूँगा। मेरी भाई डॉक्टर है।",
+      "mistakes": [
+       {
+        "wrong": "जाता हूँ",
+        "right": "जाऊँगा",
+        "explanation": "The verb 'जाता हूँ' is present tense, but the sentence uses future tense 'जाऊँगा'."
+       },
+       {
+        "wrong": "खरीदा",
+        "right": "खरीदूँगा",
+        "explanation": "The verb 'खरीदा' is past tense, but the sentence uses future tense 'खरीदूँगा'."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "मुझे एक कप चाय और एक गिलास पानी चाहिए।",
+     "text": "{\n  \"corrected\": \"मुझे एक कप चाय और एक गिलास पानी चाहिए।\",\n  \"mistakes\": []\n}",
+     "thinking": "",
+     "tok_per_s": 70.3,
+     "prompt_tok_per_s": 352.4,
+     "tokens": 35,
+     "wall_s": 0.57,
+     "parsed": {
+      "corrected": "मुझे एक कप चाय और एक गिलास पानी चाहिए।",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "जाता हूँ -> गया (past tense)",
+    "खरीदा -> मैंने ... खरीदे (ergative + plural)",
+    "मेरी भाई -> मेरा भाई (gender)"
+   ]
+  },
+  "Japanese": {
+   "roleplay": [
+    {
+     "learner": "こんにちは。コーヒーをください。",
+     "text": "こんにちは、ありがとうございます。コーヒーは 200 円です。水も 200 円です。",
+     "thinking": "",
+     "tok_per_s": 73.9,
+     "prompt_tok_per_s": 1203.4,
+     "tokens": 25,
+     "wall_s": 0.44
+    },
+    {
+     "learner": "はい、水もお願いします。いくらですか？",
+     "text": "はい、水も 200 円です。ありがとうございます。",
+     "thinking": "",
+     "tok_per_s": 73.0,
+     "prompt_tok_per_s": 414.0,
+     "tokens": 15,
+     "wall_s": 0.31
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "昨日、私は店に行きます。りんごを二つを買いました。私の兄は医者がです。",
+     "text": "{\n  \"corrected\": \"昨日、私は店に行きました。りんごを二つ買いました。私の兄は医者です。\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"行きます\",\n      \"right\": \"行きました\",\n      \"explanation\": \"過去形（完了形）の「行く」は「行きました」です。\"\n    },\n    {\n      \"wrong\": \"買いました\",\n      \"right\": \"買いました\",\n      \"explanation\": \"「買います」の過去形は「買いました」です。\"\n    },\n    {\n      \"wrong\": \"医者です\",\n      \"right\": \"医者です\",\n      \"explanation\": \"「医者」は名詞なので「です」で完了形を表すことができます。\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 72.5,
+     "prompt_tok_per_s": 858.2,
+     "tokens": 187,
+     "wall_s": 2.71,
+     "parsed": {
+      "corrected": "昨日、私は店に行きました。りんごを二つ買いました。私の兄は医者です。",
+      "mistakes": [
+       {
+        "wrong": "行きます",
+        "right": "行きました",
+        "explanation": "過去形（完了形）の「行く」は「行きました」です。"
+       },
+       {
+        "wrong": "買いました",
+        "right": "買いました",
+        "explanation": "「買います」の過去形は「買いました」です。"
+       },
+       {
+        "wrong": "医者です",
+        "right": "医者です",
+        "explanation": "「医者」は名詞なので「です」で完了形を表すことができます。"
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "すみません、紅茶を一つと水をください。",
+     "text": "{\"corrected\": \"すみません、紅茶を一つと、水をください。\", \"mistakes\": [{\"wrong\": \"一つと\", \"right\": \"一つと\", \"explanation\": \"No mistake found.\"}]}",
+     "thinking": "",
+     "tok_per_s": 69.1,
+     "prompt_tok_per_s": 288.7,
+     "tokens": 49,
+     "wall_s": 0.78,
+     "parsed": {
+      "corrected": "すみません、紅茶を一つと、水をください。",
+      "mistakes": [
+       {
+        "wrong": "一つと",
+        "right": "一つと",
+        "explanation": "No mistake found."
+       }
+      ]
+     }
+    }
+   },
+   "planted": [
+    "行きます -> 行きました (past)",
+    "二つを -> 二つ (double を)",
+    "医者がです -> 医者です"
+   ]
+  }
+ }
+}

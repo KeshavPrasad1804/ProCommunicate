@@ -1,0 +1,73 @@
+name: ProCommunicate
+
+options:
+  bundleIdPrefix: dev.procommunicate
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+  developmentLanguage: en
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    # Set your Apple ID team here (Xcode → Settings → Accounts), or pick it in Xcode's Signing tab.
+    DEVELOPMENT_TEAM: ""
+
+targets:
+  ProCommunicate:
+    type: application
+    platform: iOS
+    sources:
+      - path: ProCommunicate
+        excludes:
+          - Resources/content
+      # Copied as a folder so paths like content/ta-en/course.json are kept in the app bundle.
+      - path: ProCommunicate/Resources/content
+        type: folder
+        buildPhase: resources
+    info:
+      path: ProCommunicate/Info.plist
+      properties:
+        # Static launch screen = the first frame of the animated intro (SplashView).
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+          UIImageName: LaunchLogo
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.procommunicate.app
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: ProCommunicate
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: "ProCommunicate records your voice so you can practise speaking and get feedback. Recordings stay on your iPhone."
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: YES
+
+  ProCommunicateTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: ProCommunicateTests
+    dependencies:
+      - target: ProCommunicate
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: dev.procommunicate.app.tests
+
+schemes:
+  ProCommunicate:
+    build:
+      targets:
+        ProCommunicate: all
+        ProCommunicateTests: [test]
+    test:
+      targets:
+        - ProCommunicateTests
+      gatherCoverageData: false

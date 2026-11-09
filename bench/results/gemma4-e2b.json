@@ -1,0 +1,303 @@
+{
+ "model": "gemma4-e2b",
+ "file": "models/gemma-4-E2B-it-Q4_K_M.gguf",
+ "load_s": 1.5,
+ "file_gb": 3.11,
+ "langs": {
+  "Spanish": {
+   "roleplay": [
+    {
+     "learner": "Hola, quiero un café con leche, por favor.",
+     "text": "De acuerdo. Su café con leche es de tres euros. ¿Quiere algo más?",
+     "thinking": "",
+     "tok_per_s": 53.2,
+     "prompt_tok_per_s": 778.1,
+     "tokens": 19,
+     "wall_s": 0.51
+    },
+    {
+     "learner": "Sí, y también agua. ¿Cuánto cuesta?",
+     "text": "El agua cuesta uno. ¿Algo más para usted?",
+     "thinking": "",
+     "tok_per_s": 52.4,
+     "prompt_tok_per_s": 308.6,
+     "tokens": 12,
+     "wall_s": 0.36
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "Ayer yo voy al mercado y compré dos manzana. La agua está fría.",
+     "text": "{\n  \"corrected\": \"Ayer yo fui al mercado y compré dos manzanas. El agua está fría.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"voy\",\n      \"right\": \"fui\",\n      \"explanation\": \"Use the past tense for actions completed yesterday.\"\n    },\n    {\n      \"wrong\": \"manzana\",\n      \"right\": \"manzanas\",\n      \"explanation\": \"Use the plural form because you bought two.\"\n    },\n    {\n      \"wrong\": \"La agua\",\n      \"right\": \"El agua\",\n      \"explanation\": \"Water is a feminine noun, but 'agua' is treated as masculine in Spanish.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 61.0,
+     "prompt_tok_per_s": 504.1,
+     "tokens": 167,
+     "wall_s": 2.94,
+     "parsed": {
+      "corrected": "Ayer yo fui al mercado y compré dos manzanas. El agua está fría.",
+      "mistakes": [
+       {
+        "wrong": "voy",
+        "right": "fui",
+        "explanation": "Use the past tense for actions completed yesterday."
+       },
+       {
+        "wrong": "manzana",
+        "right": "manzanas",
+        "explanation": "Use the plural form because you bought two."
+       },
+       {
+        "wrong": "La agua",
+        "right": "El agua",
+        "explanation": "Water is a feminine noun, but 'agua' is treated as masculine in Spanish."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "Me gustaría un té verde y un vaso de agua, por favor.",
+     "text": "{\n  \"corrected\": \"Me gustaría un té verde y un vaso de agua, por favor.\",\n  \"mistakes\": []\n}",
+     "thinking": "",
+     "tok_per_s": 58.4,
+     "prompt_tok_per_s": 188.3,
+     "tokens": 37,
+     "wall_s": 0.74,
+     "parsed": {
+      "corrected": "Me gustaría un té verde y un vaso de agua, por favor.",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "voy -> fui (past tense)",
+    "dos manzana -> dos manzanas (plural)",
+    "La agua -> El agua (article)"
+   ]
+  },
+  "French": {
+   "roleplay": [
+    {
+     "learner": "Bonjour, je voudrais un café, s'il vous plaît.",
+     "text": "Un café, d'accord. Voulez-vous un croissant aussi ?",
+     "thinking": "",
+     "tok_per_s": 62.6,
+     "prompt_tok_per_s": 715.9,
+     "tokens": 16,
+     "wall_s": 0.43
+    },
+    {
+     "learner": "Oui, et un croissant. C'est combien ?",
+     "text": "Un café et un croissant, c'est quatre euros. Voulez-vous autre chose ?",
+     "thinking": "",
+     "tok_per_s": 61.2,
+     "prompt_tok_per_s": 301.0,
+     "tokens": 20,
+     "wall_s": 0.45
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "Hier je suis allé au marché et j'ai acheté deux pomme. Je suis 25 ans et le maison est grand.",
+     "text": "{\n  \"corrected\": \"Hier je suis allé au marché et j'ai acheté deux pommes. Je suis âgé de 25 ans et la maison est grande.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"pomme\",\n      \"right\": \"pommes\",\n      \"explanation\": \"Plural is needed for more than one apple.\"\n    },\n    {\n      \"wrong\": \"25 ans\",\n      \"right\": \"âgé de 25 ans\",\n      \"explanation\": \"The correct way to state age is 'âgé de' (aged).\"\n    },\n    {\n      \"wrong\": \"le maison\",\n      \"right\": \"la maison\",\n      \"explanation\": \"The noun 'maison' is feminine, so it requires the feminine article 'la'.\"\n    },\n    {\n      \"wrong\": \"grand\",\n      \"right\": \"grande\",\n      \"explanation\": \"The adjective must agree in gender with the noun 'maison'.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 59.2,
+     "prompt_tok_per_s": 636.8,
+     "tokens": 234,
+     "wall_s": 4.13,
+     "parsed": {
+      "corrected": "Hier je suis allé au marché et j'ai acheté deux pommes. Je suis âgé de 25 ans et la maison est grande.",
+      "mistakes": [
+       {
+        "wrong": "pomme",
+        "right": "pommes",
+        "explanation": "Plural is needed for more than one apple."
+       },
+       {
+        "wrong": "25 ans",
+        "right": "âgé de 25 ans",
+        "explanation": "The correct way to state age is 'âgé de' (aged)."
+       },
+       {
+        "wrong": "le maison",
+        "right": "la maison",
+        "explanation": "The noun 'maison' is feminine, so it requires the feminine article 'la'."
+       },
+       {
+        "wrong": "grand",
+        "right": "grande",
+        "explanation": "The adjective must agree in gender with the noun 'maison'."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "Je voudrais un thé et un verre d'eau, s'il vous plaît.",
+     "text": "{\n  \"corrected\": \"Je voudrais un thé et un verre d'eau, s'il vous plaît.\",\n  \"mistakes\": []\n}",
+     "thinking": "",
+     "tok_per_s": 55.5,
+     "prompt_tok_per_s": 212.7,
+     "tokens": 41,
+     "wall_s": 0.85,
+     "parsed": {
+      "corrected": "Je voudrais un thé et un verre d'eau, s'il vous plaît.",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "deux pomme -> deux pommes",
+    "Je suis 25 ans -> J'ai 25 ans",
+    "le maison est grand -> la maison est grande"
+   ]
+  },
+  "Hindi": {
+   "roleplay": [
+    {
+     "learner": "नमस्ते, मुझे एक चाय चाहिए।",
+     "text": "ठीक है, एक चाय। यह सौ रुपये की है। क्या आप पानी भी लेंगे?",
+     "thinking": "",
+     "tok_per_s": 58.2,
+     "prompt_tok_per_s": 799.4,
+     "tokens": 19,
+     "wall_s": 0.46
+    },
+    {
+     "learner": "हाँ, और पानी भी। यह कितने का है?",
+     "text": "पानी बीस रुपये का है। क्या आप खाना ऑर्डर करेंगे?",
+     "thinking": "",
+     "tok_per_s": 57.8,
+     "prompt_tok_per_s": 315.8,
+     "tokens": 14,
+     "wall_s": 0.37
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "कल मैं बाज़ार जाता हूँ और दो सेब खरीदा। मेरी भाई डॉक्टर है।",
+     "text": "{\n  \"corrected\": \"कल मैं बाज़ार जाऊँगा और दो सेब खरीदूँगा। मेरा भाई डॉक्टर है।\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"जाता हूँ\",\n      \"right\": \"जाऊँगा\",\n      \"explanation\": \"Use future tense for future actions.\"\n    },\n    {\n      \"wrong\": \"खरीदा\",\n      \"right\": \"खरीदूँगा\",\n      \"explanation\": \"Use the future tense for the action of buying.\"\n    },\n    {\n      \"wrong\": \"मेरी\",\n      \"right\": \"मेरा\",\n      \"explanation\": \"Use 'mera' for 'my' when referring to a singular male person.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 56.5,
+     "prompt_tok_per_s": 558.9,
+     "tokens": 170,
+     "wall_s": 3.18,
+     "parsed": {
+      "corrected": "कल मैं बाज़ार जाऊँगा और दो सेब खरीदूँगा। मेरा भाई डॉक्टर है।",
+      "mistakes": [
+       {
+        "wrong": "जाता हूँ",
+        "right": "जाऊँगा",
+        "explanation": "Use future tense for future actions."
+       },
+       {
+        "wrong": "खरीदा",
+        "right": "खरीदूँगा",
+        "explanation": "Use the future tense for the action of buying."
+       },
+       {
+        "wrong": "मेरी",
+        "right": "मेरा",
+        "explanation": "Use 'mera' for 'my' when referring to a singular male person."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "मुझे एक कप चाय और एक गिलास पानी चाहिए।",
+     "text": "{\n  \"corrected\": \"मुझे एक कप चाय और एक गिलास पानी चाहिए।\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"चाय\",\n      \"right\": \"चाय\",\n      \"explanation\": \"The word 'चाय' is correct.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 53.0,
+     "prompt_tok_per_s": 195.4,
+     "tokens": 76,
+     "wall_s": 1.52,
+     "parsed": {
+      "corrected": "मुझे एक कप चाय और एक गिलास पानी चाहिए।",
+      "mistakes": [
+       {
+        "wrong": "चाय",
+        "right": "चाय",
+        "explanation": "The word 'चाय' is correct."
+       }
+      ]
+     }
+    }
+   },
+   "planted": [
+    "जाता हूँ -> गया (past tense)",
+    "खरीदा -> मैंने ... खरीदे (ergative + plural)",
+    "मेरी भाई -> मेरा भाई (gender)"
+   ]
+  },
+  "Japanese": {
+   "roleplay": [
+    {
+     "learner": "こんにちは。コーヒーをください。",
+     "text": "はい、コーヒーをどうぞ。一杯は三百円です。他に何かご希望はありますか？",
+     "thinking": "",
+     "tok_per_s": 57.5,
+     "prompt_tok_per_s": 760.4,
+     "tokens": 21,
+     "wall_s": 0.51
+    },
+    {
+     "learner": "はい、水もお願いします。いくらですか？",
+     "text": "はい、お水もかしこまりました。水は百五十円です。他に何かご注文はありますか？",
+     "thinking": "",
+     "tok_per_s": 57.7,
+     "prompt_tok_per_s": 315.8,
+     "tokens": 25,
+     "wall_s": 0.56
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "昨日、私は店に行きます。りんごを二つを買いました。私の兄は医者がです。",
+     "text": "{\n  \"corrected\": \"昨日、私は店に行きました。りんごを二つ買いました。私の兄は医者です。\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"行きます\",\n      \"right\": \"行きました\",\n      \"explanation\": \"Use the past tense for an action that happened yesterday.\"\n    },\n    {\n      \"wrong\": \"買いました\",\n      \"right\": \"買いました\",\n      \"explanation\": \"This is correct, but the particle usage is slightly more natural with 'を'.\"\n    },\n    {\n      \"wrong\": \"医者がです\",\n      \"right\": \"医者です\",\n      \"explanation\": \"The particle 'が' is unnecessary here.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 54.8,
+     "prompt_tok_per_s": 574.1,
+     "tokens": 177,
+     "wall_s": 3.41,
+     "parsed": {
+      "corrected": "昨日、私は店に行きました。りんごを二つ買いました。私の兄は医者です。",
+      "mistakes": [
+       {
+        "wrong": "行きます",
+        "right": "行きました",
+        "explanation": "Use the past tense for an action that happened yesterday."
+       },
+       {
+        "wrong": "買いました",
+        "right": "買いました",
+        "explanation": "This is correct, but the particle usage is slightly more natural with 'を'."
+       },
+       {
+        "wrong": "医者がです",
+        "right": "医者です",
+        "explanation": "The particle 'が' is unnecessary here."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "すみません、紅茶を一つと水をください。",
+     "text": "{\n  \"corrected\": \"すみません、紅茶を一つと水をください。\",\"mistakes\": []\n}",
+     "thinking": "",
+     "tok_per_s": 52.1,
+     "prompt_tok_per_s": 185.9,
+     "tokens": 30,
+     "wall_s": 0.66,
+     "parsed": {
+      "corrected": "すみません、紅茶を一つと水をください。",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "行きます -> 行きました (past)",
+    "二つを -> 二つ (double を)",
+    "医者がです -> 医者です"
+   ]
+  }
+ }
+}

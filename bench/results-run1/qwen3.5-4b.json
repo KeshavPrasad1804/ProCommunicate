@@ -1,0 +1,273 @@
+{
+ "model": "qwen3.5-4b",
+ "file": "models/Qwen3.5-4B-Q4_K_M.gguf",
+ "load_s": 1.5,
+ "file_gb": 2.74,
+ "langs": {
+  "Spanish": {
+   "roleplay": [
+    {
+     "learner": "Hola, quiero un café con leche, por favor.",
+     "text": "¡Hola! Eso suena delicioso. ¿Cuánto cuesta el café con leche?",
+     "thinking": "",
+     "tok_per_s": 35.6,
+     "prompt_tok_per_s": 216.2,
+     "tokens": 19,
+     "wall_s": 0.94
+    },
+    {
+     "learner": "Sí, y también agua. ¿Cuánto cuesta?",
+     "text": "El agua es más barato. Aquí tienes su pedido. ¿Le gustaría otro café?",
+     "thinking": "",
+     "tok_per_s": 35.6,
+     "prompt_tok_per_s": 165.2,
+     "tokens": 18,
+     "wall_s": 0.75
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "Ayer yo voy al mercado y compré dos manzana. La agua está fría.",
+     "text": "{\n  \"corrected\": \"Ayer yo fui al mercado y compré dos manzanas. El agua está fría.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"voy\",\n      \"right\": \"fui\",\n      \"explanation\": \"The sentence starts with 'Ayer' (yesterday), so the verb must be in the past tense. 'Voy' is present tense; 'fui' is the correct past tense form of 'ir' (to go).\"\n    },\n    {\n      \"wrong\": \"manzana\",\n      \"right\": \"manzanas\",\n      \"explanation\": \"The number 'dos' (two) requires the plural form of the noun. 'Manzana' is singular; 'manzanas' is plural.\"\n    },\n    {\n      \"wrong\": \"La\",\n      \"right\": \"El\",\n      \"explanation\": \"The word 'agua' (water) is feminine, but in this context, it refers to the liquid itself which is treated as masculine ('el agua'). However, the most common error here is likely the article agreement with the implied concept or a specific regional usage. Actually, 'agua' is feminine ('la agua'), but the phrase 'La agua' is redundant because 'agua' already implies the substance. The standard phrase is simply 'El agua' (treating 'agua' as masculine in some contexts) OR more likely, the learner meant 'El agua' (The water). Wait, 'agua' is feminine. Let's re-evaluate. 'Agua' is feminine. So 'La agua' is grammatically possible but stylistically redundant. The standard expression is 'El agua' (masculine) in many regions, but strictly speaking, 'agua' is feminine. Let's look at the most obvious error. Ah, 'La agua' is incorrect because 'agua' is feminine, so 'la' is correct, but the phrase is usually just 'El agua' (masculine) in Spain or 'La agua' is rare. Actually, the standard correction is 'El agua' because 'agua' is often treated as masculine in common usage ('el agua fría'). If we stick to strict grammar, 'agua' is feminine. But the most likely intended correction for a learner is 'El agua' because 'La agua' sounds wrong to native",
+     "thinking": "",
+     "tok_per_s": 35.4,
+     "prompt_tok_per_s": 301.2,
+     "tokens": 500,
+     "wall_s": 14.42,
+     "parsed": null
+    },
+    "correct": {
+     "input": "Me gustaría un té verde y un vaso de agua, por favor.",
+     "text": "{\"corrected\": \"Me gustaría un té verde y un vaso de agua, por favor.\", \"mistakes\": []}",
+     "thinking": "",
+     "tok_per_s": 34.6,
+     "prompt_tok_per_s": 153.4,
+     "tokens": 26,
+     "wall_s": 0.9,
+     "parsed": {
+      "corrected": "Me gustaría un té verde y un vaso de agua, por favor.",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "voy -> fui (past tense)",
+    "dos manzana -> dos manzanas (plural)",
+    "La agua -> El agua (article)"
+   ]
+  },
+  "French": {
+   "roleplay": [
+    {
+     "learner": "Bonjour, je voudrais un café, s'il vous plaît.",
+     "text": "Bonjour ! Je vais vous apporter votre café et un croissant.\nVoici l'addition, combien voulez-vous payer ?\nCombien coûte ce croissant ?",
+     "thinking": "",
+     "tok_per_s": 35.7,
+     "prompt_tok_per_s": 346.4,
+     "tokens": 35,
+     "wall_s": 1.26
+    },
+    {
+     "learner": "Oui, et un croissant. C'est combien ?",
+     "text": "Le café est 2,50 euros et le croissant est 1,80 euros. La totalité de l'addition est de 4,30 euros.\nVoulez-vous payer en espèces ou par carte ?",
+     "thinking": "",
+     "tok_per_s": 35.7,
+     "prompt_tok_per_s": 210.3,
+     "tokens": 50,
+     "wall_s": 1.65
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "Hier je suis allé au marché et j'ai acheté deux pomme. Je suis 25 ans et le maison est grand.",
+     "text": "{\n  \"corrected\": \"Hier, je suis allé au marché et j'ai acheté deux pommes. J'ai 25 ans et la maison est grande.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"Hier je\",\n      \"right\": \"Hier, je\",\n      \"explanation\": \"A comma is needed after the time expression 'Hier' to separate it from the subject.\"\n    },\n    {\n      \"wrong\": \"deux pomme\",\n      \"right\": \"deux pommes\",\n      \"explanation\": \"The noun 'pomme' must be plural because of the number 'deux'. It becomes 'pommes'.\"\n    },\n    {\n      \"wrong\": \"Je suis 25 ans\",\n      \"right\": \"J'ai 25 ans\",\n      \"explanation\": \"To express age in French, we use the verb 'avoir' (I have), not 'être' (I am). It should be 'J'ai'.\"\n    },\n    {\n      \"wrong\": \"le maison\",\n      \"right\": \"la maison\",\n      \"explanation\": \"The noun 'maison' is feminine, so it requires the article 'la', not 'le'.\"\n    },\n    {\n      \"wrong\": \"grand\",\n      \"right\": \"grande\",\n      \"explanation\": \"The adjective 'grand' must agree in gender with 'maison' (feminine). It becomes 'grande'.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 35.2,
+     "prompt_tok_per_s": 323.7,
+     "tokens": 334,
+     "wall_s": 9.8,
+     "parsed": {
+      "corrected": "Hier, je suis allé au marché et j'ai acheté deux pommes. J'ai 25 ans et la maison est grande.",
+      "mistakes": [
+       {
+        "wrong": "Hier je",
+        "right": "Hier, je",
+        "explanation": "A comma is needed after the time expression 'Hier' to separate it from the subject."
+       },
+       {
+        "wrong": "deux pomme",
+        "right": "deux pommes",
+        "explanation": "The noun 'pomme' must be plural because of the number 'deux'. It becomes 'pommes'."
+       },
+       {
+        "wrong": "Je suis 25 ans",
+        "right": "J'ai 25 ans",
+        "explanation": "To express age in French, we use the verb 'avoir' (I have), not 'être' (I am). It should be 'J'ai'."
+       },
+       {
+        "wrong": "le maison",
+        "right": "la maison",
+        "explanation": "The noun 'maison' is feminine, so it requires the article 'la', not 'le'."
+       },
+       {
+        "wrong": "grand",
+        "right": "grande",
+        "explanation": "The adjective 'grand' must agree in gender with 'maison' (feminine). It becomes 'grande'."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "Je voudrais un thé et un verre d'eau, s'il vous plaît.",
+     "text": "{\"corrected\": \"Je voudrais un thé et un verre d'eau, s'il vous plaît.\", \"mistakes\": []}",
+     "thinking": "",
+     "tok_per_s": 34.1,
+     "prompt_tok_per_s": 159.7,
+     "tokens": 28,
+     "wall_s": 0.98,
+     "parsed": {
+      "corrected": "Je voudrais un thé et un verre d'eau, s'il vous plaît.",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "deux pomme -> deux pommes",
+    "Je suis 25 ans -> J'ai 25 ans",
+    "le maison est grand -> la maison est grande"
+   ]
+  },
+  "Hindi": {
+   "roleplay": [
+    {
+     "learner": "नमस्ते, मुझे एक चाय चाहिए।",
+     "text": "नमस्ते! कृपया मेनू देखें। चाय कितने का है?",
+     "thinking": "",
+     "tok_per_s": 35.2,
+     "prompt_tok_per_s": 337.3,
+     "tokens": 24,
+     "wall_s": 0.98
+    },
+    {
+     "learner": "हाँ, और पानी भी। यह कितने का है?",
+     "text": "हाँ, पानी भी बहुत अच्छा है। पानी कितने का है?",
+     "thinking": "",
+     "tok_per_s": 35.3,
+     "prompt_tok_per_s": 178.6,
+     "tokens": 19,
+     "wall_s": 0.8
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "कल मैं बाज़ार जाता हूँ और दो सेब खरीदा। मेरी भाई डॉक्टर है।",
+     "text": "{\n  \"corrected\": \"कल मैं बाज़ार गया और दो सेब खरीदा। मेरी भाई डॉक्टर है।\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"जाता हूँ\",\n      \"right\": \"गया\",\n      \"explanation\": \"The sentence refers to yesterday ('कल'), so the verb must be in the past tense. 'जाता हूँ' is present tense. It should be 'गया' (masculine) or 'गई' (feminine). Since the speaker is male (implied by 'मैं' and context), 'गया' is correct.\"\n    },\n    {\n      \"wrong\": \"मेरी भाई\",\n      \"right\": \"मेरे भाई\",\n      \"explanation\": \"The possessive pronoun 'मेरी' is feminine, but 'भाई' (brother) is masculine. It should be 'मेरे' (my) to agree with 'भाई'.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 34.9,
+     "prompt_tok_per_s": 313.0,
+     "tokens": 231,
+     "wall_s": 6.94,
+     "parsed": {
+      "corrected": "कल मैं बाज़ार गया और दो सेब खरीदा। मेरी भाई डॉक्टर है।",
+      "mistakes": [
+       {
+        "wrong": "जाता हूँ",
+        "right": "गया",
+        "explanation": "The sentence refers to yesterday ('कल'), so the verb must be in the past tense. 'जाता हूँ' is present tense. It should be 'गया' (masculine) or 'गई' (feminine). Since the speaker is male (implied by 'मैं' and context), 'गया' is correct."
+       },
+       {
+        "wrong": "मेरी भाई",
+        "right": "मेरे भाई",
+        "explanation": "The possessive pronoun 'मेरी' is feminine, but 'भाई' (brother) is masculine. It should be 'मेरे' (my) to agree with 'भाई'."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "मुझे एक कप चाय और एक गिलास पानी चाहिए।",
+     "text": "{\n  \"corrected\": \"मुझे एक कप चाय और एक गिलास पानी चाहिए।\",\n  \"mistakes\": []\n}",
+     "thinking": "",
+     "tok_per_s": 34.0,
+     "prompt_tok_per_s": 157.2,
+     "tokens": 35,
+     "wall_s": 1.19,
+     "parsed": {
+      "corrected": "मुझे एक कप चाय और एक गिलास पानी चाहिए।",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "जाता हूँ -> गया (past tense)",
+    "खरीदा -> मैंने ... खरीदे (ergative + plural)",
+    "मेरी भाई -> मेरा भाई (gender)"
+   ]
+  },
+  "Japanese": {
+   "roleplay": [
+    {
+     "learner": "こんにちは。コーヒーをください。",
+     "text": "こんにちは！メニューを見ますか？\nコーヒーは一杯いくらですか？\nお好きな飲み物は何ですか？",
+     "thinking": "",
+     "tok_per_s": 35.1,
+     "prompt_tok_per_s": 242.5,
+     "tokens": 23,
+     "wall_s": 1.03
+    },
+    {
+     "learner": "はい、水もお願いします。いくらですか？",
+     "text": "はい、お水も頼みますか？\nお水は 200 円です。\n何を買いますか？",
+     "thinking": "",
+     "tok_per_s": 35.0,
+     "prompt_tok_per_s": 157.2,
+     "tokens": 28,
+     "wall_s": 1.06
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "昨日、私は店に行きます。りんごを二つを買いました。私の兄は医者がです。",
+     "text": "{\n  \"corrected\": \"昨日、私は店に行きました。りんごを二つを買いました。私の兄は医者です。\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"行きます\",\n      \"right\": \"行きました\",\n      \"explanation\": \"The sentence describes an action that happened yesterday, so it needs to be in the past tense. Change 'go' (行きます) to 'went' (行きました).\"\n    },\n    {\n      \"wrong\": \"医者がです\",\n      \"right\": \"医者です\",\n      \"explanation\": \"The word 'です' is already the polite ending for the verb 'to be'. Adding 'が' makes it grammatically incorrect. Remove 'が'.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 34.8,
+     "prompt_tok_per_s": 299.6,
+     "tokens": 173,
+     "wall_s": 5.29,
+     "parsed": {
+      "corrected": "昨日、私は店に行きました。りんごを二つを買いました。私の兄は医者です。",
+      "mistakes": [
+       {
+        "wrong": "行きます",
+        "right": "行きました",
+        "explanation": "The sentence describes an action that happened yesterday, so it needs to be in the past tense. Change 'go' (行きます) to 'went' (行きました)."
+       },
+       {
+        "wrong": "医者がです",
+        "right": "医者です",
+        "explanation": "The word 'です' is already the polite ending for the verb 'to be'. Adding 'が' makes it grammatically incorrect. Remove 'が'."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "すみません、紅茶を一つと水をください。",
+     "text": "{\"corrected\": \"すみません、紅茶を一つと水をください。\", \"mistakes\": []}",
+     "thinking": "",
+     "tok_per_s": 33.8,
+     "prompt_tok_per_s": 128.5,
+     "tokens": 24,
+     "wall_s": 0.87,
+     "parsed": {
+      "corrected": "すみません、紅茶を一つと水をください。",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "行きます -> 行きました (past)",
+    "二つを -> 二つ (double を)",
+    "医者がです -> 医者です"
+   ]
+  }
+ }
+}

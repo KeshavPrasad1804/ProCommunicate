@@ -1,0 +1,21 @@
+# Xcode
+*.xcodeproj/
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# Model files are large; download them, don't commit them
+*.gguf
+bench/models/
+
+# Bench outputs that are regenerated
+bench/results*/server.log
+bench/results*/*.server.log
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store

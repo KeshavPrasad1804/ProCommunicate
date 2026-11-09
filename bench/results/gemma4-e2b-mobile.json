@@ -1,0 +1,296 @@
+{
+ "model": "gemma4-e2b-mobile",
+ "file": "models/gemma-4-E2B-it-qat-UD-Q2_K_XL.gguf",
+ "load_s": 1.5,
+ "file_gb": 2.19,
+ "langs": {
+  "Spanish": {
+   "roleplay": [
+    {
+     "learner": "Hola, quiero un café con leche, por favor.",
+     "text": "¡Hola! Claro, con gusto. ¿Quiere un café o un café con leche?",
+     "thinking": "",
+     "tok_per_s": 72.3,
+     "prompt_tok_per_s": 192.6,
+     "tokens": 20,
+     "wall_s": 0.92
+    },
+    {
+     "learner": "Sí, y también agua. ¿Cuánto cuesta?",
+     "text": "Un café con leche y agua. Es café y agua.",
+     "thinking": "",
+     "tok_per_s": 77.6,
+     "prompt_tok_per_s": 350.1,
+     "tokens": 13,
+     "wall_s": 0.28
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "Ayer yo voy al mercado y compré dos manzana. La agua está fría.",
+     "text": "{\n  \"corrected\": \"Ayer fui al mercado y compré dos manzanas. El agua está fría.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"Ayer yo voy al mercado y compré dos manzanas.\", \"right\": \"Ayer yo voy al mercado y compré dos manzanas.\", \"explanation\": \"The sentence structure is awkward and the verb tense is incorrect.\"\n    },\n    {\n      \"wrong\": \"La agua está fría.\", \"right\": \"El agua está fría.\", \"explanation\": \"The sentence structure is grammatically awkward and the verb tense is incorrect.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 74.1,
+     "prompt_tok_per_s": 579.0,
+     "tokens": 147,
+     "wall_s": 2.16,
+     "parsed": {
+      "corrected": "Ayer fui al mercado y compré dos manzanas. El agua está fría.",
+      "mistakes": [
+       {
+        "wrong": "Ayer yo voy al mercado y compré dos manzanas.",
+        "right": "Ayer yo voy al mercado y compré dos manzanas.",
+        "explanation": "The sentence structure is awkward and the verb tense is incorrect."
+       },
+       {
+        "wrong": "La agua está fría.",
+        "right": "El agua está fría.",
+        "explanation": "The sentence structure is grammatically awkward and the verb tense is incorrect."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "Me gustaría un té verde y un vaso de agua, por favor.",
+     "text": "{\n  \"corrected\": \"Me gustaría un té verde y un vaso de agua, por favor.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"Me gustaría un té verde y un vaso de agua, por favor.\",\n      \"right\": \"Me gustaría un té verde y un vaso de agua, por favor.\",\n      \"explanation\": \"The original sentence is grammatically correct but sounds slightly formal. The correction makes it sound more natural.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 75.2,
+     "prompt_tok_per_s": 207.7,
+     "tokens": 118,
+     "wall_s": 1.67,
+     "parsed": {
+      "corrected": "Me gustaría un té verde y un vaso de agua, por favor.",
+      "mistakes": [
+       {
+        "wrong": "Me gustaría un té verde y un vaso de agua, por favor.",
+        "right": "Me gustaría un té verde y un vaso de agua, por favor.",
+        "explanation": "The original sentence is grammatically correct but sounds slightly formal. The correction makes it sound more natural."
+       }
+      ]
+     }
+    }
+   },
+   "planted": [
+    "voy -> fui (past tense)",
+    "dos manzana -> dos manzanas (plural)",
+    "La agua -> El agua (article)"
+   ]
+  },
+  "French": {
+   "roleplay": [
+    {
+     "learner": "Bonjour, je voudrais un café, s'il vous plaît.",
+     "text": "Bonjour ! Qu'est-ce que vous désirez ?",
+     "thinking": "",
+     "tok_per_s": 82.4,
+     "prompt_tok_per_s": 800.0,
+     "tokens": 13,
+     "wall_s": 0.31
+    },
+    {
+     "learner": "Oui, et un croissant. C'est combien ?",
+     "text": "Un croissant coûte deux euros.",
+     "thinking": "",
+     "tok_per_s": 81.4,
+     "prompt_tok_per_s": 302.2,
+     "tokens": 7,
+     "wall_s": 0.2
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "Hier je suis allé au marché et j'ai acheté deux pomme. Je suis 25 ans et le maison est grand.",
+     "text": "{\n  \"corrected\": \"Hier je suis allé au marché et j'ai acheté deux pommes. Je suis 25 ans et la maison est grande.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"Hier je suis allé au marché et j'ai acheté deux pommes.\", \"right\": \"Hier je suis allé au marché et j'ai acheté deux pommes.\", \"explanation\": \"The sentence structure and verb agreement needed correction.\"\n    },\n    {\n      \"wrong\": \"le maison est grand\", \"right\": \"la maison est grande.\", \"explanation\": \"The sentence structure was grammatically incorrect and the vocabulary needed correction.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 76.9,
+     "prompt_tok_per_s": 695.3,
+     "tokens": 160,
+     "wall_s": 2.24,
+     "parsed": {
+      "corrected": "Hier je suis allé au marché et j'ai acheté deux pommes. Je suis 25 ans et la maison est grande.",
+      "mistakes": [
+       {
+        "wrong": "Hier je suis allé au marché et j'ai acheté deux pommes.",
+        "right": "Hier je suis allé au marché et j'ai acheté deux pommes.",
+        "explanation": "The sentence structure and verb agreement needed correction."
+       },
+       {
+        "wrong": "le maison est grand",
+        "right": "la maison est grande.",
+        "explanation": "The sentence structure was grammatically incorrect and the vocabulary needed correction."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "Je voudrais un thé et un verre d'eau, s'il vous plaît.",
+     "text": "{\n  \"corrected\": \"Je voudrais un thé et un verre d'eau, s'il vous plaît.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"Je voudrais\",\"right\": \"Je voudrais\",\"explanation\": \"The verb conjugation is incorrect. 'Je voudrais' is the conditional mood, but 'Je voudrais' is the correct form for the conditional mood.\"\n    },\n    {\n      \"wrong\": \"thé\",\"right\": \"thé\",\"explanation\": \"Spelling error. The correct spelling is 'thé'.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 74.9,
+     "prompt_tok_per_s": 247.4,
+     "tokens": 149,
+     "wall_s": 2.09,
+     "parsed": {
+      "corrected": "Je voudrais un thé et un verre d'eau, s'il vous plaît.",
+      "mistakes": [
+       {
+        "wrong": "Je voudrais",
+        "right": "Je voudrais",
+        "explanation": "The verb conjugation is incorrect. 'Je voudrais' is the conditional mood, but 'Je voudrais' is the correct form for the conditional mood."
+       },
+       {
+        "wrong": "thé",
+        "right": "thé",
+        "explanation": "Spelling error. The correct spelling is 'thé'."
+       }
+      ]
+     }
+    }
+   },
+   "planted": [
+    "deux pomme -> deux pommes",
+    "Je suis 25 ans -> J'ai 25 ans",
+    "le maison est grand -> la maison est grande"
+   ]
+  },
+  "Hindi": {
+   "roleplay": [
+    {
+     "learner": "नमस्ते, मुझे एक चाय चाहिए।",
+     "text": "ज़रूर, चाय ले लीजिए। क्या आपको चाय मीठी चाहिए या कड़क?",
+     "thinking": "",
+     "tok_per_s": 81.3,
+     "prompt_tok_per_s": 892.4,
+     "tokens": 18,
+     "wall_s": 0.35
+    },
+    {
+     "learner": "हाँ, और पानी भी। यह कितने का है?",
+     "text": "चाय और पानी, दोनों ले लीजिए। यह ₹800 का है। क्या आप कुछ और ऑर्डर करना चाहेंगे?",
+     "thinking": "",
+     "tok_per_s": 81.9,
+     "prompt_tok_per_s": 353.6,
+     "tokens": 26,
+     "wall_s": 0.43
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "कल मैं बाज़ार जाता हूँ और दो सेब खरीदा। मेरी भाई डॉक्टर है।",
+     "text": "{\n  \"corrected\": \"कल मैं बाज़ार जाता हूँ और दो सेब खरीदे।\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"मैं बाज़ार जाता हूँ\",\n      \"right\": \"मैं बाज़ार जाता हूँ\",\n      \"explanation\": \"The verb tense needs correction.\"\n    },\n    {\n      \"wrong\": \"दो सेब खरीदा\",\n      \"right\": \"दो सेब खरीदे\",\n      \"explanation\": \"The verb tense needs adjustment.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 78.4,
+     "prompt_tok_per_s": 640.9,
+     "tokens": 120,
+     "wall_s": 1.69,
+     "parsed": {
+      "corrected": "कल मैं बाज़ार जाता हूँ और दो सेब खरीदे।",
+      "mistakes": [
+       {
+        "wrong": "मैं बाज़ार जाता हूँ",
+        "right": "मैं बाज़ार जाता हूँ",
+        "explanation": "The verb tense needs correction."
+       },
+       {
+        "wrong": "दो सेब खरीदा",
+        "right": "दो सेब खरीदे",
+        "explanation": "The verb tense needs adjustment."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "मुझे एक कप चाय और एक गिलास पानी चाहिए।",
+     "text": "{\n  \"corrected\": \"मुझे एक कप चाय और एक गिलास पानी चाहिए।\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"मुझे एक कप चाय और एक गिलास पानी चाहिए।\",\n      \"right\": \"मुझे एक कप चाय और एक गिलास पानी चाहिए।\",\n      \"explanation\": \"The original sentence structure was slightly awkward; the correction makes the request clearer and more natural.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 75.1,
+     "prompt_tok_per_s": 226.9,
+     "tokens": 104,
+     "wall_s": 1.46,
+     "parsed": {
+      "corrected": "मुझे एक कप चाय और एक गिलास पानी चाहिए।",
+      "mistakes": [
+       {
+        "wrong": "मुझे एक कप चाय और एक गिलास पानी चाहिए।",
+        "right": "मुझे एक कप चाय और एक गिलास पानी चाहिए।",
+        "explanation": "The original sentence structure was slightly awkward; the correction makes the request clearer and more natural."
+       }
+      ]
+     }
+    }
+   },
+   "planted": [
+    "जाता हूँ -> गया (past tense)",
+    "खरीदा -> मैंने ... खरीदे (ergative + plural)",
+    "मेरी भाई -> मेरा भाई (gender)"
+   ]
+  },
+  "Japanese": {
+   "roleplay": [
+    {
+     "learner": "こんにちは。コーヒーをください。",
+     "text": "かしこまりました。コーヒーをお持ちします。お会計はいくらですか？",
+     "thinking": "",
+     "tok_per_s": 81.3,
+     "prompt_tok_per_s": 896.1,
+     "tokens": 18,
+     "wall_s": 0.34
+    },
+    {
+     "learner": "はい、水もお願いします。いくらですか？",
+     "text": "水もいかがですか？メニューをご覧ください。",
+     "thinking": "",
+     "tok_per_s": 80.7,
+     "prompt_tok_per_s": 345.0,
+     "tokens": 10,
+     "wall_s": 0.24
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "昨日、私は店に行きます。りんごを二つを買いました。私の兄は医者がです。",
+     "text": "{\n  \"corrected\": \"昨日、私は店に行きました。りんごを二つ買いました。私の兄は医者です。\",\"mistakes\"\n  :\n  [\n    {\n      \"wrong\": \"昨日、私は店に行きました。\",\n      \"right\": \"昨日、私は店に行きました。\",\n      \"explanation\": \"The original sentence structure was grammatically awkward and the vocabulary was incorrect.\"\n  }\n]\n  }",
+     "thinking": "",
+     "tok_per_s": 67.4,
+     "prompt_tok_per_s": 659.7,
+     "tokens": 108,
+     "wall_s": 1.76,
+     "parsed": {
+      "corrected": "昨日、私は店に行きました。りんごを二つ買いました。私の兄は医者です。",
+      "mistakes": [
+       {
+        "wrong": "昨日、私は店に行きました。",
+        "right": "昨日、私は店に行きました。",
+        "explanation": "The original sentence structure was grammatically awkward and the vocabulary was incorrect."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "すみません、紅茶を一つと水をください。",
+     "text": "{\n  \"corrected\": \"すみません、紅茶と水をください。\",\"mistakes\": [\n  {\n    \"wrong\": \"すみません、紅茶を一つと水をください。\", \"right\": \"すみません、紅茶と水をください。\",\"explanation\": \"The original sentence is grammatically understandable but sounds unnatural. The correction is more polite and natural.\"\n  }\n]\n}",
+     "thinking": "",
+     "tok_per_s": 74.5,
+     "prompt_tok_per_s": 226.4,
+     "tokens": 87,
+     "wall_s": 1.24,
+     "parsed": {
+      "corrected": "すみません、紅茶と水をください。",
+      "mistakes": [
+       {
+        "wrong": "すみません、紅茶を一つと水をください。",
+        "right": "すみません、紅茶と水をください。",
+        "explanation": "The original sentence is grammatically understandable but sounds unnatural. The correction is more polite and natural."
+       }
+      ]
+     }
+    }
+   },
+   "planted": [
+    "行きます -> 行きました (past)",
+    "二つを -> 二つ (double を)",
+    "医者がです -> 医者です"
+   ]
+  }
+ }
+}

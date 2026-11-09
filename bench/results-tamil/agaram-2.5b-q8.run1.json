@@ -1,0 +1,299 @@
+{
+ "model": "agaram-2.5b-q8",
+ "run": 1,
+ "roleplay": {
+  "job_interview": [
+   {
+    "learner": "Good morning sir. Myself Priya, I am having three years experience in Java.",
+    "text": "Good morning Priya. I'm glad to help you with your interview preparation. Please go ahead and tell me your goal for the job. How would you like to start the conversation?",
+    "thinking": "",
+    "tok_per_s": 40.8,
+    "prompt_tok_per_s": 474.3,
+    "tokens": 37,
+    "wall_s": 1.13
+   },
+   {
+    "learner": "I am working in Infosys since 2021. I handled one banking project.",
+    "text": "That's a great start, Priya. Infosys was a great company back then, but now they have moved to TCS. I can imagine that feeling. How have you been doing with the project?",
+    "thinking": "",
+    "tok_per_s": 40.7,
+    "prompt_tok_per_s": 288.1,
+    "tokens": 42,
+    "wall_s": 1.12
+   },
+   {
+    "learner": "My strength is I am hard worker and I will learn fast.",
+    "text": "That's a very positive trait. I'm sure you'll be great at your job as long as you stay focused on your goals.",
+    "thinking": "",
+    "tok_per_s": 40.3,
+    "prompt_tok_per_s": 228.8,
+    "tokens": 28,
+    "wall_s": 0.78
+   }
+  ],
+  "client_call": [
+   {
+    "learner": "Good evening. I will revert back regarding the delivery date by tomorrow.",
+    "text": "Hello! Good evening. I'm glad you're back. Please let me know if you have any questions about the delivery date.",
+    "thinking": "",
+    "tok_per_s": 40.8,
+    "prompt_tok_per_s": 1230.5,
+    "tokens": 27,
+    "wall_s": 0.73
+   },
+   {
+    "learner": "Actually the testing is little bit delayed because of two members are on leave.",
+    "text": "I understand. I'm glad you can see the progress so far. Please let me know if there's anything else you need to know regarding the delay.",
+    "thinking": "",
+    "tok_per_s": 40.7,
+    "prompt_tok_per_s": 373.2,
+    "tokens": 32,
+    "wall_s": 0.84
+   },
+   {
+    "learner": "We can prepone the demo to Monday if you are okay.",
+    "text": "I'm happy to adjust the schedule. I'll be here tomorrow to ensure everything runs smoothly.",
+    "thinking": "",
+    "tok_per_s": 40.5,
+    "prompt_tok_per_s": 352.1,
+    "tokens": 20,
+    "wall_s": 0.54
+   }
+  ],
+  "office_small_talk": [
+   {
+    "learner": "Hi! Today morning I came late because of traffic only.",
+    "text": "Hi! That sounds like a long day today. Hope you're safe and have a great day ahead.",
+    "thinking": "",
+    "tok_per_s": 41.0,
+    "prompt_tok_per_s": 1129.0,
+    "tokens": 22,
+    "wall_s": 0.6
+   },
+   {
+    "learner": "Yes, weekend I went to my native place. My cousin brother marriage was there.",
+    "text": "Oh, that sounds lovely! Going to a wedding is always a great way to get some free time. I'm sure everyone there is having a blast!",
+    "thinking": "",
+    "tok_per_s": 40.6,
+    "prompt_tok_per_s": 389.9,
+    "tokens": 33,
+    "wall_s": 0.86
+   }
+  ]
+ },
+ "correction": [
+  {
+   "input": "Myself Karthik and I am having two years of experience in sales.",
+   "planted": [
+    "Myself Karthik -> I am / My name is Karthik",
+    "I am having -> I have"
+   ],
+   "text": "{ \"corrected\": \"நான் கார்த்திக், எனக்கு இரண்டு வருட விற்பனை அனுபவம் உள்ளது.\", \"mistakes\": [ { \"wrong\": \"I am Karthik and I have two years of experience in sales.\", \"right\": \"நான் கார்த்திக், எனக்கு இரண்டு வருட விற்பனை அனுபவம் உள்ளது.\", \"type\": \"style\", \"explanation_tamil\": \"நான் கார்த்திக், எனக்கு இரண்டு வருட விற்பனை அனுபவம் உள்ளது.\" } ] }",
+   "thinking": "",
+   "tok_per_s": 38.9,
+   "prompt_tok_per_s": 835.2,
+   "tokens": 92,
+   "wall_s": 2.51,
+   "parsed": {
+    "corrected": "நான் கார்த்திக், எனக்கு இரண்டு வருட விற்பனை அனுபவம் உள்ளது.",
+    "mistakes": [
+     {
+      "wrong": "I am Karthik and I have two years of experience in sales.",
+      "right": "நான் கார்த்திக், எனக்கு இரண்டு வருட விற்பனை அனுபவம் உள்ளது.",
+      "type": "style",
+      "explanation_tamil": "நான் கார்த்திக், எனக்கு இரண்டு வருட விற்பனை அனுபவம் உள்ளது."
+     }
+    ]
+   }
+  },
+  {
+   "input": "I am working in this company since 2019.",
+   "planted": [
+    "am working ... since -> have been working ... since"
+   ],
+   "text": "{ \"corrected\": \"நான் 2019 முதல் இந்த நிறுவனத்தில் பணியாற்றி வருகிறேன்.\", \"mistakes\": [ { \"wrong\": \"I have been working in this company since 2019.\", \"right\": \"நான் 2019 முதல் இந்த நிறுவனத்தில் பணியாற்றி வருகிறேன்.\", \"type\": \"style\", \"explanation_tamil\": \"நான் 2019 முதல் இந்த நிறுவனத்தில் பணியாற்றி வருகிறேன்.\" } ] }",
+   "thinking": "",
+   "tok_per_s": 39.3,
+   "prompt_tok_per_s": 232.6,
+   "tokens": 100,
+   "wall_s": 2.6,
+   "parsed": {
+    "corrected": "நான் 2019 முதல் இந்த நிறுவனத்தில் பணியாற்றி வருகிறேன்.",
+    "mistakes": [
+     {
+      "wrong": "I have been working in this company since 2019.",
+      "right": "நான் 2019 முதல் இந்த நிறுவனத்தில் பணியாற்றி வருகிறேன்.",
+      "type": "style",
+      "explanation_tamil": "நான் 2019 முதல் இந்த நிறுவனத்தில் பணியாற்றி வருகிறேன்."
+     }
+    ]
+   }
+  },
+  {
+   "input": "Please revert back to me today itself.",
+   "planted": [
+    "revert back -> get back to / reply (style)",
+    "today itself -> today / by end of today (style)"
+   ],
+   "text": "{ \"corrected\": \"தவறுகள் திருத்தப்பட்டன\", \"mistakes\": [ { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, { \"wrong\": \"தவறுகள் திருத்தப்பட்டன\", \"right\": \"தவறுகள் திருத்தப்பட்டன\", \"type\": \"style\",\"explanation_tamil\": \"தவறுகள் திருத்தப்பட்டன\" }, {",
+   "thinking": "",
+   "tok_per_s": 39.2,
+   "prompt_tok_per_s": 116.3,
+   "tokens": 700,
+   "wall_s": 17.98,
+   "parsed": null
+  },
+  {
+   "input": "We discussed about the budget and he told that it is fine.",
+   "planted": [
+    "discussed about -> discussed",
+    "told that -> said that"
+   ],
+   "text": "{ \"corrected\": \"பட்ஜெட் குறித்து அவர் கூறியதில் எந்த பிரச்சனையும் இல்லை, அது சரியாகவே இருந்தது.\",\"mistakes\": [{\"wrong\": \"பட்ஜெட் குறித்து அவர் கூறியதில் எந்த பிரச்சனையும் இல்லை, அது சரியாகவே இருந்தது.\",\"right\": \"பட்ஜெட் குறித்து அவர் கூறியதில் எந்த பிரச்சனையும் இல்லை, அது சரியாகவே இருந்தது.\",\"type\": \"style\",\"explanation_tamil\": \"பட்ஜெட் குறித்து அவர் கூறியதில் எந்த பிரச்சனையும் இல்லை, அது சரியாகவே இருந்தது.\"}]}",
+   "thinking": "",
+   "tok_per_s": 38.7,
+   "prompt_tok_per_s": 227.5,
+   "tokens": 112,
+   "wall_s": 2.97,
+   "parsed": {
+    "corrected": "பட்ஜெட் குறித்து அவர் கூறியதில் எந்த பிரச்சனையும் இல்லை, அது சரியாகவே இருந்தது.",
+    "mistakes": [
+     {
+      "wrong": "பட்ஜெட் குறித்து அவர் கூறியதில் எந்த பிரச்சனையும் இல்லை, அது சரியாகவே இருந்தது.",
+      "right": "பட்ஜெட் குறித்து அவர் கூறியதில் எந்த பிரச்சனையும் இல்லை, அது சரியாகவே இருந்தது.",
+      "type": "style",
+      "explanation_tamil": "பட்ஜெட் குறித்து அவர் கூறியதில் எந்த பிரச்சனையும் இல்லை, அது சரியாகவே இருந்தது."
+     }
+    ]
+   }
+  },
+  {
+   "input": "Kindly do the needful and send the files.",
+   "planted": [
+    "Kindly do the needful -> Please (style; vague)"
+   ],
+   "text": "{ \"corrected\" : \"திருத்தப்பட்டது\",\"mistakes\" : [ ]}",
+   "thinking": "",
+   "tok_per_s": 37.0,
+   "prompt_tok_per_s": 211.1,
+   "tokens": 22,
+   "wall_s": 0.66,
+   "parsed": {
+    "corrected": "திருத்தப்பட்டது",
+    "mistakes": []
+   }
+  },
+  {
+   "input": "What is your good name?",
+   "planted": [
+    "What is your good name -> May I know your name? (style)"
+   ],
+   "text": "{ \"corrected\": \"உங்கள் பெயர் என்ன?\",\"mistakes\": [ { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"explanation_tamil\": \"உங்கள் பெயர் என்ன?\" }, { \"wrong\": \"உங்கள் பெயர் என்ன?\",\"right\": \"உங்கள் பெயர் என்ன?\",\"type\": \"style\", \"",
+   "thinking": "",
+   "tok_per_s": 39.0,
+   "prompt_tok_per_s": 263.3,
+   "tokens": 700,
+   "wall_s": 17.97,
+   "parsed": null
+  },
+  {
+   "input": "I have been working here for three years and I enjoy my role.",
+   "planted": [],
+   "text": "{\"corrected\": \"I have been working here for three years and I enjoy my role.\",\"mistakes\": [{\"wrong\": \"I have been working here for three years and I enjoy my role.\",\"right\": \"I have been working here for three years and I enjoy my role.\",\"type\": \"grammar\", \"explanation_tamil\": \"I have been working here for three years and I enjoy my role.\"}]}",
+   "thinking": "",
+   "tok_per_s": 39.3,
+   "prompt_tok_per_s": 232.2,
+   "tokens": 97,
+   "wall_s": 2.55,
+   "parsed": {
+    "corrected": "I have been working here for three years and I enjoy my role.",
+    "mistakes": [
+     {
+      "wrong": "I have been working here for three years and I enjoy my role.",
+      "right": "I have been working here for three years and I enjoy my role.",
+      "type": "grammar",
+      "explanation_tamil": "I have been working here for three years and I enjoy my role."
+     }
+    ]
+   }
+  },
+  {
+   "input": "Could you please send me the updated report by Friday?",
+   "planted": [],
+   "text": "{ \"corrected\": \"...the learner's English sentence. Report grammar mistakes (type 'grammar') and phrases that are unclear or unprofessional in international business English (type 'style'). Only report real problems; if the sentence is already correct and professional, return an empty mistakes list and the sentence unchanged. Every fix in 'corrected' must be listed. Write each explanation as ONE short sentence in simple Tamil (Tamil script); English words may stay in English.\",\"mistakes\": [{\"wrong\": \"The learner's English sentence. Report grammar mistakes (type 'grammar') and phrases that are unclear or unprofessional in international business English (type 'style'). Only report real problems; if the sentence is already correct and professional, return an empty mistakes list and the sentence unchanged. Every fix in 'corrected' must be listed. Write each explanation as ONE short sentence in simple Tamil (Tamil script); English words may stay in English.\",\"right\": \"...the learner's English sentence. Report grammar mistakes (type 'grammar') and phrases that are unclear or unprofessional in international business English (type 'style'). Only report real problems; if the sentence is already correct and professional, return an empty mistakes list and the sentence unchanged. Every fix in 'corrected' must be listed. Write each explanation as ONE short sentence in simple Tamil (Tamil script); English words may stay in English.\",\"type\": \"style\", \"explanation_tamil\": \"...the learner's English sentence. Report grammar mistakes (type 'grammar') and phrases that are unclear or unprofessional in international business English (type 'style'). Only report real problems; if the sentence is a\"}\n\n    ]\n\n    }",
+   "thinking": "",
+   "tok_per_s": 39.4,
+   "prompt_tok_per_s": 205.2,
+   "tokens": 375,
+   "wall_s": 9.59,
+   "parsed": {
+    "corrected": "...the learner's English sentence. Report grammar mistakes (type 'grammar') and phrases that are unclear or unprofessional in international business English (type 'style'). Only report real problems; if the sentence is already correct and professional, return an empty mistakes list and the sentence unchanged. Every fix in 'corrected' must be listed. Write each explanation as ONE short sentence in simple Tamil (Tamil script); English words may stay in English.",
+    "mistakes": [
+     {
+      "wrong": "The learner's English sentence. Report grammar mistakes (type 'grammar') and phrases that are unclear or unprofessional in international business English (type 'style'). Only report real problems; if the sentence is already correct and professional, return an empty mistakes list and the sentence unchanged. Every fix in 'corrected' must be listed. Write each explanation as ONE short sentence in simple Tamil (Tamil script); English words may stay in English.",
+      "right": "...the learner's English sentence. Report grammar mistakes (type 'grammar') and phrases that are unclear or unprofessional in international business English (type 'style'). Only report real problems; if the sentence is already correct and professional, return an empty mistakes list and the sentence unchanged. Every fix in 'corrected' must be listed. Write each explanation as ONE short sentence in simple Tamil (Tamil script); English words may stay in English.",
+      "type": "style",
+      "explanation_tamil": "...the learner's English sentence. Report grammar mistakes (type 'grammar') and phrases that are unclear or unprofessional in international business English (type 'style'). Only report real problems; if the sentence is a"
+     }
+    ]
+   }
+  }
+ ],
+ "help": [
+  {
+   "id": "leave_tamil_script",
+   "input": "மேனேஜர் கிட்ட நாளைக்கு லீவ் கேட்கணும். எப்படி professional-ஆ சொல்றது?",
+   "meaning": "I need to ask my manager for leave tomorrow. How do I say it professionally?",
+   "text": "இதை இப்படி சொல்லலாம்: \"Hi [Manager's Name], நாளைக்கு எனக்கு ஒரு முக்கியமான வேலை இருக்கு, அதனால லீவ் வேணும். உங்களுக்கு ஓகே-வா?\" \n\nஇன்னும் கொஞ்சம் formal-ஆ வேணும்னா இப்படி எழுதலாம்: \"I would like to request a leave for tomorrow as I have an important meeting.\"",
+   "thinking": "",
+   "tok_per_s": 40.9,
+   "prompt_tok_per_s": 1213.5,
+   "tokens": 56,
+   "wall_s": 1.45
+  },
+  {
+   "id": "late_apology_tamil_script",
+   "input": "மீட்டிங்குக்கு 10 நிமிஷம் லேட்டா வந்துட்டேன். எப்படி மன்னிப்பு கேட்கணும்?",
+   "meaning": "I came 10 minutes late to the meeting. How should I apologise?",
+   "text": "மன்னிக்கவும், மன்னிப்பு கேட்பதற்கான சரியான தமிழ் வாக்கியத்தை என்னால் இப்போது சொல்ல முடியாது. ஆனால், நீங்கள் சொல்ல விரும்பும் மன்னிப்புக்கான சில மாதிரி வாக்கியங்களை நான் இங்கே தருகிறேன்:\n\n1. 'மன்னிக்கவும், எதிர்பாராத காரணத்தால் 10 நிமிடம் தாமதமாகிவிட்டது. தயவுசெய்து மன்னிக்கவும்.'\n\n2. 'தாமதத்திற்கு வருந்துகிறேன். நான் இப்போது 10 நிமிடம் தாமதமாகிவிட்டேன். தயவுசெய்து மன்னிக்கவும்.'",
+   "thinking": "",
+   "tok_per_s": 40.6,
+   "prompt_tok_per_s": 337.8,
+   "tokens": 71,
+   "wall_s": 1.79
+  },
+  {
+   "id": "interview_tanglish",
+   "input": "naan interview la romba nervous aagiten, 'tell me about yourself' ku enna sollanum?",
+   "meaning": "I get very nervous in interviews; what should I say for 'tell me about yourself'?",
+   "text": "Kavalai padathenga, interview nervous aagurathu normal thaan. 'Tell me about yourself' ku intha simple sentences use pannunga:\n\n1. \"I have been working as a [Name] for [Number] years, and I have a strong background in [Skill/Field]. I am very quick on my feet and I am very organized.\"\n\n2. \"As a [Name], I have experience in [Field/Job Role]. I am a quick learner and I am very committed to my work. I am happy to share my knowledge with you.\"\n\n3. \"I am a [Name] with a passion for [Field]. I have a strong work ethic and I am eager to contribute to the team.\"\n\nIntha answers ellam short-ah and professional-ah irukkum. All the best!",
+   "thinking": "",
+   "tok_per_s": 40.7,
+   "prompt_tok_per_s": 339.9,
+   "tokens": 165,
+   "wall_s": 4.11
+  },
+  {
+   "id": "deadline_email_tanglish",
+   "input": "client kitta deadline extend panna solli oru chinna email ezhudhi kudunga",
+   "meaning": "Write me a short email asking the client to extend the deadline.",
+   "text": "நிச்சயமாக, இதோ உங்களுக்கான மின்னஞ்சல்:\n\n'அன்புள்ள [Client Name],\n\nஉங்கள் காலக்கெடுவை (deadline) நீட்டிக்குமாறு கேட்டுக்கொள்கிறேன். இந்த வேலை மிகவும் முக்கியமானது என்பதால், குறிப்பிட்ட தேதிக்குள் இதை முடித்துவிடுவோம். உங்களுக்கு ஏதேனும் சிரமங்கள் இருந்தால் எனக்குத் தெரியப்படுத்துங்கள், நாம் இணைந்து இதைச் சரிசெய்துவிடலாம்.'",
+   "thinking": "",
+   "tok_per_s": 40.8,
+   "prompt_tok_per_s": 246.3,
+   "tokens": 55,
+   "wall_s": 1.41
+  },
+  {
+   "id": "casual_to_formal",
+   "input": "idha professional ah maathunga: 'hey send me that report asap, need it'",
+   "meaning": "Make this professional: 'hey send me that report asap, need it'",
+   "text": "நிச்சயமாக, இதோ உங்களுக்கான தொழில்முறை வடிவம்: 'ஹே, அந்த ரிப்போர்ட்டை சீக்கிரம் அனுப்பு, எனக்கு அது தேவை'",
+   "thinking": "",
+   "tok_per_s": 40.9,
+   "prompt_tok_per_s": 339.7,
+   "tokens": 23,
+   "wall_s": 0.61
+  }
+ ]
+}

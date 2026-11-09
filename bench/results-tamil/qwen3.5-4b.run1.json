@@ -1,0 +1,348 @@
+{
+ "model": "qwen3.5-4b",
+ "run": 1,
+ "roleplay": {
+  "job_interview": [
+   {
+    "learner": "Good morning sir. Myself Priya, I am having three years experience in Java.",
+    "text": "Good morning Priya, it's a pleasure to meet you. Could you please briefly tell me about your most recent project and the technologies you used?",
+    "thinking": "",
+    "tok_per_s": 36.3,
+    "prompt_tok_per_s": 354.9,
+    "tokens": 31,
+    "wall_s": 1.16
+   },
+   {
+    "learner": "I am working in Infosys since 2021. I handled one banking project.",
+    "text": "That sounds like a solid experience, particularly with complex banking systems. What specific part of that project were you most responsible for?",
+    "thinking": "",
+    "tok_per_s": 36.0,
+    "prompt_tok_per_s": 220.8,
+    "tokens": 26,
+    "wall_s": 0.98
+   },
+   {
+    "learner": "My strength is I am hard worker and I will learn fast.",
+    "text": "That is a great attitude to bring to any team. Could you share a specific example of a new technology you recently learned and how you applied it at your current job?",
+    "thinking": "",
+    "tok_per_s": 36.0,
+    "prompt_tok_per_s": 180.8,
+    "tokens": 35,
+    "wall_s": 1.23
+   }
+  ],
+  "client_call": [
+   {
+    "learner": "Good evening. I will revert back regarding the delivery date by tomorrow.",
+    "text": "Good evening, that is great news; I'll just wait to hear your update. Could you please send me a quick summary of any known risks you anticipate?",
+    "thinking": "",
+    "tok_per_s": 36.2,
+    "prompt_tok_per_s": 378.5,
+    "tokens": 33,
+    "wall_s": 1.25
+   },
+   {
+    "learner": "Actually the testing is little bit delayed because of two members are on leave.",
+    "text": "That makes sense, and I understand it can happen. Please let me know if we need to adjust the timeline or if we can work around this delay.",
+    "thinking": "",
+    "tok_per_s": 36.1,
+    "prompt_tok_per_s": 209.9,
+    "tokens": 32,
+    "wall_s": 1.15
+   },
+   {
+    "learner": "We can prepone the demo to Monday if you are okay.",
+    "text": "That sounds like a good solution to get things back on track. Does Monday work for your team as well?",
+    "thinking": "",
+    "tok_per_s": 35.4,
+    "prompt_tok_per_s": 160.4,
+    "tokens": 23,
+    "wall_s": 0.99
+   }
+  ],
+  "office_small_talk": [
+   {
+    "learner": "Hi! Today morning I came late because of traffic only.",
+    "text": "No worries at all, traffic is such a headache in the mornings. Want to grab a coffee while we catch up on how your project is going?",
+    "thinking": "",
+    "tok_per_s": 34.2,
+    "prompt_tok_per_s": 335.2,
+    "tokens": 31,
+    "wall_s": 1.25
+   },
+   {
+    "learner": "Yes, weekend I went to my native place. My cousin brother marriage was there.",
+    "text": "That sounds like a very special occasion, though I hope you had enough rest to feel fresh today. Did you get to see your family for a long time?",
+    "thinking": "",
+    "tok_per_s": 34.3,
+    "prompt_tok_per_s": 180.0,
+    "tokens": 33,
+    "wall_s": 1.27
+   }
+  ]
+ },
+ "correction": [
+  {
+   "input": "Myself Karthik and I am having two years of experience in sales.",
+   "planted": [
+    "Myself Karthik -> I am / My name is Karthik",
+    "I am having -> I have"
+   ],
+   "text": "{\n  \"corrected\": \"I am Karthik and I have two years of sales experience.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"Myself Karthik\",\n      \"right\": \"I am Karthik\",\n      \"type\": \"grammar\",\n      \"explanation_tamil\": \"நான் என்பதற்கு 'மெய்ம்' பயன்படுத்தக்கூடாது.\"\n    },\n    {\n      \"wrong\": \"having\",\n      \"right\": \"have\",\n      \"type\": \"grammar\",\n      \"explanation_tamil\": \"பெயர்ச்சொல்லுக்கு 'having' பயன்படுத்தக்கூடாது.\"\n    },\n    {\n      \"wrong\": \"in sales\",\n      \"right\": \"sales\",\n      \"type\": \"style\",\n      \"explanation_tamil\": \"இது தொழில்நுட்பத் துறையில் பயன்படுத்தப்படும் துல்லியமான வார்த்தை.\"\n    }\n  ]\n}",
+   "thinking": "",
+   "tok_per_s": 31.6,
+   "prompt_tok_per_s": 356.5,
+   "tokens": 233,
+   "wall_s": 7.74,
+   "parsed": {
+    "corrected": "I am Karthik and I have two years of sales experience.",
+    "mistakes": [
+     {
+      "wrong": "Myself Karthik",
+      "right": "I am Karthik",
+      "type": "grammar",
+      "explanation_tamil": "நான் என்பதற்கு 'மெய்ம்' பயன்படுத்தக்கூடாது."
+     },
+     {
+      "wrong": "having",
+      "right": "have",
+      "type": "grammar",
+      "explanation_tamil": "பெயர்ச்சொல்லுக்கு 'having' பயன்படுத்தக்கூடாது."
+     },
+     {
+      "wrong": "in sales",
+      "right": "sales",
+      "type": "style",
+      "explanation_tamil": "இது தொழில்நுட்பத் துறையில் பயன்படுத்தப்படும் துல்லியமான வார்த்தை."
+     }
+    ]
+   }
+  },
+  {
+   "input": "I am working in this company since 2019.",
+   "planted": [
+    "am working ... since -> have been working ... since"
+   ],
+   "text": "{\n  \"corrected\": \"I have been working at this company since 2019.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"working\",\n      \"right\": \"have been working\",\n      \"type\": \"grammar\",\n      \"explanation_tamil\": \"இந்தச் சொல்லுக்கு 'have been working' என்று மாற்ற வேண்டும்.\"\n    },\n    {\n      \"wrong\": \"in\",\n      \"right\": \"at\",\n      \"type\": \"style\",\n      \"explanation_tamil\": \"நிறுவனத்தில் பணிபுரியும்போது 'at' என்று பயன்படுத்த வேண்டும்.\"\n    }\n  ]\n}",
+   "thinking": "",
+   "tok_per_s": 30.7,
+   "prompt_tok_per_s": 106.8,
+   "tokens": 160,
+   "wall_s": 5.44,
+   "parsed": {
+    "corrected": "I have been working at this company since 2019.",
+    "mistakes": [
+     {
+      "wrong": "working",
+      "right": "have been working",
+      "type": "grammar",
+      "explanation_tamil": "இந்தச் சொல்லுக்கு 'have been working' என்று மாற்ற வேண்டும்."
+     },
+     {
+      "wrong": "in",
+      "right": "at",
+      "type": "style",
+      "explanation_tamil": "நிறுவனத்தில் பணிபுரியும்போது 'at' என்று பயன்படுத்த வேண்டும்."
+     }
+    ]
+   }
+  },
+  {
+   "input": "Please revert back to me today itself.",
+   "planted": [
+    "revert back -> get back to / reply (style)",
+    "today itself -> today / by end of today (style)"
+   ],
+   "text": "{\n  \"corrected\": \"Please revert to me today.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"revert back\",\n      \"right\": \"revert\",\n      \"type\": \"style\",\n      \"explanation_tamil\": \"பிரிவுக்குத் திரும்புவதற்கு 'revert back' என்று சொல்லக்கூடாது; 'revert' போதுமானது.\"\n    }\n  ]\n}",
+   "thinking": "",
+   "tok_per_s": 28.9,
+   "prompt_tok_per_s": 130.7,
+   "tokens": 106,
+   "wall_s": 3.8,
+   "parsed": {
+    "corrected": "Please revert to me today.",
+    "mistakes": [
+     {
+      "wrong": "revert back",
+      "right": "revert",
+      "type": "style",
+      "explanation_tamil": "பிரிவுக்குத் திரும்புவதற்கு 'revert back' என்று சொல்லக்கூடாது; 'revert' போதுமானது."
+     }
+    ]
+   }
+  },
+  {
+   "input": "We discussed about the budget and he told that it is fine.",
+   "planted": [
+    "discussed about -> discussed",
+    "told that -> said that"
+   ],
+   "text": "{\n  \"corrected\": \"We discussed the budget and he said it was fine.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"discussed about\",\n      \"right\": \"discussed\",\n      \"type\": \"grammar\",\n      \"explanation_tamil\": \"படிப்படியாகப் பேசுவதற்கு 'discussed about' என்று சொல்ல முடியாது; 'discussed' போதும்.\"\n    },\n    {\n      \"wrong\": \"told that\",\n      \"right\": \"said\",\n      \"type\": \"grammar\",\n      \"explanation_tamil\": \"'told that' என்பதற்குப் பதிலாக 'said' என்று சொல்ல வேண்டும்.\"\n    },\n    {\n      \"wrong\": \"it is\",\n      \"right\": \"it was\",\n      \"type\": \"grammar\",\n      \"explanation_tamil\": \"முன்னர் நடந்த விஷயத்தைக் குறிப்பிட 'was' என்று பயன்படுத்த வேண்டும்.\"\n    },\n    {\n      \"wrong\": \"discussed about\",\n      \"right\": \"discussed\",\n      \"type\": \"style\",\n      \"explanation_tamil\": \"பொருளாதாரத் திட்டத்தைப் பற்றி பேசியது என்று தெளிவாகச் சொல்ல 'discussed the budget' என்று பயன்படுத்தலாம்.\"\n    }\n  ]\n}",
+   "thinking": "",
+   "tok_per_s": 28.0,
+   "prompt_tok_per_s": 95.8,
+   "tokens": 316,
+   "wall_s": 11.51,
+   "parsed": {
+    "corrected": "We discussed the budget and he said it was fine.",
+    "mistakes": [
+     {
+      "wrong": "discussed about",
+      "right": "discussed",
+      "type": "grammar",
+      "explanation_tamil": "படிப்படியாகப் பேசுவதற்கு 'discussed about' என்று சொல்ல முடியாது; 'discussed' போதும்."
+     },
+     {
+      "wrong": "told that",
+      "right": "said",
+      "type": "grammar",
+      "explanation_tamil": "'told that' என்பதற்குப் பதிலாக 'said' என்று சொல்ல வேண்டும்."
+     },
+     {
+      "wrong": "it is",
+      "right": "it was",
+      "type": "grammar",
+      "explanation_tamil": "முன்னர் நடந்த விஷயத்தைக் குறிப்பிட 'was' என்று பயன்படுத்த வேண்டும்."
+     },
+     {
+      "wrong": "discussed about",
+      "right": "discussed",
+      "type": "style",
+      "explanation_tamil": "பொருளாதாரத் திட்டத்தைப் பற்றி பேசியது என்று தெளிவாகச் சொல்ல 'discussed the budget' என்று பயன்படுத்தலாம்."
+     }
+    ]
+   }
+  },
+  {
+   "input": "Kindly do the needful and send the files.",
+   "planted": [
+    "Kindly do the needful -> Please (style; vague)"
+   ],
+   "text": "{\n  \"corrected\": \"Please take the necessary action and send the files.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"Kindly do the needful\",\n      \"right\": \"Please take the necessary action\",\n      \"type\": \"style\",\n      \"explanation_tamil\": \"இந்த வார்த்தைகள் தொழில்முறைத் தமிழில் பயன்படுத்தப்படாது.\"\n    }\n  ]\n}",
+   "thinking": "",
+   "tok_per_s": 25.7,
+   "prompt_tok_per_s": 87.7,
+   "tokens": 103,
+   "wall_s": 4.25,
+   "parsed": {
+    "corrected": "Please take the necessary action and send the files.",
+    "mistakes": [
+     {
+      "wrong": "Kindly do the needful",
+      "right": "Please take the necessary action",
+      "type": "style",
+      "explanation_tamil": "இந்த வார்த்தைகள் தொழில்முறைத் தமிழில் பயன்படுத்தப்படாது."
+     }
+    ]
+   }
+  },
+  {
+   "input": "What is your good name?",
+   "planted": [
+    "What is your good name -> May I know your name? (style)"
+   ],
+   "text": "{\n  \"corrected\": \"What is your full name?\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"good name\",\n      \"right\": \"full name\",\n      \"type\": \"style\",\n      \"explanation_tamil\": \"பொருளாதாரத் துறையில் 'good name' என்பது சரியான சொல்லாடல் அல்ல.\"\n    }\n  ]\n}",
+   "thinking": "",
+   "tok_per_s": 25.6,
+   "prompt_tok_per_s": 96.8,
+   "tokens": 98,
+   "wall_s": 3.99,
+   "parsed": {
+    "corrected": "What is your full name?",
+    "mistakes": [
+     {
+      "wrong": "good name",
+      "right": "full name",
+      "type": "style",
+      "explanation_tamil": "பொருளாதாரத் துறையில் 'good name' என்பது சரியான சொல்லாடல் அல்ல."
+     }
+    ]
+   }
+  },
+  {
+   "input": "I have been working here for three years and I enjoy my role.",
+   "planted": [],
+   "text": "{\n  \"corrected\": \"I have been working here for three years and I enjoy my role.\",\n  \"mistakes\": []\n}",
+   "thinking": "",
+   "tok_per_s": 26.2,
+   "prompt_tok_per_s": 88.2,
+   "tokens": 32,
+   "wall_s": 1.5,
+   "parsed": {
+    "corrected": "I have been working here for three years and I enjoy my role.",
+    "mistakes": []
+   }
+  },
+  {
+   "input": "Could you please send me the updated report by Friday?",
+   "planted": [],
+   "text": "{\n  \"corrected\": \"Could you please send me the updated report by Friday?\",\n  \"mistakes\": []\n}",
+   "thinking": "",
+   "tok_per_s": 25.3,
+   "prompt_tok_per_s": 85.2,
+   "tokens": 29,
+   "wall_s": 1.38,
+   "parsed": {
+    "corrected": "Could you please send me the updated report by Friday?",
+    "mistakes": []
+   }
+  }
+ ],
+ "help": [
+  {
+   "id": "leave_tamil_script",
+   "input": "மேனேஜர் கிட்ட நாளைக்கு லீவ் கேட்கணும். எப்படி professional-ஆ சொல்றது?",
+   "meaning": "I need to ask my manager for leave tomorrow. How do I say it professionally?",
+   "text": "Here are two professional ways to say this:\n\n**Option 1 (Formal):**\n\"I would like to request a leave of absence for tomorrow as I have an urgent personal matter to attend to.\"\n\n**Option 2 (Direct & Polite):**\n\"I am writing to inform you that I will be taking a leave tomorrow due to a family emergency.\"\n\n**Tamil Explanation:**\nஇந்த வாக்குமூலத்தைப் பயன்படுத்த, உங்கள் மேனேஜருக்கு அதிகாரப்பூர்வமாக (formal) அல்லது அவசரமான விஷயங்கள் (urgent matters) இருந்தால் பயன்படுத்தலாம்.",
+   "thinking": "",
+   "tok_per_s": 24.9,
+   "prompt_tok_per_s": 275.1,
+   "tokens": 137,
+   "wall_s": 5.96
+  },
+  {
+   "id": "late_apology_tamil_script",
+   "input": "மீட்டிங்குக்கு 10 நிமிஷம் லேட்டா வந்துட்டேன். எப்படி மன்னிப்பு கேட்கணும்?",
+   "meaning": "I came 10 minutes late to the meeting. How should I apologise?",
+   "text": "Here are two professional ways to apologize for being late to a meeting:\n\n**Option 1 (Formal):**\n\"I sincerely apologize for being 10 minutes late to the meeting; I value your time and will ensure I am punctuous next time.\"\n*(மீட்டிங்கிற்கு 10 நிமிஷம் லேட்டாக வந்ததற்காக நானே உங்களை மன்னிக்க வேண்டும்; உங்கள் நேரத்தை மதிப்பதால், அடுத்த முறை நேரத்திற்குள் வருவதில் உறுதி இருப்பேன்.)*\n\n**Option 2 (Slightly softer):**\n\"Please accept my apologies for the delay; I had a minor issue and will make sure to be on time for future meetings.\"\n*(தாமதத்திற்காக உங்கள் மன்னிப்பை ஏற்கவும்; எனக்கு ஒரு சிறிய பிரச்சனை இருந்தது, எதிர்கால மீட்டிங்குகளுக்கு நேரத்திற்குள் வருவதில் உறுதி இருப்பேன்.)*",
+   "thinking": "",
+   "tok_per_s": 24.4,
+   "prompt_tok_per_s": 188.1,
+   "tokens": 227,
+   "wall_s": 9.53
+  },
+  {
+   "id": "interview_tanglish",
+   "input": "naan interview la romba nervous aagiten, 'tell me about yourself' ku enna sollanum?",
+   "meaning": "I get very nervous in interviews; what should I say for 'tell me about yourself'?",
+   "text": "Here are two professional ways to answer this question:\n\n1.  \"I am a dedicated professional with strong skills in [mention a key skill], and I am eager to bring my experience to your team.\"\n2.  \"My background in [mention your field] has prepared me to handle challenges effectively, and I am very excited about this opportunity.\"\n\n**Tamil Explanation:**\n*   **Sentence 1:** Use this to highlight your main strengths and confidence.\n*   **Sentence 2:** Use this if you want to focus on how your past work helps you solve problems.",
+   "thinking": "",
+   "tok_per_s": 24.3,
+   "prompt_tok_per_s": 137.2,
+   "tokens": 122,
+   "wall_s": 5.28
+  },
+  {
+   "id": "deadline_email_tanglish",
+   "input": "client kitta deadline extend panna solli oru chinna email ezhudhi kudunga",
+   "meaning": "Write me a short email asking the client to extend the deadline.",
+   "text": "**Subject:** Request to Extend Project Deadline\n\n\"Dear [Client Name], due to some unexpected delays, could we please extend the deadline by [number] days? Thank you for your understanding.\"\n\n*   **Use this when:** You need more time but want to sound polite and professional.\n*   **Note:** Replace `[number]` with the actual number of days.",
+   "thinking": "",
+   "tok_per_s": 24.4,
+   "prompt_tok_per_s": 117.8,
+   "tokens": 78,
+   "wall_s": 3.54
+  },
+  {
+   "id": "casual_to_formal",
+   "input": "idha professional ah maathunga: 'hey send me that report asap, need it'",
+   "meaning": "Make this professional: 'hey send me that report asap, need it'",
+   "text": "\"Please send me that report as soon as possible; it is required for my work.\"\n\"என் வேலையின் தேவையால், அந்த றிபோர்டை எப்படி முடியுமென்று பிறகு அனுப்பி வைக்கலாம்.\"\n\nIf you need a shorter, slightly more direct version:\n\"Could you please send me that report ASAP? I need it urgently.\"\n\"உடனடியாக அந்த றிபோர்டை அனுப்பி வைக்க முடியுமா? எனக்கு அதற்கு வேலை தேவை.\"",
+   "thinking": "",
+   "tok_per_s": 24.6,
+   "prompt_tok_per_s": 134.6,
+   "tokens": 127,
+   "wall_s": 5.42
+  }
+ ]
+}

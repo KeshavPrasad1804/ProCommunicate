@@ -1,0 +1,294 @@
+{
+ "model": "gemma4-e2b",
+ "file": "models/gemma-4-E2B-it-Q4_K_M.gguf",
+ "load_s": 1.5,
+ "file_gb": 3.11,
+ "langs": {
+  "Spanish": {
+   "roleplay": [
+    {
+     "learner": "Hola, quiero un café con leche, por favor.",
+     "text": "Claro, un café con leche. ¿Quieres agua también?",
+     "thinking": "",
+     "tok_per_s": 60.7,
+     "prompt_tok_per_s": 204.8,
+     "tokens": 14,
+     "wall_s": 0.66
+    },
+    {
+     "learner": "Sí, y también agua. ¿Cuánto cuesta?",
+     "text": "El café cuesta dos euros. ¿Quieres otra cosa?",
+     "thinking": "",
+     "tok_per_s": 64.8,
+     "prompt_tok_per_s": 306.5,
+     "tokens": 12,
+     "wall_s": 0.3
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "Ayer yo voy al mercado y compré dos manzana. La agua está fría.",
+     "text": "{\n  \"corrected\": \"Ayer fui al mercado y compré dos manzanas. El agua está fría.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"yo voy\",\n      \"right\": \"fui\",\n      \"explanation\": \"You are talking about something that happened yesterday (a past action), so you need the past tense (pretérito) of 'ir' (to go), which is 'fui'.\"\n    },\n    {\n      \"wrong\": \"dos manzana\",\n      \"right\": \"dos manzanas\",\n      \"explanation\": \"The word 'manzana' (apple) is feminine, so it needs to be plural ('manzanas') because you bought two.\"\n    },\n    {\n      \"wrong\": \"La agua\",\n      \"right\": \"El agua\",\n      \"explanation\": \"The word 'agua' (water) is feminine, but it is used as an uncountable noun, so it uses the masculine article 'el' when referring to water in general.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 62.1,
+     "prompt_tok_per_s": 498.4,
+     "tokens": 234,
+     "wall_s": 3.92,
+     "parsed": {
+      "corrected": "Ayer fui al mercado y compré dos manzanas. El agua está fría.",
+      "mistakes": [
+       {
+        "wrong": "yo voy",
+        "right": "fui",
+        "explanation": "You are talking about something that happened yesterday (a past action), so you need the past tense (pretérito) of 'ir' (to go), which is 'fui'."
+       },
+       {
+        "wrong": "dos manzana",
+        "right": "dos manzanas",
+        "explanation": "The word 'manzana' (apple) is feminine, so it needs to be plural ('manzanas') because you bought two."
+       },
+       {
+        "wrong": "La agua",
+        "right": "El agua",
+        "explanation": "The word 'agua' (water) is feminine, but it is used as an uncountable noun, so it uses the masculine article 'el' when referring to water in general."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "Me gustaría un té verde y un vaso de agua, por favor.",
+     "text": "{\n  \"corrected\": \"\",\n  \"mistakes\": []\n}",
+     "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"Me gustaría un té verde y un vaso de agua, por favor.\"\n2.  **Identify the goal:** Check the sentence for grammar, spelling, gender, agreement, and tense mistakes.\n3.  **Break down the sentence and check components:**\n    *   \"Me gustaría\" (I would like) - Correct conjugation (Imperfect tense, polite request).\n    *   \"un té verde\" (a green tea) - Correct. \"Té\" is masculine singular.\n    *   \"y\" (and) - Correct conjunction.\n    *   \"un vaso de agua\" (a glass of water) - Correct. \"Vaso\" is masculine singular.\n    *   \"por favor\" (please) - Correct.\n4.  **Assess overall correctness:** The sentence is grammatically perfect, natural, and polite.\n5.  **Determine the output:** Since there are no mistakes, the output should be an empty list.",
+     "tok_per_s": 62.3,
+     "prompt_tok_per_s": 192.0,
+     "tokens": 241,
+     "wall_s": 3.97,
+     "parsed": {
+      "corrected": "",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "voy -> fui (past tense)",
+    "dos manzana -> dos manzanas (plural)",
+    "La agua -> El agua (article)"
+   ]
+  },
+  "French": {
+   "roleplay": [
+    {
+     "learner": "Bonjour, je voudrais un café, s'il vous plaît.",
+     "text": "D'accord. Voulez-vous un croissant aussi ? Combien voulez-vous ?",
+     "thinking": "",
+     "tok_per_s": 63.5,
+     "prompt_tok_per_s": 566.3,
+     "tokens": 18,
+     "wall_s": 0.44
+    },
+    {
+     "learner": "Oui, et un croissant. C'est combien ?",
+     "text": "Un croissant coûte un euro. Voulez-vous l'addition maintenant ?",
+     "thinking": "",
+     "tok_per_s": 63.6,
+     "prompt_tok_per_s": 333.5,
+     "tokens": 16,
+     "wall_s": 0.37
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "Hier je suis allé au marché et j'ai acheté deux pomme. Je suis 25 ans et le maison est grand.",
+     "text": "{\n  \"corrected\": \"Hier, je suis allé au marché et j'ai acheté deux pommes. J'ai 25 ans et la maison est grande.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"pomme\",\n      \"right\": \"pommes\",\n      \"explanation\": \"When you say 'two apples', you need the plural form: 'pommes'.\"\n    },\n    {\n      \"wrong\": \"le maison\",\n      \"right\": \"la maison\",\n      \"explanation\": \"The word 'maison' is feminine, so you must use the feminine article 'la', not 'le'.\"\n    },\n    {\n      \"wrong\": \"grand\",\n      \"right\": \"grande\",\n      \"explanation\": \"Since 'maison' is feminine, the adjective describing it must also be feminine: 'grande'.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 61.4,
+     "prompt_tok_per_s": 545.7,
+     "tokens": 203,
+     "wall_s": 3.47,
+     "parsed": {
+      "corrected": "Hier, je suis allé au marché et j'ai acheté deux pommes. J'ai 25 ans et la maison est grande.",
+      "mistakes": [
+       {
+        "wrong": "pomme",
+        "right": "pommes",
+        "explanation": "When you say 'two apples', you need the plural form: 'pommes'."
+       },
+       {
+        "wrong": "le maison",
+        "right": "la maison",
+        "explanation": "The word 'maison' is feminine, so you must use the feminine article 'la', not 'le'."
+       },
+       {
+        "wrong": "grand",
+        "right": "grande",
+        "explanation": "Since 'maison' is feminine, the adjective describing it must also be feminine: 'grande'."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "Je voudrais un thé et un verre d'eau, s'il vous plaît.",
+     "text": "{\n  \"corrected\": \"\",\n  \"mistakes\": []\n}",
+     "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"Je voudrais un thé et un verre d'eau, s'il vous plaît.\"\n2.  **Identify the goal:** Check the sentence for grammar, spelling, gender, agreement, and tense. Report only *real* mistakes.\n3.  **Examine the sentence components:**\n    *   \"Je voudrais\" (I would like) - Conditional tense, polite request. Correct.\n    *   \"un thé\" (a tea) - Masculine noun. Correct.\n    *   \"et\" (and) - Correct conjunction.\n    *   \"un verre d'eau\" (a glass of water) - \"verre\" is masculine, \"d'eau\" is correct. Correct.\n    *   \"s'il vous plaît\" (please) - Correct polite phrase.\n4.  **Check overall structure and flow:** The sentence is perfectly constructed, polite, and grammatically sound.\n5.  **Conclusion:** There are no mistakes.",
+     "tok_per_s": 62.4,
+     "prompt_tok_per_s": 227.8,
+     "tokens": 248,
+     "wall_s": 4.08,
+     "parsed": {
+      "corrected": "",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "deux pomme -> deux pommes",
+    "Je suis 25 ans -> J'ai 25 ans",
+    "le maison est grand -> la maison est grande"
+   ]
+  },
+  "Hindi": {
+   "roleplay": [
+    {
+     "learner": "नमस्ते, मुझे एक चाय चाहिए।",
+     "text": "ज़रूर, मैं आपकी चाय लाता हूँ। आप पानी पीना चाहेंगे?",
+     "thinking": "",
+     "tok_per_s": 62.8,
+     "prompt_tok_per_s": 634.0,
+     "tokens": 15,
+     "wall_s": 0.36
+    },
+    {
+     "learner": "हाँ, और पानी भी। यह कितने का है?",
+     "text": "चाय और पानी कितने का है? कृपया, मैं मेनू दिखाता हूँ।",
+     "thinking": "",
+     "tok_per_s": 63.4,
+     "prompt_tok_per_s": 306.6,
+     "tokens": 17,
+     "wall_s": 0.39
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "कल मैं बाज़ार जाता हूँ और दो सेब खरीदा। मेरी भाई डॉक्टर है।",
+     "text": "{\n  \"corrected\": \"कल मैं बाज़ार गया था और दो सेब खरीदे। मेरे भाई डॉक्टर हैं।\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"जाता हूँ\",\n      \"right\": \"गया था\",\n      \"explanation\": \"Since the action happened in the past ('कल' - yesterday), you should use the past tense (gaya tha) instead of the present tense (jaata hoon).\"\n    },\n    {\n      \"wrong\": \"खरीदा\",\n      \"right\": \"खरीदे\",\n      \"explanation\": \"The verb 'खरीदना' (to buy) needs to agree with the plural object ('दो सेब' - two apples). The correct past tense form for plural objects is 'खरीदे'.\"\n    },\n    {\n      \"wrong\": \"मेरी भाई\",\n      \"right\": \"मेरे भाई\",\n      \"explanation\": \"The possessive pronoun for 'my' before a masculine noun like 'भाई' (brother) should be 'मेरे' (mere), not 'मेरी' (meri).\"\n    },\n    {\n      \"wrong\": \"डॉक्टर है\",\n      \"right\": \"डॉक्टर हैं\",\n      \"explanation\": \"Since 'भाई' (brother) is plural (even if it's just one brother, the context implies a general statement, and 'भाई' is treated as plural in this context when referring to a profession), the verb should be plural: 'हैं' (hain).\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 62.2,
+     "prompt_tok_per_s": 482.4,
+     "tokens": 331,
+     "wall_s": 5.49,
+     "parsed": {
+      "corrected": "कल मैं बाज़ार गया था और दो सेब खरीदे। मेरे भाई डॉक्टर हैं।",
+      "mistakes": [
+       {
+        "wrong": "जाता हूँ",
+        "right": "गया था",
+        "explanation": "Since the action happened in the past ('कल' - yesterday), you should use the past tense (gaya tha) instead of the present tense (jaata hoon)."
+       },
+       {
+        "wrong": "खरीदा",
+        "right": "खरीदे",
+        "explanation": "The verb 'खरीदना' (to buy) needs to agree with the plural object ('दो सेब' - two apples). The correct past tense form for plural objects is 'खरीदे'."
+       },
+       {
+        "wrong": "मेरी भाई",
+        "right": "मेरे भाई",
+        "explanation": "The possessive pronoun for 'my' before a masculine noun like 'भाई' (brother) should be 'मेरे' (mere), not 'मेरी' (meri)."
+       },
+       {
+        "wrong": "डॉक्टर है",
+        "right": "डॉक्टर हैं",
+        "explanation": "Since 'भाई' (brother) is plural (even if it's just one brother, the context implies a general statement, and 'भाई' is treated as plural in this context when referring to a profession), the verb should be plural: 'हैं' (hain)."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "मुझे एक कप चाय और एक गिलास पानी चाहिए।",
+     "text": "{\n  \"corrected\": \"\",\n  \"mistakes\": []\n}",
+     "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"मुझे एक कप चाय और एक गिलास पानी चाहिए।\" (Mujhe ek cup chai aur ek glass paani chahiye.)\n2.  **Check Grammar/Syntax/Agreement:**\n    *   \"मुझे\" (Mujhe) - Correct (Object pronoun).\n    *   \"एक कप चाय\" (ek cup chai) - Correct (One cup of tea).\n    *   \"और\" (aur) - Correct (and).\n    *   \"एक गिलास पानी\" (ek glass paani) - Correct (One glass of water).\n    *   \"चाहिए\" (chahiye) - Correct (Need/want).\n3.  **Check Naturalness:** The sentence is grammatically perfect and sounds completely natural in Hindi.\n4.  **Determine the output:** Since there are no errors, the output should be an empty list.",
+     "tok_per_s": 61.9,
+     "prompt_tok_per_s": 207.9,
+     "tokens": 219,
+     "wall_s": 3.62,
+     "parsed": {
+      "corrected": "",
+      "mistakes": []
+     }
+    }
+   },
+   "planted": [
+    "जाता हूँ -> गया (past tense)",
+    "खरीदा -> मैंने ... खरीदे (ergative + plural)",
+    "मेरी भाई -> मेरा भाई (gender)"
+   ]
+  },
+  "Japanese": {
+   "roleplay": [
+    {
+     "learner": "こんにちは。コーヒーをください。",
+     "text": "はい、コーヒーをどうぞ。水もいかがですか。いくらですか？",
+     "thinking": "",
+     "tok_per_s": 63.3,
+     "prompt_tok_per_s": 621.4,
+     "tokens": 17,
+     "wall_s": 0.39
+    },
+    {
+     "learner": "はい、水もお願いします。いくらですか？",
+     "text": "水は無料です。メニューを見ますか？",
+     "thinking": "",
+     "tok_per_s": 63.0,
+     "prompt_tok_per_s": 314.5,
+     "tokens": 11,
+     "wall_s": 0.29
+    }
+   ],
+   "correction": {
+    "wrong": {
+     "input": "昨日、私は店に行きます。りんごを二つを買いました。私の兄は医者がです。",
+     "text": "{\n  \"corrected\": \"昨日、私は店に行きました。りんごを二つ買いました。私の兄は医者です。\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"行きます\",\n      \"right\": \"行きました\",\n      \"explanation\": \"The verb '行く' (to go) in the past tense is '行きました'.\"\n    },\n    {\n      \"wrong\": \"買いました\",\n      \"right\": \"買いました\",\n      \"explanation\": \"This is correct, but often '買った' (past tense of 買う) is used for simple actions like buying things. Both are acceptable, but '買いました' is fine.\"\n    },\n    {\n      \"wrong\": \"医者がです\",\n      \"right\": \"医者です\",\n      \"explanation\": \"The particle 'が' (ga) is used for subjects, but here you are stating a fact about your brother, so you just need the noun followed by the copula 'です'.\"\n    }\n  ]\n}",
+     "thinking": "",
+     "tok_per_s": 61.7,
+     "prompt_tok_per_s": 509.7,
+     "tokens": 234,
+     "wall_s": 3.96,
+     "parsed": {
+      "corrected": "昨日、私は店に行きました。りんごを二つ買いました。私の兄は医者です。",
+      "mistakes": [
+       {
+        "wrong": "行きます",
+        "right": "行きました",
+        "explanation": "The verb '行く' (to go) in the past tense is '行きました'."
+       },
+       {
+        "wrong": "買いました",
+        "right": "買いました",
+        "explanation": "This is correct, but often '買った' (past tense of 買う) is used for simple actions like buying things. Both are acceptable, but '買いました' is fine."
+       },
+       {
+        "wrong": "医者がです",
+        "right": "医者です",
+        "explanation": "The particle 'が' (ga) is used for subjects, but here you are stating a fact about your brother, so you just need the noun followed by the copula 'です'."
+       }
+      ]
+     }
+    },
+    "correct": {
+     "input": "すみません、紅茶を一つと水をください。",
+     "text": "",
+     "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** 「すみません、紅茶を一つと水をください。」 (Sumimasen, kōcha o hitotsu to mizu o kudasai.)\n\n2.  **Identify the intent:** The speaker is politely asking for one cup of tea and water.\n\n3.  **Check grammar and naturalness:**\n    *   「すみません」 (Sumimasen) - Correct, polite opening.\n    *   「紅茶を一つ」 (kōcha o hitotsu) - Grammatically okay, but slightly unnatural when requesting multiple items or when listing items.\n    *   「と」 (to) - Used here to connect items being requested.\n    *   「水をください」 (mizu o kudasai) - Grammatically correct, but the structure feels slightly abrupt when combined with the first part.\n\n4.  **Evaluate for necessary corrections (Focusing only on *real* mistakes):** The sentence is understandable, but it can be made much more natural and polite in a service context.\n\n    *   *Improvement 1 (Requesting items):* When listing items, using the particle structure is better.\n    *   *Improvement 2 (Politeness/Flow):* Combining the requests smoothly is better.\n\n5.  **Determine the specific errors to report:** While technically understandable, the phrasing is slightly awkward for a standard request. The main issue is the structure of the request.\n\n6.  **Formulate the feedback:** I will point out the slightly unnatural phrasing and suggest a more standard way to ask.\n\n*(Self-Correction/Refinement: Is it a strict grammatical error? No, it's more a stylistic/naturalness error. However, as a teacher, I should point out the most natural phrasing.)*\n\n*Alternative natural phrasing:* 「紅茶を一つと、水をください。」 or better, 「紅茶を一つと水をいただけますか。」 or simply listing them.\n\n*Conclusion:* The sentence is acceptable but slightly unnatural. I will focus on the most common, natural way to phrase this request.\n\n7.  **Final Output Generation.** (Since the instruction is to only report *real* mistakes, and this is understandable, I will check if there are any absolute errors. There are none, but I will offer a refinement if the goal is to teach natural Japanese.)\n\n*Re",
+     "tok_per_s": 62.9,
+     "prompt_tok_per_s": 211.7,
+     "tokens": 500,
+     "wall_s": 8.03,
+     "parsed": null
+    }
+   },
+   "planted": [
+    "行きます -> 行きました (past)",
+    "二つを -> 二つ (double を)",
+    "医者がです -> 医者です"
+   ]
+  }
+ }
+}

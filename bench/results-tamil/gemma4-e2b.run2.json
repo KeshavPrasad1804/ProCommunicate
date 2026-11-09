@@ -1,0 +1,330 @@
+{
+ "model": "gemma4-e2b",
+ "run": 2,
+ "roleplay": {
+  "job_interview": [
+   {
+    "learner": "Good morning sir. Myself Priya, I am having three years experience in Java.",
+    "text": "Good morning, Priya. Can you tell me a little bit about your experience with Java?",
+    "thinking": "",
+    "tok_per_s": 63.2,
+    "prompt_tok_per_s": 136.0,
+    "tokens": 19,
+    "wall_s": 0.33
+   },
+   {
+    "learner": "I am working in Infosys since 2021. I handled one banking project.",
+    "text": "That sounds interesting. Could you describe the main technologies you used in that banking project?",
+    "thinking": "",
+    "tok_per_s": 63.2,
+    "prompt_tok_per_s": 332.0,
+    "tokens": 18,
+    "wall_s": 0.43
+   },
+   {
+    "learner": "My strength is I am hard worker and I will learn fast.",
+    "text": "We value a strong work ethic and the ability to learn quickly. Can you share an example of a challenging technical problem you solved recently?",
+    "thinking": "",
+    "tok_per_s": 63.7,
+    "prompt_tok_per_s": 278.9,
+    "tokens": 28,
+    "wall_s": 0.59
+   }
+  ],
+  "client_call": [
+   {
+    "learner": "Good evening. I will revert back regarding the delivery date by tomorrow.",
+    "text": "Thank you for the update. Could you please confirm the exact delivery date you are targeting?",
+    "thinking": "",
+    "tok_per_s": 63.2,
+    "prompt_tok_per_s": 137.1,
+    "tokens": 19,
+    "wall_s": 0.33
+   },
+   {
+    "learner": "Actually the testing is little bit delayed because of two members are on leave.",
+    "text": "I understand that delays can happen due to staff leave. Can you provide an estimated new testing schedule?",
+    "thinking": "",
+    "tok_per_s": 63.4,
+    "prompt_tok_per_s": 297.7,
+    "tokens": 21,
+    "wall_s": 0.48
+   },
+   {
+    "learner": "We can prepone the demo to Monday if you are okay.",
+    "text": "Monday works for us if the demo can be scheduled then. Are there any potential issues with that day?",
+    "thinking": "",
+    "tok_per_s": 63.5,
+    "prompt_tok_per_s": 299.6,
+    "tokens": 22,
+    "wall_s": 0.49
+   }
+  ],
+  "office_small_talk": [
+   {
+    "learner": "Hi! Today morning I came late because of traffic only.",
+    "text": "No problem at all, traffic can be frustrating. Is everything okay with you today?",
+    "thinking": "",
+    "tok_per_s": 62.9,
+    "prompt_tok_per_s": 131.5,
+    "tokens": 18,
+    "wall_s": 0.32
+   },
+   {
+    "learner": "Yes, weekend I went to my native place. My cousin brother marriage was there.",
+    "text": "That sounds like a lovely trip. How was your cousin's wedding?",
+    "thinking": "",
+    "tok_per_s": 62.2,
+    "prompt_tok_per_s": 314.7,
+    "tokens": 16,
+    "wall_s": 0.4
+   }
+  ]
+ },
+ "correction": [
+  {
+   "input": "Myself Karthik and I am having two years of experience in sales.",
+   "planted": [
+    "Myself Karthik -> I am / My name is Karthik",
+    "I am having -> I have"
+   ],
+   "text": "{\n  \"corrected\": \"I am Karthik, and I have two years of experience in sales.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"Myself Karthik\",\n      \"right\": \"I am Karthik\",\n      \"type\": \"grammar\",\n      \"explanation_tamil\": \"உங்களை அறிமுகப்படுத்தும்போது 'Myself' பயன்படுத்தக்கூடாது.\"\n    },\n    {\n      \"wrong\": \"I am having\",\n      \"right\": \"I have\",\n      \"type\": \"style\",\n      \"explanation_tamil\": \"அனுபவத்தைப் பற்றி பேசும்போது 'have' பயன்படுத்துவது தொழில்முறையாக இருக்கும்.\"\n    }\n  ]\n}",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"Myself Karthik and I am having two years of experience in sales.\"\n2.  **Identify Grammar Issues:**\n    *   \"Myself Karthik\" is incorrect. It should be \"I am Karthik\" or \"My name is Karthik.\"\n    *   \"I am having\" is grammatically acceptable but sounds less professional than \"I have\" when discussing experience.\n3.  **Identify Style Issues (Professionalism/Clarity):**\n    *   The phrasing is too informal for a professional introduction.\n4.  **Formulate Corrections:**\n    *   Fix the subject/pronoun usage.\n    *   Improve the verb tense/phrasing for experience.\n5.  **Generate the output in the required format (Tamil explanation, English correction).**",
+   "tok_per_s": 60.5,
+   "prompt_tok_per_s": 97.0,
+   "tokens": 347,
+   "wall_s": 5.77,
+   "parsed": {
+    "corrected": "I am Karthik, and I have two years of experience in sales.",
+    "mistakes": [
+     {
+      "wrong": "Myself Karthik",
+      "right": "I am Karthik",
+      "type": "grammar",
+      "explanation_tamil": "உங்களை அறிமுகப்படுத்தும்போது 'Myself' பயன்படுத்தக்கூடாது."
+     },
+     {
+      "wrong": "I am having",
+      "right": "I have",
+      "type": "style",
+      "explanation_tamil": "அனுபவத்தைப் பற்றி பேசும்போது 'have' பயன்படுத்துவது தொழில்முறையாக இருக்கும்."
+     }
+    ]
+   }
+  },
+  {
+   "input": "I am working in this company since 2019.",
+   "planted": [
+    "am working ... since -> have been working ... since"
+   ],
+   "text": "{\n  \"corrected\": \"I have been working in this company since 2019.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"I am working\",\n      \"right\": \"I have been working\",\n      \"type\": \"grammar\",\n      \"explanation_tamil\": \"தொடர்ச்சியான செயலுக்கு Present Perfect Continuous பயன்படுத்த வேண்டும்.\"\n    }\n  ]\n}",
+   "thinking": "",
+   "tok_per_s": 54.8,
+   "prompt_tok_per_s": 178.4,
+   "tokens": 99,
+   "wall_s": 1.91,
+   "parsed": {
+    "corrected": "I have been working in this company since 2019.",
+    "mistakes": [
+     {
+      "wrong": "I am working",
+      "right": "I have been working",
+      "type": "grammar",
+      "explanation_tamil": "தொடர்ச்சியான செயலுக்கு Present Perfect Continuous பயன்படுத்த வேண்டும்."
+     }
+    ]
+   }
+  },
+  {
+   "input": "Please revert back to me today itself.",
+   "planted": [
+    "revert back -> get back to / reply (style)",
+    "today itself -> today / by end of today (style)"
+   ],
+   "text": "{\n        \"corrected\": \"Please revert to me today.\",\n        \"mistakes\": [\n            {\n                \"wrong\": \"revert back\",\n                \"right\": \"revert\",\n                \"type\": \"style\",\n                \"explanation_tamil\": \"revert-க்கு back தேவையில்லை.\"\n            },\n            {\n                \"wrong\": \"today itself\",\n                \"right\": \"today\",\n                \"type\": \"style\",\n                \"explanation_tamil\": \"itself என்பதை நீக்கலாம்.\"\n            }\n        ]\n    }",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"Please revert back to me today itself.\"\n2.  **Identify the context:** The learner is aiming for professional/business English.\n3.  **Check for grammar mistakes:**\n    *   \"revert back\" is redundant. \"Revert\" already means to return or go back. \"Back\" is unnecessary.\n    *   \"today itself\" is slightly informal/clunky in professional contexts.\n4.  **Check for style issues (unprofessional/unclear):**\n    *   \"revert back\" is informal.\n    *   \"today itself\" can be phrased more professionally.\n5.  **Determine the corrections:**\n    *   Remove \"back\".\n    *   Improve the phrasing for urgency/deadline.\n6.  **Formulate the feedback in the required format (grammar/style, and corrected version with Tamil explanation).**\n\n*Self-Correction/Refinement:* The core issue is the redundancy (\"revert back\"). The request implies urgency.\n\n7.  **Final Output Generation.** (Proceeding to generate the response based on the analysis.)",
+   "tok_per_s": 59.9,
+   "prompt_tok_per_s": 185.4,
+   "tokens": 385,
+   "wall_s": 6.51,
+   "parsed": {
+    "corrected": "Please revert to me today.",
+    "mistakes": [
+     {
+      "wrong": "revert back",
+      "right": "revert",
+      "type": "style",
+      "explanation_tamil": "revert-க்கு back தேவையில்லை."
+     },
+     {
+      "wrong": "today itself",
+      "right": "today",
+      "type": "style",
+      "explanation_tamil": "itself என்பதை நீக்கலாம்."
+     }
+    ]
+   }
+  },
+  {
+   "input": "We discussed about the budget and he told that it is fine.",
+   "planted": [
+    "discussed about -> discussed",
+    "told that -> said that"
+   ],
+   "text": "{\n        \"corrected\": \"We discussed the budget, and he said it was fine.\",\n        \"mistakes\": [\n            {\n                \"wrong\": \"discussed about\",\n                \"right\": \"discussed\",\n                \"type\": \"grammar\",\n                \"explanation_tamil\": \"discuss-க்கு 'about' தேவையில்லை.\"\n            },\n            {\n                \"wrong\": \"he told that it is fine\",\n                \"right\": \"he said it was fine\",\n                \"type\": \"style\",\n                \"explanation_tamil\": \"சாதாரணமாக 'told that' என்பதை 'said' என்று பயன்படுத்துவது தொழில்முறைக்கு சிறந்தது.\"\n            }\n        ]\n    }",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"We discussed about the budget and he told that it is fine.\"\n2.  **Identify Grammar Mistakes:**\n    *   \"discussed about\" is incorrect. The verb \"discuss\" does not take the preposition \"about.\" It should be \"discuss [something]\" or \"talk about [something].\"\n    *   \"he told that\" is slightly awkward. It should be \"he said that\" or \"he told us that.\"\n3.  **Identify Style Issues (Unclear/Unprofessional in Business English):**\n    *   The sentence is too informal. In business contexts, we aim for more direct and concise language.\n4.  **Formulate Corrections:**\n    *   Fix the preposition usage.\n    *   Improve the phrasing for professionalism.\n5.  **Generate Tamil explanations:** Explain the necessary changes simply in Tamil.\n\n*Self-Correction/Refinement:* The goal is to provide professional business English. The suggested corrections should reflect standard professional usage.\n\n6.  **Final Output Generation.** (Applying the required format.)",
+   "tok_per_s": 59.9,
+   "prompt_tok_per_s": 171.5,
+   "tokens": 399,
+   "wall_s": 6.78,
+   "parsed": {
+    "corrected": "We discussed the budget, and he said it was fine.",
+    "mistakes": [
+     {
+      "wrong": "discussed about",
+      "right": "discussed",
+      "type": "grammar",
+      "explanation_tamil": "discuss-க்கு 'about' தேவையில்லை."
+     },
+     {
+      "wrong": "he told that it is fine",
+      "right": "he said it was fine",
+      "type": "style",
+      "explanation_tamil": "சாதாரணமாக 'told that' என்பதை 'said' என்று பயன்படுத்துவது தொழில்முறைக்கு சிறந்தது."
+     }
+    ]
+   }
+  },
+  {
+   "input": "Kindly do the needful and send the files.",
+   "planted": [
+    "Kindly do the needful -> Please (style; vague)"
+   ],
+   "text": "{\n  \"corrected\": \"Please send the files.\",\n  \"mistakes\": [\n    {\n      \"wrong\": \"Kindly do the needful\",\n      \"right\": \"Please send the files.\",\n      \"type\": \"style\",\n      \"explanation_tamil\": \"இந்த வாக்கியம் தொழில்முறை ஆங்கிலத்தில் சரியாக இல்லை.\"\n    }\n  ]\n}",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"Kindly do the needful and send the files.\"\n2.  **Identify the context:** The learner is aiming for professional and business English.\n3.  **Check for grammar mistakes:**\n    *   \"Kindly do the needful\" is grammatically awkward and overly formal/archaic in modern international business English. \"Do the needful\" is a common phrase in some South Asian contexts but is not standard professional English.\n4.  **Check for style issues:**\n    *   \"Kindly do the needful\" is vague and unprofessional. It lacks specific action.\n5.  **Determine the correction strategy:** Replace the vague phrase with a clear, direct request.\n\n6.  **Formulate the feedback:**\n    *   Mistakes: Grammar/Style related to the phrase.\n    *   Correction: Provide a more direct and professional alternative.\n\n7.  **Draft the Tamil explanation (as requested):** (Self-Correction: Ensure the explanation is short and in simple Tamil.)\n\n8.  **Final Output Generation.**",
+   "tok_per_s": 57.1,
+   "prompt_tok_per_s": 89.7,
+   "tokens": 322,
+   "wall_s": 5.68,
+   "parsed": {
+    "corrected": "Please send the files.",
+    "mistakes": [
+     {
+      "wrong": "Kindly do the needful",
+      "right": "Please send the files.",
+      "type": "style",
+      "explanation_tamil": "இந்த வாக்கியம் தொழில்முறை ஆங்கிலத்தில் சரியாக இல்லை."
+     }
+    ]
+   }
+  },
+  {
+   "input": "What is your good name?",
+   "planted": [
+    "What is your good name -> May I know your name? (style)"
+   ],
+   "text": "{\n        \"corrected\": \"What is your name?\",\n        \"mistakes\": [\n            {\n                \"wrong\": \"good name\",\n                \"right\": \"name\",\n                \"type\": \"style\",\n                \"explanation_tamil\": \"வணிக சூழலில் 'good name' என்பது பொருத்தமற்றது.\"\n            }\n        ]\n    }",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"What is your good name?\"\n2.  **Identify the context:** The learner is aiming for professional and business English.\n3.  **Check for grammar mistakes:**\n    *   \"What is your good name?\" is grammatically understandable, but it sounds unnatural and slightly awkward in a professional context.\n4.  **Check for style issues (unclear/unprofessional):**\n    *   \"good name\" is too informal and slightly awkward. In a business setting, people usually ask for a formal name or prefer a more direct inquiry.\n5.  **Determine the correction:** A more professional way to ask this is needed.\n6.  **Formulate the feedback:** Report the issues and provide the correction.\n\n*Self-Correction/Refinement:* While \"What is your name?\" is the simplest, the learner used \"good name.\" I need to address the awkwardness.\n\n7.  **Final Output Generation.** (Following the required format: grammar/style report, and corrected sentence with explanations in Tamil.)",
+   "tok_per_s": 58.0,
+   "prompt_tok_per_s": 91.3,
+   "tokens": 323,
+   "wall_s": 5.61,
+   "parsed": {
+    "corrected": "What is your name?",
+    "mistakes": [
+     {
+      "wrong": "good name",
+      "right": "name",
+      "type": "style",
+      "explanation_tamil": "வணிக சூழலில் 'good name' என்பது பொருத்தமற்றது."
+     }
+    ]
+   }
+  },
+  {
+   "input": "I have been working here for three years and I enjoy my role.",
+   "planted": [],
+   "text": "{\n  \"corrected\": \"\",\n  \"mistakes\": []\n}",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the input sentence:** \"I have been working here for three years and I enjoy my role.\"\n2.  **Identify potential grammar errors:**\n    *   \"I have been working here for three years\" - Correct (Present Perfect Continuous, appropriate for an ongoing action).\n    *   \"and I enjoy my role\" - Grammatically correct, but the tense shift (Continuous action vs. Simple Present enjoyment) is fine, but sometimes linking these ideas can be smoother in a professional context.\n3.  **Identify potential style issues (unprofessional/unclear in business English):**\n    *   The sentence is grammatically sound and perfectly understandable. However, in a professional context, combining these two simple statements can sometimes sound slightly informal.\n4.  **Determine the output format:** Report only real problems (grammar or style), list corrections, and provide a short Tamil explanation for each fix.\n\n*Self-Correction/Refinement:* The sentence is fine. It doesn't *need* correction.\n\n5.  **Final Output Generation.**",
+   "tok_per_s": 61.8,
+   "prompt_tok_per_s": 183.1,
+   "tokens": 252,
+   "wall_s": 4.19,
+   "parsed": {
+    "corrected": "",
+    "mistakes": []
+   }
+  },
+  {
+   "input": "Could you please send me the updated report by Friday?",
+   "planted": [],
+   "text": "{\n  \"corrected\": \"\",\n  \"mistakes\": []\n}",
+   "thinking": "Thinking Process:\n\n1.  **Analyze the Request:** The user wants me to check the sentence: \"Could you please send me the updated report by Friday?\" for grammar mistakes and unprofessional/unclear style in a business context.\n2.  **Analyze the Sentence:** \"Could you please send me the updated report by Friday?\"\n    *   Grammar check: Correct. (Modal verb 'Could', polite request structure, correct tense).\n    *   Style check: It is polite and perfectly acceptable in most business settings. It is clear and professional.\n3.  **Determine Output Format:** Report only real problems (grammar or style). If none, return an empty list.\n4.  **Formulate the Response:** Since the sentence is correct and professional, the output should be an empty list. (Self-correction: I must ensure the explanation is in simple Tamil if I were to provide feedback, but since there is no feedback, I just return the empty list).",
+   "tok_per_s": 58.5,
+   "prompt_tok_per_s": 90.0,
+   "tokens": 229,
+   "wall_s": 3.96,
+   "parsed": {
+    "corrected": "",
+    "mistakes": []
+   }
+  }
+ ],
+ "help": [
+  {
+   "id": "leave_tamil_script",
+   "input": "மேனேஜர் கிட்ட நாளைக்கு லீவ் கேட்கணும். எப்படி professional-ஆ சொல்றது?",
+   "meaning": "I need to ask my manager for leave tomorrow. How do I say it professionally?",
+   "text": "Here are a couple of options:\n\n**English:** \"I would like to request a leave of absence for tomorrow. I have a personal commitment.\"\n\n**Tamil:** இதை நீங்கள் மேனேஜருக்கு அனுப்பலாம். (You can send this to your manager.)\n\n**Tamil Explanation:** இது கொஞ்சம் ஃபார்மல். (This is a bit formal.)",
+   "thinking": "",
+   "tok_per_s": 62.6,
+   "prompt_tok_per_s": 130.3,
+   "tokens": 71,
+   "wall_s": 1.16
+  },
+  {
+   "id": "late_apology_tamil_script",
+   "input": "மீட்டிங்குக்கு 10 நிமிஷம் லேட்டா வந்துட்டேன். எப்படி மன்னிப்பு கேட்கணும்?",
+   "meaning": "I came 10 minutes late to the meeting. How should I apologise?",
+   "text": "Here are a couple of options:\n\n**English:** \"I sincerely apologize for being ten minutes late to the meeting. I will ensure it doesn't happen again.\"\n\n**English:** \"Please accept my apologies for the delay. I apologize for arriving late.\"\n\n**Tamil:** இதை நீங்கள் பயன்படுத்தலாம். இது தொழில்முறை ரீதியாக இருக்கும்.\n\n**Tamil:** மன்னிப்பு கேட்க, \"I apologize for being late\" என்று சொல்லலாம்.",
+   "thinking": "",
+   "tok_per_s": 53.7,
+   "prompt_tok_per_s": 127.2,
+   "tokens": 89,
+   "wall_s": 1.68
+  },
+  {
+   "id": "interview_tanglish",
+   "input": "naan interview la romba nervous aagiten, 'tell me about yourself' ku enna sollanum?",
+   "meaning": "I get very nervous in interviews; what should I say for 'tell me about yourself'?",
+   "text": "Here are a couple of options:\n\n**English:** \"I am a dedicated and motivated individual with a strong background in [Your Field]. I am eager to leverage my skills to contribute to a dynamic team like yours.\"\n\n**Tamil:** இதை நீங்கள் உங்கள் திறமைகளையும் ஆர்வத்தையும் சொல்லப் பயன்படுத்தலாம். (You can use this to tell about your skills and enthusiasm.)",
+   "thinking": "",
+   "tok_per_s": 57.1,
+   "prompt_tok_per_s": 275.6,
+   "tokens": 75,
+   "wall_s": 1.42
+  },
+  {
+   "id": "deadline_email_tanglish",
+   "input": "client kitta deadline extend panna solli oru chinna email ezhudhi kudunga",
+   "meaning": "Write me a short email asking the client to extend the deadline.",
+   "text": "Here are a couple of options:\n\n**Option 1 (More formal):**\n\n> Dear [Client Name], I am writing to request a brief extension for the deadline of [Project Name]. I anticipate needing until [New Date].\n\n**Option 2 (Slightly softer):**\n\n> Hello [Client Name], Could we please discuss a slight extension for the [Project Name] deadline? I need a little more time to ensure the quality is perfect.\n\n**Tamil Explanation:**\n\nஇந்த வாக்கியங்களைப் பயன்படுத்தலாம். (Indha vaakiyangalai payanpaduthalam.) - You can use these sentences.",
+   "thinking": "",
+   "tok_per_s": 53.7,
+   "prompt_tok_per_s": 246.3,
+   "tokens": 130,
+   "wall_s": 2.52
+  },
+  {
+   "id": "casual_to_formal",
+   "input": "idha professional ah maathunga: 'hey send me that report asap, need it'",
+   "meaning": "Make this professional: 'hey send me that report asap, need it'",
+   "text": "Here are a couple of professional options:\n\n**Option 1:** \"Could you please send me that report as soon as possible?\"\n**Option 2:** \"Please send the report at your earliest convenience.\"\n\n**Tamil Explanation:**\nஇதை அலுவலகத்தில் பயன்படுத்தலாம். (Idhai aluvalagaththil payanpaduthalaam.) - You can use this in the office.",
+   "thinking": "",
+   "tok_per_s": 52.6,
+   "prompt_tok_per_s": 86.5,
+   "tokens": 83,
+   "wall_s": 1.62
+  }
+ ]
+}
