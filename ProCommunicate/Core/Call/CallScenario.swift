@@ -62,6 +62,25 @@ enum ScenarioLoader {
         return file.scenarios
     }
 
+    /// The role-play for a unit: its own scenario if there is one, otherwise one built from the
+    /// unit's goal and phrases (a UK client for meeting units, an HR interviewer for interview units).
+    static func forUnit(_ unit: CourseUnit, all: [CallScenario] = loadAll()) -> CallScenario {
+        if let own = all.first(where: { $0.unitId == unit.id && $0.kind == .quick }) { return own }
+        let phrases = unit.examplePhrases.map { "\"\($0)\"" }.joined(separator: ", ")
+        if unit.id.hasPrefix("interviews") {
+            return CallScenario(id: "unit-\(unit.id)", kind: .quick, unitId: unit.id, title: unit.title,
+                                subtitle: unit.goal, aiName: "Meena", aiRole: "HR interviewer", voice: "en-IN", maxTurns: 5,
+                                goals: [unit.goal] + unit.examplePhrases.prefix(2).map { "Use: \($0)" },
+                                situation: "You are Meena, an HR interviewer at a Chennai IT services company. Interview the learner on this topic: \(unit.title). Ask questions that give them the chance to \(unit.goal.lowercased()) Follow up once or twice on what they say. Useful phrases they are practising: \(phrases).",
+                                opening: "Hello {name}, thanks for coming in. Shall we begin?")
+        }
+        return CallScenario(id: "unit-\(unit.id)", kind: .quick, unitId: unit.id, title: unit.title,
+                            subtitle: unit.goal, aiName: "Emma", aiRole: "Client project manager, London", voice: "en-GB", maxTurns: 5,
+                            goals: [unit.goal] + unit.examplePhrases.prefix(2).map { "Use: \($0)" },
+                            situation: "You are Emma, the client's project manager in London, on a call with the learner's offshore team. Create a realistic moment in the call about: \(unit.title). Give the learner a natural reason to \(unit.goal.lowercased()) React to what they say and ask follow-up questions. Useful phrases they are practising: \(phrases).",
+                            opening: "Hi {name}, thanks for joining. Shall we get started?")
+    }
+
     /// A one-off rehearsal built from "I have a meeting tomorrow".
     static func rehearsal(description: String, who: String) -> CallScenario {
         CallScenario(id: "rehearsal-\(UUID().uuidString.prefix(8))", kind: .quick, title: "Rehearsal",

@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 // MARK: - Shared pieces
@@ -343,6 +344,11 @@ struct SpeakStepView: View {
     let step: LessonStep
     let lesson: Lesson
 
+    @Environment(\.modelContext) private var modelContext
+    @State private var listener = SingleAnswerListener()
+    @State private var answer: CallTurn?
+    @State private var checking = false
+
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             StepTitle(kicker: "Your turn", text: step.prompt ?? "", tamil: step.promptTamil)
@@ -358,11 +364,83 @@ struct SpeakStepView: View {
             }
             .padding(16)
             .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
-            Label("Say it out loud now. When the AI tutor arrives (Phase 3), it will listen and give you feedback on this.",
-                  systemImage: "mic")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
+
+            if listener.available {
+                recorder
+            } else {
+                Label("Say it out loud now. Download the speech model in Settings → AI tutor, and the app will listen and show you a fix.",
+                      systemImage: "mic")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+
+            if checking {
+                HStack { ProgressView(); Text("Listening to your answer…") }
+            }
+            if let answer {
+                feedback(for: answer)
+            }
         }
+        .task { await listener.prepare() }
+        .onDisappear { listener.stop() }
+        .onChange(of: listener.result) { _, result in
+            guard let result else { return }
+            Task { await evaluate(result) }
+        }
+    }
+
+    private var recorder: some View {
+        VStack(spacing: 10) {
+            LevelBars(level: listener.level, active: listener.isRecording).frame(height: 20)
+            Button {
+                listener.isRecording ? listener.finish() : listener.start()
+            } label: {
+                Label(listener.isRecording ? "I'm done" : (answer == nil ? "Record my answer" : "Try again"),
+                      systemImage: listener.isRecording ? "checkmark" : "mic.fill")
+                    .font(.headline).frame(maxWidth: .infinity).padding(.vertical, 4)
+            }
+            .buttonStyle(.bordered)
+            .tint(listener.isRecording ? .green : .accentColor)
+            .disabled(checking)
+        }
+    }
+
+    private func feedback(for answer: CallTurn) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("You said").font(.caption.weight(.bold)).foregroundStyle(.secondary)
+            Text(answer.text).font(.callout)
+            if let fix = ReportFix.top(from: [answer], limit: 1).first {
+                FixCard(fix: fix)
+            } else {
+                Label(answer.check == nil && !TutorService.isAvailable
+                      ? "No common mistakes found. Turn on the AI tutor for a full check."
+                      : "No mistakes found. Well said!", systemImage: "checkmark.seal.fill")
+                    .foregroundStyle(.green)
+                    .font(.subheadline)
+            }
+            if let better = answer.check?.better, AnswerChecker.normalize(better) != AnswerChecker.normalize(answer.text) {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Say it better").font(.caption.weight(.bold)).foregroundStyle(.secondary)
+                    Text(better).font(.callout)
+                    SpeakButton(text: better)
+                }
+            }
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
+    }
+
+    private func evaluate(_ result: SingleAnswerListener.Result) async {
+        guard !result.text.isEmpty else { return }
+        checking = true
+        defer { checking = false }
+        var turn = CallTurn(speaker: .learner, text: result.text, clipFile: result.clipFile,
+                            seconds: result.seconds, longPauses: result.longPauses)
+        turn.ruleHits = MistakeRules.check(result.text).map { CallTurn.StoredHit(ruleId: $0.ruleId, wrong: $0.wrong) }
+        if TutorService.isAvailable { turn.check = try? await TutorService.checkAnswer(result.text) }
+        answer = turn
+        MistakeBook.record(turns: [turn], in: modelContext)
     }
 }
 

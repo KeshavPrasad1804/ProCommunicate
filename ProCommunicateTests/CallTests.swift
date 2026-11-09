@@ -139,3 +139,24 @@ struct AskTamilParsingTests {
         #expect(!sentences.contains { $0.unicodeScalars.contains { (0x0B80...0x0BFF).contains($0.value) } })
     }
 }
+
+@Suite("Unit role-plays")
+struct UnitRolePlayTests {
+    @Test func everyUnitHasARolePlayWithTheRightPerson() throws {
+        let course = try ContentLoader.loadCourse()
+        let all = ScenarioLoader.loadAll()
+        for unit in course.tracks.flatMap(\.units) {
+            let scenario = ScenarioLoader.forUnit(unit, all: all)
+            #expect(scenario.unitId == unit.id, "\(unit.id)")
+            #expect(scenario.kind == .quick)
+            #expect(scenario.opening.contains("{name}"))
+            if unit.id.hasPrefix("interviews") && scenario.id.hasPrefix("unit-") { #expect(scenario.aiRole == "HR interviewer") }
+            if unit.id.hasPrefix("meetings") && scenario.id.hasPrefix("unit-") { #expect(scenario.voice == "en-GB") }
+        }
+    }
+
+    @Test func unitsWithTheirOwnScenarioUseIt() throws {
+        let unit = try #require(try ContentLoader.loadCourse().tracks.flatMap(\.units).first { $0.id == "meetings-03-status" })
+        #expect(ScenarioLoader.forUnit(unit).id == "quick-status")
+    }
+}

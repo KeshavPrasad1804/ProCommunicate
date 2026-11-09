@@ -42,7 +42,7 @@ struct LessonStep: Codable, Hashable, Sendable, Identifiable {
         case listen
         /// Pick the correct version of a common mistake.
         case fix
-        /// Say your own sentences aloud (checked by speech in Phase 3).
+        /// Say your own sentences aloud (transcribed and checked when the speech model is downloaded).
         case speak
     }
 

@@ -69,7 +69,7 @@ final class PracticeDay {
     var minutes: Int { Int((seconds / 60).rounded()) }
 }
 
-/// A saved voice recording (stand-up drill now; calls and answers in Phase 3).
+/// A saved voice recording: stand-up drills, answer retries and the speaking check (call answers live in each call).
 @Model
 final class Recording {
     @Attribute(.unique) var id: UUID

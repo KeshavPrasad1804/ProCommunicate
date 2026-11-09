@@ -93,10 +93,24 @@ struct UnitDetailView: View {
                     }
                 } else {
                     FeatureRow(systemImage: "play.circle.fill", title: "Lesson",
-                               detail: "This unit's lesson is being written.", phase: "5")
+                               detail: "This unit's lesson isn't available yet.")
                 }
-                FeatureRow(systemImage: "phone.fill", title: "Practise on a call",
-                           detail: "A short voice role-play using this unit's phrases.", phase: "3")
+                let roleplay = ScenarioLoader.forUnit(unit)
+                Button {
+                    router.startCall(roleplay)
+                } label: {
+                    HStack(alignment: .top, spacing: 14) {
+                        Image(systemName: "phone.fill").font(.title3).foregroundStyle(.green).frame(width: 28)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Practise on a call").font(.headline)
+                            Text("A short voice role-play with \(roleplay.aiName), \(roleplay.aiRole), using this unit's phrases.")
+                                .font(.subheadline).foregroundStyle(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                    .padding(.vertical, 4)
+                }
+                .buttonStyle(.plain)
             }
         }
         .navigationTitle(unit.title)
