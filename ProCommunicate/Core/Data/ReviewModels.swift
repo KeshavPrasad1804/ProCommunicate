@@ -109,5 +109,6 @@ enum RecordingStorage {
 enum AppSchema {
     static let models: [any PersistentModel.Type] = [
         LessonProgressRecord.self, ReviewCard.self, PracticeDay.self, Recording.self,
+        CallRecord.self, MistakeRecord.self,
     ]
 }

@@ -1,0 +1,195 @@
+{
+  "id": "meetings-11-escalation-l1",
+  "unitId": "meetings-11-escalation",
+  "title": "Escalations and difficult clients",
+  "intro": "When a client is upset, stay calm: acknowledge the problem, take ownership, and explain exactly what you're doing about it.",
+  "introTamil": "Client கோபமாக இருந்தால் அமைதியாக இருங்கள்: பிரச்சனையை ஏற்றுக்கொண்டு, பொறுப்பெடுத்து, அதைச் சரிசெய்ய என்ன செய்கிறீர்கள் என்று தெளிவாகச் சொல்லுங்கள்.",
+  "tamilReviewed": false,
+  "phrases": [
+    {
+      "id": "understand-concern",
+      "text": "I understand your concern, and I'm sorry this affected your users.",
+      "tamil": "உங்கள் கவலை புரிகிறது. இது உங்கள் users-ஐப் பாதித்ததற்கு வருந்துகிறேன்.",
+      "note": "Acknowledge how they feel before explaining anything."
+    },
+    {
+      "id": "heres-what",
+      "text": "Here's what we're doing to fix it.",
+      "tamil": "இதைச் சரிசெய்ய நாங்கள் என்ன செய்கிறோம் என்று சொல்கிறேன்.",
+      "note": "Move quickly from apology to action."
+    },
+    {
+      "id": "hotfix",
+      "text": "We've deployed a hotfix, and the error rate is back to normal.",
+      "tamil": "Hotfix deploy செய்துவிட்டோம்; error rate மீண்டும் சாதாரண நிலைக்கு வந்துவிட்டது.",
+      "note": "Give facts and numbers, not just reassurance."
+    },
+    {
+      "id": "take-ownership",
+      "text": "This is on us, and we take full responsibility.",
+      "tamil": "இது எங்கள் தவறுதான்; முழுப் பொறுப்பையும் ஏற்றுக்கொள்கிறோம்.",
+      "note": "Taking ownership calms people faster than excuses."
+    },
+    {
+      "id": "regular-updates",
+      "text": "I'll send you an update every two hours until it's resolved.",
+      "tamil": "இது சரியாகும் வரை, ஒவ்வொரு இரண்டு மணி நேரத்துக்கும் உங்களுக்கு update அனுப்புகிறேன்.",
+      "note": "Regular updates show the client you're in control."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "understand-concern"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "heres-what"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "hotfix"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "take-ownership"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "regular-updates"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The client says angrily: \"Our users couldn't log in for three hours!\" What's your first response?",
+      "promptTamil": "Client கோபமாக, \"எங்கள் users மூன்று மணி நேரம் login செய்ய முடியவில்லை!\" என்கிறார். உங்கள் முதல் பதில் என்ன?",
+      "options": [
+        "It was not our mistake, the server team did it.",
+        "I understand your concern, and I'm sorry this affected your users.",
+        "Please calm down, we are looking into it."
+      ],
+      "answer": "I understand your concern, and I'm sorry this affected your users.",
+      "explanation": "Acknowledge the impact first; blaming others or saying \"calm down\" makes it worse.",
+      "explanationTamil": "முதலில் பாதிப்பை ஏற்றுக்கொள்ளுங்கள். மற்றவர்களைக் குறை சொல்வதோ \"calm down\" என்பதோ நிலைமையை மோசமாக்கும்."
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptTamil": "இதைச் சரிசெய்ய நாங்கள் என்ன செய்கிறோம் என்று சொல்கிறேன்.",
+      "tiles": [
+        "Here's",
+        "what",
+        "we're",
+        "doing",
+        "to",
+        "fix",
+        "it",
+        "the",
+        "same"
+      ],
+      "answer": "Here's what we're doing to fix it."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "We've deployed a hotfix, and the error rate is back to normal.",
+      "options": [
+        "We'll deploy a hotfix, and the error rate will be back to normal.",
+        "We've deployed a hotfix, and the error rate is back to normal.",
+        "We've deployed a hotfix, but the error rate isn't back to normal."
+      ],
+      "answer": "We've deployed a hotfix, and the error rate is back to normal."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "We will try our level best to fix the issue.",
+      "options": [
+        "We will try our level best to fix the issue.",
+        "We're doing everything we can to fix the issue.",
+        "We will try our level best for fixing the issue.",
+        "We are trying our best level to fix issue."
+      ],
+      "answer": "We're doing everything we can to fix the issue.",
+      "explanation": "\"Try our level best\" sounds unsure; say what you are actually doing.",
+      "explanationTamil": "\"Level best\" உறுதியில்லாதது போல் ஒலிக்கும். \"We're doing everything we can\" என்று சொல்லுங்கள்."
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "The client asks: \"How will I know what's happening?\" What do you say?",
+      "promptTamil": "Client \"என்ன நடக்கிறது என்று எனக்கு எப்படித் தெரியும்?\" என்று கேட்கிறார். என்ன சொல்வீர்கள்?",
+      "options": [
+        "We will inform you once it is done.",
+        "Don't worry, we are on it.",
+        "I'll send you an update every two hours until it's resolved."
+      ],
+      "answer": "I'll send you an update every two hours until it's resolved.",
+      "explanation": "A clear update schedule gives the client confidence.",
+      "explanationTamil": "எப்போது update வரும் என்று தெளிவாகச் சொன்னால் client-க்கு நம்பிக்கை வரும்."
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "The issue happened due to some technical glitches from our side only.",
+      "options": [
+        "The issue happened due to some technical glitches from our side only.",
+        "The issue was caused by a configuration error on our side.",
+        "The issue happened due to some technical glitches from our side.",
+        "The issue is happened because of configuration error from our side only."
+      ],
+      "answer": "The issue was caused by a configuration error on our side.",
+      "explanation": "Name the actual cause, and don't put \"only\" at the end for emphasis.",
+      "explanationTamil": "காரணத்தைத் தெளிவாகச் சொல்லுங்கள்; வலியுறுத்த வாக்கியத்தின் கடைசியில் \"only\" சேர்க்க வேண்டாம்."
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptTamil": "இது எங்கள் தவறுதான்; முழுப் பொறுப்பையும் ஏற்றுக்கொள்கிறோம்.",
+      "tiles": [
+        "This",
+        "is",
+        "on",
+        "us,",
+        "and",
+        "we",
+        "take",
+        "full",
+        "responsibility",
+        "mistake",
+        "only"
+      ],
+      "answer": "This is on us, and we take full responsibility."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "This is on us, and we take full responsibility.",
+      "options": [
+        "This isn't on us, but we take full responsibility.",
+        "This is on us, and we take full responsibility.",
+        "This is on hold, and we take full responsibility."
+      ],
+      "answer": "This is on us, and we take full responsibility."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Imagine a client is upset about a production bug in your project. Out loud, reply in 3–4 sentences: acknowledge the concern, take ownership, explain the fix, and promise regular updates.",
+      "promptTamil": "உங்கள் project-இல் ஒரு production bug-ஆல் client கோபமாக இருப்பதாக நினைத்துக்கொள்ளுங்கள். 3–4 வாக்கியங்களில் பதில் சொல்லுங்கள்: கவலையை ஏற்று, பொறுப்பெடுத்து, தீர்வை விளக்கி, தொடர்ந்து update தருவதாகச் சொல்லுங்கள்.",
+      "suggestedPhraseIds": [
+        "understand-concern",
+        "take-ownership",
+        "heres-what",
+        "regular-updates"
+      ]
+    }
+  ]
+}

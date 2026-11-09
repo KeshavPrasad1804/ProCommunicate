@@ -17,6 +17,8 @@ struct RootView: View {
     @Environment(AppRouter.self) private var router
     @Environment(AIModelManager.self) private var aiModel
     @Environment(\.modelContext) private var modelContext
+    @AppStorage("onboarded") private var onboarded = false
+    @State private var showOnboarding = false
 
     var body: some View {
         @Bindable var router = router
@@ -40,6 +42,15 @@ struct RootView: View {
         .sheet(isPresented: $router.showSettings) {
             SettingsView()
         }
+        .sheet(isPresented: $showOnboarding) {
+            OnboardingView()
+        }
+        .task {
+            if !onboarded && !UserDefaults.standard.bool(forKey: "skipOnboarding") {
+                try? await Task.sleep(for: .milliseconds(1800))   // after the intro animation
+                showOnboarding = true
+            }
+        }
         .fullScreenCover(item: $router.activeLesson) { lesson in
             LessonPlayerView(lesson: lesson, startAt: router.debugLessonStartStep) { score, seconds in
                 ProgressStore.recordCompletion(of: lesson, score: score, in: modelContext)
@@ -52,6 +63,12 @@ struct RootView: View {
         }
         .fullScreenCover(isPresented: $router.showStandUpDrill) {
             StandUpDrillView()
+        }
+        .fullScreenCover(item: $router.activeCall) { launch in
+            CallView(launch: launch)
+        }
+        .sheet(item: Binding(get: { router.openReport.map(ReportID.init) }, set: { router.openReport = $0?.id })) { item in
+            CallReportContainer(recordId: item.id) { router.openReport = nil }
         }
         #if DEBUG
         .task {
@@ -68,6 +85,9 @@ struct RootView: View {
             if defaults.bool(forKey: "openStandUp") { router.showStandUpDrill = true }
             if defaults.bool(forKey: "openReview") { router.showReviewSession = true }
             if defaults.bool(forKey: "seedDemoData") { DemoData.seed(in: modelContext) }
+            if let id = defaults.string(forKey: "startCall"), let scenario = ScenarioLoader.loadAll().first(where: { $0.id == id }) {
+                router.startCall(scenario)
+            }
         }
         #endif
     }
@@ -78,4 +98,9 @@ struct RootView: View {
         .environment(AppRouter())
         .environment(AIModelManager.shared)
         .modelContainer(for: AppSchema.models, inMemory: true)
+}
+
+/// Wrapper so a call id can drive a sheet.
+struct ReportID: Identifiable {
+    let id: UUID
 }

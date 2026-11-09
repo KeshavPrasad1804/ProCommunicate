@@ -1,0 +1,196 @@
+{
+  "id": "meetings-01-standup-l1",
+  "unitId": "meetings-01-standup",
+  "title": "Daily stand-up",
+  "intro": "In a stand-up, keep it short: what you did yesterday, what you'll do today, and anything blocking you.",
+  "introTamil": "Stand-up-இல் சுருக்கமாகப் பேசுங்கள்: நேற்று என்ன செய்தீர்கள், இன்று என்ன செய்வீர்கள், ஏதாவது blocker இருக்கிறதா.",
+  "tamilReviewed": false,
+  "phrases": [
+    {
+      "id": "yesterday-completed",
+      "text": "Yesterday I completed the login API and raised a PR for review.",
+      "tamil": "நேற்று login API-ஐ முடித்து, review-க்காக ஒரு PR raise செய்தேன்.",
+      "note": "Use the simple past for yesterday: \"completed\", \"raised\"."
+    },
+    {
+      "id": "today-working",
+      "text": "Today I'll be working on the unit tests for the payment service.",
+      "tamil": "இன்று payment service-க்கான unit test-களில் வேலை செய்வேன்.",
+      "note": "\"I'll be working on\" sounds natural for your plan for the day."
+    },
+    {
+      "id": "blocked-on",
+      "text": "I'm blocked on the API keys and need help from the DevOps team.",
+      "tamil": "API key-கள் இல்லாததால் என் வேலை நின்றிருக்கிறது; DevOps team-இன் உதவி தேவை.",
+      "note": "Say what is blocking you and who can unblock it."
+    },
+    {
+      "id": "no-blockers",
+      "text": "No blockers from my side.",
+      "tamil": "என் பக்கம் எந்த blocker-உம் இல்லை.",
+      "note": "A short, common way to end your update."
+    },
+    {
+      "id": "take-offline",
+      "text": "Let's take this offline after the stand-up.",
+      "tamil": "இதை stand-up முடிந்ததும் தனியாகப் பேசலாம்.",
+      "note": "\"Take it offline\" means discuss it separately, not in the group call."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "yesterday-completed"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "today-working"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "blocked-on"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "no-blockers"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "take-offline"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "Your Scrum Master asks for your update. Which opening sounds most natural?",
+      "promptTamil": "Scrum Master உங்கள் update-ஐக் கேட்கிறார். எந்தத் தொடக்கம் மிக இயல்பாக இருக்கும்?",
+      "options": [
+        "Yesterday I completed the login API and raised a PR for review.",
+        "Yesterday itself I finished login API work only.",
+        "Yesterday I was doing the login API and all."
+      ],
+      "answer": "Yesterday I completed the login API and raised a PR for review.",
+      "explanation": "Say clearly what you finished, using the simple past.",
+      "explanationTamil": "நேற்று என்ன முடித்தீர்கள் என்பதை simple past-இல் தெளிவாகச் சொல்லுங்கள்."
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptTamil": "இன்று payment service-க்கான unit test-களில் வேலை செய்வேன்.",
+      "tiles": [
+        "Today",
+        "I'll",
+        "be",
+        "working",
+        "on",
+        "the",
+        "unit",
+        "tests",
+        "for",
+        "the",
+        "payment",
+        "service",
+        "doing",
+        "itself"
+      ],
+      "answer": "Today I'll be working on the unit tests for the payment service."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "I'm blocked on the API keys and need help from the DevOps team.",
+      "options": [
+        "I'm blocked on the API keys and need help from the testing team.",
+        "I'm blocked on the API keys and need help from the DevOps team.",
+        "I've unblocked the API keys with help from the DevOps team."
+      ],
+      "answer": "I'm blocked on the API keys and need help from the DevOps team."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I am having one blocker in the payment module.",
+      "options": [
+        "I am having one blocker in the payment module.",
+        "I have a blocker in the payment module.",
+        "I am having a blocker in payment module.",
+        "I have one blocker on payment module itself."
+      ],
+      "answer": "I have a blocker in the payment module.",
+      "explanation": "When \"have\" means possess, don't use the -ing form: say \"I have\", not \"I am having\".",
+      "explanationTamil": "\"Have\" உடைமையைக் குறிக்கும்போது \"am having\" என்று சொல்லக்கூடாது. \"I have a blocker\" என்று சொல்லுங்கள்."
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "A teammate starts a long technical debate during the stand-up. What do you say?",
+      "promptTamil": "Stand-up நடுவில் ஒரு teammate நீண்ட technical விவாதத்தைத் தொடங்குகிறார். என்ன சொல்வீர்கள்?",
+      "options": [
+        "This is not the place, stop it.",
+        "Let's take this offline after the stand-up.",
+        "We will discuss about this later."
+      ],
+      "answer": "Let's take this offline after the stand-up.",
+      "explanation": "\"Take this offline\" keeps the stand-up short without sounding rude.",
+      "explanationTamil": "\"Take this offline\" என்றால் stand-up-ஐ நீட்டாமல், பிறகு தனியாகப் பேசலாம் என்று மரியாதையாகச் சொல்வது."
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Since two days I am working on this bug.",
+      "options": [
+        "Since two days I am working on this bug.",
+        "I've been working on this bug for two days.",
+        "I am working on this bug since two days.",
+        "I have been working on this bug since two days."
+      ],
+      "answer": "I've been working on this bug for two days.",
+      "explanation": "For something still going on, use \"I've been working\" with \"for\" and a length of time.",
+      "explanationTamil": "இன்னும் தொடரும் வேலைக்கு \"I've been working\" பயன்படுத்துங்கள். கால அளவுக்கு \"since\" இல்லை, \"for\" வேண்டும்."
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptTamil": "என் பக்கம் எந்த blocker-உம் இல்லை.",
+      "tiles": [
+        "No",
+        "blockers",
+        "from",
+        "my",
+        "side",
+        "only",
+        "itself"
+      ],
+      "answer": "No blockers from my side."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "Let's take this offline after the stand-up.",
+      "options": [
+        "Let's take this off the list after the stand-up.",
+        "Let's talk about this after the stand-up.",
+        "Let's take this offline after the stand-up."
+      ],
+      "answer": "Let's take this offline after the stand-up."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Give your real stand-up update out loud in 3 sentences: what you completed yesterday, what you'll work on today, and any blockers.",
+      "promptTamil": "உங்கள் உண்மையான stand-up update-ஐ 3 வாக்கியங்களில் சொல்லுங்கள் — நேற்று முடித்தது, இன்று செய்யப்போவது, ஏதாவது blocker.",
+      "suggestedPhraseIds": [
+        "yesterday-completed",
+        "today-working",
+        "blocked-on",
+        "no-blockers"
+      ]
+    }
+  ]
+}

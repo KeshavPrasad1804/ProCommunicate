@@ -1,0 +1,198 @@
+{
+  "id": "meetings-04-delay-l1",
+  "unitId": "meetings-04-delay",
+  "title": "Explaining a delay or a problem",
+  "intro": "When something slips, say it early and honestly, explain the cause briefly, and give the new plan.",
+  "introTamil": "வேலை தாமதமானால் முன்கூட்டியே நேர்மையாகச் சொல்லுங்கள்: காரணத்தைச் சுருக்கமாக, பிறகு புதிய plan.",
+  "tamilReviewed": false,
+  "phrases": [
+    {
+      "id": "run-into-issue",
+      "text": "Unfortunately, we've run into an issue with the payment gateway integration.",
+      "tamil": "துரதிர்ஷ்டவசமாக, payment gateway integration-இல் ஒரு பிரச்சனை வந்திருக்கிறது.",
+      "note": "\"Unfortunately\" softens bad news; \"run into\" means you met it unexpectedly."
+    },
+    {
+      "id": "root-cause",
+      "text": "The root cause is a change in the third-party API that we weren't told about.",
+      "tamil": "மூல காரணம், third-party API-இல் எங்களுக்குத் தெரிவிக்காமல் செய்யப்பட்ட ஒரு மாற்றம்.",
+      "note": "Explain the cause in one sentence, without blaming a person."
+    },
+    {
+      "id": "new-timeline",
+      "text": "The new timeline for the release is Wednesday the 20th.",
+      "tamil": "Release-க்கான புதிய timeline 20-ஆம் தேதி, புதன்கிழமை.",
+      "note": "Always give a specific new date, not \"soon\"."
+    },
+    {
+      "id": "avoid-this",
+      "text": "To avoid this in future, we'll add contract tests for every external API.",
+      "tamil": "இனிமேல் இது நடக்காமல் இருக்க, ஒவ்வொரு external API-க்கும் contract test சேர்க்கப் போகிறோம்.",
+      "note": "Clients want to know how you'll prevent it next time."
+    },
+    {
+      "id": "apologise",
+      "text": "I'm sorry for the inconvenience this causes your team.",
+      "tamil": "இதனால் உங்கள் team-க்கு ஏற்படும் சிரமத்திற்கு வருந்துகிறேன்.",
+      "note": "One short, sincere apology is enough; don't over-apologise."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "run-into-issue"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "root-cause"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "new-timeline"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "avoid-this"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "apologise"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The release will be two days late. How do you raise it with the client?",
+      "promptTamil": "Release இரண்டு நாள் தாமதமாகும். இதை client-இடம் எப்படித் தொடங்குவீர்கள்?",
+      "options": [
+        "Sorry sorry, there is a small delay, please adjust.",
+        "Release will not happen, some issue is there.",
+        "Unfortunately, we've run into an issue with the payment gateway integration."
+      ],
+      "answer": "Unfortunately, we've run into an issue with the payment gateway integration.",
+      "explanation": "Name the problem calmly and specifically, then move to the plan.",
+      "explanationTamil": "பிரச்சனையை அமைதியாகவும் தெளிவாகவும் சொல்லி, பிறகு plan-க்கு வாருங்கள்."
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptTamil": "Release-க்கான புதிய timeline 20-ஆம் தேதி, புதன்கிழமை.",
+      "tiles": [
+        "The",
+        "new",
+        "timeline",
+        "for",
+        "the",
+        "release",
+        "is",
+        "Wednesday",
+        "the",
+        "20th",
+        "prepone",
+        "only"
+      ],
+      "answer": "The new timeline for the release is Wednesday the 20th."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "The root cause is a change in the third-party API that we weren't told about.",
+      "options": [
+        "The root cause is a change in the third-party API that we weren't told about.",
+        "The root cause is a change in the third-party API that we weren't sure about.",
+        "The real cause was a change in the API that we told you about."
+      ],
+      "answer": "The root cause is a change in the third-party API that we weren't told about."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "We will deliver the fix by today itself.",
+      "options": [
+        "We will deliver the fix by today itself.",
+        "We'll deliver the fix by the end of today.",
+        "We will deliver the fix today only itself.",
+        "We will be delivering fix by today evening itself."
+      ],
+      "answer": "We'll deliver the fix by the end of today.",
+      "explanation": "\"Itself\" isn't used to stress a time; say \"by the end of today\" or \"later today\".",
+      "explanationTamil": "நேரத்தை வலியுறுத்த \"itself\" தேவையில்லை. \"By the end of today\" என்று சொல்லுங்கள்."
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "The client asks: \"How will you stop this happening again?\" What's the best answer?",
+      "promptTamil": "Client \"இது மீண்டும் நடக்காமல் எப்படித் தடுப்பீர்கள்?\" என்று கேட்கிறார். சிறந்த பதில் எது?",
+      "options": [
+        "We'll try our level best next time.",
+        "To avoid this in future, we'll add contract tests for every external API.",
+        "This will not happen again, I promise."
+      ],
+      "answer": "To avoid this in future, we'll add contract tests for every external API.",
+      "explanation": "A concrete action builds more trust than a promise.",
+      "explanationTamil": "வெறும் வாக்குறுதியை விட, ஒரு குறிப்பிட்ட நடவடிக்கையைச் சொன்னால் நம்பிக்கை அதிகம்."
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "We are facing some issues, so kindly adjust with the delay.",
+      "options": [
+        "We are facing some issues, so kindly adjust with the delay.",
+        "We've hit an issue, so we need to move the date by two days.",
+        "We are facing some issues, so please adjust the delay.",
+        "We are facing issues, kindly adjust for the delay."
+      ],
+      "answer": "We've hit an issue, so we need to move the date by two days.",
+      "explanation": "\"Kindly adjust\" asks the client to accept the problem; state the impact and the new date instead.",
+      "explanationTamil": "\"Kindly adjust\" என்றால் client-ஏ சமாளிக்க வேண்டும் என்று பொருள்படும். பாதிப்பையும் புதிய தேதியையும் தெளிவாகச் சொல்லுங்கள்."
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptTamil": "இதனால் உங்கள் team-க்கு ஏற்படும் சிரமத்திற்கு வருந்துகிறேன்.",
+      "tiles": [
+        "I'm",
+        "sorry",
+        "for",
+        "the",
+        "inconvenience",
+        "this",
+        "causes",
+        "your",
+        "team",
+        "kindly",
+        "adjust"
+      ],
+      "answer": "I'm sorry for the inconvenience this causes your team."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "Unfortunately, we've run into an issue with the payment gateway integration.",
+      "options": [
+        "Unfortunately, we've run into an issue with the payment gateway configuration.",
+        "Unfortunately, we've run into an issue with the payment gateway integration.",
+        "Fortunately, we've run the payment gateway integration."
+      ],
+      "answer": "Unfortunately, we've run into an issue with the payment gateway integration."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Think of a real delay on your project. Out loud, explain it in 3–4 sentences: the issue, the cause, the new date, and how you'll avoid it next time.",
+      "promptTamil": "உங்கள் project-இல் நடந்த ஒரு உண்மையான தாமதத்தை நினைத்துக்கொள்ளுங்கள். பிரச்சனை, காரணம், புதிய தேதி, இனி தவிர்க்கும் வழி — 3–4 வாக்கியங்களில் சொல்லுங்கள்.",
+      "suggestedPhraseIds": [
+        "run-into-issue",
+        "root-cause",
+        "new-timeline",
+        "avoid-this"
+      ]
+    }
+  ]
+}

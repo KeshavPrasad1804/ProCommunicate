@@ -1,0 +1,196 @@
+{
+  "id": "meetings-08-interrupt-l1",
+  "unitId": "meetings-08-interrupt",
+  "title": "Interrupting and joining in",
+  "intro": "On a busy call, you need short, polite phrases to get your point in and to keep your turn.",
+  "introTamil": "பலர் பேசும் call-இல் உங்கள் கருத்தைச் சொல்ல, சுருக்கமான, மரியாதையான வார்த்தைகள் தேவை.",
+  "tamilReviewed": false,
+  "phrases": [
+    {
+      "id": "sorry-interrupt",
+      "text": "Sorry to interrupt, but I think that affects the API design.",
+      "tamil": "குறுக்கிடுவதற்கு மன்னிக்கவும், ஆனால் அது API design-ஐ பாதிக்கும் என்று நினைக்கிறேன்.",
+      "note": "Say it, then make your point quickly."
+    },
+    {
+      "id": "add-something",
+      "text": "If I could add something here, we tested this last sprint.",
+      "tamil": "இங்கே நான் ஒன்று சேர்க்கலாமா? இதை நாங்கள் கடந்த sprint-இல் test செய்தோம்.",
+      "note": "A soft way to join a discussion."
+    },
+    {
+      "id": "finish-point",
+      "text": "Could I just finish my point?",
+      "tamil": "நான் சொல்ல வந்ததை முடித்துவிடலாமா?",
+      "note": "Use this calmly if someone talks over you."
+    },
+    {
+      "id": "go-ahead",
+      "text": "Sorry, go ahead.",
+      "tamil": "மன்னிக்கவும், நீங்கள் பேசுங்கள்.",
+      "note": "When two people speak at once, let the other person go first."
+    },
+    {
+      "id": "come-back-to",
+      "text": "Can I come back to what Rahul said about the test data?",
+      "tamil": "Test data பற்றி ராகுல் சொன்னதற்கு மீண்டும் வரலாமா?",
+      "note": "Use this to return to an earlier point."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "sorry-interrupt"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "add-something"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "finish-point"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "go-ahead"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "come-back-to"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The client is planning a change that will break the API. You need to speak now. What do you say?",
+      "promptTamil": "Client செய்யத் திட்டமிடும் மாற்றம் API-ஐ உடைத்துவிடும். நீங்கள் இப்போதே பேச வேண்டும். என்ன சொல்வீர்கள்?",
+      "options": [
+        "Wait, wait, one minute, listen to me.",
+        "Sorry to interrupt, but I think that affects the API design.",
+        "Excuse me, I have one point to tell."
+      ],
+      "answer": "Sorry to interrupt, but I think that affects the API design.",
+      "explanation": "Apologise briefly, then give your reason straight away.",
+      "explanationTamil": "சுருக்கமாக மன்னிப்புக் கேட்டு, உடனே உங்கள் காரணத்தைச் சொல்லுங்கள்."
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptTamil": "நான் சொல்ல வந்ததை முடித்துவிடலாமா?",
+      "tiles": [
+        "Could",
+        "I",
+        "just",
+        "finish",
+        "my",
+        "point",
+        "complete",
+        "once"
+      ],
+      "answer": "Could I just finish my point?"
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "If I could add something here, we tested this last sprint.",
+      "options": [
+        "If I could add something here, we tested this last week.",
+        "If I could ask something here, we tested this sprint.",
+        "If I could add something here, we tested this last sprint."
+      ],
+      "answer": "If I could add something here, we tested this last sprint."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I want to tell one point.",
+      "options": [
+        "I want to tell one point.",
+        "I'd like to make a point.",
+        "I want to say one point.",
+        "I would like to tell a point."
+      ],
+      "answer": "I'd like to make a point.",
+      "explanation": "In English you \"make a point\"; you don't \"tell\" or \"say\" one.",
+      "explanationTamil": "ஆங்கிலத்தில் \"make a point\" என்று சொல்வார்கள்; \"tell a point\" இல்லை."
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "You and the client start speaking at the same time. What do you say?",
+      "promptTamil": "நீங்களும் client-உம் ஒரே நேரத்தில் பேசத் தொடங்குகிறீர்கள். என்ன சொல்வீர்கள்?",
+      "options": [
+        "Sorry, go ahead.",
+        "No, you stop, let me talk.",
+        "Tell, tell."
+      ],
+      "answer": "Sorry, go ahead.",
+      "explanation": "Letting the client go first is polite; you can speak right after.",
+      "explanationTamil": "Client-ஐ முதலில் பேச விடுவது மரியாதை. அவர் முடித்ததும் நீங்கள் பேசலாம்."
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I want to add one more point to the same.",
+      "options": [
+        "I want to add one more point to the same.",
+        "I'd like to add something to that.",
+        "I want to add one more point on the same.",
+        "I would like to add one more point to same."
+      ],
+      "answer": "I'd like to add something to that.",
+      "explanation": "Don't use \"the same\" to refer back to something; say \"to that\".",
+      "explanationTamil": "முன்பு சொன்னதைக் குறிக்க \"the same\" வேண்டாம். \"To that\" என்று சொல்லுங்கள்."
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptTamil": "Test data பற்றி ராகுல் சொன்னதற்கு மீண்டும் வரலாமா?",
+      "tiles": [
+        "Can",
+        "I",
+        "come",
+        "back",
+        "to",
+        "what",
+        "Rahul",
+        "said",
+        "about",
+        "the",
+        "test",
+        "data",
+        "revert",
+        "discuss"
+      ],
+      "answer": "Can I come back to what Rahul said about the test data?"
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "Sorry to interrupt, but I think that affects the API design.",
+      "options": [
+        "Sorry to interrupt, but I think that affects the API design.",
+        "Sorry to interrupt, but I think that affects the UI design.",
+        "Sorry to interrupt, but I think we fixed the API design."
+      ],
+      "answer": "Sorry to interrupt, but I think that affects the API design."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Imagine a busy client call where people are discussing your module. Out loud, in 2–3 sentences: interrupt politely, add your point, and hand the turn back.",
+      "promptTamil": "உங்கள் module பற்றிப் பலர் பேசும் ஒரு busy client call-ஐ நினைத்துக்கொள்ளுங்கள். 2–3 வாக்கியங்களில்: மரியாதையாகக் குறுக்கிட்டு, உங்கள் கருத்தைச் சொல்லி, மீண்டும் அவர்களிடம் விடுங்கள்.",
+      "suggestedPhraseIds": [
+        "sorry-interrupt",
+        "add-something",
+        "come-back-to"
+      ]
+    }
+  ]
+}

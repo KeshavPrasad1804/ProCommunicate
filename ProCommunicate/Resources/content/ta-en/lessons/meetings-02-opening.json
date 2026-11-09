@@ -1,0 +1,201 @@
+{
+  "id": "meetings-02-opening-l1",
+  "unitId": "meetings-02-opening",
+  "title": "Opening a call and small talk",
+  "intro": "The first two minutes set the tone, so check the audio, make a little small talk, and then start.",
+  "introTamil": "Call-இன் முதல் இரண்டு நிமிடங்கள் முக்கியம்: audio சரிபார்த்து, கொஞ்சம் சாதாரணமாகப் பேசி, பிறகு meeting-ஐத் தொடங்குங்கள்.",
+  "tamilReviewed": false,
+  "phrases": [
+    {
+      "id": "hear-me",
+      "text": "Can everyone hear me okay?",
+      "tamil": "நான் பேசுவது எல்லோருக்கும் சரியாகக் கேட்கிறதா?",
+      "note": "Ask this first so nobody misses the start."
+    },
+    {
+      "id": "weekend",
+      "text": "How was your weekend? Did you do anything nice?",
+      "tamil": "உங்கள் weekend எப்படி இருந்தது? ஏதாவது சுவாரஸ்யமாகச் செய்தீர்களா?",
+      "note": "Small talk is short and friendly; one or two questions is enough."
+    },
+    {
+      "id": "wait-minute",
+      "text": "Let's give it a minute for the others to join.",
+      "tamil": "மற்றவர்கள் join செய்ய ஒரு நிமிடம் காத்திருப்போம்.",
+      "note": "A polite way to wait before starting."
+    },
+    {
+      "id": "get-started",
+      "text": "Shall we get started?",
+      "tamil": "தொடங்கலாமா?",
+      "note": "A friendly signal that small talk is over."
+    },
+    {
+      "id": "agenda",
+      "text": "Today I'd like to cover three things: the sprint demo, the UAT plan and open questions.",
+      "tamil": "இன்று மூன்று விஷயங்களைப் பேச விரும்புகிறேன்: sprint demo, UAT plan, மீதமுள்ள கேள்விகள்.",
+      "note": "Sharing the agenda at the start makes the call feel organised."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "hear-me"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "weekend"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "wait-minute"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "get-started"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "agenda"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "You've just joined a client call and you're not sure your mic is working. What do you say?",
+      "promptTamil": "Client call-இல் இப்போதுதான் சேர்ந்தீர்கள்; உங்கள் mic வேலை செய்கிறதா என்று உறுதியில்லை. என்ன சொல்வீர்கள்?",
+      "options": [
+        "Hello, hello, is my voice coming?",
+        "Can everyone hear me okay?",
+        "Am I audible or not?"
+      ],
+      "answer": "Can everyone hear me okay?",
+      "explanation": "\"Can everyone hear me?\" is the natural, international way to check your audio.",
+      "explanationTamil": "Audio சரிபார்க்க \"Can everyone hear me?\" என்பதுதான் இயல்பான, எல்லோருக்கும் புரியும் வழி."
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptTamil": "மற்றவர்கள் join செய்ய ஒரு நிமிடம் காத்திருப்போம்.",
+      "tiles": [
+        "Let's",
+        "give",
+        "it",
+        "a",
+        "minute",
+        "for",
+        "the",
+        "others",
+        "to",
+        "join",
+        "wait",
+        "itself"
+      ],
+      "answer": "Let's give it a minute for the others to join."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "Shall we get started?",
+      "options": [
+        "Shall we get it started?",
+        "Shall we get started?",
+        "Should we have started?"
+      ],
+      "answer": "Shall we get started?"
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Myself Karthik, I am from the Chennai team.",
+      "options": [
+        "Myself Karthik, I am from the Chennai team.",
+        "Hi, I'm Karthik from the Chennai team.",
+        "Myself is Karthik from Chennai team.",
+        "I am Karthik only, from the Chennai team."
+      ],
+      "answer": "Hi, I'm Karthik from the Chennai team.",
+      "explanation": "Introduce yourself with \"I'm\" and your name; \"myself\" isn't used this way.",
+      "explanationTamil": "உங்களை அறிமுகப்படுத்த \"I'm Karthik\" என்று சொல்லுங்கள். \"Myself Karthik\" சரியான ஆங்கிலம் இல்லை."
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "It's Monday and the client joins the call a minute early. How do you start some small talk?",
+      "promptTamil": "திங்கட்கிழமை, client ஒரு நிமிடம் முன்னதாகவே call-இல் சேர்கிறார். எப்படி small talk தொடங்குவீர்கள்?",
+      "options": [
+        "How was your weekend? Did you do anything nice?",
+        "What did you do Saturday, Sunday?",
+        "Weekend is over, shall we start the work?"
+      ],
+      "answer": "How was your weekend? Did you do anything nice?",
+      "explanation": "A friendly, open question gives the client an easy way to chat.",
+      "explanationTamil": "நட்பான ஒரு எளிய கேள்வி client-ஐ இயல்பாகப் பேச வைக்கும்."
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Today we will discuss about the UAT plan.",
+      "options": [
+        "Today we will discuss about the UAT plan.",
+        "Today we'll discuss the UAT plan.",
+        "Today we will discuss on the UAT plan.",
+        "Today we will be discussing about UAT plan."
+      ],
+      "answer": "Today we'll discuss the UAT plan.",
+      "explanation": "\"Discuss\" takes no preposition: you discuss the plan, not discuss about it.",
+      "explanationTamil": "\"Discuss\"-க்குப் பிறகு \"about\" வேண்டாம். \"Discuss the UAT plan\" என்று சொன்னால் போதும்."
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptTamil": "இன்று sprint demo மற்றும் UAT plan பற்றிப் பேச விரும்புகிறேன்.",
+      "tiles": [
+        "Today",
+        "I'd",
+        "like",
+        "to",
+        "cover",
+        "the",
+        "sprint",
+        "demo",
+        "and",
+        "the",
+        "UAT",
+        "plan",
+        "discuss",
+        "about"
+      ],
+      "answer": "Today I'd like to cover the sprint demo and the UAT plan."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "Let's give it a minute for the others to join.",
+      "options": [
+        "Let's give them a minute to join the others.",
+        "Let's give it a minute before the others join.",
+        "Let's give it a minute for the others to join."
+      ],
+      "answer": "Let's give it a minute for the others to join."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Imagine your next client call. Out loud, in 3–4 sentences: check the audio, ask one small-talk question, and introduce today's agenda.",
+      "promptTamil": "உங்கள் அடுத்த client call-ஐ நினைத்துக்கொள்ளுங்கள். 3–4 வாக்கியங்களில்: audio சரிபார்த்து, ஒரு small-talk கேள்வி கேட்டு, இன்றைய agenda-வைச் சொல்லுங்கள்.",
+      "suggestedPhraseIds": [
+        "hear-me",
+        "weekend",
+        "get-started",
+        "agenda"
+      ]
+    }
+  ]
+}

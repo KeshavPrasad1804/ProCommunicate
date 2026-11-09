@@ -1,0 +1,201 @@
+{
+  "id": "meetings-06-get-back-l1",
+  "unitId": "meetings-06-get-back",
+  "title": "When you don't have the answer",
+  "intro": "If you don't know the answer, don't guess: say so clearly and promise a follow-up with a time.",
+  "introTamil": "பதில் தெரியவில்லை என்றால் ஊகித்துச் சொல்லாதீர்கள்; தெளிவாகச் சொல்லி, எப்போது பதில் தருவீர்கள் என்றும் சொல்லுங்கள்.",
+  "tamilReviewed": false,
+  "phrases": [
+    {
+      "id": "good-question",
+      "text": "That's a good question. I'll confirm with the team.",
+      "tamil": "நல்ல கேள்வி. Team-இடம் கேட்டு உறுதிசெய்கிறேன்.",
+      "note": "This buys you time politely, without guessing."
+    },
+    {
+      "id": "get-back-by",
+      "text": "Let me check and get back to you by end of day tomorrow.",
+      "tamil": "சரிபார்த்து, நாளை மாலைக்குள் உங்களுக்குப் பதில் சொல்கிறேன்.",
+      "note": "Always add a time, so the client knows when to expect your answer."
+    },
+    {
+      "id": "double-check",
+      "text": "I don't want to give you the wrong number, so let me double-check.",
+      "tamil": "தவறான எண்ணைச் சொல்ல விரும்பவில்லை, அதனால் ஒருமுறை சரிபார்த்துச் சொல்கிறேன்.",
+      "note": "Shows you care about accuracy."
+    },
+    {
+      "id": "off-the-top",
+      "text": "I'm not sure off the top of my head.",
+      "tamil": "இப்போது உடனே உறுதியாகச் சொல்ல முடியவில்லை.",
+      "note": "\"Off the top of my head\" means without checking first."
+    },
+    {
+      "id": "loop-in",
+      "text": "I'll loop in our database architect, Priya, on the email.",
+      "tamil": "எங்கள் database architect பிரியாவையும் email-இல் சேர்த்துக்கொள்கிறேன்.",
+      "note": "\"Loop in\" means add someone to the conversation."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "good-question"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "get-back-by"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "double-check"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "off-the-top"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "loop-in"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The client asks how many concurrent users the system can handle. You don't know the exact number. What do you say?",
+      "promptTamil": "System எத்தனை concurrent users-ஐத் தாங்கும் என்று client கேட்கிறார். சரியான எண் உங்களுக்குத் தெரியாது. என்ன சொல்வீர்கள்?",
+      "options": [
+        "Around 10,000, I think. Maybe more.",
+        "I don't want to give you the wrong number, so let me double-check.",
+        "I don't know, that is not my module."
+      ],
+      "answer": "I don't want to give you the wrong number, so let me double-check.",
+      "explanation": "Guessing a number can cause problems later; promise to check instead.",
+      "explanationTamil": "எண்ணை ஊகித்துச் சொன்னால் பிறகு பிரச்சனை வரும். சரிபார்த்துச் சொல்வதாகச் சொல்லுங்கள்."
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptTamil": "சரிபார்த்து, நாளை மாலைக்குள் உங்களுக்குப் பதில் சொல்கிறேன்.",
+      "tiles": [
+        "Let",
+        "me",
+        "check",
+        "and",
+        "get",
+        "back",
+        "to",
+        "you",
+        "by",
+        "end",
+        "of",
+        "day",
+        "tomorrow",
+        "revert",
+        "will"
+      ],
+      "answer": "Let me check and get back to you by end of day tomorrow."
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "That's a good question. I'll confirm with the team.",
+      "options": [
+        "That's a good question. I'll confirm with the client.",
+        "That's a good question. I'll confirm with the team.",
+        "That was a good question. I've confirmed with the team."
+      ],
+      "answer": "That's a good question. I'll confirm with the team."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I will revert back to you by tomorrow.",
+      "options": [
+        "I will revert back to you by tomorrow.",
+        "I'll get back to you by tomorrow.",
+        "I will revert to you back by tomorrow.",
+        "I will revert you tomorrow itself."
+      ],
+      "answer": "I'll get back to you by tomorrow.",
+      "explanation": "\"Revert\" means go back to an earlier state; to promise a reply, say \"get back to you\".",
+      "explanationTamil": "\"Revert\" என்றால் பழைய நிலைக்குத் திரும்புவது. பதில் சொல்வதற்கு \"get back to you\" என்று சொல்லுங்கள்."
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "A question needs input from your architect, who isn't on the call. What do you say?",
+      "promptTamil": "ஒரு கேள்விக்கு உங்கள் architect-இன் பதில் தேவை; அவர் call-இல் இல்லை. என்ன சொல்வீர்கள்?",
+      "options": [
+        "Priya is not here, ask her only.",
+        "That is Priya's area, I can't say anything.",
+        "I'll loop in our database architect, Priya, on the email."
+      ],
+      "answer": "I'll loop in our database architect, Priya, on the email.",
+      "explanation": "Take ownership and bring the right person into the conversation.",
+      "explanationTamil": "பொறுப்பை எடுத்துக்கொண்டு, சரியான நபரை உரையாடலில் சேர்த்துக்கொள்ளுங்கள்."
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "I will check and update you the same.",
+      "options": [
+        "I will check and update you the same.",
+        "I'll check and update you on it.",
+        "I will check and update the same to you.",
+        "I will check and updating you on same."
+      ],
+      "answer": "I'll check and update you on it.",
+      "explanation": "Don't use \"the same\" to mean \"it\"; say \"update you on it\".",
+      "explanationTamil": "\"The same\" என்பதை \"it\" என்ற பொருளில் பயன்படுத்த வேண்டாம். \"Update you on it\" என்று சொல்லுங்கள்."
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptTamil": "இப்போது உடனே உறுதியாகச் சொல்ல முடியவில்லை.",
+      "tiles": [
+        "I'm",
+        "not",
+        "sure",
+        "off",
+        "the",
+        "top",
+        "of",
+        "my",
+        "head",
+        "doubt",
+        "only"
+      ],
+      "answer": "I'm not sure off the top of my head."
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "Let me check and get back to you by end of day tomorrow.",
+      "options": [
+        "Let me check and get back to you by end of day today.",
+        "Let me check and send it back to you by tomorrow.",
+        "Let me check and get back to you by end of day tomorrow."
+      ],
+      "answer": "Let me check and get back to you by end of day tomorrow."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Think of a client question you couldn't answer on the spot. Out loud, reply in 2–3 sentences: admit you're not sure, promise to check, and give a time.",
+      "promptTamil": "Client கேட்ட ஒரு கேள்விக்கு உடனே பதில் தெரியாத சூழலை நினைத்துக்கொள்ளுங்கள். 2–3 வாக்கியங்களில் பதில் சொல்லுங்கள்: உறுதியில்லை என்று ஒப்புக்கொண்டு, சரிபார்ப்பதாகச் சொல்லி, நேரத்தையும் குறிப்பிடுங்கள்.",
+      "suggestedPhraseIds": [
+        "good-question",
+        "get-back-by",
+        "double-check",
+        "loop-in"
+      ]
+    }
+  ]
+}

@@ -18,15 +18,27 @@ struct LessonContentTests {
         #expect(unitIds.contains(lesson.unitId))
     }
 
-    @Test func unitWithoutALessonReturnsNil() throws {
-        #expect(try ContentLoader.loadLesson(unitId: "interviews-10-hr-round") == nil)
+    @Test func everyUnitHasAValidLesson() throws {
+        let course = try ContentLoader.loadCourse()
+        for unit in course.tracks.flatMap(\.units) {
+            let lesson = try #require(try ContentLoader.loadLesson(unitId: unit.id), "missing lesson for \(unit.id)")
+            #expect(lesson.validationProblems() == [], "\(unit.id)")
+            #expect(lesson.unitId == unit.id)
+            #expect(lesson.phrases.count == 5, "\(unit.id)")
+        }
     }
 
-    @Test func modelPhrasesAvoidTheMistakesWeTeach() throws {
-        let lesson = try #require(try ContentLoader.loadLesson(unitId: "meetings-03-status"))
-        let banned = ["revert back", "do the needful", "one doubt", "fine only", "have completed the testing yesterday"]
-        for phrase in lesson.phrases.map(\.text) {
-            for bad in banned { #expect(!phrase.lowercased().contains(bad), "\(phrase)") }
+    @Test func unknownUnitReturnsNil() throws {
+        #expect(try ContentLoader.loadLesson(unitId: "no-such-unit") == nil)
+    }
+
+    @Test func modelPhrasesNeverTriggerTheMistakeRules() throws {
+        let course = try ContentLoader.loadCourse()
+        for unit in course.tracks.flatMap(\.units) {
+            guard let lesson = try ContentLoader.loadLesson(unitId: unit.id) else { continue }
+            for phrase in lesson.phrases.map(\.text) {
+                #expect(MistakeRules.check(phrase).isEmpty, "\(unit.id): \(phrase)")
+            }
         }
     }
 }

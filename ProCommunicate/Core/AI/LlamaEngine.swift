@@ -15,6 +15,13 @@ struct GenerationOptions: Sendable {
     var seed: UInt32 = UInt32.random(in: 1...UInt32.max)
 }
 
+/// Separate slots in the model's memory, so a conversation's cached prompt survives a
+/// side job (like checking an answer) and the next reply doesn't re-read the whole call.
+enum LlamaSlot: Int32, Sendable {
+    case conversation = 0
+    case utility = 1
+}
+
 struct GenerationStats: Sendable, Equatable {
     var promptTokens = 0
     /// Tokens of the prompt that were already in the cache from the previous turn.
@@ -29,7 +36,7 @@ struct GenerationStats: Sendable, Equatable {
 }
 
 enum LlamaError: LocalizedError {
-    case unavailable, notLoaded, modelLoadFailed, contextFailed, tokenizeFailed, decodeFailed(Int32), grammarFailed, contextFull
+    case unavailable, notLoaded, modelLoadFailed, contextFailed, tokenizeFailed, decodeFailed(Int32), grammarFailed, contextFull, cancelled
 
     var errorDescription: String? {
         switch self {
@@ -41,13 +48,15 @@ enum LlamaError: LocalizedError {
         case .decodeFailed(let code): "The AI stopped with an error (\(code))."
         case .grammarFailed: "The answer format couldn't be set up."
         case .contextFull: "The conversation is too long for the AI's memory."
+        case .cancelled: "Stopped."
         }
     }
 }
 
 /// Runs Gemma on the iPhone with llama.cpp: GPU (Metal), memory-mapped weights, lazy per-layer
 /// embeddings and a q8_0 KV cache, as measured in PLAN.md "Keeping memory low".
-/// All llama.cpp calls happen on one serial queue; the prompt cache is reused between turns.
+/// All llama.cpp calls happen on one serial queue. Two memory slots (see `LlamaSlot`) keep the
+/// conversation's prompt cache while answer checks run.
 final class LlamaEngine: @unchecked Sendable {
     static let shared = LlamaEngine()
 
@@ -60,11 +69,12 @@ final class LlamaEngine: @unchecked Sendable {
     }
 
     private let queue = DispatchQueue(label: "dev.procommunicate.llama", qos: .userInitiated)
+    private let cancelRequested = OSAllocatedUnfairLock(initialState: false)
 
     #if canImport(llama)
     private var model: OpaquePointer?
     private var context: OpaquePointer?
-    private var cachedTokens: [llama_token] = []
+    private var cachedTokens: [Int32: [llama_token]] = [:]
     private static let backendInit: Void = { llama_backend_init() }()
     #endif
     private var loadedPath: String?
@@ -82,7 +92,7 @@ final class LlamaEngine: @unchecked Sendable {
 
     /// Loads the model (no-op if the same file and context size are already loaded). Returns seconds taken.
     @discardableResult
-    func load(modelPath: String, contextSize: Int32 = 4096) async throws -> Double {
+    func load(modelPath: String, contextSize: Int32 = 8192) async throws -> Double {
         try await onQueue { try self.loadOnQueue(path: modelPath, contextSize: contextSize) }
     }
 
@@ -90,10 +100,23 @@ final class LlamaEngine: @unchecked Sendable {
         _ = try? await onQueue { self.unloadOnQueue() }
     }
 
+    /// Stops the generation that is running now (it throws `LlamaError.cancelled`).
+    func cancelCurrent() {
+        cancelRequested.withLock { $0 = true }
+    }
+
+    /// Forgets a slot's cached prompt (e.g. when a new call starts).
+    func reset(_ slot: LlamaSlot) async {
+        _ = try? await onQueue { self.resetOnQueue(slot) }
+    }
+
     /// Generates a reply for a full prompt. Calls `onPiece` with text as it arrives.
-    func generate(prompt: String, options: GenerationOptions = .init(),
+    func generate(prompt: String, slot: LlamaSlot = .conversation, options: GenerationOptions = .init(),
                   onPiece: @escaping @Sendable (String) -> Void = { _ in }) async throws -> (text: String, stats: GenerationStats) {
-        try await onQueue { try self.generateOnQueue(prompt: prompt, options: options, onPiece: onPiece) }
+        try await onQueue {
+            self.cancelRequested.withLock { $0 = false }
+            return try self.generateOnQueue(prompt: prompt, slot: slot, options: options, onPiece: onPiece)
+        }
     }
 
     // MARK: - Queue-confined implementation
@@ -104,9 +127,17 @@ final class LlamaEngine: @unchecked Sendable {
         if let model { llama_model_free(model) }
         context = nil
         model = nil
-        cachedTokens = []
+        cachedTokens = [:]
         #endif
         loadedPath = nil
+    }
+
+    private func resetOnQueue(_ slot: LlamaSlot) {
+        #if canImport(llama)
+        guard let context else { return }
+        _ = llama_memory_seq_rm(llama_get_memory(context), slot.rawValue, 0, -1)
+        cachedTokens[slot.rawValue] = []
+        #endif
     }
 
     private func loadOnQueue(path: String, contextSize: Int32) throws -> Double {
@@ -126,7 +157,8 @@ final class LlamaEngine: @unchecked Sendable {
         contextParams.n_ctx = UInt32(contextSize)
         contextParams.n_batch = 512
         contextParams.n_ubatch = 512
-        contextParams.n_seq_max = 1
+        contextParams.n_seq_max = 2                      // conversation + utility slots
+        contextParams.kv_unified = true
         contextParams.n_threads = 4
         contextParams.n_threads_batch = 4
         contextParams.flash_attn_type = LLAMA_FLASH_ATTN_TYPE_ENABLED
@@ -140,7 +172,7 @@ final class LlamaEngine: @unchecked Sendable {
         }
         self.model = model
         self.context = context
-        cachedTokens = []
+        cachedTokens = [:]
         loadedPath = path
         loadedContextSize = contextSize
         return Date().timeIntervalSince(start)
@@ -149,43 +181,46 @@ final class LlamaEngine: @unchecked Sendable {
         #endif
     }
 
-    private func generateOnQueue(prompt: String, options: GenerationOptions,
+    private func generateOnQueue(prompt: String, slot: LlamaSlot, options: GenerationOptions,
                                  onPiece: @Sendable (String) -> Void) throws -> (text: String, stats: GenerationStats) {
         #if canImport(llama)
         guard let model, let context else { throw LlamaError.notLoaded }
         let vocab = llama_model_get_vocab(model)
+        let seq = slot.rawValue
+        let memory = llama_get_memory(context)
         var stats = GenerationStats()
 
         // Tokenize (adds <bos>, understands <|turn> / <turn|>).
-        var tokens = try tokenize(prompt, vocab: vocab)
+        let tokens = try tokenize(prompt, vocab: vocab)
         let contextSize = Int(llama_n_ctx(context))
-        guard tokens.count + options.maxTokens < contextSize else { throw LlamaError.contextFull }
+        let otherSlotsUsed = cachedTokens.filter { $0.key != seq }.values.reduce(0) { $0 + $1.count }
+        guard tokens.count + options.maxTokens + otherSlotsUsed < contextSize else { throw LlamaError.contextFull }
         stats.promptTokens = tokens.count
 
-        // Reuse the part of the prompt that is already in the KV cache from the last turn.
-        let memory = llama_get_memory(context)
+        // Reuse the part of the prompt already cached in this slot (at least the last token is re-read
+        // so there are fresh logits to sample from).
+        var cached = cachedTokens[seq] ?? []
         var common = 0
-        while common < min(cachedTokens.count, tokens.count) - 1, cachedTokens[common] == tokens[common] { common += 1 }
-        if common < cachedTokens.count {
-            if !llama_memory_seq_rm(memory, 0, llama_pos(common), -1) {
-                llama_memory_clear(memory, true)
+        while common < min(cached.count, tokens.count) - 1, cached[common] == tokens[common] { common += 1 }
+        if common < cached.count {
+            if !llama_memory_seq_rm(memory, seq, llama_pos(common), -1) {
+                _ = llama_memory_seq_rm(memory, seq, 0, -1)
                 common = 0
             }
+            cached = Array(cached.prefix(common))
         }
-        cachedTokens = Array(cachedTokens.prefix(common))
+        cachedTokens[seq] = cached
         stats.reusedTokens = common
 
-        // Read the new part of the prompt in batches.
+        // Read the new part of the prompt in batches of up to 512 tokens.
         let promptStart = Date()
         var index = common
         while index < tokens.count {
             let end = min(index + 512, tokens.count)
-            let result = tokens.withUnsafeMutableBufferPointer { buffer in
-                llama_decode(context, llama_batch_get_one(buffer.baseAddress! + index, Int32(end - index)))
-            }
-            guard result == 0 else { cachedTokens = []; llama_memory_clear(memory, true); throw LlamaError.decodeFailed(result) }
-            cachedTokens.append(contentsOf: tokens[index..<end])
+            try decode(Array(tokens[index..<end]), startPos: index, seq: seq, logitsForLast: end == tokens.count)
+            cachedTokens[seq, default: []].append(contentsOf: tokens[index..<end])
             index = end
+            if cancelRequested.withLock({ $0 }) { throw LlamaError.cancelled }
         }
         stats.promptSeconds = Date().timeIntervalSince(promptStart)
 
@@ -211,7 +246,8 @@ final class LlamaEngine: @unchecked Sendable {
         var output = Data()
         var emittedCount = 0
         for _ in 0..<options.maxTokens {
-            var token = llama_sampler_sample(chain, context, -1)
+            if cancelRequested.withLock({ $0 }) { throw LlamaError.cancelled }
+            let token = llama_sampler_sample(chain, context, -1)
             if llama_vocab_is_eog(vocab, token) { break }
             output.append(piece(for: token, vocab: vocab))
             stats.generatedTokens += 1
@@ -220,21 +256,40 @@ final class LlamaEngine: @unchecked Sendable {
                 onPiece(String(text.dropFirst(emittedCount)))
                 emittedCount = text.count
             }
-            let result = llama_decode(context, llama_batch_get_one(&token, 1))
-            guard result == 0 else { throw LlamaError.decodeFailed(result) }
-            cachedTokens.append(token)
-            if cachedTokens.count >= contextSize - 1 { break }
+            let position = cachedTokens[seq, default: []].count
+            try decode([token], startPos: position, seq: seq, logitsForLast: true)
+            cachedTokens[seq, default: []].append(token)
+            if position + otherSlotsUsed >= contextSize - 2 { break }
         }
         stats.generationSeconds = Date().timeIntervalSince(generationStart)
-        tokens.removeAll()
-        let text = String(decoding: output, as: UTF8.self)
-        return (GemmaPrompt.clean(text), stats)
+        return (GemmaPrompt.clean(String(decoding: output, as: UTF8.self)), stats)
         #else
         throw LlamaError.unavailable
         #endif
     }
 
     #if canImport(llama)
+    /// Decodes tokens into one slot at explicit positions.
+    private func decode(_ tokens: [llama_token], startPos: Int, seq: Int32, logitsForLast: Bool) throws {
+        guard let context else { throw LlamaError.notLoaded }
+        var batch = llama_batch_init(Int32(tokens.count), 0, 1)
+        defer { llama_batch_free(batch) }
+        for (i, token) in tokens.enumerated() {
+            batch.token[i] = token
+            batch.pos[i] = llama_pos(startPos + i)
+            batch.n_seq_id[i] = 1
+            batch.seq_id[i]![0] = seq
+            batch.logits[i] = (logitsForLast && i == tokens.count - 1) ? 1 : 0
+        }
+        batch.n_tokens = Int32(tokens.count)
+        let result = llama_decode(context, batch)
+        guard result == 0 else {
+            _ = llama_memory_seq_rm(llama_get_memory(context), seq, 0, -1)
+            cachedTokens[seq] = []
+            throw LlamaError.decodeFailed(result)
+        }
+    }
+
     private func tokenize(_ text: String, vocab: OpaquePointer?) throws -> [llama_token] {
         let utf8Count = Int32(text.utf8.count)
         var tokens = [llama_token](repeating: 0, count: Int(utf8Count) + 8)

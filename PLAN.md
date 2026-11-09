@@ -347,10 +347,16 @@ ProCommunicate/
 | 0. Setup ✅ (2026-11-09) | Xcode installed; SwiftUI app generated with XcodeGen, running on your iPhone 15 with tabs and navigation; unit tests running with `xcodebuild` | 1 day |
 | 1. Lesson engine ✅ (2026-11-09) | One sample unit ("Giving a status update on a client call") is playable end to end with 4 exercise types | 2–4 days |
 | 2. Review + habit ✅ (2026-11-09) | Spaced-repetition review of phrases and mistakes (FSRS), streak, daily goal, reminders, stand-up drill with recording | 2–3 days |
-| 3a. On-device AI engine | llama.cpp running Gemma 4 E2B on the iPhone (Metal, mmap, lazy embeddings); measure speed, memory and heat; model download and manage screen | 3–4 days |
-| 3b. Voice and call mode | WhisperKit + voice activity detection + echo cancellation + text-to-speech + recording; run the 4 call-mode tests; then short call-mode role-plays with corrections | 4–6 days |
-| 4. Full calls + reports | Client meeting simulation, mock interview, reports linked to recordings, fluency tracker, weekly report. (Accounts and cloud sync dropped 2026-11-09: the app stays offline and private; iCloud sync would need a paid developer account) | 4–6 days |
-| 5. Content + polish | All 3 tracks filled, placement test, animations, sounds; later more native languages → English | ongoing |
+| 3a. On-device AI engine ✅ (2026-11-09) | llama.cpp running Gemma 4 E2B on the iPhone (Metal, mmap, lazy embeddings); measure speed, memory and heat; model download and manage screen | 3–4 days |
+| 3b. Voice and call mode ✅ built (2026-11-09) | WhisperKit + voice activity detection + echo cancellation + text-to-speech + recording; run the 4 call-mode tests; then short call-mode role-plays with corrections | 4–6 days |
+| 4. Full calls + reports ✅ built (2026-11-09) | Client meeting simulation, mock interview, reports linked to recordings, fluency tracker, weekly report. (Accounts and cloud sync dropped 2026-11-09: the app stays offline and private; iCloud sync would need a paid developer account) | 4–6 days |
+| 5. Content + polish ✅ first pass (2026-11-09) | All 3 tracks filled, placement test, animations, sounds; later more native languages → English | ongoing |
+
+## Status (2026-11-09)
+All phases are built and installed on the iPhone 15. What's left is on-device testing (TESTING.md) and the
+Tamil review (TAMIL_REVIEW.md). Not built yet, from FEATURES.md: phone-line sound, the surprise call,
+"Analyse my recording" (importing audio), pronunciation drills, listening dialogues, and speaker separation.
+Tuning after the iPhone tests: reply time, turn-end silence, memory with Whisper + Gemma together, heat.
 
 ## 8. Open decisions (to settle before or during Phase 0)
 1. ~~Which languages~~ → decided: **Tamil → English** (spoken, professional, business); more native languages later

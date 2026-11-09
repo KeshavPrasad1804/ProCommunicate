@@ -9,8 +9,10 @@ struct TodayView: View {
     @Query private var progress: [LessonProgressRecord]
     @Query private var cards: [ReviewCard]
     @Query private var practiceDays: [PracticeDay]
+    @Query(sort: [SortDescriptor(\MistakeRecord.lastSeen, order: .reverse)]) private var mistakes: [MistakeRecord]
     @AppStorage(SettingsKey.dailyGoalMinutes) private var dailyGoal = 20
     @State private var lessons: [Lesson] = []
+    @State private var scenarios: [CallScenario] = []
 
     var body: some View {
         let today = Calendar.current.startOfDay(for: .now)
@@ -37,20 +39,74 @@ struct TodayView: View {
                         router.showReviewSession = true
                     }
                     lessonRow
-                    FeatureRow(systemImage: "phone.fill", title: "Speak with the AI · 6 min",
-                               detail: "A short client-call or interview role-play using today's phrases.", phase: "3")
-                    FeatureRow(systemImage: "checkmark.seal.fill", title: "Today's fix · 3 min",
-                               detail: "Your #1 mistake, explained in Tamil, said correctly 3 times.", phase: "3")
+                    if let roleplay = todaysRolePlay {
+                        ActionRow(systemImage: "phone.fill", title: "Speak with the AI · 6 min", subtitle: roleplay.title,
+                                  detail: "A short voice call with \(roleplay.aiName), \(roleplay.aiRole).",
+                                  done: (todayRecord?.calls ?? 0) > 0) {
+                            router.startCall(roleplay)
+                        }
+                    }
+                    if let fix = todaysFix {
+                        NavigationLink {
+                            MistakeDetailView(mistake: fix)
+                        } label: {
+                            HStack(alignment: .top, spacing: 14) {
+                                Image(systemName: "checkmark.seal.fill").font(.title3).foregroundStyle(.orange).frame(width: 28)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Today's fix · 3 min").font(.headline)
+                                    Text("\(fix.wrong) → \(fix.right)").font(.subheadline.weight(.medium))
+                                    Text("Heard \(fix.count)×. Hear it, read why in Tamil, say it right 3 times.")
+                                        .font(.subheadline).foregroundStyle(.secondary)
+                                }
+                            }
+                            .padding(.vertical, 4)
+                        }
+                    } else {
+                        FeatureRow(systemImage: "checkmark.seal.fill", title: "Today's fix · 3 min",
+                                   detail: "After your first call or drill, your #1 mistake shows up here.")
+                    }
                 }
-                Section("This week") {
-                    FeatureRow(systemImage: "person.3.fill", title: "Client meeting simulation",
-                               detail: "A full status call with a UK client, as a voice call.", phase: "4")
+                if let weekly = weeklyCall {
+                    Section {
+                        NavigationLink {
+                            ScenarioStartView(scenario: weekly)
+                        } label: {
+                            FeatureRow(systemImage: weekly.kind == .interview ? "briefcase.fill" : "person.3.fill",
+                                       title: weekly.title, detail: weekly.subtitle)
+                        }
+                    } header: {
+                        Text(weekly.kind == .interview ? "This week: mock interview" : "This week: client meeting")
+                    }
                 }
             }
             .navigationTitle("Today")
             .toolbar { SettingsToolbarButton() }
-            .task { lessons = Self.loadLessons(for: course) }
+            .task {
+                lessons = Self.loadLessons(for: course)
+                scenarios = ScenarioLoader.loadAll()
+            }
         }
+    }
+
+    /// A quick role-play for the next lesson's unit, or a status call by default.
+    private var todaysRolePlay: CallScenario? {
+        let done = Set(progress.map(\.lessonId))
+        let unitId = (lessons.first { !done.contains($0.id) } ?? lessons.first)?.unitId
+        let quick = scenarios.filter { $0.kind == .quick }
+        return quick.first { $0.unitId == unitId } ?? quick.first { $0.id == "quick-status" } ?? quick.first
+    }
+
+    /// Your most repeated mistake from the last two weeks.
+    private var todaysFix: MistakeRecord? {
+        mistakes.filter { Date().timeIntervalSince($0.lastSeen) < 14 * 86_400 }.max { ($0.count, $0.lastSeen) < ($1.count, $1.lastSeen) }
+    }
+
+    /// Alternates weekly: client meeting one week, mock interview the next.
+    private var weeklyCall: CallScenario? {
+        let week = Calendar.current.component(.weekOfYear, from: .now)
+        let kind: CallScenario.Kind = week.isMultiple(of: 2) ? .meeting : .interview
+        let options = scenarios.filter { $0.kind == kind }
+        return options.isEmpty ? nil : options[(week / 2) % options.count]
     }
 
     private func reviewDetail(due: Int, total: Int) -> String {

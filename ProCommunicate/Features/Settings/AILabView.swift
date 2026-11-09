@@ -85,7 +85,7 @@ struct AILabView: View {
         status = "Loading…"
         let before = MemoryUsage.footprintBytes()
         do {
-            let seconds = try await LlamaEngine.shared.load(modelPath: aiModel.modelFileURL.path, contextSize: 4096)
+            let seconds = try await LlamaEngine.shared.load(modelPath: aiModel.modelFileURL.path)
             let after = MemoryUsage.footprintBytes()
             status = "Loaded"
             log(String(format: "Load: %.1f s · app memory %@ → %@ · left %@", seconds,

@@ -24,7 +24,7 @@ enum SpeechVoice: String, CaseIterable, Identifiable, Sendable {
     }
 }
 
-/// Speaks English phrases with the phone's built-in voices (works offline).
+/// Speaks English with the phone's built-in voices (works offline).
 @MainActor @Observable
 final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     static let shared = Speaker()
@@ -33,6 +33,12 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     private(set) var speakingText: String?
     /// Whether the current speech is the slow version (so only the "Slow" button shows as playing).
     private(set) var speakingSlow = false
+    /// Utterances queued or speaking (calls queue one sentence at a time).
+    private(set) var pending = 0
+
+    var isSpeaking: Bool { pending > 0 }
+    /// Called when everything queued has been spoken (used by calls to start listening).
+    @ObservationIgnored var onFinishedAll: (@MainActor () -> Void)?
 
     @ObservationIgnored private let synthesizer = AVSpeechSynthesizer()
 
@@ -41,25 +47,38 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         synthesizer.delegate = self
     }
 
-    func speak(_ text: String, slow: Bool = false, voice: SpeechVoice = .current) {
-        let session = AVAudioSession.sharedInstance()
-        // Plays even with the silent switch on, and lowers other audio while speaking.
-        try? session.setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
-        try? session.setActive(true)
-
+    /// Speaks now, replacing anything playing. Sets up the audio session for playback
+    /// unless `configureSession` is false (calls manage the session themselves).
+    func speak(_ text: String, slow: Bool = false, voice: SpeechVoice = .current, configureSession: Bool = true) {
+        if configureSession {
+            let session = AVAudioSession.sharedInstance()
+            // Plays even with the silent switch on, and lowers other audio while speaking.
+            try? session.setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
+            try? session.setActive(true)
+        }
         if synthesizer.isSpeaking { synthesizer.stopSpeaking(at: .immediate) }
-        let utterance = AVSpeechUtterance(string: text)
+        pending = 0
+        enqueue(text, slow: slow, voice: voice)
+    }
+
+    /// Adds a sentence after whatever is already being spoken.
+    func enqueue(_ text: String, slow: Bool = false, voice: SpeechVoice = .current, rate: Float? = nil) {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        let utterance = AVSpeechUtterance(string: trimmed)
         utterance.voice = Self.bestVoice(for: voice)
-        utterance.rate = AVSpeechUtteranceDefaultSpeechRate * (slow ? 0.7 : 0.95)
+        utterance.rate = rate ?? AVSpeechUtteranceDefaultSpeechRate * (slow ? 0.7 : 0.95)
         utterance.postUtteranceDelay = 0.05
         speakingText = text
         speakingSlow = slow
+        pending += 1
         synthesizer.speak(utterance)
     }
 
     func stop() {
         synthesizer.stopSpeaking(at: .immediate)
         speakingText = nil
+        pending = 0
     }
 
     /// The highest-quality installed voice for the accent (enhanced/premium if downloaded).
@@ -69,11 +88,48 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
             ?? AVSpeechSynthesisVoice(language: voice.rawValue)
     }
 
+    private func finishedOne() {
+        pending = max(0, pending - 1)
+        if pending == 0 {
+            speakingText = nil
+            onFinishedAll?()
+        }
+    }
+
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        Task { @MainActor in self.speakingText = nil }
+        Task { @MainActor in self.finishedOne() }
     }
 
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
-        Task { @MainActor in self.speakingText = nil }
+        Task { @MainActor in
+            self.speakingText = nil
+            self.pending = 0
+        }
+    }
+}
+
+/// Splits streamed text into sentences so each can be spoken as soon as it's complete.
+struct SentenceSplitter {
+    private var buffer = ""
+
+    /// Adds text; returns any complete sentences.
+    mutating func add(_ piece: String) -> [String] {
+        buffer += piece
+        var sentences: [String] = []
+        while let range = buffer.range(of: #"[.!?](\s|$)"#, options: .regularExpression),
+              range.upperBound < buffer.endIndex || buffer.last?.isWhitespace == true {
+            let sentence = String(buffer[..<range.upperBound]).trimmingCharacters(in: .whitespacesAndNewlines)
+            buffer = String(buffer[range.upperBound...])
+            // Keep abbreviations like "e.g." or "Mr." with the next words.
+            if sentence.count > 3 { sentences.append(sentence) } else { buffer = sentence + " " + buffer }
+        }
+        return sentences
+    }
+
+    /// Whatever is left at the end.
+    mutating func flush() -> String? {
+        let rest = buffer.trimmingCharacters(in: .whitespacesAndNewlines)
+        buffer = ""
+        return rest.isEmpty ? nil : rest
     }
 }

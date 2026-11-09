@@ -11,6 +11,14 @@ final class AppRouter {
     var showReviewSession = false
     /// Full-screen stand-up drill.
     var showStandUpDrill = false
+    /// The practice call on screen, if any.
+    var activeCall: CallLaunch?
+    /// A finished call's report opened from history.
+    var openReport: UUID?
+
+    func startCall(_ scenario: CallScenario, extraContext: String? = nil) {
+        activeCall = CallLaunch(scenario: scenario, extraContext: extraContext)
+    }
     /// Debug only: start the lesson at this step (skips the intro), for screenshots.
     var debugLessonStartStep: Int?
 
@@ -51,4 +59,11 @@ struct SettingsToolbarButton: View {
         }
         .accessibilityLabel("Settings")
     }
+}
+
+/// What's needed to start a call.
+struct CallLaunch: Identifiable, Hashable {
+    let id = UUID()
+    let scenario: CallScenario
+    let extraContext: String?
 }

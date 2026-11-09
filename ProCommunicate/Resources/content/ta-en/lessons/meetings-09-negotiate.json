@@ -1,0 +1,197 @@
+{
+  "id": "meetings-09-negotiate-l1",
+  "unitId": "meetings-09-negotiate",
+  "title": "Negotiating scope and deadlines",
+  "intro": "Instead of a flat no, offer a trade: more time for more scope, or less scope to keep the date.",
+  "introTamil": "நேரடியாக \"no\" சொல்லாமல் ஒரு மாற்று வழியைச் சொல்லுங்கள்: அதிக scope-க்கு அதிக நேரம், அல்லது தேதியைக் காக்கக் குறைந்த scope.",
+  "tamilReviewed": false,
+  "phrases": [
+    {
+      "id": "move-deadline",
+      "text": "If we move the deadline to the 30th, we can include the reporting module.",
+      "tamil": "Deadline-ஐ 30-ஆம் தேதிக்கு மாற்றினால், reporting module-ஐயும் சேர்க்க முடியும்.",
+      "note": "\"If…, we can…\" offers a trade instead of a refusal."
+    },
+    {
+      "id": "prioritise",
+      "text": "Could we prioritise the checkout flow for this sprint?",
+      "tamil": "இந்த sprint-இல் checkout flow-க்கு முன்னுரிமை கொடுக்கலாமா?",
+      "note": "UK spelling is \"prioritise\"; US spelling is \"prioritize\"."
+    },
+    {
+      "id": "phase-two",
+      "text": "We could move the dashboard to phase two.",
+      "tamil": "Dashboard-ஐ phase two-க்கு மாற்றலாம்.",
+      "note": "Moving work to a later phase keeps the current date safe."
+    },
+    {
+      "id": "realistic",
+      "text": "To be realistic, we can't deliver all ten stories by Friday.",
+      "tamil": "உண்மையைச் சொன்னால், வெள்ளிக்கிழமைக்குள் பத்து story-களையும் deliver செய்ய முடியாது.",
+      "note": "Being honest early prevents bigger problems later."
+    },
+    {
+      "id": "matters-most",
+      "text": "Which of these features matters most to your users?",
+      "tamil": "இந்த features-இல் உங்கள் users-க்கு எது மிக முக்கியம்?",
+      "note": "Ask the client to choose, so the priorities are clear."
+    }
+  ],
+  "steps": [
+    {
+      "id": "learn-1",
+      "type": "learn",
+      "phraseId": "move-deadline"
+    },
+    {
+      "id": "learn-2",
+      "type": "learn",
+      "phraseId": "prioritise"
+    },
+    {
+      "id": "learn-3",
+      "type": "learn",
+      "phraseId": "phase-two"
+    },
+    {
+      "id": "learn-4",
+      "type": "learn",
+      "phraseId": "realistic"
+    },
+    {
+      "id": "learn-5",
+      "type": "learn",
+      "phraseId": "matters-most"
+    },
+    {
+      "id": "choose-1",
+      "type": "choice",
+      "prompt": "The client wants the reporting module in this release, but there isn't enough time. What do you say?",
+      "promptTamil": "இந்த release-இல் reporting module வேண்டும் என்கிறார் client, ஆனால் நேரம் போதாது. என்ன சொல்வீர்கள்?",
+      "options": [
+        "Not possible, the deadline is too close.",
+        "If we move the deadline to the 30th, we can include the reporting module.",
+        "We will try to adjust and do it somehow."
+      ],
+      "answer": "If we move the deadline to the 30th, we can include the reporting module.",
+      "explanation": "Offer a trade, so the client can make the decision.",
+      "explanationTamil": "ஒரு மாற்று வழியைச் சொன்னால், முடிவு எடுக்கும் வாய்ப்பு client-க்குக் கிடைக்கும்."
+    },
+    {
+      "id": "build-1",
+      "type": "build",
+      "promptTamil": "இந்த sprint-இல் checkout flow-க்கு முன்னுரிமை கொடுக்கலாமா?",
+      "tiles": [
+        "Could",
+        "we",
+        "prioritise",
+        "the",
+        "checkout",
+        "flow",
+        "for",
+        "this",
+        "sprint",
+        "kindly",
+        "first"
+      ],
+      "answer": "Could we prioritise the checkout flow for this sprint?"
+    },
+    {
+      "id": "listen-1",
+      "type": "listen",
+      "audioText": "We could move the dashboard to phase two.",
+      "options": [
+        "We could move the dashboard to page two.",
+        "We could move the dashboard to phase two.",
+        "We couldn't move the dashboard to phase two."
+      ],
+      "answer": "We could move the dashboard to phase two."
+    },
+    {
+      "id": "fix-1",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Can we prepone the release to Monday?",
+      "options": [
+        "Can we prepone the release to Monday?",
+        "Can we bring the release forward to Monday?",
+        "Can we pre-pone the release to Monday?",
+        "Can we advance the release before to Monday?"
+      ],
+      "answer": "Can we bring the release forward to Monday?",
+      "explanation": "\"Prepone\" is only used in India; say \"bring forward\" or \"move it earlier\".",
+      "explanationTamil": "\"Prepone\" இந்தியாவில் மட்டுமே பயன்படும். \"Bring forward\" என்று சொல்லுங்கள்."
+    },
+    {
+      "id": "choose-2",
+      "type": "choice",
+      "prompt": "The client sends ten new user stories and wants them all by Friday. How do you start?",
+      "promptTamil": "Client பத்து புதிய user stories அனுப்பி, எல்லாம் வெள்ளிக்கிழமைக்குள் வேண்டும் என்கிறார். எப்படித் தொடங்குவீர்கள்?",
+      "options": [
+        "Ten stories? Impossible, no way.",
+        "Yes, we will do the needful.",
+        "To be realistic, we can't deliver all ten stories by Friday."
+      ],
+      "answer": "To be realistic, we can't deliver all ten stories by Friday.",
+      "explanation": "Be honest and specific early, then discuss the options.",
+      "explanationTamil": "ஆரம்பத்திலேயே நேர்மையாகவும் தெளிவாகவும் சொல்லுங்கள்; பிறகு மாற்று வழிகளைப் பேசுங்கள்."
+    },
+    {
+      "id": "fix-2",
+      "type": "fix",
+      "prompt": "Which is the correct way to say this?",
+      "wrong": "Please do the needful and extend the deadline.",
+      "options": [
+        "Please do the needful and extend the deadline.",
+        "Could you extend the deadline by one week?",
+        "Please do needful and extend deadline.",
+        "Kindly do the needful for extending the deadline."
+      ],
+      "answer": "Could you extend the deadline by one week?",
+      "explanation": "\"Do the needful\" is vague and old-fashioned; ask clearly for what you need.",
+      "explanationTamil": "\"Do the needful\" தெளிவில்லாத பழைய வழக்கு. உங்களுக்கு என்ன தேவை என்று நேரடியாகக் கேளுங்கள்."
+    },
+    {
+      "id": "build-2",
+      "type": "build",
+      "promptTamil": "இந்த features-இல் உங்கள் users-க்கு எது மிக முக்கியம்?",
+      "tiles": [
+        "Which",
+        "of",
+        "these",
+        "features",
+        "matters",
+        "most",
+        "to",
+        "your",
+        "users",
+        "important",
+        "more"
+      ],
+      "answer": "Which of these features matters most to your users?"
+    },
+    {
+      "id": "listen-2",
+      "type": "listen",
+      "audioText": "If we move the deadline to the 30th, we can include the reporting module.",
+      "options": [
+        "If we move the deadline to the 13th, we can include the reporting module.",
+        "If we move the deadline to the 30th, we can't include the reporting module.",
+        "If we move the deadline to the 30th, we can include the reporting module."
+      ],
+      "answer": "If we move the deadline to the 30th, we can include the reporting module."
+    },
+    {
+      "id": "speak-1",
+      "type": "speak",
+      "prompt": "Think of a deadline on your project that is too tight. Out loud, negotiate in 3 sentences: be realistic, offer a trade, and ask the client what matters most.",
+      "promptTamil": "உங்கள் project-இல் மிக நெருக்கமான ஒரு deadline-ஐ நினைத்துக்கொள்ளுங்கள். 3 வாக்கியங்களில் பேசுங்கள்: உண்மை நிலையைச் சொல்லி, ஒரு மாற்று வழியைச் சொல்லி, client-க்கு எது முக்கியம் என்று கேளுங்கள்.",
+      "suggestedPhraseIds": [
+        "realistic",
+        "move-deadline",
+        "phase-two",
+        "matters-most"
+      ]
+    }
+  ]
+}

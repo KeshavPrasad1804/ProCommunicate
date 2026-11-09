@@ -15,6 +15,8 @@ struct StandUpDrillView: View {
     @State private var errorText: String?
     @State private var startedAt = Date()
     @State private var justSaved: Recording?
+    @State private var analysis: CallTurn?
+    @State private var analyzing = false
 
     private let prompts: [(title: String, starter: String, tamil: String)] = [
         ("Yesterday", "Yesterday I completed… / I worked on…", "நேற்று என்ன செய்தீர்கள்"),
@@ -49,11 +51,34 @@ struct StandUpDrillView: View {
                         Text("Microphone access is off. Turn it on in iPhone Settings → Privacy & Security → Microphone → ProCommunicate.")
                             .foregroundStyle(.orange)
                     } else {
-                        Text("Your recording stays on this iPhone. When the AI tutor arrives (Phase 3), it will transcribe your update and give you one fix each day.")
+                        Text("Your recording stays on this iPhone. With the speech model, the app transcribes your update and gives you one fix.")
                             .foregroundStyle(.secondary)
                     }
                 }
                 .font(.footnote)
+                if analyzing || analysis != nil {
+                    Section("Today's fix") {
+                        if analyzing {
+                            HStack { ProgressView(); Text("Listening to your update…") }
+                        } else if let analysis {
+                            Text("\"\(analysis.text)\"").font(.callout).foregroundStyle(.secondary)
+                            if let fix = ReportFix.top(from: [analysis], limit: 1).first {
+                                FixCard(fix: fix)
+                            } else {
+                                Label(analysis.check == nil && !TutorService.isAvailable
+                                      ? "No common mistakes found. Turn on the AI tutor for a full check."
+                                      : "No mistakes found. Great update!", systemImage: "checkmark.seal.fill")
+                                    .foregroundStyle(.green)
+                            }
+                            if let better = analysis.check?.better, AnswerChecker.normalize(better) != AnswerChecker.normalize(analysis.text) {
+                                DisclosureGroup("Say it better") {
+                                    Text(better).font(.callout)
+                                    SpeakButton(text: better)
+                                }
+                            }
+                        }
+                    }
+                }
                 if !drills.isEmpty {
                     Section("Your recent drills") {
                         ForEach(drills.prefix(5)) { drill in
@@ -151,6 +176,29 @@ struct StandUpDrillView: View {
         try? context.save()
         LearningStore.log(.drill, seconds: Date().timeIntervalSince(startedAt), in: context)
         justSaved = recording
+        Task { await analyze(recording, seconds: duration) }
+    }
+
+    /// Transcribes the drill (speech model) and finds the one most useful fix (rules + AI).
+    private func analyze(_ recording: Recording, seconds: Double) async {
+        guard let folder = SpeechModelManager.shared.modelFolder else { return }
+        analyzing = true
+        defer { analyzing = false }
+        do {
+            try await SpeechRecognizer.shared.load(folder: folder)
+            let url = recording.fileURL
+            let samples = try await Task.detached { try AudioFileWriter.readSamples(from: url) }.value
+            let text = try await SpeechRecognizer.shared.transcribe(samples).text
+            guard !text.isEmpty else { return }
+            recording.transcript = text
+            var turn = CallTurn(speaker: .learner, text: text, clipFile: recording.fileName, seconds: seconds)
+            turn.ruleHits = MistakeRules.check(text).map { CallTurn.StoredHit(ruleId: $0.ruleId, wrong: $0.wrong) }
+            if TutorService.isAvailable { turn.check = try? await TutorService.checkAnswer(text) }
+            analysis = turn
+            MistakeBook.record(turns: [turn], in: context)
+        } catch {
+            analysis = nil
+        }
     }
 
     private func timeText(_ seconds: TimeInterval) -> String {

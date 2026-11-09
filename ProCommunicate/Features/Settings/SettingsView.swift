@@ -9,6 +9,7 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.reminderEnabled) private var reminderEnabled = false
     @AppStorage(SettingsKey.reminderMinuteOfDay) private var reminderMinute = 19 * 60
     @State private var reminderDenied = false
+    @AppStorage("turnEndSilence") private var turnEndSilence = 1.6
 
     private let deviceSupported = DeviceCapability.supportsAITutor()
 
@@ -52,6 +53,28 @@ struct SettingsView: View {
 
                 if deviceSupported && (aiTutorEnabled || aiModel.state != .notDownloaded) {
                     AIModelSection(aiTutorEnabled: aiTutorEnabled)
+                    SpeechModelSection()
+                }
+
+                Section {
+                    NavigationLink {
+                        ProfileView()
+                    } label: {
+                        Label("About you", systemImage: "person.text.rectangle")
+                    }
+                    NavigationLink {
+                        SpeakingCheckView()
+                    } label: {
+                        Label("Speaking check", systemImage: "waveform.and.person.filled")
+                    }
+                    VStack(alignment: .leading) {
+                        Label("Wait before the AI replies: \(String(format: "%.1f", turnEndSilence)) s", systemImage: "timer")
+                        Slider(value: $turnEndSilence, in: 1.0...3.0, step: 0.2)
+                    }
+                } header: {
+                    Text("Calls")
+                } footer: {
+                    Text("About you makes calls fit your real job. Wait longer if the AI replies before you've finished your thought; you can always tap I'm done.")
                 }
 
                 Section {
