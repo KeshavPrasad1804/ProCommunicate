@@ -70,12 +70,20 @@ targets:
           if [ "$PLATFORM_NAME" = "iphoneos" ]; then
             SRC="$PROJECT_DIR/Vendor/llama.xcframework/ios-arm64/llama.framework"
             DEST="$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"
-            mkdir -p "$DEST"
+            STAMP="$DERIVED_FILE_DIR/llama-embedded.stamp"
+            WANT="$(cat "$PROJECT_DIR/Vendor/llama.version" 2>/dev/null)-${EXPANDED_CODE_SIGN_IDENTITY:-unsigned}"
+            # Copy and sign only when the framework or signing identity changed; re-signing on every
+            # build would break the app's seal on incremental builds.
+            if [ -d "$DEST/llama.framework" ] && [ "$(cat "$STAMP" 2>/dev/null)" = "$WANT" ]; then
+              exit 0
+            fi
+            mkdir -p "$DEST" "$DERIVED_FILE_DIR"
             rm -rf "$DEST/llama.framework"
             cp -R "$SRC" "$DEST/"
             if [ -n "${EXPANDED_CODE_SIGN_IDENTITY:-}" ]; then
               codesign --force --sign "$EXPANDED_CODE_SIGN_IDENTITY" --preserve-metadata=identifier,entitlements "$DEST/llama.framework"
             fi
+            echo "$WANT" > "$STAMP"
           fi
 
   ProCommunicateTests:
