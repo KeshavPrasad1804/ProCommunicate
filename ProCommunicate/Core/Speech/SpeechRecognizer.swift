@@ -21,7 +21,7 @@ final class SpeechModelManager {
 
     /// English-only small Whisper, quantized (~217 MB): more accurate on Indian-accented English
     /// than "base", still light enough to run next to Gemma.
-    static let variant = "openai_whisper-small.en_217MB"
+    nonisolated static let variant = "openai_whisper-small.en_217MB"
     static let approximateBytes: Int64 = 217_000_000
 
     enum State: Equatable {
@@ -32,15 +32,35 @@ final class SpeechModelManager {
     }
 
     private(set) var state: State = .notDownloaded
-    private static let folderKey = "speechModelFolder"
+    /// Path of the model folder *relative to* `downloadBase`. (An absolute path breaks after app
+    /// updates, because iOS can move the app's data folder; the files themselves are kept.)
+    private static let relativeFolderKey = "speechModelRelativeFolder"
 
     var isReady: Bool { state == .ready }
 
-    /// Where WhisperKit put the model files.
+    /// Where the model files are, if they're all there.
     var modelFolder: URL? {
-        guard let path = UserDefaults.standard.string(forKey: Self.folderKey) else { return nil }
-        let url = URL(fileURLWithPath: path)
-        return FileManager.default.fileExists(atPath: url.path) ? url : nil
+        Self.resolveFolder(base: Self.downloadBase, storedRelative: UserDefaults.standard.string(forKey: Self.relativeFolderKey))
+    }
+
+    /// The folders a WhisperKit model needs.
+    nonisolated static let requiredParts = ["AudioEncoder.mlmodelc", "MelSpectrogram.mlmodelc", "TextDecoder.mlmodelc"]
+
+    /// Finds a complete model: first the saved relative path, then where WhisperKit downloads to.
+    nonisolated static func resolveFolder(base: URL, storedRelative: String?) -> URL? {
+        var candidates: [URL] = []
+        if let storedRelative, !storedRelative.isEmpty { candidates.append(base.appending(path: storedRelative, directoryHint: .isDirectory)) }
+        candidates.append(base.appending(path: "models/argmaxinc/whisperkit-coreml/\(variant)", directoryHint: .isDirectory))
+        return candidates.first { folder in
+            requiredParts.allSatisfy { FileManager.default.fileExists(atPath: folder.appending(path: $0).path(percentEncoded: false)) }
+        }
+    }
+
+    nonisolated static func relativePath(of folder: URL, base: URL) -> String? {
+        let full = folder.standardizedFileURL.path(percentEncoded: false)
+        let root = base.standardizedFileURL.path(percentEncoded: false)
+        guard full.hasPrefix(root) else { return nil }
+        return String(full.dropFirst(root.count)).trimmingCharacters(in: CharacterSet(charactersIn: "/"))
     }
 
     init() {
@@ -67,8 +87,10 @@ final class SpeechModelManager {
                         }
                     }
                 }
-                UserDefaults.standard.set(folder.path, forKey: Self.folderKey)
-                state = .ready
+                if let relative = Self.relativePath(of: folder, base: Self.downloadBase) {
+                    UserDefaults.standard.set(relative, forKey: Self.relativeFolderKey)
+                }
+                state = modelFolder != nil ? .ready : .failed("The speech model download looks incomplete. Please try again.")
             } catch {
                 state = .failed("The speech model download stopped: \(error.localizedDescription)")
             }
@@ -78,7 +100,8 @@ final class SpeechModelManager {
     func delete() {
         Task { await SpeechRecognizer.shared.unload() }
         try? FileManager.default.removeItem(at: Self.downloadBase)
-        UserDefaults.standard.removeObject(forKey: Self.folderKey)
+        UserDefaults.standard.removeObject(forKey: Self.relativeFolderKey)
+        UserDefaults.standard.removeObject(forKey: "speechModelFolder")   // old absolute-path key
         state = .notDownloaded
     }
 }

@@ -60,3 +60,37 @@ struct AIModelTests {
         #expect(ModelStorage.resumeDataURL(for: model) != file)
     }
 }
+
+@Suite("Speech model location")
+struct SpeechModelLocationTests {
+    private func makeModel(at folder: URL) throws {
+        for part in SpeechModelManager.requiredParts {
+            try FileManager.default.createDirectory(at: folder.appending(path: part), withIntermediateDirectories: true)
+        }
+    }
+
+    @Test func findsTheModelInTheDownloadFolderWithoutASavedPath() throws {
+        // Like after an app update: the saved path is gone or stale, the files are still there.
+        let base = FileManager.default.temporaryDirectory.appending(path: "speech-\(UUID().uuidString)")
+        defer { try? FileManager.default.removeItem(at: base) }
+        let folder = base.appending(path: "models/argmaxinc/whisperkit-coreml/\(SpeechModelManager.variant)")
+        try makeModel(at: folder)
+        #expect(SpeechModelManager.resolveFolder(base: base, storedRelative: nil) != nil)
+        #expect(SpeechModelManager.resolveFolder(base: base, storedRelative: "no/longer/here") != nil)
+    }
+
+    @Test func ignoresIncompleteDownloads() throws {
+        let base = FileManager.default.temporaryDirectory.appending(path: "speech-\(UUID().uuidString)")
+        defer { try? FileManager.default.removeItem(at: base) }
+        let folder = base.appending(path: "models/argmaxinc/whisperkit-coreml/\(SpeechModelManager.variant)")
+        try FileManager.default.createDirectory(at: folder.appending(path: "AudioEncoder.mlmodelc"), withIntermediateDirectories: true)
+        #expect(SpeechModelManager.resolveFolder(base: base, storedRelative: nil) == nil)
+    }
+
+    @Test func savedPathIsRelativeToTheBase() throws {
+        let base = URL(fileURLWithPath: "/var/mobile/Containers/Data/Application/AAA/Library/Application Support/SpeechModels")
+        let folder = base.appending(path: "models/argmaxinc/whisperkit-coreml/x")
+        #expect(SpeechModelManager.relativePath(of: folder, base: base) == "models/argmaxinc/whisperkit-coreml/x")
+        #expect(SpeechModelManager.relativePath(of: URL(fileURLWithPath: "/elsewhere/x"), base: base) == nil)
+    }
+}
