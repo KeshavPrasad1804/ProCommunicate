@@ -41,6 +41,7 @@ struct ProCommunicateApp: App {
             .task {
                 ReportProcessor.shared.configure(container: container)
                 SpeechReadiness.preloadInBackground()
+                RecordingCleanup.run(in: container.mainContext)
             }
         }
         .modelContainer(container)

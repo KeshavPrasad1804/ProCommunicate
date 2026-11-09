@@ -11,6 +11,8 @@ struct MeetingPrepView: View {
     @State private var working = false
     @State private var errorText: String?
     @State private var saved = false
+    @State private var hasDate = true
+    @State private var date = Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now
 
     struct CheatSheet: Codable, Equatable {
         struct Item: Codable, Equatable, Hashable { let english: String; let when: String }
@@ -38,10 +40,14 @@ struct MeetingPrepView: View {
                 TextField("What's the meeting about?", text: $about, axis: .vertical)
                     .lineLimit(3...8)
                 TextField("Who will be there? (e.g. UK client, my manager)", text: $who)
+                Toggle("I know the date", isOn: $hasDate)
+                if hasDate {
+                    DatePicker("When", selection: $date, in: Calendar.current.startOfDay(for: .now)..., displayedComponents: .date)
+                }
             } header: {
                 Text("Your meeting")
             } footer: {
-                Text("Write in English, Tamil or Tanglish, e.g. \"naalaikku client call la delay pathi sollanum\".")
+                Text("Write in English, Tamil or Tanglish, e.g. \"naalaikku client call la delay pathi sollanum\". With a date, the day before and on the day your plan's call becomes a rehearsal of this meeting.")
             }
             Section {
                 Button {
@@ -106,7 +112,13 @@ struct MeetingPrepView: View {
             let json = try await TutorService.json(system: Self.system,
                                                    user: "Meeting: \(about)\nWho will be there: \(who.isEmpty ? "not said" : who)",
                                                    grammar: Self.grammar, maxTokens: 700)
-            sheet = try JSONDecoder().decode(CheatSheet.self, from: Data(json.utf8))
+            let made = try JSONDecoder().decode(CheatSheet.self, from: Data(json.utf8))
+            sheet = made
+            if hasDate {
+                AdaptiveStore.shared.addEvent(.init(title: String(about.trimmingCharacters(in: .whitespacesAndNewlines).prefix(120)),
+                                                    who: who, date: Calendar.current.startOfDay(for: date),
+                                                    phrases: made.phrases.map(\.english)))
+            }
         } catch {
             errorText = "Couldn't make the cheat sheet: \(error.localizedDescription)"
         }

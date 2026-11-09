@@ -43,3 +43,14 @@ Free Apple ID: the install expires 7 days after the last install from Xcode. Plu
 
 ## 6. Tamil
 - [ ] Read TAMIL_REVIEW.md and tell me any Tamil that sounds wrong or unnatural.
+
+## Adaptive plan (new)
+
+- [ ] **Today → each step shows a 💡 reason.** Today's lesson should follow your focus (Settings → Your plan → Focus).
+- [ ] **Repeated mistake:** say "I will revert back" in two or three calls. Within a day or two, Today's lesson should become *Getting back to people* ("Fixes a mistake you keep making…").
+- [ ] **Learn tab:** units you've done show a mastery bar ("Mastered", or "needs a refresh" once it fades).
+- [ ] **Meeting prep with a date:** set it to tomorrow, make the cheat sheet, then go back to Today. The call step should be "Rehearse your real meeting tomorrow".
+- [ ] **AI-written content:** with the AI tutor on, stay on Today for ~10 s once a day. The phrase card says "for your job", and the weekly card says "Written for your job". **Check the Tamil.**
+- [ ] **Goal reading:** in About you, set "Preparing for" to something like "Zoho interview next Friday". Focus (Auto) should switch to job interviews, and a dated event should appear.
+- [ ] **Weekly level chip** (Gentle / Standard / Challenging) rises as your mistakes per answer fall.
+- [ ] **Settings → About → Storage:** shows sizes, and "Clean up now" works.

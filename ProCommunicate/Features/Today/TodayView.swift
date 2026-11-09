@@ -2,7 +2,8 @@ import SwiftData
 import SwiftUI
 
 /// The landing page: a hero with your daily goal and one "Continue" button, today's plan as a
-/// checklist, the phrase of the day, and this week's big call.
+/// checklist (chosen for you by AdaptivePlanner, with the reason for each step), the phrase of the
+/// day, and this week's challenge call.
 struct TodayView: View {
     let course: Course
 
@@ -14,15 +15,23 @@ struct TodayView: View {
     @Query private var calls: [CallRecord]
     @AppStorage(SettingsKey.dailyGoalMinutes) private var dailyGoal = 20
     @AppStorage(LearnerProfile.Key.name) private var name = ""
+    @AppStorage(LearnerProfile.Key.target) private var target = ""
+    @AppStorage(AdaptiveStore.focusKey) private var focusChoice = "auto"
+    @AppStorage("speakingCheckWPM") private var checkWPM = 0.0
+    @AppStorage("speakingCheckMistakes") private var checkMistakes = -1
     @State private var lessons: [Lesson] = []
     @State private var scenarios: [CallScenario] = []
     @State private var openFix: MistakeRecord?
     @State private var openWeekly: CallScenario?
 
+    private var store: AdaptiveStore { AdaptiveStore.shared }
+    private var jobs: AdaptiveJobs { AdaptiveJobs.shared }
+
     var body: some View {
         let today = Calendar.current.startOfDay(for: .now)
         let record = practiceDays.first { $0.day == today }
-        let plan = makePlan(record: record)
+        let day = dayPlan()
+        let plan = makePlan(record: record, day: day)
         let next = plan.first { !$0.done && $0.enabled }
 
         NavigationStack {
@@ -32,6 +41,7 @@ struct TodayView: View {
                     HeroCard(greeting: greeting, minutes: record?.minutes ?? 0, goal: dailyGoal,
                              streak: LearningStore.streak(practiceDays: practiceDays.map(\.day)),
                              stepsLeft: plan.filter { !$0.done && $0.enabled }.count,
+                             focus: day?.snapshot.focus ?? .meetings,
                              next: next)
 
                     VStack(alignment: .leading, spacing: 12) {
@@ -39,14 +49,25 @@ struct TodayView: View {
                         ForEach(plan) { step in
                             PlanStepCard(step: step)
                         }
+                        if let working = jobs.working {
+                            HStack(spacing: 8) {
+                                ProgressView().controlSize(.mini)
+                                Text("AI tutor: \(working)")
+                            }
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal, 4)
+                        }
                     }
 
-                    if let phrase = phraseOfTheDay {
-                        PhraseOfTheDayCard(phrase: phrase.phrase, unitTitle: phrase.unitTitle)
+                    if let phrase = day?.phrase {
+                        PhraseOfTheDayCard(phrase: phrase.phrase, unitTitle: phrase.unitTitle, reason: phrase.reason,
+                                           aiWritten: phrase.aiWritten)
                     }
 
-                    if let weekly = weeklyCall {
-                        WeeklyCallCard(scenario: weekly, days: practiceDays) { openWeekly = weekly }
+                    if let weekly = day?.weekly {
+                        WeeklyCallCard(scenario: weekly.scenario, difficulty: weekly.difficulty, reason: weekly.reason,
+                                       aiWritten: weekly.aiWritten, days: practiceDays) { openWeekly = weekly.scenario }
                     }
                     Color.clear.frame(height: 1).id("bottom")
                 }
@@ -71,16 +92,120 @@ struct TodayView: View {
             .task {
                 if lessons.isEmpty { lessons = Self.loadLessons(for: course) }
                 if scenarios.isEmpty { scenarios = ScenarioLoader.loadAll() }
+                store.pruneEvents()
+            }
+            .task(id: day?.jobInputs) {
+                guard let day else { return }
+                // Pin this week's challenge so it doesn't change mid-week.
+                if let base = day.weekly?.base, store.content.weeklyPick?.week != day.jobInputs.week {
+                    store.update { $0.weeklyPick = .init(week: day.jobInputs.week, scenarioId: base.id) }
+                }
+                jobs.schedule(day.jobInputs)
             }
         }
     }
 
-    // MARK: - Plan
+    // MARK: - Choosing today's content
 
-    private func makePlan(record: PracticeDay?) -> [PlanStep] {
+    /// Everything Today shows, chosen from the learner model.
+    struct DayPlan {
+        struct PhraseChoice { let phrase: Phrase; let unitTitle: String; let reason: String; let aiWritten: Bool }
+        struct WeeklyChoice {
+            let scenario: CallScenario
+            let base: CallScenario
+            let difficulty: CallDifficulty
+            let reason: String
+            let aiWritten: Bool
+        }
+
+        let snapshot: LearnerSnapshot
+        let lesson: Lesson?
+        let lessonReason: String?
+        let lessonUnit: CourseUnit?
+        let call: (scenario: CallScenario, reason: String, extra: String?)?
+        let phrase: PhraseChoice?
+        let weekly: WeeklyChoice?
+        let jobInputs: AdaptiveJobInputs
+    }
+
+    private func dayPlan(now: Date = .now) -> DayPlan? {
+        guard !lessons.isEmpty else { return nil }
+        let content = store.content
+        let focus = store.focus(target: target, choice: focusChoice)
+        let level = LearnerModel.level(speakingCheckWPM: checkWPM, speakingCheckMistakes: checkMistakes)
+        let snapshot = LearnerModel.snapshot(course: course, lessons: lessons, progress: progress, cards: cards, calls: calls,
+                                             mistakes: mistakes, focus: focus, level: level, upcoming: store.nextEvent(now: now),
+                                             scenarios: scenarios, now: now)
+        let order = AdaptivePlanner.unitOrder(course, focus: focus)
+        let units = Dictionary(course.tracks.flatMap(\.units).map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
+        let lessonByUnit = Dictionary(lessons.map { ($0.unitId, $0) }, uniquingKeysWith: { a, _ in a })
+
+        // Today's lesson: the one you already did today, otherwise the planner's pick.
+        var lesson: Lesson?
+        var reason: String?
+        var kind: LessonPick.Kind?
+        if let doneToday = progress.filter({ Calendar.current.isDate($0.lastCompletedAt, inSameDayAs: now) })
+            .max(by: { $0.lastCompletedAt < $1.lastCompletedAt }), let done = lessons.first(where: { $0.id == doneToday.lessonId }) {
+            lesson = done
+        } else if let pick = AdaptivePlanner.pickLesson(snapshot: snapshot, order: order, available: Set(lessonByUnit.keys), now: now) {
+            lesson = lessonByUnit[pick.unitId]
+            reason = pick.reason
+            kind = pick.kind
+        }
+        let lessonUnit = lesson.flatMap { units[$0.unitId] }
+        let call = AdaptivePlanner.pickCall(lessonUnit: lessonUnit, lessonKind: kind, upcoming: snapshot.upcoming,
+                                            scenarios: scenarios, now: now)
+
+        // Phrase of the day: the AI's, written for your job today, or one from your weakest unit.
+        let day = AdaptivePlanner.dayKey(now)
+        let phraseUnitId = AdaptivePlanner.phraseUnit(snapshot: snapshot, order: order, lessonUnitId: lessonUnit?.id)
+        var phrase: DayPlan.PhraseChoice?
+        if let ai = content.phrase, ai.day == day {
+            phrase = .init(phrase: Phrase(id: "ai-\(day)", text: ai.english, tamil: ai.tamil, note: ai.when),
+                           unitTitle: units[ai.unitId]?.title ?? "", reason: ai.when, aiWritten: true)
+        } else if let unitId = phraseUnitId, let unitLesson = lessonByUnit[unitId], !unitLesson.phrases.isEmpty {
+            let ordinal = Calendar.current.ordinality(of: .day, in: .era, for: now) ?? 0
+            let started = snapshot.mastery(of: unitId).started
+            phrase = .init(phrase: unitLesson.phrases[ordinal % unitLesson.phrases.count], unitTitle: unitLesson.title,
+                           reason: started ? "From a skill you're still building." : "From today's lesson.", aiWritten: false)
+        }
+
+        // This week's challenge: pinned for the week, harder as you improve, rewritten by the AI for your job.
+        let week = AdaptivePlanner.weekKey(now)
+        let weekNumber = Calendar.current.component(.weekOfYear, from: now)
+        var weekly: DayPlan.WeeklyChoice?
+        let pinned = content.weeklyPick.flatMap { pick in pick.week == week ? scenarios.first { $0.id == pick.scenarioId } : nil }
+        let kindForWeek = pinned?.kind ?? AdaptivePlanner.weeklyKind(snapshot: snapshot, week: weekNumber)
+        if let base = pinned ?? AdaptivePlanner.weeklyScenario(kind: kindForWeek, scenarios: scenarios, snapshot: snapshot, week: weekNumber) {
+            let difficulty = AdaptivePlanner.difficulty(for: base.kind, snapshot: snapshot)
+            let doneBefore = snapshot.scenarioCounts[base.id] ?? 0
+            var reason = base.kind == .interview ? "Interviews are your focus." : "Client meetings are your focus."
+            if snapshot.focus == .both { reason = "You've practised this kind of call less." }
+            reason += " Level: \(difficulty.title.lowercased())" + (doneBefore > 0 ? ", harder than last time." : ".")
+            if let ai = content.weekly, ai.week == week, ai.baseScenarioId == base.id {
+                weekly = .init(scenario: base.adapted(difficulty: difficulty, title: ai.title, subtitle: ai.subtitle,
+                                                      situation: ai.situation, goals: ai.goals.isEmpty ? nil : ai.goals),
+                               base: base, difficulty: difficulty, reason: reason, aiWritten: true)
+            } else {
+                weekly = .init(scenario: base.adapted(difficulty: difficulty), base: base, difficulty: difficulty,
+                               reason: reason, aiWritten: false)
+            }
+        }
+
+        let weakSpots = mistakes.filter { now.timeIntervalSince($0.lastSeen) < 14 * 86_400 }
+            .sorted { $0.count > $1.count }.prefix(3)
+            .map { MistakeRules.rule($0.pattern) != nil ? "\($0.title) (say \"\($0.right)\")" : "\"\($0.wrong)\" → \"\($0.right)\"" }
+        let phraseUnit = phraseUnitId.flatMap { units[$0] }
+        let inputs = AdaptiveJobInputs(profile: LearnerProfile.current, day: day, week: week,
+                                       phraseUnit: phraseUnit.map { .init(id: $0.id, title: $0.title, goal: $0.goal, examples: $0.examplePhrases) },
+                                       weeklyBase: weekly?.base, weakSpots: Array(weakSpots))
+
+        return DayPlan(snapshot: snapshot, lesson: lesson, lessonReason: reason, lessonUnit: lessonUnit, call: call,
+                       phrase: phrase, weekly: weekly, jobInputs: inputs)
+    }
+
+    private func makePlan(record: PracticeDay?, day: DayPlan?) -> [PlanStep] {
         let due = cards.filter { $0.due <= .now }.count
-        let doneLessons = Set(progress.map(\.lessonId))
-        let lesson = lessons.first { !doneLessons.contains($0.id) } ?? lessons.first
         var steps: [PlanStep] = [
             PlanStep(id: "drill", icon: "person.wave.2.fill", tint: .indigo, title: "Stand-up drill", minutes: 2,
                      detail: "Say your real yesterday / today / blockers update.",
@@ -90,18 +215,21 @@ struct TodayView: View {
                         : (due == 0 ? "All caught up." : "\(due) \(due == 1 ? "phrase" : "phrases") to say out loud."),
                      done: (record?.reviews ?? 0) > 0 || (!cards.isEmpty && due == 0), enabled: due > 0) { router.showReviewSession = true },
         ]
-        if let lesson {
+        if let lesson = day?.lesson {
             steps.append(PlanStep(id: "lesson", icon: "book.fill", tint: .blue, title: "Today's lesson", minutes: 6,
-                                  detail: lesson.title, done: (record?.lessons ?? 0) > 0, enabled: true) { router.open(lesson) })
+                                  detail: lesson.title, done: (record?.lessons ?? 0) > 0, enabled: true,
+                                  reason: day?.lessonReason) { router.open(lesson) })
         }
-        if let roleplay = todaysRolePlay {
-            steps.append(PlanStep(id: "call", icon: "phone.fill", tint: .green, title: "Call with \(roleplay.aiName)", minutes: 6,
-                                  detail: "\(roleplay.title) · \(roleplay.aiRole)", done: (record?.calls ?? 0) > 0, enabled: true,
-                                  avatar: roleplay.aiName) { router.startCall(roleplay) })
+        if let call = day?.call {
+            let scenario = call.scenario
+            steps.append(PlanStep(id: "call", icon: "phone.fill", tint: .green, title: "Call with \(scenario.aiName)", minutes: 6,
+                                  detail: "\(scenario.title) · \(scenario.aiRole)", done: (record?.calls ?? 0) > 0, enabled: true,
+                                  reason: call.reason, avatar: scenario.aiName) { router.startCall(scenario, extraContext: call.extra) })
         }
         if let fix = todaysFix {
             steps.append(PlanStep(id: "fix", icon: "checkmark.seal.fill", tint: .orange, title: "Today's fix", minutes: 3,
-                                  detail: "\(fix.wrong) → \(fix.right)", done: false, enabled: true) { openFix = fix })
+                                  detail: "\(fix.wrong) → \(fix.right)", done: false, enabled: true,
+                                  reason: fix.count > 1 ? "You've said this \(fix.count) times." : nil) { openFix = fix })
         }
         return steps
     }
@@ -113,35 +241,9 @@ struct TodayView: View {
         return first.map { "\(part), \($0)" } ?? part
     }
 
-    /// A quick role-play for the next lesson's unit, or a status call by default.
-    private var todaysRolePlay: CallScenario? {
-        let done = Set(progress.map(\.lessonId))
-        guard let unit = (lessons.first { !done.contains($0.id) } ?? lessons.first).flatMap({ lesson in
-            course.tracks.flatMap(\.units).first { $0.id == lesson.unitId }
-        }) else { return scenarios.first { $0.id == "quick-status" } }
-        return ScenarioLoader.forUnit(unit, all: scenarios)
-    }
-
     /// Your most repeated mistake from the last two weeks.
     private var todaysFix: MistakeRecord? {
         mistakes.filter { Date().timeIntervalSince($0.lastSeen) < 14 * 86_400 }.max { ($0.count, $0.lastSeen) < ($1.count, $1.lastSeen) }
-    }
-
-    /// Alternates weekly: client meeting one week, mock interview the next.
-    private var weeklyCall: CallScenario? {
-        let week = Calendar.current.component(.weekOfYear, from: .now)
-        let kind: CallScenario.Kind = week.isMultiple(of: 2) ? .meeting : .interview
-        let options = scenarios.filter { $0.kind == kind }
-        return options.isEmpty ? nil : options[(week / 2) % options.count]
-    }
-
-    /// A different lesson phrase each day.
-    private var phraseOfTheDay: (phrase: Phrase, unitTitle: String)? {
-        let all = lessons.flatMap { lesson in lesson.phrases.map { ($0, lesson.title) } }
-        guard !all.isEmpty else { return nil }
-        let day = Calendar.current.ordinality(of: .day, in: .era, for: .now) ?? 0
-        let pick = all[day % all.count]
-        return (pick.0, pick.1)
     }
 
     static func loadLessons(for course: Course) -> [Lesson] {
@@ -160,6 +262,8 @@ struct PlanStep: Identifiable {
     let detail: String
     let done: Bool
     let enabled: Bool
+    /// Why the planner chose this step for you.
+    var reason: String? = nil
     var avatar: String? = nil
     let action: () -> Void
 }
@@ -171,6 +275,7 @@ private struct HeroCard: View {
     let goal: Int
     let streak: Int
     let stepsLeft: Int
+    let focus: LearningFocus
     let next: PlanStep?
 
     @State private var animatedProgress: Double = 0
@@ -223,7 +328,7 @@ private struct HeroCard: View {
                     Text(stepsLeft == 0 ? "Everything on today's plan is done." : "\(stepsLeft) \(stepsLeft == 1 ? "step" : "steps") left in today's plan.")
                         .font(.subheadline)
                         .opacity(0.85)
-                    Text("Focus: meetings & interviews")
+                    Text("Focus: \(focus.shortTitle)")
                         .font(.caption)
                         .opacity(0.7)
                 }
@@ -324,6 +429,13 @@ private struct PlanStepCard: View {
                         .foregroundStyle(.secondary)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
+                    if let reason = step.reason, !step.done {
+                        Label(reason, systemImage: "lightbulb.min")
+                            .font(.caption)
+                            .foregroundStyle(step.tint)
+                            .lineLimit(2)
+                            .multilineTextAlignment(.leading)
+                    }
                 }
                 Spacer(minLength: 4)
                 Image(systemName: step.done ? "checkmark.circle.fill" : "chevron.right")
@@ -336,7 +448,7 @@ private struct PlanStepCard: View {
         }
         .buttonStyle(.plain)
         .disabled(!step.enabled)
-        .accessibilityLabel("\(step.title), \(step.minutes) minutes, \(step.done ? "done" : step.detail)")
+        .accessibilityLabel("\(step.title), \(step.minutes) minutes, \(step.done ? "done" : step.detail + ". " + (step.reason ?? ""))")
     }
 }
 
@@ -344,14 +456,17 @@ private struct PlanStepCard: View {
 private struct PhraseOfTheDayCard: View {
     let phrase: Phrase
     let unitTitle: String
+    let reason: String
+    let aiWritten: Bool
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Label("Phrase of the day", systemImage: "sparkles")
+                Label(aiWritten ? "Phrase of the day · for your job" : "Phrase of the day", systemImage: "sparkles")
                     .font(.caption.weight(.bold))
                     .textCase(.uppercase)
                     .foregroundStyle(.orange)
+                    .lineLimit(1)
                 Spacer()
                 Text(unitTitle).font(.caption).foregroundStyle(.secondary).lineLimit(1)
             }
@@ -367,6 +482,14 @@ private struct PhraseOfTheDayCard: View {
                 SpeakButton(text: phrase.text, slow: true)
                 Spacer()
             }
+            Label(aiWritten ? "When: \(reason)" : reason, systemImage: aiWritten ? "clock" : "lightbulb.min")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            if aiWritten {
+                Text("Written by your on-device AI tutor. The Tamil may need a check.")
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
+            }
         }
         .padding(18)
         .background {
@@ -381,14 +504,21 @@ private struct PhraseOfTheDayCard: View {
 /// This week's big call (meeting or interview), and the week at a glance.
 private struct WeeklyCallCard: View {
     let scenario: CallScenario
+    let difficulty: CallDifficulty
+    let reason: String
+    let aiWritten: Bool
     let days: [PracticeDay]
     let open: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text(scenario.kind == .interview ? "THIS WEEK: MOCK INTERVIEW" : "THIS WEEK: CLIENT MEETING")
-                .font(.caption.weight(.bold))
-                .foregroundStyle(.secondary)
+            HStack {
+                Text(scenario.kind == .interview ? "THIS WEEK: MOCK INTERVIEW" : "THIS WEEK: CLIENT MEETING")
+                    .font(.caption.weight(.bold))
+                    .foregroundStyle(.secondary)
+                Spacer()
+                DifficultyChip(difficulty: difficulty)
+            }
             HStack(spacing: 14) {
                 ZStack {
                     Circle().fill(LinearGradient(colors: [LogoMark.gradientTop, LogoMark.gradientBottom],
@@ -402,6 +532,13 @@ private struct WeeklyCallCard: View {
                 }
                 Spacer(minLength: 0)
             }
+            if aiWritten {
+                Text(scenario.subtitle).font(.subheadline).fixedSize(horizontal: false, vertical: true)
+            }
+            Label(aiWritten ? "Written for your job. " + reason : reason, systemImage: aiWritten ? "sparkles" : "lightbulb.min")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
             Button(action: open) {
                 Label("Prepare and start", systemImage: "phone.fill")
                     .font(.headline)
@@ -416,6 +553,35 @@ private struct WeeklyCallCard: View {
         }
         .padding(18)
         .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+    }
+}
+
+/// Gentle / Standard / Challenging.
+private struct DifficultyChip: View {
+    let difficulty: CallDifficulty
+
+    var body: some View {
+        let level = CallDifficulty.allCases.firstIndex(of: difficulty) ?? 0
+        HStack(spacing: 5) {
+            HStack(spacing: 2) {
+                ForEach(0..<3, id: \.self) { i in
+                    Capsule().fill(i <= level ? tint : Color(.tertiarySystemFill)).frame(width: 4, height: 6 + CGFloat(i) * 3)
+                }
+            }
+            Text(difficulty.title).font(.caption2.weight(.semibold))
+        }
+        .padding(.horizontal, 8).padding(.vertical, 4)
+        .background(tint.opacity(0.12), in: Capsule())
+        .foregroundStyle(tint)
+        .accessibilityLabel("Difficulty: \(difficulty.title)")
+    }
+
+    private var tint: Color {
+        switch difficulty {
+        case .gentle: .green
+        case .standard: .blue
+        case .challenging: .orange
+        }
     }
 }
 

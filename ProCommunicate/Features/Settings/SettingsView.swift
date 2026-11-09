@@ -10,6 +10,10 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.reminderMinuteOfDay) private var reminderMinute = 19 * 60
     @State private var reminderDenied = false
     @AppStorage("turnEndSilence") private var turnEndSilence = 1.6
+    @AppStorage(AdaptiveStore.focusKey) private var focusChoice = "auto"
+    @AppStorage(LearnerProfile.Key.target) private var target = ""
+
+    private var autoFocus: LearningFocus { AdaptiveStore.shared.focus(target: target, choice: "auto") }
 
     private let deviceSupported = DeviceCapability.supportsAITutor()
 
@@ -78,6 +82,21 @@ struct SettingsView: View {
                 }
 
                 Section {
+                    Picker(selection: $focusChoice) {
+                        Text("Auto: \(autoFocus.title)").tag("auto")
+                        ForEach(LearningFocus.allCases) { focus in
+                            Text(focus.title).tag(focus.rawValue)
+                        }
+                    } label: {
+                        Label("Focus", systemImage: "scope")
+                    }
+                } header: {
+                    Text("Your plan")
+                } footer: {
+                    Text("Auto reads what you're preparing for (About you), using the AI tutor when it's on. Your daily lesson, calls and weekly challenge follow this focus, your weakest skills and the mistakes you repeat.")
+                }
+
+                Section {
                     Picker(selection: $dailyGoal) {
                         Text("10 minutes").tag(10)
                         Text("20 minutes").tag(20)
@@ -134,6 +153,11 @@ struct SettingsView: View {
                 }
 
                 Section("About") {
+                    NavigationLink {
+                        StorageView()
+                    } label: {
+                        Label("Storage", systemImage: "internaldrive")
+                    }
                     LabeledContent("Version", value: Bundle.main.appVersion)
                 }
             }

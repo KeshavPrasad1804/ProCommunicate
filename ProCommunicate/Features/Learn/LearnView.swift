@@ -1,30 +1,48 @@
 import SwiftData
 import SwiftUI
 
-/// Course map: tracks in priority order, each with its units.
+/// Course map: tracks in your focus order, each unit with how well you know it now.
 struct LearnView: View {
     let course: Course
     @Query private var progress: [LessonProgressRecord]
+    @Query private var cards: [ReviewCard]
+    @Query private var calls: [CallRecord]
+    @Query private var mistakes: [MistakeRecord]
+    @AppStorage(LearnerProfile.Key.target) private var target = ""
+    @AppStorage(AdaptiveStore.focusKey) private var focusChoice = "auto"
+    @State private var lessons: [Lesson] = []
 
     var body: some View {
         let completedUnits = Set(progress.map(\.unitId))
+        let focus = AdaptiveStore.shared.focus(target: target, choice: focusChoice)
+        let snapshot = lessons.isEmpty ? nil : LearnerModel.snapshot(
+            course: course, lessons: lessons, progress: progress, cards: cards, calls: calls, mistakes: mistakes,
+            focus: focus, level: 1, upcoming: nil, scenarios: [])
         NavigationStack {
             List {
-                ForEach(course.tracksByPriority) { track in
+                ForEach(orderedTracks(focus)) { track in
                     Section {
                         ForEach(track.units) { unit in
                             NavigationLink(value: unit) {
-                                UnitRow(unit: unit, completed: completedUnits.contains(unit.id))
+                                UnitRow(unit: unit, completed: completedUnits.contains(unit.id),
+                                        mastery: snapshot?.mastery(of: unit.id))
                             }
                         }
                     } header: {
-                        Label(track.title, systemImage: track.systemImage)
+                        HStack {
+                            Label(track.title, systemImage: track.systemImage)
+                            if isFocus(track, focus) {
+                                Spacer()
+                                Text("Your focus").font(.caption2.weight(.semibold)).foregroundStyle(.tint)
+                            }
+                        }
                     } footer: {
                         Text(track.subtitle)
                     }
                 }
             }
             .navigationTitle("Learn")
+            .task { if lessons.isEmpty { lessons = TodayView.loadLessons(for: course) } }
             .navigationDestination(for: CourseUnit.self) { unit in
                 UnitDetailView(unit: unit)
             }
@@ -32,9 +50,22 @@ struct LearnView: View {
     }
 }
 
+extension LearnView {
+    private func orderedTracks(_ focus: LearningFocus) -> [Track] {
+        let tracks = course.tracksByPriority
+        guard focus == .interviews else { return tracks }
+        return tracks.filter { $0.id == "interviews" } + tracks.filter { $0.id != "interviews" }
+    }
+
+    private func isFocus(_ track: Track, _ focus: LearningFocus) -> Bool {
+        (focus == .meetings && track.id == "meetings") || (focus == .interviews && track.id == "interviews")
+    }
+}
+
 private struct UnitRow: View {
     let unit: CourseUnit
     let completed: Bool
+    var mastery: UnitMastery?
 
     var body: some View {
         HStack(spacing: 12) {
@@ -56,6 +87,20 @@ private struct UnitRow: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .lineLimit(2)
+                if let mastery, mastery.started {
+                    let score = mastery.score
+                    HStack(spacing: 6) {
+                        ProgressView(value: score)
+                            .tint(score >= AdaptivePlanner.masteredScore ? .green : (score < AdaptivePlanner.weakScore ? .orange : .accentColor))
+                            .frame(maxWidth: 90)
+                        Text(score >= AdaptivePlanner.masteredScore ? "Mastered" : "\(Int((score * 100).rounded()))%\(score < AdaptivePlanner.weakScore ? " · needs a refresh" : "")")
+                            .font(.caption2.weight(.medium))
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.top, 2)
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("Mastery \(Int((score * 100).rounded())) percent")
+                }
             }
         }
     }

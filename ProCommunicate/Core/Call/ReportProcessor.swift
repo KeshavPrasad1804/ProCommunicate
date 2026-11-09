@@ -38,6 +38,9 @@ final class ReportProcessor {
 
     private var context: ModelContext? { container?.mainContext }
 
+    /// True while answers are being checked (other AI work waits).
+    var isWorking: Bool { running }
+
     /// Called once at launch. Resumes reports that were still pending when the app last closed.
     func configure(container: ModelContainer) {
         self.container = container

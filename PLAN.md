@@ -358,6 +358,17 @@ Tamil review (TAMIL_REVIEW.md). Not built yet, from FEATURES.md: phone-line soun
 "Analyse my recording" (importing audio), pronunciation drills, listening dialogues, and speaker separation.
 Tuning after the iPhone tests: reply time, turn-end silence, memory with Whisper + Gemma together, heat.
 
+**Adaptive plan (built 2026-11-09).** Rules decide *what* to practise; the AI writes *content* for those choices.
+- **The rules (`Core/Adaptive/`):**
+  - `LearnerModel` scores each unit 0–1: lesson 40%, review memory (FSRS) 30%, call mistakes 30%, fading with a 21-day half-life.
+  - `AdaptivePlanner` picks the lesson in this order: a repeated mistake's teaching unit, then a faded unit, then the next new unit in focus order, then the weakest unit.
+  - The planner also picks the call (a rehearsal when a real meeting is today or tomorrow), the weekly challenge (by focus or least done, with gentle / standard / challenging from mistakes per answer) and the phrase-of-the-day unit.
+- **The AI (`AdaptiveJobs`):** it reads the goal (focus plus a dated event; dates come from rules first), writes a daily phrase for the learner's job and writes the weekly challenge around their project.
+  - When: foreground only, after 4 s idle, never during a call or a report check, with a 90 s limit, and it unloads afterwards.
+  - Where: the results are cached in `Application Support/Adaptive/content.json`.
+  - Checked: verified on the iPhone 15. On the Mac each job takes 0.5–2.5 s.
+- **Storage:** call audio older than 60 days (configurable) is deleted at launch; starred recordings and mistake clips are kept.
+
 ## 8. Open decisions (to settle before or during Phase 0)
 1. ~~Which languages~~ → decided: **Tamil → English** (spoken, professional, business); more native languages later
 2. Where content comes from: recommended **AI-drafted, then checked by a Tamil speaker** (especially the Tamil explanations)
